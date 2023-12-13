@@ -4,13 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { Loader } from './components/Loader/Loader.jsx';
 import { persistor, store } from './redux/store';
 
 import './styles/main.css';
 
 import { GlobalStyle } from './styles/globalStyles.jsx';
 import { App } from './App.jsx';
+import Loader from './components/Loader/Loader.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
