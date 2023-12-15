@@ -46,11 +46,11 @@ export const LeftSide = styled.div`
 
 export const Percent = styled.p`
   position: absolute;
-  top: ${(props) => props.top};
+  top: ${(props) => props.$top};
   left: 50%;
   transform: translateX(-50%);
 
-  color: ${(props) => props.color};
+  color: ${(props) => props.$color};
 
   text-align: center;
   font-size: 16px;
@@ -70,7 +70,8 @@ export const RightSide = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  & > svg {
+
+  & > button:nth-child(1) {
     align-self: flex-end;
   }
 `;

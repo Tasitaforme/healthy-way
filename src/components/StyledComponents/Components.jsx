@@ -110,12 +110,11 @@ export const WrapMainBg = styled.div`
 
 export const Button = styled.button`
   align-self: flex-start;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-inline: ${(props) => props.paddingX || '10px'};
-  color: ${(props) => props.color || 'var(--black-secondary)'};
-  background-color: ${(props) => props.colorBg || 'var(--green-light)'};
-
+  padding-block: ${(props) => props.$paddingY || '8px'};
+  padding-inline: ${(props) => props.$paddingX || '10px'};
+  color: ${(props) => props.$color || 'var(--black-secondary)'};
+  background-color: ${(props) => props.$colorBg || 'var(--green-light)'};
+  width: ${(props) => props.$width || ''};
   display: flex;
   flex-direction: row;
   column-gap: 8px;
@@ -142,4 +141,30 @@ export const Button = styled.button`
     width: ${(props) => props.width || 'auto'};
     padding-inline: ${(props) => props.size || '8px'};
   } */
+`;
+
+export const ButtonIcon = styled.button`
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 1;
+  font-size: 1px;
+`;
+
+export const Input = styled.input`
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--green-light);
+  background-color: transparent;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+
+  &::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.43;
+    color: var(--grey-light);
+  }
 `;

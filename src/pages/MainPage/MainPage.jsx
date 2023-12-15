@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FeatureWrap, StyledLink, TitleWrap } from './MainPage.styled';
 
 import { Container } from 'components/StyledComponents/Container';
@@ -15,6 +15,16 @@ import Diary from 'components/Diary/Diary';
 import RecommendedFood from 'components/RecommendedFood/RecommendedFood';
 
 export default function MainPage() {
+  // const [modalRecordDiaryActive, setModalRecordDiaryActive] = useState(false);
+  // const [modalWaterActive, setModalWaterActive] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
+
+  if (modalActive) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+
   return (
     <main>
       <Container>
@@ -32,7 +42,10 @@ export default function MainPage() {
             <DailyGoal></DailyGoal>
           </li>
           <li>
-            <Water></Water>
+            <Water
+              modalActive={modalActive}
+              setModalActive={setModalActive}
+            ></Water>
           </li>
           <li>
             <Food></Food>
