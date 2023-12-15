@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import 'normalize.css';
+// import 'normalize.css';
 import 'modern-normalize';
 import PoppinsRegular from '../assets/fonts/Poppins-Regular.ttf';
 import PoppinsMedium from '../assets/fonts/Poppins-Medium.ttf';
@@ -61,7 +61,7 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         font-size: 22px;
         line-height: 1.45;
-        color: var(--grey-light);
+        /* color: var(--grey-light); */
     }
 
     h3 {

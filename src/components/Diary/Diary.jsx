@@ -1,5 +1,10 @@
 import React from 'react';
+import { HeadlineSecond } from '../StyledComponents/Components';
 
 export default function Diary() {
-  return <div>Diary</div>;
+  return (
+    <>
+      <HeadlineSecond>Diary</HeadlineSecond>
+    </>
+  );
 }

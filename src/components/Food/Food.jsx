@@ -1,5 +1,10 @@
 import React from 'react';
+import { HeadlineSecond } from '../StyledComponents/Components';
 
 export default function Food() {
-  return <div>Food</div>;
+  return (
+    <>
+      <HeadlineSecond>Food</HeadlineSecond>
+    </>
+  );
 }
