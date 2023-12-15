@@ -1,10 +1,20 @@
 import React from 'react';
+import { Field, Form } from 'formik';
 import { Formik } from 'formik';
+
+import { profileSettingSchema } from '../../schemas/formik';
 
 import {
   UserInformationForm,
-  UserInformationLabel,
   UserInformationField,
+  UserInformationErrorMessage,
+  UserInformationSubmitButton,
+  UserInformationCancelButton,
+  UserInformationBlock,
+  GenderButtonsWrapper,
+  UserInformationRadioText,
+  UserInformationRadioInput,
+  UserInformationRadioLabel,
 } from './UserInformation.styled';
 
 export default function UserInformation() {
@@ -20,26 +30,94 @@ export default function UserInformation() {
   return (
     <Formik
       initialValues={{
-        name: '',
-        age: '',
-        gender: '',
-        height: '',
-        weight: '',
+        name: 'Konstantin',
+        age: '34',
+        gender: 'male',
+        height: '170',
+        weight: '90',
         activity: '',
       }}
-      onSubmit={async (values) => {}}
+      validationSchema={profileSettingSchema}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
     >
-      <UserInformationForm encType="multipart/form-data">
-        <UserInformationLabel htmlFor="name">Your name</UserInformationLabel>
-        <UserInformationField
-          id="name"
-          name="name"
-          placeholder={testUser.name || values.name}
-          //   value={testUser.name}
-        />
+      {({ errors }) => (
+        <UserInformationForm>
+          <UserInformationBlock>
+            <label htmlFor="name">Your name</label>
+            <UserInformationField
+              name="name"
+              placeholder="Enter your name"
+              className={errors.name ? 'input-error' : ''}
+            />
+            <UserInformationErrorMessage name="name" component="div" />
+          </UserInformationBlock>
 
-        <button type="submit">Submit</button>
-      </UserInformationForm>
+          <UserInformationBlock>
+            <label htmlFor="age">Your age</label>
+            <UserInformationField
+              name="age"
+              placeholder="Enter your age"
+              className={errors.name ? 'input-error' : ''}
+            />
+            <UserInformationErrorMessage name="age" component="div" />
+          </UserInformationBlock>
+
+          <UserInformationBlock>
+            <div id="my-gender-group">Gender</div>
+            <GenderButtonsWrapper
+              role="group"
+              aria-labelledby="my-gender-group"
+            >
+              <UserInformationRadioLabel>
+                <UserInformationRadioInput
+                  type="radio"
+                  name="gender"
+                  value="male"
+                />
+                <UserInformationRadioText>Male</UserInformationRadioText>
+              </UserInformationRadioLabel>
+
+              <UserInformationRadioLabel>
+                <UserInformationRadioInput
+                  type="radio"
+                  name="gender"
+                  value="female"
+                />
+                <UserInformationRadioText>Female</UserInformationRadioText>
+              </UserInformationRadioLabel>
+            </GenderButtonsWrapper>
+          </UserInformationBlock>
+
+          <UserInformationBlock>
+            <label htmlFor="height">Height</label>
+            <UserInformationField
+              name="height"
+              placeholder="Enter your height"
+              className={errors.name ? 'input-error' : ''}
+            />
+            <UserInformationErrorMessage name="height" component="div" />
+          </UserInformationBlock>
+
+          <UserInformationBlock>
+            <label htmlFor="weight">Weight</label>
+            <UserInformationField
+              name="weight"
+              placeholder="Enter your weight"
+              className={errors.name ? 'input-error' : ''}
+            />
+            <UserInformationErrorMessage name="weight" component="div" />
+          </UserInformationBlock>
+
+          <UserInformationSubmitButton type="submit">
+            Save
+          </UserInformationSubmitButton>
+          <UserInformationCancelButton type="button">
+            Cancel
+          </UserInformationCancelButton>
+        </UserInformationForm>
+      )}
     </Formik>
   );
 }

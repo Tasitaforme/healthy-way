@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SettingsPageTitle = styled.h1`
+  margin: 16px auto;
   font-size: 24px;
 `;
 
