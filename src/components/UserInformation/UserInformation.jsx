@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 
 import { profileSettingSchema } from '../../schemas/formik';
 
@@ -32,6 +32,7 @@ export default function UserInformation() {
     <Formik
       initialValues={{
         name: 'Konstantin',
+        photo: 'null',
         age: '34',
         gender: 'male',
         height: '170',
@@ -43,7 +44,7 @@ export default function UserInformation() {
         console.log(values);
       }}
     >
-      {({ errors }) => (
+      {({ errors, setFieldValue }) => (
         <UserInformationForm>
           <UserInformationBlock>
             <label htmlFor="name">Your name</label>
@@ -53,6 +54,19 @@ export default function UserInformation() {
               className={errors.name ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="name" component="div" />
+          </UserInformationBlock>
+
+          <UserInformationBlock>
+            <label htmlFor="photo">Your photo</label>
+            <input
+              name="photo"
+              type="file"
+              className={errors.name ? 'input-error' : ''}
+              onChange={(event) => {
+                setFieldValue('photo', event.currentTarget.files[0]);
+              }}
+            />
+            <UserInformationErrorMessage name="photo" component="div" />
           </UserInformationBlock>
 
           <UserInformationBlock>
