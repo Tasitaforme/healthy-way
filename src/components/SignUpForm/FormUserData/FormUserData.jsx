@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Formik } from 'formik';
 import {
   FormikButton,
@@ -6,35 +5,22 @@ import {
   FormikStyledField,
   FormikStyledForm,
 } from '../../StyledComponents/Formik.styled';
+// import { registerSchema } from '../../../schemas/formik';
 
-export default function FormUserData({ handleNextStep }) {
-  const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (e) => {
-    const value = e.currentTarget.value;
-    console.log(value);
-    setUserData((prev) => ({ ...prev, value }));
-  };
-
+export default function FormUserData({
+  handleNextStep,
+  handleChange,
+  userData,
+}) {
   const onSubmit = (values, actions) => {
     console.log(values, actions);
     handleNextStep();
   };
 
-  // const initialValues = {
-  //   name: '',
-  //   email: '',
-  //   password: '',
-  // };
-
   return (
     <Formik
       initialValues={userData}
-      // validationSchema={loginSchema}
+      // validationSchema={registerSchema}
       onSubmit={onSubmit}
     >
       {({ errors, touched, isSubmitting, isValid }) => (
@@ -54,6 +40,8 @@ export default function FormUserData({ handleNextStep }) {
             type="email"
             name="email"
             placeholder="E-mail"
+            onChange={(e) => handleChange(e)}
+            value={userData.email}
             title="The email address must contain the @ symbol and text after it. For example: email@mail.com"
             className={errors.email && touched.email ? 'input-error' : ''}
           />
@@ -63,12 +51,14 @@ export default function FormUserData({ handleNextStep }) {
             type="password"
             name="password"
             placeholder="Password"
+            onChange={(e) => handleChange(e)}
+            value={userData.password}
             title="The password must be at least 5 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number"
             className={errors.password && touched.password ? 'input-error' : ''}
           />
           <FormikStyledErrorMessage component="p" name="password" />
 
-          <FormikButton type="submit" disabled={!isValid || isSubmitting}>
+          <FormikButton type="submit" /* disabled={!isValid || isSubmitting} */>
             Next
           </FormikButton>
         </FormikStyledForm>

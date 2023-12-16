@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import {
   FormikButton,
   FormikStyledErrorMessage,
@@ -7,38 +6,48 @@ import {
   FormikStyledForm,
 } from '../../StyledComponents/Formik.styled';
 
-export default function FormGoal({ handleNextStep }) {
-  const initialValues = {
-    picked: '',
-  };
-
+export default function FormGoal({ handleNextStep, handleChange, goal }) {
   const onSubmit = (values) => {
     console.log(values);
+    handleChange(values);
     handleNextStep();
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      {({ errors, touched, isSubmitting, isValid }) => (
-        <FormikStyledForm>
-          <label>
-            <FormikStyledField type="radio" name="picked" value="lose fat" />
-            Lose Fat
-          </label>
-          <label>
-            <FormikStyledField type="radio" name="picked" value="maintain" />
-            Maintain
-          </label>
-          <label>
-            <FormikStyledField type="radio" name="picked" value="gain muscle" />
-            Gain Muscle
-          </label>
+    <Formik initialValues={goal} onSubmit={onSubmit}>
+      <FormikStyledForm>
+        <label>
+          Lose Fat
+          <FormikStyledField
+            // onChange={handleChange}
+            type="radio"
+            name="goal"
+            value="lose fat"
+          />
+        </label>
+        <label>
+          Maintain
+          <FormikStyledField
+            // onChange={handleChange}
+            type="radio"
+            name="goal"
+            value="maintain"
+          />
+        </label>
+        <label>
+          Gain Muscle
+          <FormikStyledField
+            // onChange={handleChange}
+            type="radio"
+            name="goal"
+            value="gain muscle"
+          />
+        </label>
 
-          <FormikButton type="submit" disabled={!isValid || isSubmitting}>
-            Next
-          </FormikButton>
-        </FormikStyledForm>
-      )}
+        <FormikButton type="submit" /* disabled={!isValid || isSubmitting} */>
+          Next
+        </FormikButton>
+      </FormikStyledForm>
     </Formik>
   );
 }

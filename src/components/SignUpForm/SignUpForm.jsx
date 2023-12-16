@@ -10,11 +10,26 @@ export default function SignUpForm({
   currentStep,
   handleNextStep,
   handlePrevStep,
+  handleChange,
+  userData,
+  goal,
 }) {
   return (
     <>
-      {currentStep === 1 && <FormUserData handleNextStep={handleNextStep} />}
-      {currentStep === 2 && <FormGoal handleNextStep={handleNextStep} />}
+      {currentStep === 1 && (
+        <FormUserData
+          handleNextStep={handleNextStep}
+          handleChange={handleChange}
+          userData={userData}
+        />
+      )}
+      {currentStep === 2 && (
+        <FormGoal
+          handleNextStep={handleNextStep}
+          handleChange={handleChange}
+          goal={goal}
+        />
+      )}
       {currentStep === 3 && (
         <FormGenderAndAge handleNextStep={handleNextStep} />
       )}
