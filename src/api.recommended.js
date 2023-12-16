@@ -1,7 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-
-axios.defaults.baseURL = 'https://healthy-way-app.onrender.com/user';
+axios.defaults.baseURL = 'https://healthy-way-app.onrender.com/api/user/';
 
 export const fetchRecommendedFood = async () => {
   try {
