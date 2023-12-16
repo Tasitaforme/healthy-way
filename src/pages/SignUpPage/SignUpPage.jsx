@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import { MainAuth, ImageWrapper, TextWrapper } from './SignUpPage.styled';
 import { Container } from '../../components/StyledComponents/Container';
@@ -8,7 +7,15 @@ import SignUpText from '../../components/SignUpText/SignUpText';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 
 export default function SignUpPage() {
-  const [currentStep, setCurrentStep] = useState(5);
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const handleNextStep = () => {
+    setCurrentStep((prev) => prev + 1);
+  };
+
+  const handlePrevStep = () => {
+    setCurrentStep((prev) => prev - 1);
+  };
 
   return (
     <MainAuth>
@@ -19,7 +26,11 @@ export default function SignUpPage() {
           </ImageWrapper>
           <TextWrapper>
             <SignUpText currentStep={currentStep} />
-            <SignUpForm /* currentStep={} */ />
+            <SignUpForm
+              currentStep={currentStep}
+              handleNextStep={handleNextStep}
+              handlePrevStep={handlePrevStep}
+            />
           </TextWrapper>
           {/* <div>
             <p>Do you already have an account?</p>
