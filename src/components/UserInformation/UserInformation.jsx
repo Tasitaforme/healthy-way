@@ -1,5 +1,4 @@
 import React from 'react';
-import { Field, Form } from 'formik';
 import { Formik } from 'formik';
 
 import { profileSettingSchema } from '../../schemas/formik';
@@ -14,6 +13,9 @@ import {
   GenderButtonsWrapper,
   UserInformationRadioInput,
   UserInformationRadioFake,
+  ActivityButtonsWrapper,
+  UserInformationRadioLabel,
+  UserInformationRadioText,
 } from './UserInformation.styled';
 
 export default function UserInformation() {
@@ -34,7 +36,7 @@ export default function UserInformation() {
         gender: 'male',
         height: '170',
         weight: '90',
-        activity: '',
+        activity: '1.2',
       }}
       validationSchema={profileSettingSchema}
       onSubmit={(values) => {
@@ -69,25 +71,25 @@ export default function UserInformation() {
               role="group"
               aria-labelledby="my-gender-group"
             >
-              <label>
+              <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
                   name="gender"
                   value="male"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
-                <span>Male</span>
-              </label>
+                <UserInformationRadioText>Male</UserInformationRadioText>
+              </UserInformationRadioLabel>
 
-              <label>
+              <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
                   name="gender"
                   value="female"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
-                <span>Female</span>
-              </label>
+                <UserInformationRadioText>Female</UserInformationRadioText>
+              </UserInformationRadioLabel>
             </GenderButtonsWrapper>
           </UserInformationBlock>
 
@@ -109,6 +111,77 @@ export default function UserInformation() {
               className={errors.name ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="weight" component="div" />
+          </UserInformationBlock>
+
+          <UserInformationBlock>
+            <div id="my-activity-group">Your activity</div>
+            <ActivityButtonsWrapper
+              role="group"
+              aria-labelledby="my-activity-group"
+            >
+              <UserInformationRadioLabel>
+                <UserInformationRadioInput
+                  type="radio"
+                  name="activity"
+                  value="1.2"
+                />
+                <UserInformationRadioFake></UserInformationRadioFake>
+                <UserInformationRadioText>
+                  1.2 - if you do not have physical activity and sedentary work
+                </UserInformationRadioText>
+              </UserInformationRadioLabel>
+
+              <UserInformationRadioLabel>
+                <UserInformationRadioInput
+                  type="radio"
+                  name="activity"
+                  value="1.375"
+                />
+                <UserInformationRadioFake></UserInformationRadioFake>
+                <UserInformationRadioText>
+                  1.375 - if you do short runs or light gymnastics 1-3 times a
+                  week
+                </UserInformationRadioText>
+              </UserInformationRadioLabel>
+
+              <UserInformationRadioLabel>
+                <UserInformationRadioInput
+                  type="radio"
+                  name="activity"
+                  value="1.55"
+                />
+                <UserInformationRadioFake></UserInformationRadioFake>
+                <UserInformationRadioText>
+                  1.55 - if you play sports with average loads 3-5 times a week
+                </UserInformationRadioText>
+              </UserInformationRadioLabel>
+
+              <UserInformationRadioLabel>
+                <UserInformationRadioInput
+                  type="radio"
+                  name="activity"
+                  value="1.725"
+                />
+                <UserInformationRadioFake></UserInformationRadioFake>
+                <UserInformationRadioText>
+                  1.725 ​​- if you train fully 6-7 times a week
+                </UserInformationRadioText>
+              </UserInformationRadioLabel>
+
+              <UserInformationRadioLabel>
+                <UserInformationRadioInput
+                  type="radio"
+                  name="activity"
+                  value="1.9"
+                />
+                <UserInformationRadioFake></UserInformationRadioFake>
+                <UserInformationRadioText>
+                  1.9 - if your work is related to physical labor, you train 2
+                  times a day and include strength exercises in your training
+                  program
+                </UserInformationRadioText>
+              </UserInformationRadioLabel>
+            </ActivityButtonsWrapper>
           </UserInformationBlock>
 
           <UserInformationSubmitButton type="submit">

@@ -66,12 +66,14 @@ export const UserInformationCancelButton = styled.button`
 
 export const GenderButtonsWrapper = styled.div`
   display: flex;
-  flex-direction: row;
   gap: 16px;
   align-items: center;
 `;
 
-export const UserInformationRadioLabel = styled.label``;
+export const UserInformationRadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+`;
 
 export const UserInformationRadioInput = styled(Field)`
   display: none;
@@ -106,4 +108,13 @@ export const UserInformationRadioFake = styled.span`
   }
 `;
 
-export const UserInformationRadioText = styled.span``;
+export const UserInformationRadioText = styled.span`
+  display: inline-block;
+  width: 100%;
+`;
+
+export const ActivityButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
