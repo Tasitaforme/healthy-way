@@ -12,9 +12,8 @@ import {
   UserInformationCancelButton,
   UserInformationBlock,
   GenderButtonsWrapper,
-  UserInformationRadioText,
   UserInformationRadioInput,
-  UserInformationRadioLabel,
+  UserInformationRadioFake,
 } from './UserInformation.styled';
 
 export default function UserInformation() {
@@ -70,23 +69,25 @@ export default function UserInformation() {
               role="group"
               aria-labelledby="my-gender-group"
             >
-              <UserInformationRadioLabel>
+              <label>
                 <UserInformationRadioInput
                   type="radio"
                   name="gender"
                   value="male"
                 />
-                <UserInformationRadioText>Male</UserInformationRadioText>
-              </UserInformationRadioLabel>
+                <UserInformationRadioFake></UserInformationRadioFake>
+                <span>Male</span>
+              </label>
 
-              <UserInformationRadioLabel>
+              <label>
                 <UserInformationRadioInput
                   type="radio"
                   name="gender"
                   value="female"
                 />
-                <UserInformationRadioText>Female</UserInformationRadioText>
-              </UserInformationRadioLabel>
+                <UserInformationRadioFake></UserInformationRadioFake>
+                <span>Female</span>
+              </label>
             </GenderButtonsWrapper>
           </UserInformationBlock>
 

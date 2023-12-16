@@ -71,27 +71,39 @@ export const GenderButtonsWrapper = styled.div`
   align-items: center;
 `;
 
-export const UserInformationRadioLabel = styled.label`
-  position: relative;
-`;
+export const UserInformationRadioLabel = styled.label``;
 
 export const UserInformationRadioInput = styled(Field)`
+  display: none;
+`;
+
+export const UserInformationRadioFake = styled.span`
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--grey-light);
+  position: relative;
+  margin-right: 8px;
+
   &::before {
     content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: block;
-    border: 1px solid var(--grey-light);
-    background-color: black;
-    border-radius: 50%;
-    width: 12px;
-    height: 12px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--green-light);
+    border-radius: 50px;
+    opacity: 0;
+    transition: 250ms;
   }
 
-  &:checked + ${UserInformationRadioLabel}::before {
-    border-color: var(--grey-light);
-    fill: var(--green-light);
+  ${UserInformationRadioInput}:checked + &::before {
+    opacity: 1;
   }
 `;
 
-export const UserInformationRadioText = styled.span`
-  margin-left: 8px;
-`;
+export const UserInformationRadioText = styled.span``;
