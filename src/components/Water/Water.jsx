@@ -9,7 +9,7 @@ import {
   HeadlineSecond,
   IconWrap,
   SubtitleSecond,
-} from '../StyledComponents/Components';
+} from '../StyledComponents/Components.styled';
 import sprite from 'assets/sprite.svg';
 import {
   Headline,

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   WrapMainBg,
   HeadlineThird,
-} from 'components/StyledComponents/Components';
+} from 'components/StyledComponents/Components.styled';
 
 export const WrapMain = styled(WrapMainBg)`
   width: 100%;

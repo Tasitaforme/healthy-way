@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ErrorMessage, Field, Form } from 'formik';
-import { Button } from '../StyledComponents/Components';
+import { Button } from '../StyledComponents/Components.styled';
 
 export const ModalBackdrop = styled.div`
   height: 100vh;
@@ -68,6 +68,7 @@ export const ButtonTransparent = styled(Button)`
   }
 `;
 
+// стилізація form в формі (Formik)
 export const FormikStyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
@@ -77,10 +78,14 @@ export const FormikStyledForm = styled(Form)`
     margin: 0 auto;
   }
 `;
+
+// стилізація label в формі (Formik)
 export const FormikStyledFormLabel = styled.label`
   margin-top: 24px;
   margin-bottom: 12px;
 `;
+
+// стилізація input в формі (Formik)
 export const FormikStyledField = styled(Field)`
   padding: 8px 10px;
   border-radius: 12px;
@@ -124,6 +129,7 @@ export const FormikStyledField = styled(Field)`
   }
 `;
 
+// стилізація повідомлення про помилку в input в формі (Formik)
 export const FormikStyledErrorMessage = styled(ErrorMessage)`
   font-size: 12px;
   font-weight: 400;

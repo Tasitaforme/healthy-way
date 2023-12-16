@@ -7,7 +7,7 @@ import {
   IconWrap,
   SubtitleFirst,
   WrapMainBg,
-} from '../StyledComponents/Components';
+} from '../StyledComponents/Components.styled';
 import { List } from './DailyGoal.styled';
 import sprite from 'assets/sprite.svg';
 

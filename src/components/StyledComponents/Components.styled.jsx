@@ -1,5 +1,15 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
+// кнопка лише з іконкою
+export const ButtonIcon = styled.button`
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 1;
+  font-size: 1px;
+`;
+// іконка
 export const IconWrap = styled.svg`
   width: ${(props) => props.width || '14px'};
   height: ${(props) => props.height || '14px'};
@@ -9,6 +19,7 @@ export const IconWrap = styled.svg`
   display: inline-block;
 `;
 
+// текст в заголовках
 export const HeadlineFirst = styled.h1`
   font-size: 24px;
   line-height: 1.25;
@@ -42,6 +53,7 @@ export const HeadlineThird = styled.h3`
   }
 `;
 
+// текст в підзаголовках
 export const SubtitleFirst = styled.p`
   font-size: 34px;
   line-height: 1.12;
@@ -67,6 +79,7 @@ export const BodyTextWrap = styled.div`
   column-gap: 4px;
 `;
 
+// текст в Body
 export const BodyTextFirst = styled.p`
   font-size: 14px;
   line-height: 1.43;
@@ -79,6 +92,7 @@ export const BodyTextSecond = styled(BodyTextFirst)`
   color: ${(props) => props.color || 'var(--grey-light)'};
 `;
 
+// текст в кнопках
 export const ButtonTextFirst = styled.p`
   font-size: 14px;
   line-height: 1.43;
@@ -97,6 +111,7 @@ export const ButtonTextThird = styled(ButtonTextFirst)`
   font-weight: 400;
 `;
 
+// стилізація фону в компонентах
 export const WrapMainBg = styled.div`
   background-color: var(--black-secondary);
   margin-top: 6px;
@@ -108,6 +123,7 @@ export const WrapMainBg = styled.div`
   }
 `;
 
+// кнопка
 export const Button = styled.button`
   align-self: flex-start;
   padding-block: ${(props) => props.$paddingY || '8px'};
@@ -143,28 +159,19 @@ export const Button = styled.button`
   } */
 `;
 
-export const ButtonIcon = styled.button`
-  margin: 0;
-  padding: 0;
-  border: none;
-  line-height: 1;
-  font-size: 1px;
-`;
+// посилання на сторінку
+export const StyledLink = styled(Link)`
+  color: var(--grey-light);
+  transition: color var(--transition-dur-and-fun);
 
-export const Input = styled.input`
-  padding: 8px 10px;
-  border-radius: 12px;
-  border: 1px solid var(--green-light);
-  background-color: transparent;
-  color: var(--white);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.43;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  column-gap: 6px;
 
-  &::placeholder {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.43;
-    color: var(--grey-light);
+  &:hover,
+  &:focus {
+    color: var(--green-light);
   }
 `;

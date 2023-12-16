@@ -17,7 +17,7 @@ import {
   ButtonTextSecond,
   ButtonTextThird,
   HeadlineFirst,
-} from '../StyledComponents/Components';
+} from '../StyledComponents/Components.styled';
 import { waterSchema } from '../../schemas/formikWater';
 const modalRoot = document.querySelector('#root_modal');
 

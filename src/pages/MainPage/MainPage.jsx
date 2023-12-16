@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { FeatureWrap, StyledLink, TitleWrap } from './MainPage.styled';
+import { FeatureWrap, TitleWrap } from './MainPage.styled';
 
 import { Container } from 'components/StyledComponents/Container';
-import { IconWrap } from 'components/StyledComponents/Components';
-import sprite from 'assets/sprite.svg';
 import {
+  IconWrap,
   ButtonTextSecond,
   HeadlineFirst,
-} from 'components/StyledComponents/Components';
+  StyledLink,
+} from 'components/StyledComponents/Components.styled';
+import sprite from 'assets/sprite.svg';
+
 import DailyGoal from 'components/DailyGoal/DailyGoal';
 import Water from 'components/Water/Water';
 import Food from 'components/Food/Food';

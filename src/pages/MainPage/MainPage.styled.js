@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const TitleWrap = styled.div`
   display: flex;
@@ -19,21 +18,6 @@ export const TitleWrap = styled.div`
   }
 `;
 
-export const StyledLink = styled(Link)`
-  color: var(--grey-light);
-  transition: color var(--transition-dur-and-fun);
-
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  column-gap: 6px;
-
-  &:hover,
-  &:focus {
-    color: var(--green-light);
-  }
-`;
-
 export const FeatureWrap = styled.ul`
   display: flex;
   flex-direction: column;
@@ -41,30 +25,11 @@ export const FeatureWrap = styled.ul`
 
   margin-bottom: 80px;
 
-  /* & li:nth-child(1) {
-    background-color: red;
-  }
-  & li:nth-child(2) {
-    background-color: azure;
-  }
-  & li:nth-child(3) {
-    background-color: blue;
-  }
-  & li:nth-child(4) {
-    background-color: coral;
-  }
-  & li:nth-child(5) {
-    background-color: red;
-  } */
   @media screen and (min-width: 834px) {
     flex-direction: row;
     flex-wrap: wrap;
     column-gap: 20px;
     margin-bottom: 40px;
-
-    /* & li {
-      min-height: 278px;
-    } */
 
     & li:nth-child(1),
     li:nth-child(2) {

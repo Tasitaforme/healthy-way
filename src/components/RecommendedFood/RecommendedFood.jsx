@@ -3,8 +3,8 @@ import {
   ButtonTextSecond,
   HeadlineSecond,
   IconWrap,
-} from '../StyledComponents/Components';
-import { StyledLink } from '../../pages/MainPage/MainPage.styled';
+  StyledLink,
+} from '../StyledComponents/Components.styled';
 import sprite from 'assets/sprite.svg';
 
 export default function RecommendedFood() {
