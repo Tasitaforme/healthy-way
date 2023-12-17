@@ -18,7 +18,14 @@ import {
   UserInformationRadioText,
   UserGenderText,
   AvatarInput,
+  AvatarContainer,
+  AvatarImg,
+  AvatarLabel,
+  AvatarIcon,
 } from './UserInformation.styled';
+
+import testAvatar from './Avatar.png'; // не забути видалити
+import downloadIcon from '../../assets/images/profileSettings/download.png';
 
 export default function UserInformation() {
   const dispatch = useDispatch();
@@ -55,6 +62,8 @@ export default function UserInformation() {
 
   const handleClickCancel = (resetForm) => {
     resetForm({ values: initialValues, isSubmitting: false });
+    setIsAvatarChanged(false);
+    setAvatarPreview(null);
   };
 
   return (
@@ -83,10 +92,18 @@ export default function UserInformation() {
               id="avatar"
               name="avatar"
               type="file"
-              className={formikProps.avatar ? 'input-error' : ''}
               onChange={handleChangeAvatar}
             />
-            <label htmlFor="avatar">Download new photo</label>
+            <AvatarLabel htmlFor="avatar">
+              <AvatarContainer>
+                <AvatarImg
+                  src={avatarPreview || testAvatar}
+                  alt="userAvatar"
+                ></AvatarImg>
+              </AvatarContainer>
+              <AvatarIcon src={downloadIcon} />
+              Download new photo
+            </AvatarLabel>
             <UserInformationErrorMessage name="avatar" component="div" />
           </UserInformationBlock>
 
@@ -95,7 +112,7 @@ export default function UserInformation() {
             <UserInformationField
               name="age"
               placeholder="Enter your age"
-              className={formikProps.age ? 'input-error' : ''}
+              className={formikProps.errors.age ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="age" component="div" />
           </UserInformationBlock>
@@ -133,7 +150,7 @@ export default function UserInformation() {
             <UserInformationField
               name="height"
               placeholder="Enter your height"
-              className={formikProps.height ? 'input-error' : ''}
+              className={formikProps.errors.height ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="height" component="div" />
           </UserInformationBlock>
@@ -143,7 +160,7 @@ export default function UserInformation() {
             <UserInformationField
               name="weight"
               placeholder="Enter your weight"
-              className={formikProps.weight ? 'input-error' : ''}
+              className={formikProps.errors.weight ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="weight" component="div" />
           </UserInformationBlock>

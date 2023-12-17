@@ -60,11 +60,37 @@ export const AvatarInput = styled.input`
     font-weight: 400;
     line-height: 1.43;
     cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
+`;
+
+export const AvatarLabel = styled.label`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const AvatarContainer = styled.div`
+  height: 36px;
+  width: 36px;
+  border-radius: 36px;
+  margin-right: 12px;
+  overflow: hidden;
+`;
+
+export const AvatarImg = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const AvatarIcon = styled.img`
+  width: 16px;
+  height: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6px;
 `;
 
 // стилі для секції gender
