@@ -50,3 +50,15 @@ export const refresh = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  'auth/update',
+  async (data, thunkAPI) => {
+    try {
+      const response = await axios.put('/users/update', data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
