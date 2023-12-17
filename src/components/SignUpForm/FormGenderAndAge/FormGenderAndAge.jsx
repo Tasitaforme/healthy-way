@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Field, Formik } from 'formik';
 import {
   FormikStyledErrorMessage,
@@ -7,32 +6,37 @@ import {
 } from '../../StyledComponents/Formik.styled';
 import { Button } from '../../StyledComponents/Components.styled';
 
-export default function FormGenderAndAge({ handleNextStep }) {
-  const initialValues = {
-    picked: '',
-    age: '',
-  };
-
+export default function FormGenderAndAge({
+  handleNextStep,
+  handleChangeRadio,
+  handleChangeInput,
+  genderAndAge,
+}) {
   const onSubmit = (values) => {
-    console.log(values);
+    handleChangeRadio('gender', values.gender);
     handleNextStep();
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik initialValues={genderAndAge} onSubmit={onSubmit}>
       {({ errors, touched, isSubmitting, isValid }) => (
         <FormikStyledForm>
+          <p>Gender</p>
           <label>
-            Gender
-            <Field type="radio" name="picked" value="lose fat" />
-            <Field type="radio" name="picked" value="maintain" />
+            <Field type="radio" name="gender" value="male" />
+            Male
           </label>
-
           <label>
-            Age
+            <Field type="radio" name="gender" value="female" />
+            Female
+          </label>
+          <label>
+            Your age
             <FormikStyledField
               type="age"
               name="age"
+              onChange={(e) => handleChangeInput(e)}
+              value={genderAndAge.age}
               placeholder="Enter your age"
               title="The email address must contain the @ symbol and text after it. For example: email@mail.com"
               className={errors.age && touched.age ? 'input-error' : ''}
@@ -40,7 +44,7 @@ export default function FormGenderAndAge({ handleNextStep }) {
             <FormikStyledErrorMessage component="p" name="age" />
           </label>
 
-          <Button type="submit" disabled={!isValid || isSubmitting}>
+          <Button type="submit" /* disabled={!isValid || isSubmitting} */>
             Next
           </Button>
         </FormikStyledForm>

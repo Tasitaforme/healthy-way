@@ -9,11 +9,10 @@ import { Button } from '../../StyledComponents/Components.styled';
 
 export default function FormUserData({
   handleNextStep,
-  handleChange,
+  handleChangeInput,
   userData,
 }) {
-  const onSubmit = (values, actions) => {
-    console.log(values, actions);
+  const onSubmit = () => {
     handleNextStep();
   };
 
@@ -29,7 +28,7 @@ export default function FormUserData({
             type="name"
             name="name"
             placeholder="Name"
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleChangeInput(e)}
             value={userData.name}
             title="The email address must contain the @ symbol and text after it. For example: email@mail.com"
             className={errors.email && touched.email ? 'input-error' : ''}
@@ -40,7 +39,7 @@ export default function FormUserData({
             type="email"
             name="email"
             placeholder="E-mail"
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleChangeInput(e)}
             value={userData.email}
             title="The email address must contain the @ symbol and text after it. For example: email@mail.com"
             className={errors.email && touched.email ? 'input-error' : ''}
@@ -51,7 +50,7 @@ export default function FormUserData({
             type="password"
             name="password"
             placeholder="Password"
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleChangeInput(e)}
             value={userData.password}
             title="The password must be at least 5 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number"
             className={errors.password && touched.password ? 'input-error' : ''}
