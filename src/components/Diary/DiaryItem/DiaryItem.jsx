@@ -7,12 +7,14 @@ import dinner from 'assets/images/diary/dinner.png';
 import dinner2x from 'assets/images/diary/dinner@2x.png';
 import snack from 'assets/images/diary/snack.png';
 import snack2x from 'assets/images/diary/snack@2x.png';
+
 import {
   ItemWrap,
   ItemWrapInfo,
   ItemWrapTitle,
   Title,
 } from './DiaryItem.styled';
+
 import {
   BodyTextFirst,
   BodyTextSecond,
@@ -20,11 +22,12 @@ import {
   ButtonIcon,
   IconWrap,
 } from '../../StyledComponents/Components.styled';
+
 import sprite from 'assets/sprite.svg';
 
 export default function DiaryItem({ data }) {
-  console.log(data);
-  console.log(data.mealType);
+  // console.log(data);
+  // console.log(data.mealType);
 
   return (
     <ItemWrap>

@@ -7,14 +7,6 @@ import {
 import { DiaryList, TitleWrap } from './Diary.styled';
 // import { nanoid } from '@reduxjs/toolkit';
 
-import breakfast from 'assets/images/diary/breakfast.png';
-import breakfast2x from 'assets/images/diary/breakfast@2x.png';
-import lunch from 'assets/images/diary/lunch.png';
-import lunch2x from 'assets/images/diary/lunch@2x.png';
-import dinner from 'assets/images/diary/dinner.png';
-import dinner2x from 'assets/images/diary/dinner@2x.png';
-import snack from 'assets/images/diary/snack.png';
-import snack2x from 'assets/images/diary/snack@2x.png';
 import DiaryItem from './DiaryItem/DiaryItem';
 
 export default function Diary() {
@@ -161,7 +153,7 @@ export default function Diary() {
     ...getTotalNutrients(meal[meal.name]),
   }));
 
-  console.log('Total Nutrients for Meals:', totalNutrientsForMeals);
+  // console.log('Total Nutrients for Meals:', totalNutrientsForMeals);
 
   return (
     <>

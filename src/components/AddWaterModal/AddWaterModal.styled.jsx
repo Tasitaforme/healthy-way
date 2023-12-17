@@ -1,6 +1,10 @@
 import styled from 'styled-components';
-import { ErrorMessage, Field, Form } from 'formik';
 import { Button } from '../StyledComponents/Components.styled';
+import {
+  FormikStyledField,
+  FormikStyledForm,
+  FormikStyledLabel,
+} from '../StyledComponents/Formik.styled';
 
 export const ModalBackdrop = styled.div`
   height: 100vh;
@@ -68,76 +72,26 @@ export const ButtonTransparent = styled(Button)`
   }
 `;
 
-// стилізація form в формі (Formik)
-export const FormikStyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-
+export const WaterForm = styled(FormikStyledForm)`
   @media screen and (min-width: 834px) {
     max-width: 212px;
     margin: 0 auto;
   }
 `;
 
-// стилізація label в формі (Formik)
-export const FormikStyledFormLabel = styled.label`
+export const WaterLabel = styled(FormikStyledLabel)`
   margin-top: 24px;
-  margin-bottom: 12px;
 `;
 
-// стилізація input в формі (Formik)
-export const FormikStyledField = styled(Field)`
-  padding: 8px 10px;
-  border-radius: 12px;
-  border: 1px solid var(--green-light);
-  background-color: transparent;
-  color: var(--white);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.43;
+export const WaterField = styled(FormikStyledField)`
   & + p {
     margin-top: 12px;
   }
   & + button {
     margin-top: 32px;
   }
-  &::placeholder {
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.43;
-    color: var(--grey-light);
-  }
-  &:active.input-normal,
-  &:focus-visible.input-normal,
-  &.input-normal {
-    outline: none;
-    border-color: var(--green-light);
-  }
-  &:active.input-error,
-  &:focus.input-error,
-  &:focus-visible.input-error,
-  &.input-error {
-    outline: none;
-    border-color: var(--error-color);
-  }
-  &:focus-visible.input-success,
-  &:active.input-success,
-  &.input-success {
-    outline: none;
-    border-color: var(--success-color);
-  }
 `;
 
-// стилізація повідомлення про помилку в input в формі (Formik)
-export const FormikStyledErrorMessage = styled(ErrorMessage)`
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.17;
-  color: var(--error-color);
-
-  margin: 12px auto;
-`;
-export const FormikStyledButton = styled(Button)`
+export const WaterButton = styled(Button)`
   width: 100%;
 `;

@@ -9,6 +9,7 @@ export const ButtonIcon = styled.button`
   line-height: 1;
   font-size: 1px;
 `;
+
 // іконка
 export const IconWrap = styled.svg`
   width: ${(props) => props.width || '14px'};
@@ -30,6 +31,7 @@ export const HeadlineFirst = styled.h1`
     line-height: 1.2;
   }
 `;
+
 export const HeadlineSecond = styled.h2`
   font-size: 18px;
   line-height: 1.33;
@@ -150,13 +152,6 @@ export const Button = styled.button`
   &:hover {
     box-shadow: var(--box-shadow);
   }
-  /* @media screen and (min-width: 320px) {
-    width: 100%;
-  }
-  @media screen and (min-width: 834px) {
-    width: ${(props) => props.width || 'auto'};
-    padding-inline: ${(props) => props.size || '8px'};
-  } */
 `;
 
 // посилання на сторінку

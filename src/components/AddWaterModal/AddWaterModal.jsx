@@ -3,22 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import {
   ButtonTransparent,
-  FormikStyledButton,
-  FormikStyledErrorMessage,
-  FormikStyledField,
-  FormikStyledForm,
-  FormikStyledFormLabel,
   ModalBackdrop,
   ModalContainer,
+  WaterButton,
+  WaterField,
+  WaterForm,
+  WaterLabel,
 } from './AddWaterModal.styled';
 import {
   BodyTextSecond,
   ButtonTextFirst,
-  ButtonTextSecond,
   ButtonTextThird,
   HeadlineFirst,
 } from '../StyledComponents/Components.styled';
 import { waterSchema } from '../../schemas/formikWater';
+import { FormikStyledErrorMessage } from '../StyledComponents/Formik.styled';
 const modalRoot = document.querySelector('#root_modal');
 
 export default function AddWaterModal({
@@ -67,11 +66,11 @@ export default function AddWaterModal({
           onSubmit={onSubmit}
         >
           {({ errors, touched, isSubmitting, isValid, dirty }) => (
-            <FormikStyledForm>
-              <FormikStyledFormLabel>
+            <WaterForm>
+              <WaterLabel>
                 <BodyTextSecond>How much water</BodyTextSecond>
-              </FormikStyledFormLabel>
-              <FormikStyledField
+              </WaterLabel>
+              <WaterField
                 type="text"
                 name="quantity"
                 placeholder="Enter milliliters"
@@ -79,20 +78,18 @@ export default function AddWaterModal({
                   touched.quantity
                     ? errors.quantity
                       ? 'input-error'
-                      : !errors.quantity
-                      ? 'input-success'
-                      : 'input-error'
+                      : 'input-success'
                     : 'input-normal'
                 }
               />
               <FormikStyledErrorMessage component="p" name="quantity" />
-              <FormikStyledButton
+              <WaterButton
                 type="submit"
                 disabled={!isValid || isSubmitting || !dirty}
               >
                 <ButtonTextFirst>Confirm</ButtonTextFirst>
-              </FormikStyledButton>
-            </FormikStyledForm>
+              </WaterButton>
+            </WaterForm>
           )}
         </Formik>
 
