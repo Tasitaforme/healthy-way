@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
+import { profileSettingSchema } from '../../schemas/profileSettings';
 import { FormikStyledForm } from '../StyledComponents/Formik.styled';
 
 import {
@@ -18,7 +19,6 @@ import {
   UserGenderText,
   AvatarInput,
 } from './UserInformation.styled';
-import { profileSettingSchema } from '../../schemas/profileSettings';
 
 export default function UserInformation() {
   const dispatch = useDispatch();
