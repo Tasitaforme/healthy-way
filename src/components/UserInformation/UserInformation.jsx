@@ -41,43 +41,23 @@ export default function UserInformation() {
 
   // функція, що відповідає за зміну аватара
   const handleChangeAvatar = (event) => {
-    const avatar = event.target.files[0];
+    const avatarFile = event.target.files[0];
 
-    if (!avatar) return;
+    if (!avatarFile) return;
 
-    const avatarUrl = URL.createObjectURL(avatar);
-    setAvatarFile(avatar);
+    const avatarUrl = URL.createObjectURL(avatarFile);
+    setAvatarFile(avatarFile);
     setAvatarPreview(avatarUrl);
     setIsAvatarChanged(true);
   };
 
   const handleClickSave = (values) => {
     // dispatch(updateUser(values)); - функцію updateUser треба додати в operation
-
-    if (isAvatarChanged) {
-      const formData = new FormData();
-      formData.append('avatar', avatar);
-      //  dispatch(updateAvatar(formData)); - функцію updateAvatar треба додати в operation
-    }
   };
 
   const handleClickCancel = (resetForm) => {
-    const { errors } = resetForm || {};
-
-    if (isAvatarChanged || (errors && Object.keys(errors).length > 0)) {
-      const isConfirmed = window.confirm(
-        'Are you sure you want to discard changes?'
-      );
-
-      if (isConfirmed) {
-        resetForm({ values: initialValues, isSubmitting: false });
-        setIsAvatarChanged(false);
-      }
-    } else {
-      resetForm({ values: initialValues, isSubmitting: false });
-      setIsAvatarChanged(false);
-    }
-  };
+    resetForm({ values: initialValues, isSubmitting: false });
+  }; // пробував, функція відпрацьовує
 
   return (
     <Formik
