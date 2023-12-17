@@ -1,14 +1,12 @@
 import styled from 'styled-components';
-import { Field, Form, ErrorMessage } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 
-export const UserInformationForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  margin: 0 auto;
-  justify-content: start;
-`;
+import {
+  FormikStyledField,
+  FormikStyledErrorMessage,
+} from '../StyledComponents/Formik.styled';
 
+// кожнна група лейбл та інпути загорнути в цей дів
 export const UserInformationBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,17 +14,13 @@ export const UserInformationBlock = styled.div`
   margin-bottom: 40px;
 `;
 
-export const UserInformationField = styled(Field)`
+// стилі для інпутів у форміку Field
+export const UserInformationField = styled(FormikStyledField)`
   width: 100%;
   position: relative;
-  border-radius: 12px;
   display: block;
   border: 1px solid var(--grey-light);
-  background: var(--black-secondary);
-  padding: 8px 10px;
-  margin-bottom: 4px;
   color: var(--white);
-  font-weight: 400;
 
   &.input-error {
     border-color: var(--error-color);
@@ -34,7 +28,6 @@ export const UserInformationField = styled(Field)`
 
   &::placeholder {
     color: var(--white);
-    font-weight: 400;
   }
 
   &:focus,
@@ -45,25 +38,36 @@ export const UserInformationField = styled(Field)`
   }
 `;
 
-export const UserInformationErrorMessage = styled(ErrorMessage)`
-  color: var(--error-color);
-  font-size: 12px;
+// стилі для повідомлення про помилку
+export const UserInformationErrorMessage = styled(FormikStyledErrorMessage)`
+  margin: 0;
 `;
 
-export const UserInformationSubmitButton = styled.button`
-  padding: 8px 10px;
-  border-radius: 12px;
-  background: var(--green-light);
-  line-height: 1.43;
-  margin-bottom: 12px;
+// стилі для avatar
+export const AvatarInput = styled.input`
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+  & + label {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.43;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
-export const UserInformationCancelButton = styled.button`
-  line-height: 1.43;
-  color: var(--grey-light);
-  margin-bottom: 40px;
-`;
-
+// стилі для секції gender
 export const GenderButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -117,32 +121,27 @@ export const UserInformationRadioText = styled.span`
 export const UserGenderText = styled(UserInformationRadioText)`
   width: auto;
 `;
+// стилі для секції gender
 
+// стилі для секції activity
 export const ActivityButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
 `;
 
-export const AvatarInput = styled.input`
-  width: 0px;
-  height: 0px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
+// стилі для кнопки Save
+export const UserInformationSubmitButton = styled.button`
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: var(--green-light);
+  line-height: 1.43;
+  margin-bottom: 12px;
+`;
 
-  & + label {
-    color: #fff;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.43;
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+// стилі для кнопки Cancel
+export const UserInformationCancelButton = styled.button`
+  line-height: 1.43;
+  color: var(--grey-light);
+  margin-bottom: 40px;
 `;

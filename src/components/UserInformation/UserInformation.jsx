@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-
-import { profileSettingSchema } from '../../schemas/profileSettings';
+import { FormikStyledForm } from '../StyledComponents/Formik.styled';
 
 import {
-  UserInformationForm,
   UserInformationField,
   UserInformationErrorMessage,
   UserInformationSubmitButton,
@@ -19,7 +18,7 @@ import {
   UserGenderText,
   AvatarInput,
 } from './UserInformation.styled';
-import { useDispatch } from 'react-redux';
+import { profileSettingSchema } from '../../schemas/profileSettings';
 
 export default function UserInformation() {
   const dispatch = useDispatch();
@@ -39,7 +38,6 @@ export default function UserInformation() {
     activity: '1.2',
   };
 
-  // функція, що відповідає за зміну аватара
   const handleChangeAvatar = (event) => {
     const avatarFile = event.target.files[0];
 
@@ -57,27 +55,25 @@ export default function UserInformation() {
 
   const handleClickCancel = (resetForm) => {
     resetForm({ values: initialValues, isSubmitting: false });
-  }; // пробував, функція відпрацьовує
+  };
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={profileSettingSchema}
-      onSubmit={(values) => {
-        console.log(values); // прибрати цей консоль
-      }}
+      // onSubmit={(values) => {
+      //   console.log(values); // прибрати цей консоль
+      // }}
     >
       {(formikProps) => (
-        <UserInformationForm>
+        <FormikStyledForm>
           <UserInformationBlock>
-            <label>
-              Your name
-              <UserInformationField
-                name="name"
-                placeholder="Enter your name"
-                className={formikProps.errors.name ? 'input-error' : ''}
-              />
-            </label>
+            <label>Your name</label>
+            <UserInformationField
+              name="name"
+              placeholder="Enter your name"
+              className={formikProps.errors.name ? 'input-error' : ''}
+            />
             <UserInformationErrorMessage name="name" component="p" />
           </UserInformationBlock>
 
@@ -236,7 +232,7 @@ export default function UserInformation() {
           >
             Cancel
           </UserInformationCancelButton>
-        </UserInformationForm>
+        </FormikStyledForm>
       )}
     </Formik>
   );

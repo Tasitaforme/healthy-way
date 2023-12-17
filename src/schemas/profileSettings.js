@@ -14,13 +14,16 @@ export const profileSettingSchema = Yup.object().shape({
     .positive('Age must be a positive number')
     .integer('Age must be an integer number')
     .min(14, 'Age must be greater than or equal to 14'),
-  // gender: 'male',
   height: Yup.number()
     .required('Height is required')
     .positive('Height must be a positive number')
     .integer('Height must be an integer number')
-    .min(30, 'Height must be greater than or equal to 30sm')
+    .min(65, 'Height must be greater than or equal to 65sm')
     .max(250, 'Height must be lower than or equal to 250sm'),
-  // weight: '90',
-  // activity: '1.2',
+  weight: Yup.number()
+    .required('Weight is required')
+    .positive('Weight must be a positive number')
+    .integer('Weight must be an integer number')
+    .min(40, 'Weight must be greater than or equal to 40kg')
+    .max(250, 'Weight must be lower than or equal to 250kg'),
 });
