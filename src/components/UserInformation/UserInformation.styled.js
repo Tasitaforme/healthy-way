@@ -123,3 +123,26 @@ export const ActivityButtonsWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
 `;
+
+export const AvatarInput = styled.input`
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+  & + label {
+    color: #fff;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.43;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;

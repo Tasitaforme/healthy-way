@@ -1,5 +1,5 @@
-import React from 'react';
-import { Formik, Field } from 'formik';
+import React, { useState } from 'react';
+import { Formik } from 'formik';
 
 import { profileSettingSchema } from '../../schemas/profileSettings';
 
@@ -17,12 +17,21 @@ import {
   UserInformationRadioLabel,
   UserInformationRadioText,
   UserGenderText,
+  AvatarInput,
 } from './UserInformation.styled';
+import { useDispatch } from 'react-redux';
 
 export default function UserInformation() {
+  const dispatch = useDispatch();
+
+  // локальні стейти
+  const [isAvatarChanged, setIsAvatarChanged] = useState(false);
+  const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState(); //сюди треба поставити аватарку юзера з бекенду
+
+  // початкові значення інпутів (сюди треба поставити  getCurrentUser) данні
   const initialValues = {
     name: 'Konstantin',
-    avatar: 'null',
     age: '34',
     gender: 'male',
     height: '170',
@@ -30,36 +39,78 @@ export default function UserInformation() {
     activity: '1.2',
   };
 
+  // функція, що відповідає за зміну аватара
+  const handleChangeAvatar = (event) => {
+    const avatar = event.target.files[0];
+
+    if (!avatar) return;
+
+    const avatarUrl = URL.createObjectURL(avatar);
+    setAvatarFile(avatar);
+    setAvatarPreview(avatarUrl);
+    setIsAvatarChanged(true);
+  };
+
+  const handleClickSave = (values) => {
+    // dispatch(updateUser(values)); - функцію updateUser треба додати в operation
+
+    if (isAvatarChanged) {
+      const formData = new FormData();
+      formData.append('avatar', avatar);
+      //  dispatch(updateAvatar(formData)); - функцію updateAvatar треба додати в operation
+    }
+  };
+
+  const handleClickCancel = (resetForm) => {
+    const { errors } = resetForm || {};
+
+    if (isAvatarChanged || (errors && Object.keys(errors).length > 0)) {
+      const isConfirmed = window.confirm(
+        'Are you sure you want to discard changes?'
+      );
+
+      if (isConfirmed) {
+        resetForm({ values: initialValues, isSubmitting: false });
+        setIsAvatarChanged(false);
+      }
+    } else {
+      resetForm({ values: initialValues, isSubmitting: false });
+      setIsAvatarChanged(false);
+    }
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={profileSettingSchema}
       onSubmit={(values) => {
-        console.log(values);
+        console.log(values); // прибрати цей консоль
       }}
     >
-      {({ errors, setFieldValue }) => (
+      {(formikProps) => (
         <UserInformationForm>
           <UserInformationBlock>
-            <label htmlFor="name">Your name</label>
-            <UserInformationField
-              name="name"
-              placeholder="Enter your name"
-              className={errors.name ? 'input-error' : ''}
-            />
-            <UserInformationErrorMessage name="name" component="div" />
+            <label>
+              Your name
+              <UserInformationField
+                name="name"
+                placeholder="Enter your name"
+                className={formikProps.errors.name ? 'input-error' : ''}
+              />
+            </label>
+            <UserInformationErrorMessage name="name" component="p" />
           </UserInformationBlock>
 
           <UserInformationBlock>
-            <label htmlFor="avatar">Your photo</label>
-            <input
+            <p>Your photo</p>
+            <AvatarInput
+              id="avatar"
               name="avatar"
               type="file"
-              className={errors.name ? 'input-error' : ''}
-              onChange={(event) => {
-                setFieldValue('avatar', event.currentTarget.files[0]);
-              }}
+              className={formikProps.avatar ? 'input-error' : ''}
+              onChange={handleChangeAvatar}
             />
+            <label htmlFor="avatar">Download new photo</label>
             <UserInformationErrorMessage name="avatar" component="div" />
           </UserInformationBlock>
 
@@ -68,7 +119,7 @@ export default function UserInformation() {
             <UserInformationField
               name="age"
               placeholder="Enter your age"
-              className={errors.name ? 'input-error' : ''}
+              className={formikProps.age ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="age" component="div" />
           </UserInformationBlock>
@@ -106,7 +157,7 @@ export default function UserInformation() {
             <UserInformationField
               name="height"
               placeholder="Enter your height"
-              className={errors.name ? 'input-error' : ''}
+              className={formikProps.height ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="height" component="div" />
           </UserInformationBlock>
@@ -116,7 +167,7 @@ export default function UserInformation() {
             <UserInformationField
               name="weight"
               placeholder="Enter your weight"
-              className={errors.name ? 'input-error' : ''}
+              className={formikProps.weight ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="weight" component="div" />
           </UserInformationBlock>
@@ -192,10 +243,17 @@ export default function UserInformation() {
             </ActivityButtonsWrapper>
           </UserInformationBlock>
 
-          <UserInformationSubmitButton type="submit">
+          <UserInformationSubmitButton
+            type="submit"
+            onClick={() => handleClickSave(formikProps.values)}
+          >
             Save
           </UserInformationSubmitButton>
-          <UserInformationCancelButton type="button">
+
+          <UserInformationCancelButton
+            type="button"
+            onClick={() => handleClickCancel(formikProps.resetForm)}
+          >
             Cancel
           </UserInformationCancelButton>
         </UserInformationForm>
