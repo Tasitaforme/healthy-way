@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import {
-  FormikButton,
   FormikStyledErrorMessage,
   FormikStyledField,
   FormikStyledForm,
 } from '../../StyledComponents/Formik.styled';
+import { Button } from '../../StyledComponents/Components.styled';
 
 export default function FormGenderAndAge({ handleNextStep }) {
   const initialValues = {
@@ -24,8 +24,8 @@ export default function FormGenderAndAge({ handleNextStep }) {
         <FormikStyledForm>
           <label>
             Gender
-            <FormikStyledField type="radio" name="picked" value="lose fat" />
-            <FormikStyledField type="radio" name="picked" value="maintain" />
+            <Field type="radio" name="picked" value="lose fat" />
+            <Field type="radio" name="picked" value="maintain" />
           </label>
 
           <label>
@@ -40,9 +40,9 @@ export default function FormGenderAndAge({ handleNextStep }) {
             <FormikStyledErrorMessage component="p" name="age" />
           </label>
 
-          <FormikButton type="submit" disabled={!isValid || isSubmitting}>
+          <Button type="submit" disabled={!isValid || isSubmitting}>
             Next
-          </FormikButton>
+          </Button>
         </FormikStyledForm>
       )}
     </Formik>

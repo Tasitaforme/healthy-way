@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
 import {
-  FormikButton,
   FormikStyledErrorMessage,
   FormikStyledField,
   FormikStyledForm,
 } from '../../StyledComponents/Formik.styled';
+import { Button } from '../../StyledComponents/Components.styled';
 
 export default function FormParameters({ handleNextStep }) {
   const initialValues = {
@@ -45,9 +45,9 @@ export default function FormParameters({ handleNextStep }) {
             <FormikStyledErrorMessage component="p" name="weight" />
           </label>
 
-          <FormikButton type="submit" disabled={!isValid || isSubmitting}>
+          <Button type="submit" disabled={!isValid || isSubmitting}>
             Next
-          </FormikButton>
+          </Button>
         </FormikStyledForm>
       )}
     </Formik>

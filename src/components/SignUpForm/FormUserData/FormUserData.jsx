@@ -1,10 +1,10 @@
 import { Formik } from 'formik';
 import {
-  FormikButton,
   FormikStyledErrorMessage,
   FormikStyledField,
   FormikStyledForm,
 } from '../../StyledComponents/Formik.styled';
+import { Button } from '../../StyledComponents/Components.styled';
 // import { registerSchema } from '../../../schemas/formik';
 
 export default function FormUserData({
@@ -58,9 +58,9 @@ export default function FormUserData({
           />
           <FormikStyledErrorMessage component="p" name="password" />
 
-          <FormikButton type="submit" /* disabled={!isValid || isSubmitting} */>
+          <Button type="submit" /* disabled={!isValid || isSubmitting} */>
             Next
-          </FormikButton>
+          </Button>
         </FormikStyledForm>
       )}
     </Formik>
