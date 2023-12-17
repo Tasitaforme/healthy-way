@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
-import { fetchRecommendedFood } from '../../api.recommended';
+import { fetchRecommendedFood } from '../../redux/api/api.recommended.js';
+import {
+  List,
+  Item,
+  ImgThumb,
+  Img,
+  ProductDescription,
+  ProductName,
+  Value,
+} from './RecommendedFoodCard.styled.js';
 
 export const RecommendedFoodCard = () => {
   const [products, setProducts] = useState([]);
@@ -13,20 +22,21 @@ export const RecommendedFoodCard = () => {
   }, []);
 
   return (
-    <div>
-      <ul>
-        {products.map((product) => (
-          <li>
-            <div>
-              <img src="" alt="" />
-            </div>
-            <div>
-              <h2>Олежа</h2>
-              <p>Работай</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <List>
+      {products.map((product) => (
+        <Item key={product._id}>
+          <ImgThumb>
+            <Img src={product.img} alt={product.name} />
+          </ImgThumb>
+          <ProductDescription>
+            <ProductName>{product.name}</ProductName>
+            <Value>
+              {product.amount}
+              <span>{product.calories} calories</span>
+            </Value>
+          </ProductDescription>
+        </Item>
+      ))}
+    </List>
   );
 };

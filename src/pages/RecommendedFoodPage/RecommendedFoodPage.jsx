@@ -1,10 +1,10 @@
 import React from 'react';
-import { RecommendedFood } from '../../components/RecommendedFood/RecommendedFood';
+import { RecommendedFoodList } from '../../components/RecommendedFoodList/RecommendedFoodList';
 
 const RecommendedFoodPage = () => {
   return (
     <div>
-      <RecommendedFood />
+      <RecommendedFoodList />
     </div>
   );
 };
