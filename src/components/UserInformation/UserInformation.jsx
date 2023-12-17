@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { profileSettingSchema } from '../../schemas/profileSettings';
-import { FormikStyledForm } from '../StyledComponents/Formik.styled';
 
 import {
   UserInformationField,
@@ -22,6 +21,8 @@ import {
   AvatarImg,
   AvatarLabel,
   AvatarIcon,
+  UserForm,
+  UserButtonsWrapper,
 } from './UserInformation.styled';
 
 import testAvatar from './Avatar.png'; // не забути видалити
@@ -75,7 +76,7 @@ export default function UserInformation() {
       // }}
     >
       {(formikProps) => (
-        <FormikStyledForm>
+        <UserForm>
           <UserInformationBlock>
             <label>Your name</label>
             <UserInformationField
@@ -236,20 +237,21 @@ export default function UserInformation() {
             </ActivityButtonsWrapper>
           </UserInformationBlock>
 
-          <UserInformationSubmitButton
-            type="submit"
-            onClick={() => handleClickSave(formikProps.values)}
-          >
-            Save
-          </UserInformationSubmitButton>
-
-          <UserInformationCancelButton
-            type="button"
-            onClick={() => handleClickCancel(formikProps.resetForm)}
-          >
-            Cancel
-          </UserInformationCancelButton>
-        </FormikStyledForm>
+          <UserButtonsWrapper>
+            <UserInformationSubmitButton
+              type="submit"
+              onClick={() => handleClickSave(formikProps.values)}
+            >
+              Save
+            </UserInformationSubmitButton>
+            <UserInformationCancelButton
+              type="button"
+              onClick={() => handleClickCancel(formikProps.resetForm)}
+            >
+              Cancel
+            </UserInformationCancelButton>
+          </UserButtonsWrapper>
+        </UserForm>
       )}
     </Formik>
   );

@@ -1,10 +1,23 @@
 import styled from 'styled-components';
-import { Field } from 'formik';
+import { Field, Form } from 'formik';
 
 import {
   FormikStyledField,
   FormikStyledErrorMessage,
 } from '../StyledComponents/Formik.styled';
+
+export const UserForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 834px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 491px;
+    column-gap: 60px;
+    margin: 0 auto;
+  }
+`;
 
 // кожнна група лейбл та інпути загорнути в цей дів
 export const UserInformationBlock = styled.div`
@@ -156,18 +169,39 @@ export const ActivityButtonsWrapper = styled.div`
   gap: 24px;
 `;
 
-// стилі для кнопки Save
+// стилі для кнопок
+export const UserButtonsWrapper = styled.div`
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  cursor: pointer;
+
+  @media screen and (min-width: 834px) {
+    flex-direction: row;
+    gap: 0px;
+  }
+`;
+
 export const UserInformationSubmitButton = styled.button`
   padding: 8px 10px;
   border-radius: 12px;
   background: var(--green-light);
   line-height: 1.43;
-  margin-bottom: 12px;
+  color: var(--black-secondary);
+  font-weight: 500;
+  cursor: pointer;
+
+  @media screen and (min-width: 834px) {
+    width: 192px;
+  }
 `;
 
-// стилі для кнопки Cancel
 export const UserInformationCancelButton = styled.button`
   line-height: 1.43;
   color: var(--grey-light);
-  margin-bottom: 40px;
+
+  @media screen and (min-width: 834px) {
+    width: 192px;
+  }
 `;
