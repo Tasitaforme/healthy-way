@@ -180,6 +180,11 @@ export const UserButtonsWrapper = styled.div`
   @media screen and (min-width: 834px) {
     flex-direction: row;
     gap: 0px;
+    margin-bottom: 174px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 0;
   }
 `;
 
