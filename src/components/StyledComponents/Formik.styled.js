@@ -64,5 +64,3 @@ export const FormikStyledErrorMessage = styled(ErrorMessage)`
   margin-top: 12px;
   margin-bottom: 12px;
 `;
-
-export const FormikButton = styled(Button)``;

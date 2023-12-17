@@ -1,10 +1,9 @@
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import {
-  FormikButton,
   FormikStyledErrorMessage,
-  FormikStyledField,
   FormikStyledForm,
 } from '../../StyledComponents/Formik.styled';
+import { Button } from '../../StyledComponents/Components.styled';
 
 export default function FormGoal({ handleNextStep, handleChange, goal }) {
   const onSubmit = (values) => {
@@ -18,7 +17,7 @@ export default function FormGoal({ handleNextStep, handleChange, goal }) {
       <FormikStyledForm>
         <label>
           Lose Fat
-          <FormikStyledField
+          <Field
             // onChange={handleChange}
             type="radio"
             name="goal"
@@ -27,7 +26,7 @@ export default function FormGoal({ handleNextStep, handleChange, goal }) {
         </label>
         <label>
           Maintain
-          <FormikStyledField
+          <Field
             // onChange={handleChange}
             type="radio"
             name="goal"
@@ -36,7 +35,7 @@ export default function FormGoal({ handleNextStep, handleChange, goal }) {
         </label>
         <label>
           Gain Muscle
-          <FormikStyledField
+          <Field
             // onChange={handleChange}
             type="radio"
             name="goal"
@@ -44,9 +43,9 @@ export default function FormGoal({ handleNextStep, handleChange, goal }) {
           />
         </label>
 
-        <FormikButton type="submit" /* disabled={!isValid || isSubmitting} */>
+        <Button type="submit" /* disabled={!isValid || isSubmitting} */>
           Next
-        </FormikButton>
+        </Button>
       </FormikStyledForm>
     </Formik>
   );

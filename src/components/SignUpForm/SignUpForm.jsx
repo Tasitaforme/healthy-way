@@ -4,7 +4,7 @@ import FormGenderAndAge from './FormGenderAndAge/FormGenderAndAge';
 import FormParameters from './FormParameters/FormParameters';
 import FormActivity from './FormActivity/FormActivity';
 // temporary solution
-import { FormikButton } from '../StyledComponents/Formik.styled';
+import { Button } from '../StyledComponents/Components.styled';
 
 export default function SignUpForm({
   currentStep,
@@ -35,9 +35,7 @@ export default function SignUpForm({
       )}
       {currentStep === 4 && <FormParameters handleNextStep={handleNextStep} />}
       {currentStep === 5 && <FormActivity handleNextStep={handleNextStep} />}
-      {currentStep > 1 && (
-        <FormikButton onClick={handlePrevStep}>Back</FormikButton>
-      )}
+      {currentStep > 1 && <Button onClick={handlePrevStep}>Back</Button>}
     </>
   );
 }
