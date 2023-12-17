@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Field } from 'formik';
 
-import { profileSettingSchema } from '../../schemas/formik';
+import { profileSettingSchema } from '../../schemas/profileSettings';
 
 import {
   UserInformationForm,
@@ -16,11 +16,13 @@ import {
   ActivityButtonsWrapper,
   UserInformationRadioLabel,
   UserInformationRadioText,
+  UserGenderText,
 } from './UserInformation.styled';
 
 export default function UserInformation() {
-  const testUser = {
+  const initialValues = {
     name: 'Konstantin',
+    avatar: 'null',
     age: '34',
     gender: 'male',
     height: '170',
@@ -30,15 +32,7 @@ export default function UserInformation() {
 
   return (
     <Formik
-      initialValues={{
-        name: 'Konstantin',
-        photo: 'null',
-        age: '34',
-        gender: 'male',
-        height: '170',
-        weight: '90',
-        activity: '1.2',
-      }}
+      initialValues={initialValues}
       validationSchema={profileSettingSchema}
       onSubmit={(values) => {
         console.log(values);
@@ -57,16 +51,16 @@ export default function UserInformation() {
           </UserInformationBlock>
 
           <UserInformationBlock>
-            <label htmlFor="photo">Your photo</label>
+            <label htmlFor="avatar">Your photo</label>
             <input
-              name="photo"
+              name="avatar"
               type="file"
               className={errors.name ? 'input-error' : ''}
               onChange={(event) => {
-                setFieldValue('photo', event.currentTarget.files[0]);
+                setFieldValue('avatar', event.currentTarget.files[0]);
               }}
             />
-            <UserInformationErrorMessage name="photo" component="div" />
+            <UserInformationErrorMessage name="avatar" component="div" />
           </UserInformationBlock>
 
           <UserInformationBlock>
@@ -92,7 +86,7 @@ export default function UserInformation() {
                   value="male"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
-                <UserInformationRadioText>Male</UserInformationRadioText>
+                <UserGenderText>Male</UserGenderText>
               </UserInformationRadioLabel>
 
               <UserInformationRadioLabel>
@@ -102,7 +96,7 @@ export default function UserInformation() {
                   value="female"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
-                <UserInformationRadioText>Female</UserInformationRadioText>
+                <UserGenderText>Female</UserGenderText>
               </UserInformationRadioLabel>
             </GenderButtonsWrapper>
           </UserInformationBlock>

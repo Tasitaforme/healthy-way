@@ -66,6 +66,7 @@ export const UserInformationCancelButton = styled.button`
 
 export const GenderButtonsWrapper = styled.div`
   display: flex;
+  flex-direction: row;
   gap: 16px;
   align-items: center;
 `;
@@ -111,6 +112,10 @@ export const UserInformationRadioFake = styled.span`
 export const UserInformationRadioText = styled.span`
   display: inline-block;
   width: 100%;
+`;
+
+export const UserGenderText = styled(UserInformationRadioText)`
+  width: auto;
 `;
 
 export const ActivityButtonsWrapper = styled.div`
