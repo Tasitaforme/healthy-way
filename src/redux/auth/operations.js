@@ -1,52 +1,92 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  logInReq,
-  logOutReq,
-  refreshReq,
-  signUpReq,
-} from '../api/authRequests';
+import { dellToken, instance, setToken } from '../api/api';
 
-export const signUp = createAsyncThunk(
-  'auth/signUp',
+/*
+ * POST @ /api/auth/registration
+ * body: { name, email, password, goal, gender, age, height, weight, activityRatio }
+ */
+export const registration = createAsyncThunk(
+  'auth/registration',
 
-  async (newContact, { rejectWithValue }) => {
+  async (newUser, { rejectWithValue }) => {
     try {
-      return await signUpReq(newContact);
+      const { data } = await instance.post('/api/auth/registration', newUser);
+      setToken(data.token);
+      return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
-export const logIn = createAsyncThunk('auth/login', async (body, thinkAPI) => {
+/*
+ * POST @ /api/auth/login
+ * body: { email, password }
+ */
+export const logIn = createAsyncThunk('auth/login', async (body, thunkAPI) => {
   try {
-    return await logInReq(body);
+    const { data } = await instance.post('/api/auth/login', body);
+    setToken(data.token);
+    return data;
   } catch (error) {
-    return thinkAPI.rejectWithValue(
+    return thunkAPI.rejectWithValue(
       error.message + '. ' + error.response.statusText + '.'
     );
   }
 });
 
+/*
+ * POST @ /api/auth/logout
+ * headers: Authorization: Bearer token
+ */
 export const logOut = createAsyncThunk(
   'auth/logout',
 
   async (_, { rejectWithValue }) => {
     try {
-      return await logOutReq();
+      const { data } = await instance.post('/api/auth/logout');
+      dellToken();
+      return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
-export const refresh = createAsyncThunk(
-  'auth/refresh',
-  async (_, { rejectWithValue }) => {
+// TODO POST forgot-password (ще не зроблений бек)
+/*
+ * POST @ /api/auth/forgot-password
+ * body: { email }
+ */
+export const forgotPassword = createAsyncThunk(
+  'auth/forgot',
+
+  async (body, { rejectWithValue }) => {
     try {
-      return await refreshReq();
+      const { data } = await instance.post('/api/auth/forgot-password', body);
+      return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// TODO DELETE USER (додати в слайс, якщо будемо використовувати)
+/*
+ * DELETE @ /api/auth/delete
+ * headers: Authorization: Bearer token
+ * body: { email, password }
+ */
+export const removeUser = createAsyncThunk(
+  'auth/delete',
+
+  async (body, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.delete('/api/auth/delete', body);
+      // dellToken();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   }
 );

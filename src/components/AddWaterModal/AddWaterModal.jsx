@@ -74,6 +74,7 @@ export default function AddWaterModal({
                 type="text"
                 name="quantity"
                 placeholder="Enter milliliters"
+                autocomplete="off"
                 className={
                   touched.quantity
                     ? errors.quantity
