@@ -1,20 +1,31 @@
 import { Field, Formik } from 'formik';
+import { activitySchema } from '../../../schemas/formikRegister';
 import { FormikStyledForm } from '../../StyledComponents/Formik.styled';
 import { Button } from '../../StyledComponents/Components.styled';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../../redux/auth/operations';
+import { toast } from 'react-hot-toast';
 
-export default function FormActivity({
-  handleNextStep,
-  handleChangeRadio,
-  activity,
-}) {
-  const onSubmit = (values) => {
-    handleChangeRadio('activity', values.activity);
-    handleNextStep();
+export default function FormActivity({ handleSubmit, userData }) {
+  const dispatch = useDispatch();
+
+  const onSubmit = async (values) => {
+    await handleSubmit(values);
+    try {
+      await dispatch(signUp(userData));
+      toast.success('You have successfully signed up!');
+    } catch (error) {
+      toast.error('Wrong data! Try again!');
+    }
   };
 
   return (
-    <Formik initialValues={activity} onSubmit={onSubmit}>
-      {() => (
+    <Formik
+      initialValues={userData}
+      validationSchema={activitySchema}
+      onSubmit={onSubmit}
+    >
+      {({ /* errors, touched, */ isSubmitting, isValid }) => (
         <FormikStyledForm>
           <label>
             1.2 - if you do not have physical activity and sedentary work
@@ -38,8 +49,8 @@ export default function FormActivity({
             <Field type="radio" name="activity" value="1.9" />
           </label>
 
-          <Button type="submit" /* disabled={!isValid || isSubmitting} */>
-            Next
+          <Button type="submit" disabled={!isValid || isSubmitting}>
+            Sign Up
           </Button>
         </FormikStyledForm>
       )}

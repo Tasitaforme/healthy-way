@@ -32,6 +32,7 @@ export default function SignUpPage() {
               handlePrevStep={handlePrevStep}
             />
           </TextWrapper>
+
           {/* <div>
             <p>Do you already have an account?</p>
             <nav></nav>

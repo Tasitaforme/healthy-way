@@ -1,4 +1,5 @@
 import { Field, Formik } from 'formik';
+import { genderAndAgeSchema } from '../../../schemas/formikRegister';
 import {
   FormikStyledErrorMessage,
   FormikStyledField,
@@ -8,17 +9,21 @@ import { Button } from '../../StyledComponents/Components.styled';
 
 export default function FormGenderAndAge({
   handleNextStep,
-  handleChangeRadio,
-  handleChangeInput,
-  genderAndAge,
+  handleSubmit,
+  userData,
 }) {
   const onSubmit = (values) => {
-    handleChangeRadio('gender', values.gender);
+    console.log(values);
+    handleSubmit(values);
     handleNextStep();
   };
 
   return (
-    <Formik initialValues={genderAndAge} onSubmit={onSubmit}>
+    <Formik
+      initialValues={userData}
+      validationSchema={genderAndAgeSchema}
+      onSubmit={onSubmit}
+    >
       {({ errors, touched, isSubmitting, isValid }) => (
         <FormikStyledForm>
           <p>Gender</p>
@@ -33,18 +38,15 @@ export default function FormGenderAndAge({
           <label>
             Your age
             <FormikStyledField
-              type="age"
+              type="text"
               name="age"
-              onChange={(e) => handleChangeInput(e)}
-              value={genderAndAge.age}
               placeholder="Enter your age"
-              title="The email address must contain the @ symbol and text after it. For example: email@mail.com"
               className={errors.age && touched.age ? 'input-error' : ''}
             />
             <FormikStyledErrorMessage component="p" name="age" />
           </label>
 
-          <Button type="submit" /* disabled={!isValid || isSubmitting} */>
+          <Button type="submit" disabled={!isValid || isSubmitting}>
             Next
           </Button>
         </FormikStyledForm>
