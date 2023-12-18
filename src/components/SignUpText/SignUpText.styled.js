@@ -1,19 +1,13 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-  margin-top: 24px;
   margin-bottom: 0;
   font-size: 24px;
   line-height: 1.25;
 
   @media screen and (min-width: 834px) {
-    margin-top: 60px;
     font-size: 30px;
     line-height: 1.2;
-  }
-
-  @media screen and (min-width: 1440px) {
-    margin-top: 120px;
   }
 `;
 

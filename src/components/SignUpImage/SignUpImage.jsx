@@ -28,43 +28,74 @@ import activityTab1x from '../../assets/images/activity/activity-tab@1x.png';
 import activityTab2x from '../../assets/images/activity/activity-tab@2x.png';
 import activityMob1x from '../../assets/images/activity/activity-mob@1x.png';
 import activityMob2x from '../../assets/images/activity/activity-mob@2x.png';
+import { BackgroundImage } from './SignUpImage.styled';
 
 export default function SignUpImage({ currentStep }) {
   return (
     <>
       {currentStep === 1 && (
-        <img
-          srcSet={`${watchDesk1x} 592w, ${watchDesk2x} 1184w, ${watchTab1x} 380w, ${watchTab2x} 760w, ${watchMob1x} 300w,${watchMob2x} 600w`}
-          sizes="(min-width: 1440px) 592px, (min-width: 834px) 380px, 300px"
-          alt="Watch"
+        <BackgroundImage
+          $imageDesk1x={watchDesk1x}
+          $imageDesk2x={watchDesk2x}
+          $imageTab1x={watchTab1x}
+          $imageTab2x={watchTab2x}
+          $imageMob1x={watchMob1x}
+          $imageMob2x={watchMob2x}
+          $heightMob="296px"
+          $heightTab="376px"
+          $heightDesk="588px"
         />
       )}
       {currentStep === 2 && (
-        <img
-          srcSet={`${hikingDesk1x} 592w, ${hikingDesk2x} 1184w, ${hikingTab1x} 380w, ${hikingTab2x} 760w, ${hikingMob1x} 300w,${hikingMob2x} 600w`}
-          sizes="(min-width: 1440px) 592px, (min-width: 834px) 380px, 300px"
-          alt="Hiking"
+        <BackgroundImage
+          $imageDesk1x={hikingDesk1x}
+          $imageDesk2x={hikingDesk2x}
+          $imageTab1x={hikingTab1x}
+          $imageTab2x={hikingTab2x}
+          $imageMob1x={hikingMob1x}
+          $imageMob2x={hikingMob2x}
+          $heightMob="290px"
+          $heightTab="368px"
+          $heightDesk="574px"
         />
       )}
       {currentStep === 3 && (
-        <img
-          srcSet={`${fitnessDesk1x} 592w, ${fitnessDesk2x} 1184w, ${fitnessTab1x} 380w, ${fitnessTab2x} 760w, ${fitnessMob1x} 300w,${fitnessMob2x} 600w`}
-          sizes="(min-width: 1440px) 592px, (min-width: 834px) 380px, 300px"
-          alt="Fitness"
+        <BackgroundImage
+          $imageDesk1x={fitnessDesk1x}
+          $imageDesk2x={fitnessDesk2x}
+          $imageTab1x={fitnessTab1x}
+          $imageTab2x={fitnessTab2x}
+          $imageMob1x={fitnessMob1x}
+          $imageMob2x={fitnessMob2x}
+          $heightMob="288px"
+          $heightTab="366px"
+          $heightDesk="570px"
         />
       )}
       {currentStep === 4 && (
-        <img
-          srcSet={`${parametersDesk1x} 592w, ${parametersDesk2x} 1184w, ${parametersTab1x} 380w, ${parametersTab2x} 760w, ${parametersMob1x} 300w,${parametersMob2x} 600w`}
-          sizes="(min-width: 1440px) 592px, (min-width: 834px) 380px, 300px"
-          alt="Parameters"
+        <BackgroundImage
+          $imageDesk1x={parametersDesk1x}
+          $imageDesk2x={parametersDesk2x}
+          $imageTab1x={parametersTab1x}
+          $imageTab2x={parametersTab2x}
+          $imageMob1x={parametersMob1x}
+          $imageMob2x={parametersMob2x}
+          $heightMob="302px"
+          $heightTab="382px"
+          $heightDesk="594px"
         />
       )}
       {currentStep === 5 && (
-        <img
-          srcSet={`${activityDesk1x} 592w, ${activityDesk2x} 1184w, ${activityTab1x} 380w, ${activityTab2x} 760w, ${activityMob1x} 300w,${activityMob2x} 600w`}
-          sizes="(min-width: 1440px) 592px, (min-width: 834px) 380px, 300px"
-          alt="Activity"
+        <BackgroundImage
+          $imageDesk1x={activityDesk1x}
+          $imageDesk2x={activityDesk2x}
+          $imageTab1x={activityTab1x}
+          $imageTab2x={activityTab2x}
+          $imageMob1x={activityMob1x}
+          $imageMob2x={activityMob2x}
+          $heightMob="304px"
+          $heightTab="384px"
+          $heightDesk="598px"
         />
       )}
     </>

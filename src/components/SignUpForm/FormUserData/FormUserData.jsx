@@ -5,34 +5,34 @@ import {
   FormikStyledForm,
 } from '../../StyledComponents/Formik.styled';
 import { Button } from '../../StyledComponents/Components.styled';
-// import { registerSchema } from '../../../schemas/formik';
+import { registerSchema } from '../../../schemas/formikRegister.js';
 
 export default function FormUserData({
   handleNextStep,
-  handleChange,
+  handleSubmit,
   userData,
 }) {
-  const onSubmit = (values, actions) => {
-    console.log(values, actions);
+  const onSubmit = (values) => {
+    handleSubmit(values);
+    console.log(values);
     handleNextStep();
   };
 
   return (
     <Formik
       initialValues={userData}
-      // validationSchema={registerSchema}
+      validationSchema={registerSchema}
       onSubmit={onSubmit}
     >
-      {({ errors, touched, isSubmitting, isValid }) => (
+      {({ errors, touched, isValid, isSubmitting }) => (
         <FormikStyledForm>
           <FormikStyledField
-            type="name"
+            type="text"
             name="name"
             placeholder="Name"
-            onChange={(e) => handleChange(e)}
-            value={userData.name}
-            title="The email address must contain the @ symbol and text after it. For example: email@mail.com"
-            className={errors.email && touched.email ? 'input-error' : ''}
+            className={
+              errors.name && touched.name ? 'input-error' : 'input-success'
+            }
           />
           <FormikStyledErrorMessage component="p" name="name" />
 
@@ -40,10 +40,13 @@ export default function FormUserData({
             type="email"
             name="email"
             placeholder="E-mail"
-            onChange={(e) => handleChange(e)}
-            value={userData.email}
-            title="The email address must contain the @ symbol and text after it. For example: email@mail.com"
-            className={errors.email && touched.email ? 'input-error' : ''}
+            className={
+              touched.email
+                ? errors.email
+                  ? 'input-error'
+                  : 'input-success'
+                : 'input-normal'
+            }
           />
           <FormikStyledErrorMessage component="p" name="email" />
 
@@ -51,14 +54,17 @@ export default function FormUserData({
             type="password"
             name="password"
             placeholder="Password"
-            onChange={(e) => handleChange(e)}
-            value={userData.password}
-            title="The password must be at least 5 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number"
-            className={errors.password && touched.password ? 'input-error' : ''}
+            className={
+              touched.password
+                ? errors.password
+                  ? 'input-error'
+                  : 'input-success'
+                : 'input-normal'
+            }
           />
           <FormikStyledErrorMessage component="p" name="password" />
 
-          <Button type="submit" /* disabled={!isValid || isSubmitting} */>
+          <Button type="submit" disabled={!isValid || isSubmitting}>
             Next
           </Button>
         </FormikStyledForm>
