@@ -25,7 +25,7 @@ export const store = configureStore({
     auth: persistReducer(persistConfig, authReducer),
     // statistics: statisticsReducer,
     // water: waterReducer,
-    // foods: foodsReducer,
+    // diary: diaryReducer,
     // calories: caloriesReducer,
     // recommendedFood: recommendedFoodReducer,
   },

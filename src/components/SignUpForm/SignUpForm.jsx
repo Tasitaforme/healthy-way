@@ -1,22 +1,41 @@
-import React from 'react';
-import { Container } from '../StyledComponents/Container';
+import FormUserData from './FormUserData/FormUserData';
+import FormGoal from './FormGoal/FormGoal';
+import FormGenderAndAge from './FormGenderAndAge/FormGenderAndAge';
+import FormParameters from './FormParameters/FormParameters';
+import FormActivity from './FormActivity/FormActivity';
+// temporary solution
+import { Button } from '../StyledComponents/Components.styled';
 
-export default function SignUpForm() {
-  return;
-  // return <div>SignUpForm</div>;
-  // return (
-  //   <div>
-  //     <img src={watchImage} alt="fitness watch" />
-  //     <div>
-  //       <h1>Sign up</h1>
-  //       <h2>You need to register to use the service</h2>
-  //       <form action="">
-  //         <input type="text" />
-  //         <input type="text" />
-  //         <input type="text" />
-  //         <button type="submit"></button>
-  //       </form>
-  //     </div>
-  //   </div>
-  // );
+export default function SignUpForm({
+  currentStep,
+  handleNextStep,
+  handlePrevStep,
+  handleChange,
+  userData,
+  goal,
+}) {
+  return (
+    <>
+      {currentStep === 1 && (
+        <FormUserData
+          handleNextStep={handleNextStep}
+          handleChange={handleChange}
+          userData={userData}
+        />
+      )}
+      {currentStep === 2 && (
+        <FormGoal
+          handleNextStep={handleNextStep}
+          handleChange={handleChange}
+          goal={goal}
+        />
+      )}
+      {currentStep === 3 && (
+        <FormGenderAndAge handleNextStep={handleNextStep} />
+      )}
+      {currentStep === 4 && <FormParameters handleNextStep={handleNextStep} />}
+      {currentStep === 5 && <FormActivity handleNextStep={handleNextStep} />}
+      {currentStep > 1 && <Button onClick={handlePrevStep}>Back</Button>}
+    </>
+  );
 }
