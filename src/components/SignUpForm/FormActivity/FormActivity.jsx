@@ -3,7 +3,7 @@ import { activitySchema } from '../../../schemas/formikRegister';
 import { FormikStyledForm } from '../../StyledComponents/Formik.styled';
 import { Button } from '../../StyledComponents/Components.styled';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../../redux/auth/operations';
+import { registration } from '../../../redux/auth/operations';
 import { toast } from 'react-hot-toast';
 
 export default function FormActivity({ handleSubmit, userData }) {
@@ -12,7 +12,7 @@ export default function FormActivity({ handleSubmit, userData }) {
   const onSubmit = async (values) => {
     await handleSubmit(values);
     try {
-      await dispatch(signUp(userData));
+      await dispatch(registration(userData));
       toast.success('You have successfully signed up!');
     } catch (error) {
       toast.error('Wrong data! Try again!');
