@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const UserContentWrapper = styled.div`
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 834px) {
     display: flex;
     justify-content: space-around;
     margin-bottom: 80px;

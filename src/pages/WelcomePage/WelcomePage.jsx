@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from '../../components/StyledComponents/Container';
-import ButtonLink from '../../components/ButtonLink/ButtonLink';
+// import ButtonLink from '../../components/ButtonLink/ButtonLink';
 
 export default function WelcomePage() {
   return (
