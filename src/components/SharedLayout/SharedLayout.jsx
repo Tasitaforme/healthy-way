@@ -9,7 +9,7 @@ export default function SharedLayout() {
   return (
     <>
       <Header />
-      <Suspense fallback={null}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
       <Toaster toastOptions={toastOptions} />
