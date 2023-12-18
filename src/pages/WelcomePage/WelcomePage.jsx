@@ -27,7 +27,7 @@ import { Container } from '../../components/StyledComponents/Container';
 import ButtonLink from '../../components/ButtonLink/ButtonLink';
 
 import {
-  Container,
+  // Container,
   Image,
   ContentBox,
   Title,
@@ -40,8 +40,8 @@ import {
   ItemImg,
   ItemText,
 } from './WelcomePage.styled';
-import logoPic from '../../images/WelcomePageImg/logoPic.png';
-import bullets from '../../images/WelcomePageImg/bullets.png';
+// import logoPic from '../../images/WelcomePageImg/logoPic.png';
+// import bullets from '../../images/WelcomePageImg/bullets.png';
 
 const WelcomePage = () => {
   return (
