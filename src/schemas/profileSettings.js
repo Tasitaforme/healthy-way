@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
-import { NAME_RULE } from './formik';
+
+const NAME_RULE =
+  /^([A-Za-zА-Яа-яґҐЁёІіЇїЄє]+((['’ʼ \s-][A-Za-zА-Яа-яґҐЁёІіЇїЄє ])?[a-zA-Zа-яА-Я]*))*$/;
 
 export const profileSettingSchema = Yup.object().shape({
   name: Yup.string()
