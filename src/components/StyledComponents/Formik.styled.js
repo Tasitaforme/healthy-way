@@ -1,58 +1,65 @@
 import styled from 'styled-components';
 import { ErrorMessage, Field, Form } from 'formik';
 
+// стилізація form в формі (Formik)
 export const FormikStyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  margin: 18px auto;
-  gap: 8px;
-  font-weight: bold;
-  font-size: 18px;
-  text-align: center;
 `;
 
+// стилізація label в формі (Formik)
+export const FormikStyledLabel = styled.label`
+  margin-bottom: 12px;
+`;
+
+// стилізація input field в формі (Formik)
 export const FormikStyledField = styled(Field)`
-  border-radius: 20px;
-  display: block;
-  border: 2px solid black;
-  padding: 8px 16px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--green-light);
+  background-color: var(--black-secondary);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
 
-  &.input-error {
-    border-color: red;
+  &::placeholder {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.43;
+    color: var(--grey-light);
   }
-
-  &:focus,
-  &:active,
-  &:hover {
+  &:active.input-normal,
+  &:focus-visible.input-normal,
+  &:focus.input-normal,
+  &.input-normal {
     outline: none;
-    border-color: #007aff;
+    border-color: var(--green-light);
+  }
+  &:active.input-error,
+  &:focus.input-error,
+  &:focus-visible.input-error,
+  &.input-error {
+    outline: none;
+    border-color: var(--error-color);
+  }
+  &:focus-visible.input-success,
+  &:focus.input-success,
+  &:active.input-success,
+  &.input-success {
+    outline: none;
+    border-color: var(--success-color);
   }
 `;
 
+// стилізація повідомлення про помилку в input в формі (Formik)
 export const FormikStyledErrorMessage = styled(ErrorMessage)`
-  font-size: 14px;
-  color: red;
-  max-width: 250px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--error-color);
 
-  margin: 0 auto;
-`;
-
-export const FormikButton = styled.button`
-  border-radius: 20px;
-  background-color: black;
-  color: #e5e5e5;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  border: none;
-  padding: 8px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover {
-    background-color: #007aff;
-  }
-
-  &:disabled {
-    background-color: #7c7c7c;
-  }
+  margin-top: 12px;
+  margin-bottom: 12px;
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function RecommendedFoodPage() {
-  return <div>RecommendedFoodPage</div>;
+  return <div style={{ backgroundColor: 'red' }}>RecommendedFoodPage</div>;
 }

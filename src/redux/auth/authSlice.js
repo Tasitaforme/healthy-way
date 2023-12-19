@@ -1,54 +1,49 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { logIn, logOut, refresh, signUp } from './operations';
+import { registration, logIn, logOut } from './operations';
 
+// TODO (потрібно подумати чи потрібно тут в state щось ще)
 const initialState = {
-  token: '',
+  token: null,
   isLoading: false,
-  error: '',
-  profile: {},
+  error: null,
 };
 
 const handlePending = (state) => {
   state.isLoading = true;
-  state.error = '';
+  state.error = null;
 };
-
-const handleRejected = (state, { payload }) => {
+const handleFulfilled = (state) => {
   state.isLoading = false;
-  state.error = payload;
+  state.error = null;
 };
-
-const handleFulfilledSignUp = (state, { payload }) => {
-  state.profile = payload.user;
-  state.token = payload.token;
+const handleRejected = (state, payload) => {
   state.isLoading = false;
-  state.error = '';
+  state.error = payload.error;
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(signUp.pending, handlePending)
-      .addCase(signUp.fulfilled, handleFulfilledSignUp)
-      .addCase(signUp.rejected, handleRejected)
+      .addCase(registration.pending, handlePending)
+      .addCase(registration.fulfilled, (state, { payload }) => {
+        handleFulfilled(state);
+        // TODO (потрібно подумати чи потрібно в state щось ще, якщо що дописати)
+      })
+      .addCase(registration.rejected, handleRejected)
       .addCase(logIn.pending, handlePending)
-      .addCase(logIn.fulfilled, handleFulfilledSignUp)
+      .addCase(logIn.fulfilled, (state, { payload }) => {
+        handleFulfilled(state);
+        state.token = payload.token;
+        // TODO (потрібно подумати чи потрібно в state щось ще, якщо що дописати)
+      })
       .addCase(logIn.rejected, handleRejected)
       .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, () => initialState)
-      .addCase(logOut.rejected, handleRejected)
-      .addCase(refresh.pending, handlePending)
-      .addCase(refresh.fulfilled, (state, { payload }) => {
-        state.profile.name = payload.name;
-        state.profile.email = payload.email;
-        state.token = payload.token;
-        state.isLoading = false;
-        state.error = '';
-      })
-      .addCase(refresh.rejected, handleRejected);
+      .addCase(logOut.rejected, handleRejected);
   },
 });
 
