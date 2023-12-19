@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+
+  column-count: 2;
   gap: 20px;
-  width: calc((100% - 44px) / 2);
+  /* width: calc((100% - 44px) / 2); */
 
   //tablet
   /* @media screen and () {

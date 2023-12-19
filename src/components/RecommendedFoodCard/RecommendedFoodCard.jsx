@@ -31,7 +31,7 @@ export const RecommendedFoodCard = () => {
           <ProductDescription>
             <ProductName>{product.name}</ProductName>
             <Value>
-              {product.amount}
+              {product.amount} {}
               <span>{product.calories} calories</span>
             </Value>
           </ProductDescription>
