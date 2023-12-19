@@ -5,26 +5,28 @@ import { toastOptions } from '../StyledComponents/toastOptions';
 import Header from '../Header/Header';
 import Loader from '../Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLogin, selectToken } from '../../redux/auth/selectors';
-import { currentUser } from '../../redux/auth/operations';
+import { selectIsLogin } from '../../redux/auth/selectors';
+import { currentUser, logOut } from '../../redux/auth/operations';
 
 export default function SharedLayout() {
   const dispatch = useDispatch();
   const isLogin = useSelector(selectIsLogin);
-  const localToken = useSelector(selectToken);
+
+  // TODO accessToken/refreshToken
+  // const { refreshToken, accessToken } = useSelector(selectAuthInfo);
 
   // useEffect(() => {
   //   const refresh = () => {
   //     !isLogin &&
-  //       localToken &&
-  //       dispatch(refresh())
+  //       accessToken &&
+  //       dispatch(refresh(refreshToken))
   //         .unwrap()
   //         .then(() => {
   //           dispatch(currentUser());
   //         })
   //         .catch((error) => {
-  //           if (error.response.status === 401) {
-  //             localStorage.removeItem('token');
+  //           if (error.response.status === 403) {
+  //             dispatch(logOut());
   //             document.location.reload();
   //             return;
   //           }
@@ -32,7 +34,7 @@ export default function SharedLayout() {
   //         });
   //   };
   //   refresh();
-  // }, [dispatch, isLogin, localToken]);
+  // }, [dispatch, isLogin, accessToken]);
 
   useEffect(() => {
     if (isLogin) {

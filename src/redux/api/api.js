@@ -1,5 +1,9 @@
 import axios from 'axios';
 import { store } from '../store';
+// import { useDispatch } from 'react-redux';
+// import { refresh } from '../auth/operations';
+
+// const dispatch = useDispatch();
 
 export const instance = axios.create({
   baseURL: 'https://healthy-way-app.onrender.com',
