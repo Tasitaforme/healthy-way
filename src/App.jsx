@@ -1,9 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import ErrorPage from 'pages/ErrorPage/ErrorPage';
 import { lazy } from 'react';
-// import PublicGuard from './guards/PublicGuard';
-// import PrivateGuard from './guards/PrivateGuard';
+import PublicGuard from './guards/PublicGuard';
+import PrivateGuard from './guards/PrivateGuard';
 import SharedLayout from './components/SharedLayout/SharedLayout';
+import { useSelector } from 'react-redux';
+import { selectToken } from './redux/auth/selectors';
 
 const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
@@ -20,12 +22,12 @@ const RecommendedFoodPage = lazy(() =>
 );
 
 export const App = () => {
+  const isAuth = useSelector(selectToken);
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<WelcomePage />} />
-
-        {/* <Route path="welcome" element={<WelcomePage />} /> */}
+        <Route path="welcome" element={<WelcomePage />} />
         <Route path="signup" element={<SignUpPage />} />
         <Route path="signin" element={<SignInPage />} />
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
@@ -62,8 +64,8 @@ export const App = () => {
               component={<ForgotPasswordPage />}
               redirectTo="/signin"
             />
-          }
-        /> */}
+          } 
+        />*/}
         {/* private routes */}
         {/* <Route
           path="main"

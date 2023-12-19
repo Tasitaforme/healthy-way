@@ -38,7 +38,6 @@ const authSlice = createSlice({
       .addCase(logIn.fulfilled, (state, { payload }) => {
         handleFulfilled(state);
         state.token = payload.token;
-        // TODO (потрібно подумати чи потрібно в state щось ще, якщо що дописати)
       })
       .addCase(logIn.rejected, handleRejected)
       .addCase(logOut.pending, handlePending)

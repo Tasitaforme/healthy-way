@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
@@ -13,19 +12,11 @@ import { Button } from '../StyledComponents/Components.styled';
 import { ForgotLink, SignInFormikForm } from './SignInForm.styled';
 
 export default function SignInForm() {
-  const location = useLocation();
-
-  const initialValuesFromLocation = {
-    email: location?.state?.email,
-    password: location?.state?.password,
-  };
-
   const initialValues = {
     email: '',
     password: '',
   };
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSubmit = async (values, actions) => {
     try {
@@ -41,7 +32,7 @@ export default function SignInForm() {
   return (
     <>
       <Formik
-        initialValues={initialValuesFromLocation || initialValues}
+        initialValues={initialValues}
         validationSchema={loginSchema}
         onSubmit={onSubmit}
       >

@@ -6,60 +6,69 @@ import {
   FormikStyledLabel,
 } from '../StyledComponents/Formik.styled';
 
-export const ModalBackdrop = styled.div`
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(5, 5, 5, 0.8);
-  padding-top: 100px;
-  padding-left: 10px;
-  padding-right: 10px;
+export const ModalWrap = styled.div`
+  margin: 16px 12px 22px;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  pointer-events: none;
-
-  transition: opacity var(--transition-dur-and-fun);
-  opacity: 0;
-
-  &.active {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  @media screen and (min-width: 834px) {
-    padding-top: 180px;
-  }
-  @media screen and (min-width: 1440px) {
-    padding-top: 212px;
+  @media screen and (min-width: 400px) {
+    margin: 24px 40px;
+    max-width: 338px;
   }
 `;
 
-export const ModalContainer = styled.div`
-  position: relative;
-  padding: 28px 32px;
-  margin: 20px;
-  background-color: var(--black-secondary);
-  border-radius: 30px;
-  opacity: 1;
+// export const ModalBackdrop = styled.div`
+//   height: 100vh;
+//   width: 100vw;
+//   background-color: rgba(5, 5, 5, 0.8);
+//   padding-top: 100px;
+//   padding-left: 10px;
+//   padding-right: 10px;
 
-  transform: scale(0);
-  transition: transform var(--transition-dur-and-fun);
+//   position: fixed;
+//   top: 0;
+//   left: 0;
 
-  max-height: calc(100% - 20px);
-  overflow-y: auto;
+//   display: flex;
+//   align-items: flex-start;
+//   justify-content: center;
+//   pointer-events: none;
 
-  &.active {
-    transform: scale(1);
-  }
-  @media screen and (min-width: 834px) {
-    width: 338px;
-  }
-`;
+//   transition: opacity var(--transition-dur-and-fun);
+//   opacity: 0;
+
+//   &.active {
+//     opacity: 1;
+//     pointer-events: all;
+//   }
+
+//   @media screen and (min-width: 834px) {
+//     padding-top: 180px;
+//   }
+//   @media screen and (min-width: 1440px) {
+//     padding-top: 212px;
+//   }
+// `;
+
+// export const ModalContainer = styled.div`
+//   position: relative;
+//   padding: 28px 32px;
+//   margin: 20px;
+//   background-color: var(--black-secondary);
+//   border-radius: 30px;
+//   opacity: 1;
+
+//   transform: scale(0);
+//   transition: transform var(--transition-dur-and-fun);
+
+//   max-height: calc(100% - 20px);
+//   overflow-y: auto;
+
+//   &.active {
+//     transform: scale(1);
+//   }
+//   @media screen and (min-width: 834px) {
+//     width: 338px;
+//   }
+// `;
 
 export const ButtonTransparent = styled(Button)`
   background-color: transparent;

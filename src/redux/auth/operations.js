@@ -39,16 +39,38 @@ export const logIn = createAsyncThunk('auth/login', async (body, thunkAPI) => {
  * POST @ /api/auth/logout
  * headers: Authorization: Bearer token
  */
+// export const logOut = createAsyncThunk(
+//   'auth/logout',
+
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const { data } = await instance.post('/api/auth/logout');
+//       dellToken();
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
 export const logOut = createAsyncThunk(
   'auth/logout',
 
-  async (_, { rejectWithValue }) => {
+  async (_, thunkAPI) => {
     try {
+      const state = thunkAPI.getState();
+      const persistToken = state.auth.token;
+      console.log(persistToken);
+      if (!persistToken) {
+        return thunkAPI.rejectWithValue('No token');
+      }
+      persistToken && setToken(persistToken);
       const { data } = await instance.post('/api/auth/logout');
       dellToken();
       return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      console.log(thunkAPI.rejectWithValue(error));
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );

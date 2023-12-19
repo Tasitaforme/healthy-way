@@ -21,21 +21,26 @@ import {
   WrapMain,
 } from './Water.styled';
 import AddWaterModal from '../AddWaterModal/AddWaterModal';
+import ModalMain from '../ModalMain/ModalMain';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeDailyWater } from '../../redux/water/operations';
+import { selectWaterInfo } from '../../redux/water/selectors';
 
 export default function Water({ modalActive, setModalActive }) {
-  // const [modalWaterActive, setModalWaterActive] = useState(false);
-
   //TODO потрібні дані
+  const { water: waterReal } = useSelector(selectWaterInfo);
+
+  console.log(waterReal);
   const waterDayGoal = 1500;
-  const waterReal = 1250;
+  // const waterReal = 1250;
 
   const waterLeft = waterDayGoal - waterReal;
   const waterPercent = Math.round((waterReal * 100) / waterDayGoal);
 
   // TODO дія по submit в формі в модалці
-  //  const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handleUpdate = (waterQuantity) => {
-    //  dispatch(updateContact({ id: contact.id, body }));
+    dispatch(addDailyWater(waterQuantity));
     setModalActive(false);
     console.log(waterQuantity);
     console.log('оновлюємо дані про воду');
@@ -43,9 +48,8 @@ export default function Water({ modalActive, setModalActive }) {
   // TODO дія по кліну на смітничок
   // TODO Видалити інформацію про спожиту воду користувачем за поточну дату
   // TODO /api/user/water-intake
-  const handleDelete = (quantity) => {
-    console.log('видаляємо дані про воду');
-    // dispatch(deleteContact(contactId));
+  const handleDelete = () => {
+    dispatch(removeDailyWater());
   };
 
   return (
@@ -93,16 +97,14 @@ export default function Water({ modalActive, setModalActive }) {
         </RightSide>
       </WrapMain>
       {modalActive && (
-        // <Modal active={modalActive} setActive={setModalActive}>
-        <AddWaterModal
-          // update={handleUpdate}
-          // contact={contact}
-          // setContact={setContact}
-          modalActive={modalActive}
-          setModalActive={setModalActive}
-          handleUpdate={handleUpdate}
-        />
-        // </Modal>
+        // <AddWaterModal
+        //   modalActive={modalActive}
+        //   setModalActive={setModalActive}
+        //   handleUpdate={handleUpdate}
+        // />
+        <ModalMain modalActive={modalActive} setModalActive={setModalActive}>
+          <AddWaterModal handleUpdate={handleUpdate}></AddWaterModal>
+        </ModalMain>
       )}
     </>
   );
