@@ -4,26 +4,68 @@ import styled from 'styled-components';
 export const HeaderWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  align-items: center;
+
+   @media screen and (min-width: 834px){
+    padding-top: 34px;
+  padding-bottom: 34px;
+  };
 `;
 
 export const Navigation = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 6px;
 `;
 
 export const Logo = styled(Link)`
-  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.37;
+
+  @media screen and (min-width: 834px){
+    font-size: 22px;
+    line-height: 1.45;
+  };
 `;
 
-export const StyledLink = styled(Link)`
-  transition: color var(--transition-dur-and-fun);
+export const SignInLink = styled(Link)`
+ color: #FFF;
+text-align: right;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 1.33;
 
-  /* &:hover,
-  &:focus {
-  } */
+ @media screen and (min-width: 834px){
+    font-size: 14px;
+    line-height: 1.42;
+  };
 `;
+
+export const SignUpLink = styled(Link)`
+color: #E3FFA8;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 1.33;
+
+ @media screen and (min-width: 834px){
+    font-size: 14px;
+    line-height: 1.42;
+  };
+`;
+
+export const CircleProfile = styled.img`width: 26px; height: 26px; 
+@media screen and (min-width: 834px){
+    width: 28px; height: 28px;
+  };`
+
 
 export const IconWrap = styled.svg`
   width: ${(props) => props.size || '12px'};
