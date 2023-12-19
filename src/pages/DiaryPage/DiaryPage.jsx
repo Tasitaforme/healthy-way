@@ -16,6 +16,9 @@ import {
   RecordMealIcon,
   RecordBtn,
   MealTitleWrapper,
+  GoBackTitle,
+  MealTitle,
+  MealAndNutritionWrapper,
 } from './DiaryPage.styled';
 
 export default function DiaryPage() {
@@ -24,25 +27,27 @@ export default function DiaryPage() {
       <GoBackWrapper>
         <GoBackBtn>
           <StyledGoBackIcon />
-          <h2>Diary</h2>
+          <GoBackTitle>Diary</GoBackTitle>
         </GoBackBtn>
       </GoBackWrapper>
       <MealWrapper>
-        <MealTitleWrapper>
-          <StyledBreakfastIcon />
-          <h3>Breakfast</h3>
-        </MealTitleWrapper>
-        <NutririonList>
-          <li>
-            Carbonohidrates:<span></span>
-          </li>
-          <li>
-            Protein:<span></span>
-          </li>
-          <li>
-            Fat:<span></span>
-          </li>
-        </NutririonList>
+        <MealAndNutritionWrapper>
+          <MealTitleWrapper>
+            <StyledBreakfastIcon />
+            <MealTitle>Breakfast</MealTitle>
+          </MealTitleWrapper>
+          <NutririonList>
+            <li>
+              Carbonohidrates:<span></span>
+            </li>
+            <li>
+              Protein:<span></span>
+            </li>
+            <li>
+              Fat:<span></span>
+            </li>
+          </NutririonList>
+        </MealAndNutritionWrapper>
         <RecordMealWrapper>
           <List>
             <ListItem>
@@ -77,21 +82,23 @@ export default function DiaryPage() {
         </RecordMealWrapper>
       </MealWrapper>
       <MealWrapper>
-        <MealTitleWrapper>
-          <StyledLunchIcon />
-          <h3>Lunch</h3>
-        </MealTitleWrapper>
-        <NutririonList>
-          <li>
-            Carbonohidrates:<span></span>
-          </li>
-          <li>
-            Protein:<span></span>
-          </li>
-          <li>
-            Fat:<span></span>
-          </li>
-        </NutririonList>
+        <MealAndNutritionWrapper>
+          <MealTitleWrapper>
+            <StyledLunchIcon />
+            <MealTitle>Lunch</MealTitle>
+          </MealTitleWrapper>
+          <NutririonList>
+            <li>
+              Carbonohidrates:<span></span>
+            </li>
+            <li>
+              Protein:<span></span>
+            </li>
+            <li>
+              Fat:<span></span>
+            </li>
+          </NutririonList>
+        </MealAndNutritionWrapper>
         <RecordMealWrapper>
           <List>
             <ListItem>
@@ -126,21 +133,23 @@ export default function DiaryPage() {
         </RecordMealWrapper>
       </MealWrapper>
       <MealWrapper>
-        <MealTitleWrapper>
-          <StyledDinnerIcon />
-          <h3>Dinner</h3>
-        </MealTitleWrapper>
-        <NutririonList>
-          <li>
-            Carbonohidrates:<span></span>
-          </li>
-          <li>
-            Protein:<span></span>
-          </li>
-          <li>
-            Fat:<span></span>
-          </li>
-        </NutririonList>
+        <MealAndNutritionWrapper>
+          <MealTitleWrapper>
+            <StyledDinnerIcon />
+            <MealTitle>Dinner</MealTitle>
+          </MealTitleWrapper>
+          <NutririonList>
+            <li>
+              Carbonohidrates:<span></span>
+            </li>
+            <li>
+              Protein:<span></span>
+            </li>
+            <li>
+              Fat:<span></span>
+            </li>
+          </NutririonList>
+        </MealAndNutritionWrapper>
         <RecordMealWrapper>
           <List>
             <ListItem>
@@ -175,21 +184,23 @@ export default function DiaryPage() {
         </RecordMealWrapper>
       </MealWrapper>
       <MealWrapper>
-        <MealTitleWrapper>
-          <StyledSnackIcon />
-          <h3>Snack</h3>
-        </MealTitleWrapper>
-        <NutririonList>
-          <li>
-            Carbonohidrates:<span></span>
-          </li>
-          <li>
-            Protein:<span></span>
-          </li>
-          <li>
-            Fat:<span></span>
-          </li>
-        </NutririonList>
+        <MealAndNutritionWrapper>
+          <MealTitleWrapper>
+            <StyledSnackIcon />
+            <MealTitle>Snack</MealTitle>
+          </MealTitleWrapper>
+          <NutririonList>
+            <li>
+              Carbonohidrates:<span></span>
+            </li>
+            <li>
+              Protein:<span></span>
+            </li>
+            <li>
+              Fat:<span></span>
+            </li>
+          </NutririonList>
+        </MealAndNutritionWrapper>
         <RecordMealWrapper>
           <List>
             <ListItem>

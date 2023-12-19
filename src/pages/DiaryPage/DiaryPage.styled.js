@@ -27,6 +27,20 @@ export const GoBackBtn = styled.button`
 export const StyledGoBackIcon = styled(GoBackIcon)`
   width: 16px;
   height: 16px;
+
+  @media (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+export const GoBackTitle = styled.h2`
+  color: #fff;
+  font-size: 24px;
+
+  @media (min-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 export const StyledBreakfastIcon = styled(BreakfastIcon)``;
@@ -43,6 +57,21 @@ export const MealTitleWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+`;
+
+export const MealAndNutritionWrapper = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    gap: 196px;
+  }
+`;
+
+export const MealTitle = styled.h3`
+  font-size: 18px;
+
+  @media (min-width: 768px) {
+    font-size: 22px;
+  }
 `;
 
 export const NutririonList = styled.ul`
