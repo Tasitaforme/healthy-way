@@ -14,7 +14,6 @@ import {
 
 import { authReducer } from './auth/authSlice';
 import { recommendedFoodReducer } from './recommendedFood/recommendedFoodSlice';
-import { userReducer } from './user/userSlice';
 import { diaryReducer } from './diary/diarySlice';
 import { statisticsReducer } from './statistics/statisticsSlice';
 import { waterReducer } from './water/waterSlice';
@@ -28,7 +27,6 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    user: userReducer,
     diary: diaryReducer,
     statistics: statisticsReducer,
     water: waterReducer,

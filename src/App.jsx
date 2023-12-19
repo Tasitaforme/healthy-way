@@ -5,7 +5,7 @@ import PublicGuard from './guards/PublicGuard';
 import PrivateGuard from './guards/PrivateGuard';
 import SharedLayout from './components/SharedLayout/SharedLayout';
 import { useSelector } from 'react-redux';
-import { selectToken } from './redux/auth/selectors';
+import { selectIsLogin } from './redux/auth/selectors';
 
 const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
@@ -21,12 +21,12 @@ const RecommendedFoodPage = lazy(() =>
   import('./pages/RecommendedFoodPage/RecommendedFoodPage')
 );
 
-export const App = () => {
-  const isAuth = useSelector(selectToken);
+const App = () => {
+  const isLogin = useSelector(selectIsLogin);
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<WelcomePage />} />
+        {/* <Route index element={<WelcomePage />} />
         <Route path="welcome" element={<WelcomePage />} />
         <Route path="signup" element={<SignUpPage />} />
         <Route path="signin" element={<SignInPage />} />
@@ -35,39 +35,30 @@ export const App = () => {
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="diary" element={<DiaryPage />} />
         <Route path="recommended-food" element={<RecommendedFoodPage />} />
-        <Route path="settings" element={<SettingsPage />} />
+        <Route path="settings" element={<SettingsPage />} /> */}
 
-        {/* <Route index element={!isAuth ? <WelcomePage /> : <MainPage />} /> */}
+        <Route index element={!isLogin ? <WelcomePage /> : <MainPage />} />
         {/* public routes */}
-        {/* <Route
+        <Route
           path="welcome"
-          element={
-            <PublicGuard component={<WelcomePage />} redirectTo="/main" />
-          }
+          element={<PublicGuard component={WelcomePage} redirectTo="/main" />}
         />
         <Route
           path="signup"
-          element={
-            <PublicGuard component={<SignUpPage />} redirectTo="/main" />
-          }
+          element={<PublicGuard component={SignUpPage} redirectTo="/main" />}
         />
         <Route
           path="signin"
-          element={
-            <PublicGuard component={<SignInPage />} redirectTo="/main" />
-          }
+          element={<PublicGuard component={SignInPage} redirectTo="/main" />}
         />
         <Route
           path="forgot-password"
           element={
-            <PublicGuard
-              component={<ForgotPasswordPage />}
-              redirectTo="/signin"
-            />
-          } 
-        />*/}
+            <PublicGuard component={ForgotPasswordPage} redirectTo="/signin" />
+          }
+        />
         {/* private routes */}
-        {/* <Route
+        <Route
           path="main"
           element={<PrivateGuard component={MainPage} redirectTo="/signin" />}
         />
@@ -95,9 +86,10 @@ export const App = () => {
           element={
             <PrivateGuard component={SettingsPage} redirectTo="/signin" />
           }
-        /> */}
+        />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>
   );
 };
+export default App;

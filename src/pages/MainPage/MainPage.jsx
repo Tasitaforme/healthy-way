@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FeatureWrap, TitleWrap } from './MainPage.styled';
 
 import { Container } from 'components/StyledComponents/Container';
@@ -16,13 +16,24 @@ import Food from 'components/Food/Food';
 import Diary from 'components/Diary/Diary';
 import RecommendedFood from 'components/RecommendedFood/RecommendedFood';
 import { Button } from '../../components/StyledComponents/Components.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { logOut } from '../../redux/auth/operations';
+import { selectToken } from '../../redux/auth/selectors';
+import { getDailyWater } from '../../redux/water/operations';
+import { selectWaterInfo } from '../../redux/water/selectors';
 
 export default function MainPage() {
-  // const [modalRecordDiaryActive, setModalRecordDiaryActive] = useState(false);
-  // const [modalWaterActive, setModalWaterActive] = useState(false);
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectToken);
+  const { water: waterReal } = useSelector(selectWaterInfo);
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(getDailyWater());
+    }
+  }, [isAuth, dispatch, waterReal]);
+
   const [modalActive, setModalActive] = useState(false);
 
   if (modalActive) {
@@ -32,7 +43,7 @@ export default function MainPage() {
   }
 
   // TODO видалити потім, коли буде можливість вийти в хедері
-  const dispatch = useDispatch();
+
   const handleOut = async () => {
     try {
       await dispatch(logOut()).unwrap();

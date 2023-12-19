@@ -10,11 +10,13 @@ import {
 } from '../StyledComponents/Components.styled';
 import { List } from './DailyGoal.styled';
 import sprite from 'assets/sprite.svg';
+import { useSelector } from 'react-redux';
+import { selectUserInfo } from '../../redux/auth/selectors';
 
 export default function DailyGoal() {
-  //TODO потрібні дані
-  const caloriesDayGoal = 1700;
-  const waterDayGoal = 1500;
+  const { baseWater, BMR: caloriesDayGoal } = useSelector(selectUserInfo);
+
+  const waterDayGoal = baseWater * 1000;
 
   return (
     <>

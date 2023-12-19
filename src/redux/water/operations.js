@@ -15,13 +15,6 @@ export const getDailyWater = createAsyncThunk(
       //     return thunkAPI.rejectWithValue('No token');
       //   }
       //   persistToken && setToken(persistToken);
-      const state = thunkAPI.getState();
-      const persistToken = state.auth.token;
-      if (persistToken === null) {
-        return thunkAPI.rejectWithValue('No token');
-      }
-      persistToken && setToken(persistToken);
-
       const { data } = await instance('/api/user/water');
       return data;
     } catch (error) {
@@ -57,8 +50,13 @@ export const removeDailyWater = createAsyncThunk(
     try {
       const { data } = await instance.delete('/api/user/water');
       return data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
     }
   }
 );

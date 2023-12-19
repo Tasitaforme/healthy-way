@@ -4,9 +4,6 @@ export const ModalBackdrop = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: rgba(5, 5, 5, 0.8);
-  /* padding-top: 100px;
-  padding-left: 10px;
-  padding-right: 10px; */
   margin: 0 auto;
 
   position: fixed;
@@ -25,25 +22,14 @@ export const ModalBackdrop = styled.div`
     opacity: 1;
     pointer-events: all;
   }
-
-  /* @media screen and (min-width: 834px) {
-    padding-top: 180px;
-  }
-  @media screen and (min-width: 1440px) {
-    padding-top: 212px;
-  } */
 `;
 
 export const ModalContainer = styled.div`
   position: relative;
-  /* padding: 28px 32px;
-  margin: 20px; */
-  /* width: 100%; */
   margin-top: 116px;
   margin-left: 10px;
   margin-right: 10px;
 
-  /* padding: 16px 12px; */
   background-color: var(--black-secondary);
   border-radius: 12px;
   opacity: 1;
@@ -61,7 +47,5 @@ export const ModalContainer = styled.div`
     margin-top: 212px;
     margin-left: auto;
     margin-right: auto;
-    /* padding: 24px; */
-    /* width: none; */
   }
 `;

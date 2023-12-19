@@ -28,7 +28,7 @@ export const TextWrap = styled.div`
 
   @media screen and (min-width: 834px) {
     flex-direction: row;
-    column-gap: 40px;
+    column-gap: 20px;
   }
 `;
 

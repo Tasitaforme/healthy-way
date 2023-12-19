@@ -1,10 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { registration, logIn, logOut } from './operations';
+import {
+  registration,
+  logIn,
+  logOut,
+  currentUser,
+  refresh,
+} from './operations';
 
 // TODO (потрібно подумати чи потрібно тут в state щось ще)
 const initialState = {
-  token: null,
+  user: {},
+  isLogin: false,
+  token: '',
+  // refreshToken: '',
   isLoading: false,
   error: null,
 };
@@ -15,11 +24,11 @@ const handlePending = (state) => {
 };
 const handleFulfilled = (state) => {
   state.isLoading = false;
-  state.error = null;
 };
 const handleRejected = (state, payload) => {
   state.isLoading = false;
   state.error = payload.error;
+  // state.error = payload;
 };
 
 const authSlice = createSlice({
@@ -31,18 +40,40 @@ const authSlice = createSlice({
       .addCase(registration.pending, handlePending)
       .addCase(registration.fulfilled, (state, { payload }) => {
         handleFulfilled(state);
-        // TODO (потрібно подумати чи потрібно в state щось ще, якщо що дописати)
       })
       .addCase(registration.rejected, handleRejected)
       .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, { payload }) => {
         handleFulfilled(state);
         state.token = payload.token;
+        state.isLogin = true;
+        // state.refreshToken = payload.token;
       })
       .addCase(logIn.rejected, handleRejected)
       .addCase(logOut.pending, handlePending)
-      .addCase(logOut.fulfilled, () => initialState)
-      .addCase(logOut.rejected, handleRejected);
+      .addCase(logOut.fulfilled, (state) => {
+        handleFulfilled(state);
+        state.user = {};
+        state.token = '';
+        state.isLogin = false;
+      })
+      .addCase(logOut.rejected, handleRejected)
+      .addCase(refresh.pending, handlePending)
+      .addCase(refresh.fulfilled, (state, { payload }) => {
+        handleFulfilled(state);
+        // state.token = payload.refreshtoken;
+        state.isLogin = true;
+      })
+      .addCase(refresh.rejected, handleRejected)
+      .addCase(currentUser.pending, handlePending)
+      .addCase(currentUser.fulfilled, (state, { payload }) => {
+        handleFulfilled(state);
+        state.user = payload.data;
+      })
+      .addCase(currentUser.rejected, (state, { payload }) => {
+        handleRejected(state, payload);
+        // state.token = "";
+      });
   },
 });
 

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   BodyTextFirst,
   BodyTextSecond,
@@ -23,33 +22,44 @@ import {
 import AddWaterModal from '../AddWaterModal/AddWaterModal';
 import ModalMain from '../ModalMain/ModalMain';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeDailyWater } from '../../redux/water/operations';
+import { addDailyWater, removeDailyWater } from '../../redux/water/operations';
 import { selectWaterInfo } from '../../redux/water/selectors';
+import toast from 'react-hot-toast';
+import { selectBaseWater } from '../../redux/auth/selectors';
 
 export default function Water({ modalActive, setModalActive }) {
-  //TODO потрібні дані
-  const { water: waterReal } = useSelector(selectWaterInfo);
+  const dispatch = useDispatch();
+  const { water: waterReal, error: errorBackend } =
+    useSelector(selectWaterInfo);
 
-  console.log(waterReal);
-  const waterDayGoal = 1500;
-  // const waterReal = 1250;
+  const baseWater = useSelector(selectBaseWater);
+  const waterDayGoal = baseWater !== null ? baseWater * 1000 : 0;
 
   const waterLeft = waterDayGoal - waterReal;
+  const waterLeftNonNegative = Math.max(0, waterLeft);
   const waterPercent = Math.round((waterReal * 100) / waterDayGoal);
 
-  // TODO дія по submit в формі в модалці
-  const dispatch = useDispatch();
-  const handleUpdate = (waterQuantity) => {
-    dispatch(addDailyWater(waterQuantity));
+  const handleUpdate = async (values) => {
     setModalActive(false);
-    console.log(waterQuantity);
-    console.log('оновлюємо дані про воду');
+
+    console.log(typeof +values.water);
+    try {
+      await dispatch(addDailyWater({ water: +values.water })).unwrap();
+      toast.success('Added to the total amount of water drunk for today!');
+    } catch (error) {
+      if (errorBackend) toast.error(`${errorBackend}`);
+      toast.error(`${error}`);
+    }
   };
-  // TODO дія по кліну на смітничок
-  // TODO Видалити інформацію про спожиту воду користувачем за поточну дату
-  // TODO /api/user/water-intake
-  const handleDelete = () => {
-    dispatch(removeDailyWater());
+
+  const handleDelete = async () => {
+    console.log('removeDailyWater');
+    try {
+      await dispatch(removeDailyWater()).unwrap();
+      toast.success('You have successfully remove daily water!');
+    } catch (error) {
+      toast.error(`${error}`);
+    }
   };
 
   return (
@@ -83,7 +93,7 @@ export default function Water({ modalActive, setModalActive }) {
             </BodyTextWrap>
             <BodyTextWrap>
               <BodyTextFirst>left:</BodyTextFirst>
-              <BodyTextSecond>{waterLeft}</BodyTextSecond>
+              <BodyTextSecond>{waterLeftNonNegative}</BodyTextSecond>
               <BodyTextFirst color="var(--grey-light)">ml</BodyTextFirst>
             </BodyTextWrap>
           </TextWrap>
@@ -97,13 +107,11 @@ export default function Water({ modalActive, setModalActive }) {
         </RightSide>
       </WrapMain>
       {modalActive && (
-        // <AddWaterModal
-        //   modalActive={modalActive}
-        //   setModalActive={setModalActive}
-        //   handleUpdate={handleUpdate}
-        // />
         <ModalMain modalActive={modalActive} setModalActive={setModalActive}>
-          <AddWaterModal handleUpdate={handleUpdate}></AddWaterModal>
+          <AddWaterModal
+            handleUpdate={handleUpdate}
+            setModalActive={setModalActive}
+          ></AddWaterModal>
         </ModalMain>
       )}
     </>
