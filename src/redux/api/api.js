@@ -24,16 +24,26 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
+// TODO accessToken/refreshToken
+// instance.interceptors.request.use((config) => {
+//   const {
+//     auth: { accessToken },
+//   } = store.getState();
+//   if (accessToken) {
+//     config.headers.Authorization = `Bearer ${accessToken}`;
+//   }
+//   return config;
+// });
+
 // instance.interceptors.response.use(
 //   (response) => response,
 //   async (error) => {
 //     if (error.response.status == 401) {
 //       const {
-//         auth: { token: refreshToken },
+//         auth: { refreshToken },
 //       } = store.getState();
 //       try {
-//         // const { data } = await dispatch(refresh(refreshToken));
-//         // setToken(data.accessToken);
+//         await dispatch(refresh(refreshToken));
 //         return instance(error.config);
 //       } catch (error) {
 //         return Promise.reject(error);
