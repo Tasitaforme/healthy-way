@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import 'normalize.css';
 import 'modern-normalize';
 import PoppinsRegular from '../assets/fonts/Poppins-Regular.ttf';
 import PoppinsMedium from '../assets/fonts/Poppins-Medium.ttf';
@@ -51,24 +50,41 @@ export const GlobalStyle = createGlobalStyle`
     header {
         background-color: var(--black-secondary);
     }
-    h1 {
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 1.2;
+
+    input[type='radio'] {
+        height: 12px;
+        width: 12px;
+        position: relative;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: none;
     }
 
-    h2 {
-        font-weight: 400;
-        font-size: 22px;
-        line-height: 1.45;
-        color: var(--grey-light);
+    input[type='radio']:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--black-secondary);
+        border: 1px solid var(--grey-light);
     }
 
-    h3 {
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 1.33;
+    input[type='radio']:checked:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #e3ffa8;
+        border: none;
+        transform: translate(-50%, -50%);
+        visibility: visible;
     }
-
-   
 `;
