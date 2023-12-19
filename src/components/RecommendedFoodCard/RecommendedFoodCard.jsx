@@ -16,7 +16,10 @@ export const RecommendedFoodCard = () => {
   useEffect(() => {
     const getRecommendedFood = async () => {
       const products = await fetchRecommendedFood();
-      setProducts(products);
+      const randomProduct = products
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 10);
+      setProducts(randomProduct);
     };
     getRecommendedFood();
   }, []);
