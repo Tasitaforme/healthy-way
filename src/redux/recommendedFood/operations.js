@@ -9,7 +9,7 @@ export const getRecommendedFood = createAsyncThunk(
   'user/recommendedFood/get',
   async (_, thunkAPI) => {
     try {
-      const { data } = await instance('/api/user/recommended-food');
+      const { data } = await instance.get('/api/user/recommended-food');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);

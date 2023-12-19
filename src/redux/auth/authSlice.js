@@ -8,7 +8,11 @@ import {
   refresh,
 } from './operations';
 
-// TODO (потрібно подумати чи потрібно тут в state щось ще)
+import { resetWater } from '../water/waterSlice';
+import { resetRecommendedFood } from '../recommendedFood/recommendedFoodSlice';
+import { resetStatistics } from '../statistics/statisticsSlice';
+import { resetDiary } from '../diary/diarySlice';
+
 const initialState = {
   user: {},
   isLogin: false,

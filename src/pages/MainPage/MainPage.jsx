@@ -19,20 +19,24 @@ import { Button } from '../../components/StyledComponents/Components.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { logOut } from '../../redux/auth/operations';
-import { selectToken } from '../../redux/auth/selectors';
+import { selectIsLogin } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
 import { selectWaterInfo } from '../../redux/water/selectors';
+import { resetWater } from '../../redux/water/waterSlice';
+import { resetRecommendedFood } from '../../redux/recommendedFood/recommendedFoodSlice';
+import { resetStatistics } from '../../redux/statistics/statisticsSlice';
+import { resetDiary } from '../../redux/diary/diarySlice';
 
 export default function MainPage() {
   const dispatch = useDispatch();
-  const isAuth = useSelector(selectToken);
+  const isLogin = useSelector(selectIsLogin);
   const { water: waterReal } = useSelector(selectWaterInfo);
 
   useEffect(() => {
-    if (isAuth) {
+    if (isLogin) {
       dispatch(getDailyWater());
     }
-  }, [isAuth, dispatch, waterReal]);
+  }, [isLogin, dispatch, waterReal]);
 
   const [modalActive, setModalActive] = useState(false);
 
@@ -47,6 +51,10 @@ export default function MainPage() {
   const handleOut = async () => {
     try {
       await dispatch(logOut()).unwrap();
+      dispatch(resetWater());
+      dispatch(resetRecommendedFood());
+      dispatch(resetStatistics());
+      dispatch(resetDiary());
       toast.success('You have successfully logged out!');
     } catch (error) {
       toast.error('Something went wrong !');

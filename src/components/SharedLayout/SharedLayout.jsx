@@ -7,6 +7,8 @@ import Loader from '../Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLogin } from '../../redux/auth/selectors';
 import { currentUser, logOut } from '../../redux/auth/operations';
+import { resetWater } from '../../redux/water/waterSlice';
+import { resetRecommendedFood } from '../../redux/recommendedFood/recommendedFoodSlice';
 
 export default function SharedLayout() {
   const dispatch = useDispatch();
@@ -27,6 +29,10 @@ export default function SharedLayout() {
   //         .catch((error) => {
   //           if (error.response.status === 403) {
   //             dispatch(logOut());
+  //             dispatch(resetWater());
+  //             dispatch(resetRecommendedFood());
+  //             dispatch(resetStatistics());
+  //             dispatch(resetDiary());
   //             document.location.reload();
   //             return;
   //           }

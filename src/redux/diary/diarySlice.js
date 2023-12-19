@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  items: [],
+  items: {},
   isLoading: false,
   error: null,
 };
@@ -22,8 +22,13 @@ const handleRejected = (state, payload) => {
 export const diarySlice = createSlice({
   name: 'diary',
   initialState,
-  reducers: {},
+  reducers: {
+    resetDiary: (state) => {
+      state.items = {};
+    },
+  },
   extraReducers: (builder) => {},
 });
 
+export const { resetDiary } = diarySlice.actions;
 export const diaryReducer = diarySlice.reducer;

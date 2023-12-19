@@ -23,7 +23,11 @@ const handleRejected = (state, payload) => {
 export const waterSlice = createSlice({
   name: 'water',
   initialState,
-  reducers: {},
+  reducers: {
+    resetWater: (state) => {
+      state.water = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addMatcher(
@@ -56,4 +60,5 @@ export const waterSlice = createSlice({
   },
 });
 
+export const { resetWater } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;

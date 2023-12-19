@@ -42,7 +42,6 @@ export default function Water({ modalActive, setModalActive }) {
   const handleUpdate = async (values) => {
     setModalActive(false);
 
-    console.log(typeof +values.water);
     try {
       await dispatch(addDailyWater({ water: +values.water })).unwrap();
       toast.success('Added to the total amount of water drunk for today!');
@@ -53,7 +52,6 @@ export default function Water({ modalActive, setModalActive }) {
   };
 
   const handleDelete = async () => {
-    console.log('removeDailyWater');
     try {
       await dispatch(removeDailyWater()).unwrap();
       toast.success('You have successfully remove daily water!');

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getRecommendedFood } from './operations';
 
 const initialState = {
-  items: [],
+  items: {},
   isLoading: false,
   error: null,
 };
@@ -23,7 +23,11 @@ const handleRejected = (state, payload) => {
 export const recommendedFoodSlice = createSlice({
   name: 'recommendedFood',
   initialState,
-  reducers: {},
+  reducers: {
+    resetRecommendedFood: (state) => {
+      state.items = {};
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getRecommendedFood.pending, handlePending)
@@ -35,4 +39,5 @@ export const recommendedFoodSlice = createSlice({
   },
 });
 
+export const { resetRecommendedFood } = recommendedFoodSlice.actions;
 export const recommendedFoodReducer = recommendedFoodSlice.reducer;
