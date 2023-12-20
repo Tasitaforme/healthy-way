@@ -1,4 +1,4 @@
-import{s as t}from"./index-7be5ce58.js";import{c as i}from"./Formik.styled-8733402c.js";import{a as o}from"./SignInPage.styled-b854f5a0.js";const p=t(i)`
+import{s as t}from"./index-372a3610.js";import{c as i}from"./Formik.styled-b0ccf027.js";import{a as o}from"./SignInPage.styled-cd09ee6c.js";const p=t(i)`
   margin-bottom: 52px;
   & input + input {
     margin-top: 20px;
