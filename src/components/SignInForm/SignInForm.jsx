@@ -6,11 +6,11 @@ import { toast } from 'react-hot-toast';
 
 import { loginSchema } from '../../schemas/formik';
 import {
-  FormikButton,
   FormikStyledErrorMessage,
   FormikStyledField,
   FormikStyledForm,
 } from '../../components/StyledComponents/Formik.styled';
+import { Button } from '../StyledComponents/Components.styled';
 
 export default function SignInForm() {
   const location = useLocation();
@@ -69,9 +69,9 @@ export default function SignInForm() {
             />
             <FormikStyledErrorMessage component="p" name="password" />
 
-            <FormikButton type="submit" disabled={!isValid || isSubmitting}>
+            <Button type="submit" disabled={!isValid || isSubmitting}>
               Sign in
-            </FormikButton>
+            </Button>
           </FormikStyledForm>
         )}
       </Formik>
