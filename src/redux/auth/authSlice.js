@@ -8,11 +8,6 @@ import {
   refresh,
 } from './operations';
 
-import { resetWater } from '../water/waterSlice';
-import { resetRecommendedFood } from '../recommendedFood/recommendedFoodSlice';
-import { resetStatistics } from '../statistics/statisticsSlice';
-import { resetDiary } from '../diary/diarySlice';
-
 const initialState = {
   user: {},
   isLogin: false,
@@ -56,7 +51,7 @@ const authSlice = createSlice({
         handleFulfilled(state);
         state.user = {};
         state.accessToken = '';
-        state.accessToken = '';
+        state.refreshToken = '';
         state.isLogin = false;
       })
       .addCase(logOut.rejected, handleRejected)

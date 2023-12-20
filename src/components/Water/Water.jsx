@@ -91,7 +91,7 @@ export default function Water({ modalActive, setModalActive }) {
             </BodyTextWrap>
             <BodyTextWrap>
               <BodyTextFirst>left:</BodyTextFirst>
-              <BodyTextSecond>{waterLeftNonNegative}</BodyTextSecond>
+              <BodyTextSecond>{waterLeftNonNegative || 0}</BodyTextSecond>
               <BodyTextFirst color="var(--grey-light)">ml</BodyTextFirst>
             </BodyTextWrap>
           </TextWrap>

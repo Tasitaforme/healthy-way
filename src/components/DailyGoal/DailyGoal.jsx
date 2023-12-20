@@ -29,7 +29,7 @@ export default function DailyGoal() {
             </IconWrap>
             <div>
               <HeadlineThird color="var(--grey-light)">Calories</HeadlineThird>
-              <SubtitleFirst>{caloriesDayGoal}</SubtitleFirst>
+              <SubtitleFirst>{caloriesDayGoal || 0}</SubtitleFirst>
             </div>
           </li>
           <li>
@@ -39,7 +39,7 @@ export default function DailyGoal() {
             <div>
               <HeadlineThird color="var(--grey-light)">Water</HeadlineThird>
               <BodyTextWrap>
-                <SubtitleFirst>{waterDayGoal}</SubtitleFirst>
+                <SubtitleFirst>{waterDayGoal || 0}</SubtitleFirst>
                 <BodyTextFirst color="var(--grey-light)">ml</BodyTextFirst>
               </BodyTextWrap>
             </div>

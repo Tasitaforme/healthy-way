@@ -1,6 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { store } from '../store';
+import { resetWater } from '../water/waterSlice';
+import { resetRecommendedFood } from '../recommendedFood/recommendedFoodSlice';
+import { resetStatistics } from '../statistics/statisticsSlice';
+import { resetDiary } from '../diary/diarySlice';
 
 const instance = axios.create({
   baseURL: 'https://healthy-way-app.onrender.com',
@@ -14,27 +18,6 @@ const setToken = (token) => {
   }
   instance.defaults.headers.common['Authorization'] = '';
 };
-
-instance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (error.response.status == 401) {
-      const {
-        auth: { refreshToken },
-      } = store.getState();
-      try {
-        const { data } = await instance.post('/api/auth/refresh', {
-          refreshToken,
-        });
-        setToken(data.accessToken);
-        return instance(error.config);
-      } catch (error) {
-        return Promise.reject(error);
-      }
-    }
-    return Promise.reject(error);
-  }
-);
 
 /*
  * POST @ /api/auth/registration
@@ -82,6 +65,10 @@ export const logOut = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('/api/auth/logout');
+      store.dispatch(resetWater());
+      store.dispatch(resetRecommendedFood());
+      store.dispatch(resetStatistics());
+      store.dispatch(resetDiary());
       setToken();
       return data;
     } catch ({ response }) {
@@ -148,6 +135,21 @@ export const refresh = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+instance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response.status == 401) {
+      const {
+        auth: { refreshToken },
+      } = store.getState();
+      if (refreshToken) {
+        store.dispatch(refresh({ refreshToken }));
+      }
+      return Promise.reject(error);
     }
   }
 );

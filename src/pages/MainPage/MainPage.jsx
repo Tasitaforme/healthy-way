@@ -22,10 +22,6 @@ import { logOut } from '../../redux/auth/operations';
 import { selectIsLogin } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
 import { selectWaterInfo } from '../../redux/water/selectors';
-import { resetWater } from '../../redux/water/waterSlice';
-import { resetRecommendedFood } from '../../redux/recommendedFood/recommendedFoodSlice';
-import { resetStatistics } from '../../redux/statistics/statisticsSlice';
-import { resetDiary } from '../../redux/diary/diarySlice';
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -51,10 +47,6 @@ export default function MainPage() {
   const handleOut = async () => {
     try {
       await dispatch(logOut()).unwrap();
-      dispatch(resetWater());
-      dispatch(resetRecommendedFood());
-      dispatch(resetStatistics());
-      dispatch(resetDiary());
       toast.success('You have successfully logged out!');
     } catch (error) {
       toast.error('Something went wrong !');

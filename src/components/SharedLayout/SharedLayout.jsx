@@ -5,20 +5,16 @@ import { toastOptions } from '../StyledComponents/toastOptions';
 import Header from '../Header/Header';
 import Loader from '../Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLogin } from '../../redux/auth/selectors';
-import { currentUser, logOut } from '../../redux/auth/operations';
-import { resetWater } from '../../redux/water/waterSlice';
-import { resetRecommendedFood } from '../../redux/recommendedFood/recommendedFoodSlice';
+import { selectAuthInfo } from '../../redux/auth/selectors';
+import { currentUser } from '../../redux/auth/operations';
 
 export default function SharedLayout() {
-  // const dispatch = useDispatch();
-  // const isLogin = useSelector(selectIsLogin);
+  const dispatch = useDispatch();
+  const { isLogin } = useSelector(selectAuthInfo);
 
-  // useEffect(() => {
-  //   if (isLogin) {
-  //     dispatch(currentUser());
-  //   }
-  // }, [isLogin, dispatch]);
+  useEffect(() => {
+    dispatch(currentUser());
+  }, [dispatch, isLogin]);
 
   return (
     <>
