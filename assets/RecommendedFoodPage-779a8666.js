@@ -1,4 +1,4 @@
-import{k as c,s,c as n,j as e}from"./index-d678984b.js";c.defaults.baseURL="https://healthy-way-app.onrender.com/api/user/";const a=async()=>{try{return(await c.get("/recommended-food")).data}catch(o){console.log(o)}},r=s.ul`
+import{w as d,s,a as n,j as e}from"./index-59f56a89.js";d.defaults.baseURL="https://healthy-way-app.onrender.com/api/user/";const a=async()=>{try{return(await d.get("/recommended-food")).data}catch(o){console.log(o)}},r=s.ul`
   /* display: flex;
   flex-direction: column; */
 
@@ -51,7 +51,7 @@ import{k as c,s,c as n,j as e}from"./index-d678984b.js";c.defaults.baseURL="http
     /* font-weight:;
     color:; */
   }
-`,u=()=>{const[o,d]=n.useState([]);return n.useEffect(()=>{(async()=>{const i=(await a()).sort(()=>.5-Math.random()).slice(0,10);d(i)})()},[]),e.jsx(r,{children:o.map(t=>e.jsxs(l,{children:[e.jsx(m,{children:e.jsx(p,{src:t.img,alt:t.name})}),e.jsxs(x,{children:[e.jsx(h,{children:t.name}),e.jsxs(g,{children:[t.amount," ",e.jsxs("span",{children:[t.calories," calories"]})]})]})]},t._id))})},f=()=>e.jsx("div",{children:e.jsx(u,{})}),j="/healthy-way/assets/IllustrationRecommended-06d01b32.jpg",w=s.div`
+`,u=()=>{const[o,c]=n.useState([]);return n.useEffect(()=>{(async()=>{const i=(await a()).sort(()=>.5-Math.random()).slice(0,10);c(i)})()},[]),e.jsx(r,{children:o.map(t=>e.jsxs(l,{children:[e.jsx(m,{children:e.jsx(p,{src:t.img,alt:t.name})}),e.jsxs(x,{children:[e.jsx(h,{children:t.name}),e.jsxs(g,{children:[t.amount," ",e.jsxs("span",{children:[t.calories," calories"]})]})]})]},t._id))})},f=()=>e.jsx("div",{children:e.jsx(u,{})}),j="/healthy-way/assets/IllustrationRecommended-06d01b32.jpg",w=s.div`
   /* display: flex; */
 `,y=s.div`
   display: flex;
