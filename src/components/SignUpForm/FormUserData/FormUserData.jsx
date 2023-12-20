@@ -1,9 +1,6 @@
 import { Formik } from 'formik';
-import {
-  FormikStyledErrorMessage,
-  FormikStyledField,
-  FormikStyledForm,
-} from '../../StyledComponents/Formik.styled';
+import { FormikStyledErrorMessage } from '../../StyledComponents/Formik.styled';
+import { SignUpFormikForm, SignUpField } from './FormUserData.styled.js';
 import { Button } from '../../StyledComponents/Components.styled';
 import { registerSchema } from '../../../schemas/formikRegister.js';
 
@@ -25,8 +22,8 @@ export default function FormUserData({
       onSubmit={onSubmit}
     >
       {({ errors, touched, isValid, isSubmitting }) => (
-        <FormikStyledForm>
-          <FormikStyledField
+        <SignUpFormikForm>
+          <SignUpField
             type="text"
             name="name"
             placeholder="Name"
@@ -36,7 +33,7 @@ export default function FormUserData({
           />
           <FormikStyledErrorMessage component="p" name="name" />
 
-          <FormikStyledField
+          <SignUpField
             type="email"
             name="email"
             placeholder="E-mail"
@@ -50,7 +47,7 @@ export default function FormUserData({
           />
           <FormikStyledErrorMessage component="p" name="email" />
 
-          <FormikStyledField
+          <SignUpField
             type="password"
             name="password"
             placeholder="Password"
@@ -67,7 +64,7 @@ export default function FormUserData({
           <Button type="submit" disabled={!isValid || isSubmitting}>
             Next
           </Button>
-        </FormikStyledForm>
+        </SignUpFormikForm>
       )}
     </Formik>
   );

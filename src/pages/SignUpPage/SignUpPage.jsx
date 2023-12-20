@@ -5,6 +5,7 @@ import { FlexBox } from './SignUpPage.styled';
 import SignUpImage from '../../components/SignUpImage/SignUpImage';
 import SignUpText from '../../components/SignUpText/SignUpText';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import { SubLink, SubText } from '../SignInPage/SignInPage.styled';
 
 export default function SignUpPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -31,12 +32,13 @@ export default function SignUpPage() {
               handleNextStep={handleNextStep}
               handlePrevStep={handlePrevStep}
             />
+            {currentStep === 1 && (
+              <>
+                <SubText>Do you already have an account?</SubText>
+                <SubLink to="/signin">Sign in</SubLink>
+              </>
+            )}
           </TextWrapper>
-
-          {/* <div>
-            <p>Do you already have an account?</p>
-            <nav></nav>
-          </div> */}
         </FlexBox>
       </Container>
     </MainAuth>
