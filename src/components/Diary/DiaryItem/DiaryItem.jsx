@@ -31,7 +31,7 @@ export default function DiaryItem({ data }) {
 
   return (
     <ItemWrap>
-      <ItemWrapTitle>
+      {/* <ItemWrapTitle>
         {data.mealType === 'breakfast' && (
           <img
             srcSet={`${breakfast} 1x, ${breakfast2x} 2x`}
@@ -73,7 +73,7 @@ export default function DiaryItem({ data }) {
             <use href={`${sprite}#trash`} />
           </IconWrap>
         </ButtonIcon>
-      </ItemWrapInfo>
+      </ItemWrapInfo> */}
     </ItemWrap>
   );
 }

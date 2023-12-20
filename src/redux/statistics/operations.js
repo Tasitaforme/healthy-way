@@ -1,2 +1,2 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { instance } from '../api/api';
+import instance from '../auth/operations';

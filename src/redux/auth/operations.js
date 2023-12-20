@@ -1,5 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { dellToken, instance, setToken } from '../api/api';
+import axios from 'axios';
+import { store } from '../store';
+import { resetWater } from '../water/waterSlice';
+import { resetRecommendedFood } from '../recommendedFood/recommendedFoodSlice';
+import { resetStatistics } from '../statistics/statisticsSlice';
+import { resetDiary } from '../diary/diarySlice';
+
+const instance = axios.create({
+  baseURL: 'https://healthy-way-app.onrender.com',
+});
+
+const setToken = (token) => {
+  if (token) {
+    return (instance.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${token}`);
+  }
+  instance.defaults.headers.common['Authorization'] = '';
+};
 
 /*
  * POST @ /api/auth/registration
@@ -11,7 +29,6 @@ export const registration = createAsyncThunk(
   async (newUser, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('/api/auth/registration', newUser);
-      setToken(data.token);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -26,12 +43,15 @@ export const registration = createAsyncThunk(
 export const logIn = createAsyncThunk('auth/login', async (body, thunkAPI) => {
   try {
     const { data } = await instance.post('/api/auth/login', body);
-    setToken(data.token);
+    setToken(data.accessToken);
     return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(
-      error.message + '. ' + error.response.statusText + '.'
-    );
+  } catch ({ response }) {
+    const { status, data } = response;
+    const error = {
+      status,
+      message: data.message,
+    };
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
@@ -45,10 +65,19 @@ export const logOut = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('/api/auth/logout');
-      dellToken();
+      store.dispatch(resetWater());
+      store.dispatch(resetRecommendedFood());
+      store.dispatch(resetStatistics());
+      store.dispatch(resetDiary());
+      setToken();
       return data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
     }
   }
 );
@@ -83,10 +112,106 @@ export const removeUser = createAsyncThunk(
   async (body, { rejectWithValue }) => {
     try {
       const { data } = await instance.delete('/api/auth/delete', body);
-      // dellToken();
+      setToken();
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
+
+/*
+ * POST @ /api/auth/refresh
+ * headers: Authorization: Bearer token
+ * body: { refreshToken }
+ */
+export const refresh = createAsyncThunk(
+  'auth/refresh',
+
+  async (body, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post('/api/auth/refresh', body);
+      setToken(data.accessToken);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+instance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response.status == 401) {
+      const {
+        auth: { refreshToken },
+      } = store.getState();
+      if (refreshToken) {
+        store.dispatch(refresh({ refreshToken }));
+      }
+      return Promise.reject(error);
+    }
+  }
+);
+
+/*
+ * GET @ /api/user/current
+ * headers: Authorization: Bearer token
+ */
+export const currentUser = createAsyncThunk(
+  'user/current',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance('/api/user/current');
+      return data;
+    } catch ({ response }) {
+      setToken();
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+/*
+ * PUT @ /api/user/update
+ * headers: Authorization: Bearer token
+ * * body: {name, gender, age, height, weight, activityRatio}
+ */
+// TODO (сюди потрібно прописати оновлення по юзеру (перевірити) )
+export const updateUser = createAsyncThunk(
+  'user/update',
+  async (body, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.put('/api/user/current', body);
+      return data;
+    } catch ({ response }) {
+      const { status, data } = response;
+      const error = {
+        status,
+        message: data.message,
+      };
+      return rejectWithValue(error);
+    }
+  }
+);
+
+/*
+ * PUT @ /api/user/weight
+ * headers: Authorization: Bearer token
+ * * body: {}
+ */
+
+// TODO (сюди потрібно прописати оновлення по вазі )
+
+/*
+ * PUT @ /api/user/goal
+ * headers: Authorization: Bearer token
+ * * body: {}
+ */
+// TODO (сюди потрібно прописати оновлення по цілі)
+
+export default instance;

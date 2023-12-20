@@ -9,8 +9,8 @@ import { persistor, store } from './redux/store';
 import './styles/main.css';
 
 import { GlobalStyle } from './styles/globalStyles.jsx';
-import { App } from './App.jsx';
-import Loader from './components/Loader/Loader.jsx';
+import App from './App';
+import Loader from './components/Loader/Loader';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
