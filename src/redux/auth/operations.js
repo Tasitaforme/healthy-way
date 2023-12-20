@@ -1,5 +1,40 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { instance } from '../api/api';
+import axios from 'axios';
+import { store } from '../store';
+
+const instance = axios.create({
+  baseURL: 'https://healthy-way-app.onrender.com',
+});
+
+const setToken = (token) => {
+  if (token) {
+    return (instance.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${token}`);
+  }
+  instance.defaults.headers.common['Authorization'] = '';
+};
+
+instance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response.status == 401) {
+      const {
+        auth: { refreshToken },
+      } = store.getState();
+      try {
+        const { data } = await instance.post('/api/auth/refresh', {
+          refreshToken,
+        });
+        setToken(data.accessToken);
+        return instance(error.config);
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 /*
  * POST @ /api/auth/registration
@@ -11,7 +46,6 @@ export const registration = createAsyncThunk(
   async (newUser, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('/api/auth/registration', newUser);
-      // setToken(data.token);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -26,12 +60,15 @@ export const registration = createAsyncThunk(
 export const logIn = createAsyncThunk('auth/login', async (body, thunkAPI) => {
   try {
     const { data } = await instance.post('/api/auth/login', body);
-    // setToken(data.token);
+    setToken(data.accessToken);
     return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(
-      error.message + '. ' + error.response.statusText + '.'
-    );
+  } catch ({ response }) {
+    const { status, data } = response;
+    const error = {
+      status,
+      message: data.message,
+    };
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
@@ -45,7 +82,7 @@ export const logOut = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('/api/auth/logout');
-      // setToken();
+      setToken();
       return data;
     } catch ({ response }) {
       const { status, data } = response;
@@ -88,7 +125,7 @@ export const removeUser = createAsyncThunk(
   async (body, { rejectWithValue }) => {
     try {
       const { data } = await instance.delete('/api/auth/delete', body);
-      // setToken();
+      setToken();
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -96,9 +133,8 @@ export const removeUser = createAsyncThunk(
   }
 );
 
-// TODO refreshToken (додати в слайс, якщо будемо використовувати)
 /*
- * GET @ /api/auth/refresh
+ * POST @ /api/auth/refresh
  * headers: Authorization: Bearer token
  * body: { refreshToken }
  */
@@ -107,7 +143,8 @@ export const refresh = createAsyncThunk(
 
   async (body, { rejectWithValue }) => {
     try {
-      const { data } = await instance.delete('/api/auth/refresh', body);
+      const { data } = await instance.post('/api/auth/refresh', body);
+      setToken(data.accessToken);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -120,18 +157,19 @@ export const refresh = createAsyncThunk(
  * headers: Authorization: Bearer token
  */
 export const currentUser = createAsyncThunk(
-  '/user/current',
-  async (_, { rejectWithValue }) => {
+  'user/current',
+  async (_, thunkAPI) => {
     try {
       const { data } = await instance('/api/user/current');
       return data;
     } catch ({ response }) {
+      setToken();
       const { status, data } = response;
       const error = {
         status,
         message: data.message,
       };
-      return rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -143,7 +181,7 @@ export const currentUser = createAsyncThunk(
  */
 // TODO (сюди потрібно прописати оновлення по юзеру (перевірити) )
 export const updateUser = createAsyncThunk(
-  '/user/update',
+  'user/update',
   async (body, { rejectWithValue }) => {
     try {
       const { data } = await instance.put('/api/user/current', body);
@@ -173,3 +211,5 @@ export const updateUser = createAsyncThunk(
  * * body: {}
  */
 // TODO (сюди потрібно прописати оновлення по цілі)
+
+export default instance;

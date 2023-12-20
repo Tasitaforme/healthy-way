@@ -11,42 +11,14 @@ import { resetWater } from '../../redux/water/waterSlice';
 import { resetRecommendedFood } from '../../redux/recommendedFood/recommendedFoodSlice';
 
 export default function SharedLayout() {
-  const dispatch = useDispatch();
-  const isLogin = useSelector(selectIsLogin);
-
-  // TODO accessToken/refreshToken
-  // const { refreshToken, accessToken } = useSelector(selectAuthInfo);
+  // const dispatch = useDispatch();
+  // const isLogin = useSelector(selectIsLogin);
 
   // useEffect(() => {
-  //   const refresh = () => {
-  //     !isLogin &&
-  //       accessToken &&
-  //       dispatch(refresh(refreshToken))
-  //         .unwrap()
-  //         .then(() => {
-  //           dispatch(currentUser());
-  //         })
-  //         .catch((error) => {
-  //           if (error.response.status === 403) {
-  //             dispatch(logOut());
-  //             dispatch(resetWater());
-  //             dispatch(resetRecommendedFood());
-  //             dispatch(resetStatistics());
-  //             dispatch(resetDiary());
-  //             document.location.reload();
-  //             return;
-  //           }
-  //           toast.error(`Unknown error... \n ${error.message}`);
-  //         });
-  //   };
-  //   refresh();
-  // }, [dispatch, isLogin, accessToken]);
-
-  useEffect(() => {
-    if (isLogin) {
-      dispatch(currentUser());
-    }
-  }, [isLogin, dispatch]);
+  //   if (isLogin) {
+  //     dispatch(currentUser());
+  //   }
+  // }, [isLogin, dispatch]);
 
   return (
     <>

@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { selectIsLogin } from '../redux/auth/selectors';
+import { selectAuthInfo } from '../redux/auth/selectors';
 
 const PrivateGuard = ({ component: Component, redirectTo }) => {
-  const isLogin = useSelector(selectIsLogin);
+  const { isLogin, refreshToken } = useSelector(selectAuthInfo);
   const location = useLocation();
 
-  return isLogin ? (
+  return isLogin || refreshToken ? (
     <Component />
   ) : (
     <Navigate to={redirectTo} state={location} />

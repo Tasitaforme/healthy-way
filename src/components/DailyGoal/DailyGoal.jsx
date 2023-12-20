@@ -16,7 +16,7 @@ import { selectUserInfo } from '../../redux/auth/selectors';
 export default function DailyGoal() {
   const { baseWater, BMR: caloriesDayGoal } = useSelector(selectUserInfo);
 
-  const waterDayGoal = baseWater * 1000;
+  const waterDayGoal = baseWater !== null ? baseWater * 1000 : 0;
 
   return (
     <>

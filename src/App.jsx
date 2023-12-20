@@ -1,11 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
 import ErrorPage from 'pages/ErrorPage/ErrorPage';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import PublicGuard from './guards/PublicGuard';
 import PrivateGuard from './guards/PrivateGuard';
 import SharedLayout from './components/SharedLayout/SharedLayout';
-import { useSelector } from 'react-redux';
-import { selectIsLogin } from './redux/auth/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAuthInfo } from './redux/auth/selectors';
+import { currentUser, logOut, refresh } from './redux/auth/operations';
+import { resetWater } from './redux/water/waterSlice';
+import { resetRecommendedFood } from './redux/recommendedFood/recommendedFoodSlice';
+import { resetStatistics } from './redux/statistics/statisticsSlice';
+import { resetDiary } from './redux/diary/diarySlice';
+import { getDailyWater } from './redux/water/operations';
+import toast from 'react-hot-toast';
 
 const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
@@ -22,7 +29,37 @@ const RecommendedFoodPage = lazy(() =>
 );
 
 const App = () => {
-  const isLogin = useSelector(selectIsLogin);
+  const dispatch = useDispatch();
+  const { isLogin, refreshToken } = useSelector(selectAuthInfo);
+  console.log(refreshToken);
+
+  useEffect(() => {
+    const refreshing = () => {
+      !isLogin &&
+        refreshToken &&
+        dispatch(refresh({ refreshToken: refreshToken }))
+          .unwrap()
+          .then(() => {
+            dispatch(currentUser());
+            dispatch(getDailyWater());
+          })
+          .catch((error) => {
+            console.log(error);
+            if (error.response.status === 403) {
+              dispatch(logOut()).unwrap();
+              dispatch(resetWater());
+              dispatch(resetRecommendedFood());
+              dispatch(resetStatistics());
+              dispatch(resetDiary());
+              document.location.reload();
+              return;
+            }
+            toast.error(`Unknown error... \n ${error.message}`);
+          });
+    };
+    refreshing();
+  }, [dispatch, isLogin, refreshToken]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

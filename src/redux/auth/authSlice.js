@@ -16,9 +16,8 @@ import { resetDiary } from '../diary/diarySlice';
 const initialState = {
   user: {},
   isLogin: false,
-  token: '',
-  // refreshToken: '',
-  // accessToken: '',
+  accessToken: '',
+  refreshToken: '',
   isLoading: false,
   error: null,
 };
@@ -32,8 +31,7 @@ const handleFulfilled = (state) => {
 };
 const handleRejected = (state, payload) => {
   state.isLoading = false;
-  state.error = payload.error;
-  // state.error = payload;
+  state.error = payload.message;
 };
 
 const authSlice = createSlice({
@@ -43,34 +41,30 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registration.pending, handlePending)
-      .addCase(registration.fulfilled, (state, { payload }) => {
-        handleFulfilled(state);
-      })
+      .addCase(registration.fulfilled, handleFulfilled)
       .addCase(registration.rejected, handleRejected)
       .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, { payload }) => {
         handleFulfilled(state);
-        state.token = payload.token;
         state.isLogin = true;
-        // state.refreshToken = payload.refreshToken;
-        // state.accessToken = payload.accessToken;
+        state.refreshToken = payload.refreshToken;
+        state.accessToken = payload.accessToken;
       })
       .addCase(logIn.rejected, handleRejected)
       .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, (state) => {
         handleFulfilled(state);
         state.user = {};
-        state.token = '';
-        // state.accessToken = "";
-        // state.accessToken = "";
+        state.accessToken = '';
+        state.accessToken = '';
         state.isLogin = false;
       })
       .addCase(logOut.rejected, handleRejected)
       .addCase(refresh.pending, handlePending)
       .addCase(refresh.fulfilled, (state, { payload }) => {
         handleFulfilled(state);
-        // state.accessToken = payload.accessToken;
-        // state.refreshToken = payload.refreshToken;
+        state.accessToken = payload.accessToken;
+        state.refreshToken = payload.refreshToken;
         state.isLogin = true;
       })
       .addCase(refresh.rejected, handleRejected)
