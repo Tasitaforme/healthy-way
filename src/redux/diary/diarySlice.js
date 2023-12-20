@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  items: {},
+  food: { breakfast: [], lunch: [], dinner: [], snack: [] },
   isLoading: false,
   error: null,
 };
@@ -16,7 +16,7 @@ const handleFulfilled = (state) => {
 };
 const handleRejected = (state, payload) => {
   state.isLoading = false;
-  state.error = payload.error;
+  state.error = payload.error.message;
 };
 
 export const diarySlice = createSlice({
