@@ -4,36 +4,39 @@ import {
   GoBackWrapper,
   ListItem,
   List,
-  StyledBreakfastIcon,
-  StyledGoBackIcon,
   MealWrapper,
   NutririonList,
-  StyledLunchIcon,
-  StyledDinnerIcon,
-  StyledSnackIcon,
   RecordMealWrapper,
   RecordBtnLabel,
-  RecordMealIcon,
   RecordBtn,
   MealTitleWrapper,
   GoBackTitle,
   MealTitle,
   MealAndNutritionWrapper,
+  StyledBackArrowIcon,
+  StyledAddMealIcon,
 } from './DiaryPage.styled';
+import dinnerImage from '../../assets/images/diary/dinner@2x.png';
+import breakfastImage from '../../assets/images/diary/breakfast@2x.png';
+import lunchImage from '../../assets/images/diary/lunch@2x.png';
+import snackImage from '../../assets/images/diary/snack@2x.png';
+import sprite from '../../assets/sprite.svg';
 
 export default function DiaryPage() {
   return (
     <DiarySection>
       <GoBackWrapper>
         <GoBackBtn>
-          <StyledGoBackIcon />
+          <StyledBackArrowIcon>
+            <use href={`${sprite}#arrow-back`} />
+          </StyledBackArrowIcon>
           <GoBackTitle>Diary</GoBackTitle>
         </GoBackBtn>
       </GoBackWrapper>
       <MealWrapper>
         <MealAndNutritionWrapper>
           <MealTitleWrapper>
-            <StyledBreakfastIcon />
+            <img src={breakfastImage} alt="breakfast" />
             <MealTitle>Breakfast</MealTitle>
           </MealTitleWrapper>
           <NutririonList>
@@ -53,28 +56,36 @@ export default function DiaryPage() {
             <ListItem>
               <p>1</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>2</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>3</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>4</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
@@ -84,7 +95,7 @@ export default function DiaryPage() {
       <MealWrapper>
         <MealAndNutritionWrapper>
           <MealTitleWrapper>
-            <StyledLunchIcon />
+            <img src={lunchImage} alt="lunch" />
             <MealTitle>Lunch</MealTitle>
           </MealTitleWrapper>
           <NutririonList>
@@ -104,28 +115,36 @@ export default function DiaryPage() {
             <ListItem>
               <p>1</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>2</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>3</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>4</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
@@ -135,7 +154,7 @@ export default function DiaryPage() {
       <MealWrapper>
         <MealAndNutritionWrapper>
           <MealTitleWrapper>
-            <StyledDinnerIcon />
+            <img src={dinnerImage} alt="dinner" />
             <MealTitle>Dinner</MealTitle>
           </MealTitleWrapper>
           <NutririonList>
@@ -155,28 +174,36 @@ export default function DiaryPage() {
             <ListItem>
               <p>1</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>2</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>3</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>4</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
@@ -186,7 +213,7 @@ export default function DiaryPage() {
       <MealWrapper>
         <MealAndNutritionWrapper>
           <MealTitleWrapper>
-            <StyledSnackIcon />
+            <img src={snackImage} alt="snack" />
             <MealTitle>Snack</MealTitle>
           </MealTitleWrapper>
           <NutririonList>
@@ -206,28 +233,36 @@ export default function DiaryPage() {
             <ListItem>
               <p>1</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>2</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>3</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
             <ListItem>
               <p>4</p>
               <RecordBtn>
-                <RecordMealIcon />
+                <StyledAddMealIcon>
+                  <use href={`${sprite}#add`} />
+                </StyledAddMealIcon>
                 <RecordBtnLabel>Record your meal</RecordBtnLabel>
               </RecordBtn>
             </ListItem>
