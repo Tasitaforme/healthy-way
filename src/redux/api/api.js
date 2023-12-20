@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-export const instanceForAuth = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com/',
+export const instance = axios.create({
+  baseURL: 'https://healthy-way-app.onrender.com',
 });
 
 export const setToken = (token) => {
-  instanceForAuth.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 
 export const dellToken = () => {
-  instanceForAuth.defaults.headers.common['Authorization'] = '';
+  instance.defaults.headers.common['Authorization'] = '';
 };

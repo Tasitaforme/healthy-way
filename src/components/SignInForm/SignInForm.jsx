@@ -8,9 +8,9 @@ import { loginSchema } from '../../schemas/formik';
 import {
   FormikStyledErrorMessage,
   FormikStyledField,
-  FormikStyledForm,
 } from '../../components/StyledComponents/Formik.styled';
 import { Button } from '../StyledComponents/Components.styled';
+import { ForgotLink, SignInFormikForm } from './SignInForm.styled';
 
 export default function SignInForm() {
   const location = useLocation();
@@ -46,25 +46,32 @@ export default function SignInForm() {
         onSubmit={onSubmit}
       >
         {({ errors, touched, isSubmitting, isValid }) => (
-          <FormikStyledForm>
-            <label>Email address</label>
+          <SignInFormikForm>
             <FormikStyledField
               type="email"
               name="email"
-              placeholder="Enter your email"
-              title="The email address must contain the @ symbol and text after it. For example: email@mail.com"
-              className={errors.email && touched.email ? 'input-error' : ''}
+              placeholder="E-mail"
+              className={
+                touched.quantity
+                  ? errors.quantity
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
             />
             <FormikStyledErrorMessage component="p" name="email" />
 
-            <label>Password</label>
             <FormikStyledField
               type="password"
               name="password"
-              placeholder="Enter password"
-              title="The password must be at least 5 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number"
+              placeholder="Password"
+              autoComplete="off"
               className={
-                errors.password && touched.password ? 'input-error' : ''
+                touched.quantity
+                  ? errors.quantity
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
               }
             />
             <FormikStyledErrorMessage component="p" name="password" />
@@ -72,7 +79,8 @@ export default function SignInForm() {
             <Button type="submit" disabled={!isValid || isSubmitting}>
               Sign in
             </Button>
-          </FormikStyledForm>
+            <ForgotLink to="/forgot-password">Forgot your password?</ForgotLink>
+          </SignInFormikForm>
         )}
       </Formik>
     </>

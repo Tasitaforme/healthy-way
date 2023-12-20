@@ -13,6 +13,11 @@ import {
 } from 'redux-persist';
 
 import { authReducer } from './auth/authSlice';
+import { recommendedFoodReducer } from './recommendedFood/recommendedFoodSlice';
+import { userReducer } from './user/userSlice';
+import { diaryReducer } from './diary/diarySlice';
+import { statisticsReducer } from './statistics/statisticsSlice';
+import { waterReducer } from './water/waterSlice';
 
 const persistConfig = {
   key: 'root',
@@ -23,11 +28,11 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    // statistics: statisticsReducer,
-    // water: waterReducer,
-    // foods: foodsReducer,
-    // calories: caloriesReducer,
-    // recommendedFood: recommendedFoodReducer,
+    user: userReducer,
+    diary: diaryReducer,
+    statistics: statisticsReducer,
+    water: waterReducer,
+    recommendedFood: recommendedFoodReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
