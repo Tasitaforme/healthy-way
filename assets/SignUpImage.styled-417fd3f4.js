@@ -1,4 +1,4 @@
-import{s as e}from"./index-372a3610.js";const a=e.div`
+import{s as e}from"./index-d678984b.js";const a=e.div`
   @media screen and (min-width: 834px) {
     padding: 0px 168px 0px 168px;
   }
