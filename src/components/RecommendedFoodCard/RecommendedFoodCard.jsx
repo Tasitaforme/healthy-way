@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchRecommendedFood } from '../../redux/api/api.recommended.js';
+import { fetchRecommendedFood } from '../../redux/api.recommended.js';
 import {
   List,
   Item,
