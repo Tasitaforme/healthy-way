@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 export const UserinfoWrapper = styled.div`
 display: flex;
+
 align-itams: center;
 `
 export const UserContentWrapper = styled.div`

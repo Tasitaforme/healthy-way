@@ -14,7 +14,17 @@ import {
 import avatarImg from '../avatar.png';
 import loseMenImg from '../../../assets/images/header/Lose-fat-image-men.png';
 import weightImg from '../../../assets/images/header/Waight-image.png';
-export default function UserInfoNav() {
+import UserInfoModal from '../../UserInfoModal/UserInfoModal';
+import CurrentWeightModal from '../../СurrentWeightModal/СurrentWeightModal';
+import TargetSelectionModal from '../../TargetSelectionModal/TargetSelectionModal';
+export default function UserInfoNav({
+  onClick,
+  showModalProfile,
+  onWeightClick,
+  showModalWeight,
+  onTargetClick,
+  showModalTarget,
+}) {
   return (
     <UserinfoWrapper>
       <GlobalWrapper>
@@ -27,7 +37,7 @@ export default function UserInfoNav() {
             <p>Lose fat</p>
           </div>
           <div>
-            <ArrowIcon>
+            <ArrowIcon onClick={onTargetClick}>
               <use href={`${sprite}#arrow-down`} />
             </ArrowIcon>
           </div>
@@ -44,7 +54,7 @@ export default function UserInfoNav() {
             </p>
           </div>
           <div>
-            <ArrowIcon>
+            <ArrowIcon onClick={onWeightClick}>
               <use href={`${sprite}#edit`} />
             </ArrowIcon>
           </div>
@@ -59,10 +69,13 @@ export default function UserInfoNav() {
         <div>
           <img src={avatarImg} alt="" />
         </div>
-        <ArrowIcon>
+        <ArrowIcon onClick={onClick}>
           <use href={`${sprite}#arrow-down`} />
         </ArrowIcon>
       </UserContentWrapper>
+      {showModalProfile && <UserInfoModal />}
+      {showModalWeight && <CurrentWeightModal onCloseModal={onWeightClick} />}
+      {showModalTarget && <TargetSelectionModal onCloseModal={onTargetClick} />}
     </UserinfoWrapper>
   );
 }
