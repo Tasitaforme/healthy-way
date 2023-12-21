@@ -22,6 +22,7 @@ import { logOut } from '../../redux/auth/operations';
 import { selectIsLogin } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
 import { selectWaterInfo } from '../../redux/water/selectors';
+import { getRecommendedFood } from '../../redux/recommendedFood/operations';
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ export default function MainPage() {
   useEffect(() => {
     if (isLogin) {
       dispatch(getDailyWater());
+      dispatch(getRecommendedFood());
     }
   }, [isLogin, dispatch, waterReal]);
 

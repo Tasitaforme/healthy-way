@@ -142,15 +142,20 @@ export const refresh = createAsyncThunk(
 instance.interceptors.response.use(
   (response) => response,
   async (error) => {
+    const {
+      auth: { refreshToken },
+    } = store.getState();
     if (error.response.status == 401) {
-      const {
-        auth: { refreshToken },
-      } = store.getState();
       if (refreshToken) {
         store.dispatch(refresh({ refreshToken }));
       }
       return Promise.reject(error);
     }
+    if (error.response.status == 403) {
+      store.dispatch(logOut());
+      return Promise.reject(error);
+    }
+    return Promise.reject(error);
   }
 );
 
