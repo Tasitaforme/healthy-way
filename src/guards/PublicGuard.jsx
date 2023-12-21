@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { selectToken } from '../redux/auth/selectors';
+import { selectAuthInfo } from '../redux/auth/selectors';
 
 const PublicGuard = ({ component: Component, redirectTo }) => {
-  const isAuth = useSelector(selectToken);
+  const { isLogin } = useSelector(selectAuthInfo);
   const location = useLocation();
 
-  return !isAuth ? (
+  return !isLogin ? (
     <Component />
   ) : (
     <Navigate to={location.state ?? redirectTo} />

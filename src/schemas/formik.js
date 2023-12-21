@@ -15,11 +15,11 @@ export const loginSchema = Yup.object().shape({
     .matches(EMAIL_RULE, 'Invalid email address'),
   password: Yup.string()
     .required('Password is required')
-    .min(7, 'The password must be at least 5 characters long')
-    .matches(
-      PASSWORD_RULE,
-      `Please create a stronger password. The password must be at least 5 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number`
-    ),
+    .min(7, 'The password must be at least 5 characters long'),
+  // .matches(
+  //   PASSWORD_RULE,
+  //   `Please create a stronger password. The password must be at least 5 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number. The letters must be English.`
+  // )
 });
 
 export const registerSchema = Yup.object().shape({

@@ -87,4 +87,11 @@ export const GlobalStyle = createGlobalStyle`
         transform: translate(-50%, -50%);
         visibility: visible;
     }
+
+    input {outline: none;}
+    input:-webkit-autofill {
+        -webkit-box-shadow: inset 0 0 0 50px var(--black-secondary) !important; 
+        -webkit-text-fill-color: var(--white);
+}
+
 `;

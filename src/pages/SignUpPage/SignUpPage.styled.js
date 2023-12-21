@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
 export const FlexBox = styled.div`
+  @media screen and (min-width: 834px) {
+    padding: 0px 168px 0px 168px;
+  }
+
   @media screen and (min-width: 1440px) {
     display: flex;
     gap: 104px;
     justify-content: center;
+    padding: 0px 116px 0px 116px;
   }
 `;
 
