@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from '../../components/StyledComponents/Container';
 import watchMob1x from '../../assets/images/watch/watch-mob@1x.png';
 import watchMob2x from '../../assets/images/watch/watch-mob@2x.png';
 import watchTab1x from '../../assets/images/watch/watch-tab@1x.png';
@@ -18,7 +17,6 @@ import {
   BtnWrapper,
   WelcomeContainer,
 } from './WelcomePage.styled';
-import { HeadlineFirst } from '../../components/StyledComponents/Components.styled';
 export default function WelcomePage() {
   return (
     <main>
