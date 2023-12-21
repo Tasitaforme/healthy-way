@@ -1,16 +1,18 @@
 import { Formik } from 'formik';
 import { parametersSchema } from '../../../schemas/formikRegister';
+import { FormikStyledField } from '../../StyledComponents/Formik.styled';
 import {
-  FormikStyledErrorMessage,
-  FormikStyledField,
-  FormikStyledForm,
-} from '../../StyledComponents/Formik.styled';
-import { Button } from '../../StyledComponents/Components.styled';
+  ParametersForm,
+  Label,
+  ParametersButton,
+} from './FormParameters.styled';
+import { BackButton, Error } from '../FormGenderAndAge/FormGenderAndAge.styled';
 
 export default function FormParameters({
   handleNextStep,
   handleSubmit,
   userData,
+  handlePrevStep,
 }) {
   const onSubmit = (values) => {
     handleSubmit(values);
@@ -24,8 +26,8 @@ export default function FormParameters({
       onSubmit={onSubmit}
     >
       {({ errors, touched, isSubmitting, isValid }) => (
-        <FormikStyledForm>
-          <label>
+        <ParametersForm>
+          <Label>
             Height
             <FormikStyledField
               type="text"
@@ -33,9 +35,9 @@ export default function FormParameters({
               placeholder="Enter your height"
               className={errors.height && touched.height ? 'input-error' : ''}
             />
-            <FormikStyledErrorMessage component="p" name="height" />
-          </label>
-          <label>
+            <Error component="p" name="height" />
+          </Label>
+          <Label>
             Weight
             <FormikStyledField
               type="text"
@@ -43,13 +45,14 @@ export default function FormParameters({
               placeholder="Enter your weight"
               className={errors.weight && touched.weight ? 'input-error' : ''}
             />
-            <FormikStyledErrorMessage component="p" name="weight" />
-          </label>
+            <Error component="p" name="weight" />
+          </Label>
 
-          <Button type="submit" disabled={!isValid || isSubmitting}>
+          <ParametersButton type="submit" disabled={!isValid || isSubmitting}>
             Next
-          </Button>
-        </FormikStyledForm>
+          </ParametersButton>
+          <BackButton onClick={handlePrevStep}>Back</BackButton>
+        </ParametersForm>
       )}
     </Formik>
   );

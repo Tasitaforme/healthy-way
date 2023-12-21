@@ -1,29 +1,33 @@
-import { Title, Subtitle } from './SignUpText.styled';
+import { HeadlineFirst } from '../StyledComponents/Components.styled';
+import { Subtitle } from './SignUpText.styled';
 
 export default function SignUpText({ currentStep }) {
   return (
     <>
       {currentStep === 1 && (
         <>
-          <Title>Sign up</Title>
+          <HeadlineFirst>Sign up</HeadlineFirst>
           <Subtitle>You need to register to use the service</Subtitle>
         </>
       )}
       {currentStep === 2 && (
         <>
-          <Title>Your goal</Title>
+          <HeadlineFirst>Your goal</HeadlineFirst>
           <Subtitle>Choose a goal so that we can help you effectively</Subtitle>
         </>
       )}
       {currentStep === 3 && (
         <>
-          <Title>Select gender, Age</Title>
-          <Subtitle>Choose a goal so that we can help you effectively</Subtitle>
+          <HeadlineFirst>Select gender, Age</HeadlineFirst>
+          <Subtitle>
+            Choose a goal so that we can <br />
+            help you effectively
+          </Subtitle>
         </>
       )}
       {currentStep === 4 && (
         <>
-          <Title>Body parameters</Title>
+          <HeadlineFirst>Body parameters</HeadlineFirst>
           <Subtitle>
             Enter your parameters for correct performance tracking
           </Subtitle>
@@ -31,8 +35,11 @@ export default function SignUpText({ currentStep }) {
       )}
       {currentStep === 5 && (
         <>
-          <Title>Your Activity</Title>
-          <Subtitle>To correctly calculate calorie and water intake</Subtitle>
+          <HeadlineFirst>Your Activity</HeadlineFirst>
+          <Subtitle>
+            To correctly calculate calorie <br />
+            and water intake
+          </Subtitle>
         </>
       )}
     </>

@@ -21,7 +21,7 @@ export const registerSchema = Yup.object().shape({
     .min(7, 'The password must be at least 7 characters long')
     .matches(
       PASSWORD_RULE,
-      `The password must be at least 5 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number`
+      `The password must have 1 uppercase letter, 1 lowercase letter, 1 number`
     ),
 });
 
@@ -39,16 +39,10 @@ export const genderAndAgeSchema = Yup.object().shape({
 export const parametersSchema = Yup.object().shape({
   height: Yup.string()
     .required('Required')
-    .matches(
-      HEIGHT_RULE,
-      'Height must be a number and can not be more than 250'
-    ),
+    .matches(HEIGHT_RULE, "Number, can't be more than 250"),
   weight: Yup.string()
     .required('Required')
-    .matches(
-      WEIGHT_RULE,
-      'Weight must be a number and can not be more than 250'
-    ),
+    .matches(WEIGHT_RULE, "Number, can't be more than 250"),
 });
 
 export const activitySchema = Yup.object().shape({
