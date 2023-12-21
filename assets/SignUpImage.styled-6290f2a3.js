@@ -1,6 +1,8 @@
-import{s as e}from"./index-78f4ce3d.js";const a=e.div`
+import{s as e}from"./index-5f90541d.js";import"./Components.styled-a8d0f2d2.js";const p=e.div`
+  padding: 0px 0px 40px 0px;
+
   @media screen and (min-width: 834px) {
-    padding: 0px 168px 0px 168px;
+    padding: 0px 168px 60px 168px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -15,12 +17,12 @@ import{s as e}from"./index-78f4ce3d.js";const a=e.div`
   @media screen and (min-width: 834px) {
     margin-top: 40px;
   }
-`,p=e.div`
+`,t=e.div`
   @media screen and (min-width: 834px) {
     display: flex;
     justify-content: center;
   }
-`,t=e.div`
+`,r=e.div`
   margin-top: 24px;
 
   @media screen and (min-width: 834px) {
@@ -32,9 +34,24 @@ import{s as e}from"./index-78f4ce3d.js";const a=e.div`
 
   @media screen and (min-width: 1440px) {
     display: block;
-    margin-top: 120px;
+    margin-top: 80px;
   }
-`,r=e.div`
+`,m=e.div`
+  margin-top: 48px;
+  width: 100%;
+
+  @media screen and (min-width: 834px) {
+    margin-top: 206px;
+    padding: 0px 32px 0px 32px;
+    display: flex;
+    gap: 16px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-top: 168px;
+    padding: 0px;
+  }
+`,x=e.div`
   width: 100%;
   height: ${i=>i.$heightMob};
   background-image: ${i=>`url(${i.$imageMob1x})`};
@@ -71,4 +88,4 @@ import{s as e}from"./index-78f4ce3d.js";const a=e.div`
       background-image: ${i=>`url(${i.$imageDesk2x})`};
     }
   }
-`;export{r as B,a as F,p as I,d as M,t as T};
+`;export{x as B,p as F,t as I,d as M,m as S,r as T};
