@@ -13,12 +13,16 @@ import {
   SignInButton,
   SignUpButton,
   GoalList,
+  ContentWrapper,
+  WelcomeTitle,
+  BtnWrapper,
+  WelcomeContainer,
 } from './WelcomePage.styled';
 import { HeadlineFirst } from '../../components/StyledComponents/Components.styled';
 export default function WelcomePage() {
   return (
     <main>
-      <Container>
+      <WelcomeContainer>
         <BackgroundImage
           $imageDesk1x={watchDesk1x}
           $imageDesk2x={watchDesk2x}
@@ -30,19 +34,23 @@ export default function WelcomePage() {
           $heightTab="376px"
           $heightDesk="588px"
         />
-        <HeadlineFirst>Set goals and achieve them</HeadlineFirst>
-        <SubTitle>
-          The service will help you set goals and follow them.
-        </SubTitle>
-        <SignInButton to="/signin">Sign in</SignInButton>
-        <SignUpButton to="signup">Sign up</SignUpButton>
-        <GoalList>
-          <ListItem>Set goals</ListItem>
-          <ListItem>Watch your calories</ListItem>
-          <ListItem>Keep track of your water intake</ListItem>
-          <ListItem>Control your weight</ListItem>
-        </GoalList>
-      </Container>
+        <ContentWrapper>
+          <WelcomeTitle>Set goals and achieve them</WelcomeTitle>
+          <SubTitle>
+            The service will help you set goals and follow them.
+          </SubTitle>
+          <BtnWrapper>
+            <SignInButton to="/signin">Sign in</SignInButton>
+            <SignUpButton to="signup">Sign up</SignUpButton>
+          </BtnWrapper>
+          <GoalList>
+            <ListItem>Set goals</ListItem>
+            <ListItem>Watch your calories</ListItem>
+            <ListItem>Keep track of your water intake</ListItem>
+            <ListItem>Control your weight</ListItem>
+          </GoalList>
+        </ContentWrapper>
+      </WelcomeContainer>
     </main>
   );
 }
