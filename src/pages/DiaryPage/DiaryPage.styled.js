@@ -2,12 +2,16 @@ import styled from 'styled-components';
 
 export const DiarySection = styled.section`
   padding: 16px 10px 40px;
+
+  @media (min-width: 768px) {
+    padding: 24px 27px 40px;
+  }
 `;
 
 export const GoBackWrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  gap: 9px;
+  gap: 4px;
   margin-bottom: 16px;
 `;
 
@@ -31,13 +35,32 @@ export const StyledGoBackIcon = styled.svg`
 export const GoBackTitle = styled.h2`
   color: #fff;
   font-size: 24px;
+  font-weight: 500;
 
   @media (min-width: 768px) {
     font-size: 30px;
   }
 `;
 
-export const MealWrapper = styled.div``;
+export const MealList = styled.ul`
+  @media (min-width: 1200px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+`;
+
+export const MealListItem = styled.li`
+  @media (min-width: 1200px) {
+    width: calc((100% - 1 * 20px) / 2);
+    margin-bottom: 0;
+  }
+`;
+
+export const MealImg = styled.img`
+  width: 32px;
+  height: 32px;
+`;
 
 export const MealTitleWrapper = styled.div`
   display: flex;
@@ -54,6 +77,7 @@ export const MealAndNutritionWrapper = styled.div`
 
 export const MealTitle = styled.h3`
   font-size: 18px;
+  font-weight: 400;
 
   @media (min-width: 768px) {
     font-size: 22px;
@@ -77,6 +101,10 @@ export const List = styled.ul`
   border-radius: 12px;
   padding: 16px 12px;
   margin-bottom: 24px;
+
+  @media (min-width: 1200px) {
+    margin-bottom: 0%;
+  }
 `;
 
 export const ListItem = styled.li`
@@ -86,6 +114,10 @@ export const ListItem = styled.li`
   &:not(:last-child) {
     margin-bottom: 30px;
   }
+
+  /* @media (min-width: 1200px) {
+     width: calc((100% - 1 * 20px) / 2);
+  } */
 `;
 
 export const RecordBtn = styled.button`
@@ -107,6 +139,11 @@ export const StyledBackArrowIcon = styled.svg`
   width: 16px;
   height: 16px;
   stroke: var(--grey-light);
+
+  @media (min-width: 768px) {
+    width: 22px;
+    height: 22px;
+  }
 `;
 
 export const StyledAddMealIcon = styled.svg`

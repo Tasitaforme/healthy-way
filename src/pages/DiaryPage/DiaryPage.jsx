@@ -4,7 +4,6 @@ import {
   GoBackWrapper,
   ListItem,
   List,
-  MealWrapper,
   NutririonList,
   RecordMealWrapper,
   RecordBtnLabel,
@@ -15,6 +14,9 @@ import {
   MealAndNutritionWrapper,
   StyledBackArrowIcon,
   StyledAddMealIcon,
+  MealImg,
+  MealList,
+  MealListItem,
 } from './DiaryPage.styled';
 import dinnerImage from '../../assets/images/diary/dinner@2x.png';
 import breakfastImage from '../../assets/images/diary/breakfast@2x.png';
@@ -33,242 +35,244 @@ export default function DiaryPage() {
           <GoBackTitle>Diary</GoBackTitle>
         </GoBackBtn>
       </GoBackWrapper>
-      <MealWrapper>
-        <MealAndNutritionWrapper>
-          <MealTitleWrapper>
-            <img src={breakfastImage} alt="breakfast" />
-            <MealTitle>Breakfast</MealTitle>
-          </MealTitleWrapper>
-          <NutririonList>
-            <li>
-              Carbonohidrates:<span></span>
-            </li>
-            <li>
-              Protein:<span></span>
-            </li>
-            <li>
-              Fat:<span></span>
-            </li>
-          </NutririonList>
-        </MealAndNutritionWrapper>
-        <RecordMealWrapper>
-          <List>
-            <ListItem>
-              <p>1</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>2</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>3</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>4</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-          </List>
-        </RecordMealWrapper>
-      </MealWrapper>
-      <MealWrapper>
-        <MealAndNutritionWrapper>
-          <MealTitleWrapper>
-            <img src={lunchImage} alt="lunch" />
-            <MealTitle>Lunch</MealTitle>
-          </MealTitleWrapper>
-          <NutririonList>
-            <li>
-              Carbonohidrates:<span></span>
-            </li>
-            <li>
-              Protein:<span></span>
-            </li>
-            <li>
-              Fat:<span></span>
-            </li>
-          </NutririonList>
-        </MealAndNutritionWrapper>
-        <RecordMealWrapper>
-          <List>
-            <ListItem>
-              <p>1</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>2</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>3</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>4</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-          </List>
-        </RecordMealWrapper>
-      </MealWrapper>
-      <MealWrapper>
-        <MealAndNutritionWrapper>
-          <MealTitleWrapper>
-            <img src={dinnerImage} alt="dinner" />
-            <MealTitle>Dinner</MealTitle>
-          </MealTitleWrapper>
-          <NutririonList>
-            <li>
-              Carbonohidrates:<span></span>
-            </li>
-            <li>
-              Protein:<span></span>
-            </li>
-            <li>
-              Fat:<span></span>
-            </li>
-          </NutririonList>
-        </MealAndNutritionWrapper>
-        <RecordMealWrapper>
-          <List>
-            <ListItem>
-              <p>1</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>2</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>3</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>4</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-          </List>
-        </RecordMealWrapper>
-      </MealWrapper>
-      <MealWrapper>
-        <MealAndNutritionWrapper>
-          <MealTitleWrapper>
-            <img src={snackImage} alt="snack" />
-            <MealTitle>Snack</MealTitle>
-          </MealTitleWrapper>
-          <NutririonList>
-            <li>
-              Carbonohidrates:<span></span>
-            </li>
-            <li>
-              Protein:<span></span>
-            </li>
-            <li>
-              Fat:<span></span>
-            </li>
-          </NutririonList>
-        </MealAndNutritionWrapper>
-        <RecordMealWrapper>
-          <List>
-            <ListItem>
-              <p>1</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>2</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>3</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>4</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-          </List>
-        </RecordMealWrapper>
-      </MealWrapper>
+      <MealList>
+        <MealListItem>
+          <MealAndNutritionWrapper>
+            <MealTitleWrapper>
+              <MealImg src={breakfastImage} alt="breakfast" />
+              <MealTitle>Breakfast</MealTitle>
+            </MealTitleWrapper>
+            <NutririonList>
+              <li>
+                Carbonohidrates:<span></span>
+              </li>
+              <li>
+                Protein:<span></span>
+              </li>
+              <li>
+                Fat:<span></span>
+              </li>
+            </NutririonList>
+          </MealAndNutritionWrapper>
+          <RecordMealWrapper>
+            <List>
+              <ListItem>
+                <p>1</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>2</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>3</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>4</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+            </List>
+          </RecordMealWrapper>
+        </MealListItem>
+        <MealListItem>
+          <MealAndNutritionWrapper>
+            <MealTitleWrapper>
+              <MealImg src={lunchImage} alt="lunch" />
+              <MealTitle>Lunch</MealTitle>
+            </MealTitleWrapper>
+            <NutririonList>
+              <li>
+                Carbonohidrates:<span></span>
+              </li>
+              <li>
+                Protein:<span></span>
+              </li>
+              <li>
+                Fat:<span></span>
+              </li>
+            </NutririonList>
+          </MealAndNutritionWrapper>
+          <RecordMealWrapper>
+            <List>
+              <ListItem>
+                <p>1</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>2</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>3</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>4</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+            </List>
+          </RecordMealWrapper>
+        </MealListItem>
+        <MealListItem>
+          <MealAndNutritionWrapper>
+            <MealTitleWrapper>
+              <MealImg src={dinnerImage} alt="dinner" />
+              <MealTitle>Dinner</MealTitle>
+            </MealTitleWrapper>
+            <NutririonList>
+              <li>
+                Carbonohidrates:<span></span>
+              </li>
+              <li>
+                Protein:<span></span>
+              </li>
+              <li>
+                Fat:<span></span>
+              </li>
+            </NutririonList>
+          </MealAndNutritionWrapper>
+          <RecordMealWrapper>
+            <List>
+              <ListItem>
+                <p>1</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>2</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>3</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>4</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+            </List>
+          </RecordMealWrapper>
+        </MealListItem>
+        <MealListItem>
+          <MealAndNutritionWrapper>
+            <MealTitleWrapper>
+              <MealImg src={snackImage} alt="snack" />
+              <MealTitle>Snack</MealTitle>
+            </MealTitleWrapper>
+            <NutririonList>
+              <li>
+                Carbonohidrates:<span></span>
+              </li>
+              <li>
+                Protein:<span></span>
+              </li>
+              <li>
+                Fat:<span></span>
+              </li>
+            </NutririonList>
+          </MealAndNutritionWrapper>
+          <RecordMealWrapper>
+            <List>
+              <ListItem>
+                <p>1</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>2</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>3</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+              <ListItem>
+                <p>4</p>
+                <RecordBtn>
+                  <StyledAddMealIcon>
+                    <use href={`${sprite}#add`} />
+                  </StyledAddMealIcon>
+                  <RecordBtnLabel>Record your meal</RecordBtnLabel>
+                </RecordBtn>
+              </ListItem>
+            </List>
+          </RecordMealWrapper>
+        </MealListItem>
+      </MealList>
     </DiarySection>
   );
 }
