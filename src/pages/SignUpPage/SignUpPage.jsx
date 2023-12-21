@@ -12,6 +12,7 @@ import { FlexBox } from './SignUpPage.styled';
 import SignUpImage from '../../components/SignUpImage/SignUpImage';
 import SignUpText from '../../components/SignUpText/SignUpText';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import { SubLink, SubText } from '../SignInPage/SignInPage.styled';
 
 export default function SignUpPage() {
   const [currentStep, setCurrentStep] = useState(1);

@@ -21,7 +21,7 @@ export const registerSchema = Yup.object().shape({
     .min(7, 'The password must be at least 7 characters long')
     .matches(
       PASSWORD_RULE,
-      `The password must have 1 uppercase letter, 1 lowercase letter, 1 number`
+      `The password must be at least 5 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number. The letters must be English.`
     ),
 });
 

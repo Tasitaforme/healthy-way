@@ -68,6 +68,10 @@
 <symbol id="arrow-big-right" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M8 16v-3.56c0-4.413 3.133-6.227 6.96-4.013l6.16 3.573c3.827 2.213 3.827 5.827 0 8.040l-6.16 3.573c-3.827 2.173-6.96 0.373-6.96-4.053v-3.56z"></path>
 </symbol>
+<symbol id="arrow-back" viewBox="0 0 24 24">
+<path d="M9.57001 5.93018L3.50001 12.0002L9.57001 18.0702" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20.5 12H3.67" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
 <symbol id="download" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M16 2.667v9.333l2.667-2.667"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M16 12l-2.667-2.667"></path>

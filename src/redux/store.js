@@ -14,7 +14,6 @@ import {
 
 import { authReducer } from './auth/authSlice';
 import { recommendedFoodReducer } from './recommendedFood/recommendedFoodSlice';
-import { userReducer } from './user/userSlice';
 import { diaryReducer } from './diary/diarySlice';
 import { statisticsReducer } from './statistics/statisticsSlice';
 import { waterReducer } from './water/waterSlice';
@@ -22,13 +21,12 @@ import { waterReducer } from './water/waterSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['token'],
+  whitelist: ['refreshToken'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    user: userReducer,
     diary: diaryReducer,
     statistics: statisticsReducer,
     water: waterReducer,
