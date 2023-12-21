@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BodyTextFirst,
   BodyTextSecond,
   ButtonTextSecond,
   HeadlineSecond,
-  HeadlineThird,
   IconWrap,
   StyledLink,
 } from '../StyledComponents/Components.styled';
 import sprite from 'assets/sprite.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectRecommendedFoodInfo } from '../../redux/recommendedFood/selectors';
 import { getRandomItems } from '../../helpers';
 import {
@@ -18,11 +17,16 @@ import {
   FoodList,
   FoodName,
 } from './RecommendedFood.styled';
+import { getRecommendedFood } from '../../redux/recommendedFood/operations';
 
 export default function RecommendedFood() {
-  const food = useSelector(selectRecommendedFoodInfo);
-  const randomFood = getRandomItems(food, 4);
-  console.log(getRandomItems(food, 4));
+  const dispatch = useDispatch();
+  const recFood = useSelector(selectRecommendedFoodInfo);
+  const randomFood = getRandomItems(recFood, 4);
+
+  useEffect(() => {
+    dispatch(getRecommendedFood());
+  }, []);
 
   return (
     <>

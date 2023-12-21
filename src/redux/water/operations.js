@@ -10,7 +10,7 @@ export const getDailyWater = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       //   const state = thunkAPI.getState();
-      //   const persistToken = state.auth.token;
+      //   const persistToken = state.auth.refreshToken;
       //   if (!persistToken) {
       //     return thunkAPI.rejectWithValue('No token');
       //   }

@@ -3,8 +3,12 @@ import { HeadlineThird } from '../../StyledComponents/Components.styled';
 
 export const ItemWrap = styled.li`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   row-gap: 28px;
+
+  @media screen and (min-width: 834px) {
+    flex-direction: row;
+  }
 `;
 
 export const ItemWrapTitle = styled.div`
@@ -24,7 +28,9 @@ export const Title = styled(HeadlineThird)`
 export const ItemWrapInfo = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   column-gap: 20px;
+  row-gap: 12px;
   align-items: center;
   justify-content: flex-start;
 
