@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { MainAuth, ImageWrapper, TextWrapper } from './SignUpPage.styled';
+import {
+  MainAuth,
+  ImageWrapper,
+  TextWrapper,
+  SignInWrapper,
+  SubText,
+  SubLink,
+} from './SignUpPage.styled';
 import { Container } from '../../components/StyledComponents/Container';
 import { FlexBox } from './SignUpPage.styled';
 import SignUpImage from '../../components/SignUpImage/SignUpImage';
@@ -33,10 +40,10 @@ export default function SignUpPage() {
               handlePrevStep={handlePrevStep}
             />
             {currentStep === 1 && (
-              <>
+              <SignInWrapper>
                 <SubText>Do you already have an account?</SubText>
                 <SubLink to="/signin">Sign in</SubLink>
-              </>
+              </SignInWrapper>
             )}
           </TextWrapper>
         </FlexBox>

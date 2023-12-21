@@ -1,9 +1,19 @@
 import { Field, Formik } from 'formik';
 import { goalSchema } from '../../../schemas/formikRegister';
-import { FormikStyledForm } from '../../StyledComponents/Formik.styled';
-import { Button } from '../../StyledComponents/Components.styled';
+import {
+  GoalForm,
+  Label,
+  FlexWrapper,
+  GoalButton,
+  BackButton,
+} from './FormGoal.styled';
 
-export default function FormGoal({ handleNextStep, handleSubmit, userData }) {
+export default function FormGoal({
+  handleNextStep,
+  handleSubmit,
+  userData,
+  handlePrevStep,
+}) {
   const onSubmit = (values) => {
     handleSubmit(values);
     handleNextStep();
@@ -15,25 +25,28 @@ export default function FormGoal({ handleNextStep, handleSubmit, userData }) {
       validationSchema={goalSchema}
       onSubmit={onSubmit}
     >
-      {({ /* errors, touched, */ isValid, isSubmitting }) => (
-        <FormikStyledForm>
-          <label>
-            Lose Fat
-            <Field type="radio" name="goal" value="lose fat" />
-          </label>
-          <label>
-            Maintain
-            <Field type="radio" name="goal" value="maintain" />
-          </label>
-          <label>
-            Gain Muscle
-            <Field type="radio" name="goal" value="gain muscle" />
-          </label>
+      {({ isValid, isSubmitting }) => (
+        <GoalForm>
+          <FlexWrapper>
+            <Label>
+              <Field type="radio" name="goal" value="lose fat" />
+              Lose Fat
+            </Label>
+            <Label>
+              <Field type="radio" name="goal" value="maintain" />
+              Maintain
+            </Label>
+            <Label>
+              <Field type="radio" name="goal" value="gain muscle" />
+              Gain Muscle
+            </Label>
+          </FlexWrapper>
 
-          <Button type="submit" disabled={!isValid || isSubmitting}>
+          <GoalButton type="submit" disabled={!isValid || isSubmitting}>
             Next
-          </Button>
-        </FormikStyledForm>
+          </GoalButton>
+          <BackButton onClick={handlePrevStep}>Back</BackButton>
+        </GoalForm>
       )}
     </Formik>
   );

@@ -39,16 +39,10 @@ export const genderAndAgeSchema = Yup.object().shape({
 export const parametersSchema = Yup.object().shape({
   height: Yup.string()
     .required('Required')
-    .matches(
-      HEIGHT_RULE,
-      'Height must be a number and can not be more than 250'
-    ),
+    .matches(HEIGHT_RULE, "Number, can't be more than 250"),
   weight: Yup.string()
     .required('Required')
-    .matches(
-      WEIGHT_RULE,
-      'Weight must be a number and can not be more than 250'
-    ),
+    .matches(WEIGHT_RULE, "Number, can't be more than 250"),
 });
 
 export const activitySchema = Yup.object().shape({

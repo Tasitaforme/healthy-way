@@ -1,16 +1,22 @@
 import { Field, Formik } from 'formik';
 import { genderAndAgeSchema } from '../../../schemas/formikRegister';
+import { FormikStyledField } from '../../StyledComponents/Formik.styled';
 import {
-  FormikStyledErrorMessage,
-  FormikStyledField,
-  FormikStyledForm,
-} from '../../StyledComponents/Formik.styled';
-import { Button } from '../../StyledComponents/Components.styled';
+  GenderAndAgeForm,
+  BackButton,
+  Text,
+  GenderAndAgeButton,
+  GenderWrapper,
+  Label,
+  AgeWrapper,
+  Error,
+} from './FormGenderAndAge.styled';
 
 export default function FormGenderAndAge({
   handleNextStep,
   handleSubmit,
   userData,
+  handlePrevStep,
 }) {
   const onSubmit = (values) => {
     console.log(values);
@@ -25,17 +31,19 @@ export default function FormGenderAndAge({
       onSubmit={onSubmit}
     >
       {({ errors, touched, isSubmitting, isValid }) => (
-        <FormikStyledForm>
-          <p>Gender</p>
-          <label>
-            <Field type="radio" name="gender" value="male" />
-            Male
-          </label>
-          <label>
-            <Field type="radio" name="gender" value="female" />
-            Female
-          </label>
-          <label>
+        <GenderAndAgeForm>
+          <Text>Gender</Text>
+          <GenderWrapper>
+            <Label>
+              <Field type="radio" name="gender" value="male" />
+              Male
+            </Label>
+            <Label>
+              <Field type="radio" name="gender" value="female" />
+              Female
+            </Label>
+          </GenderWrapper>
+          <AgeWrapper>
             Your age
             <FormikStyledField
               type="text"
@@ -43,13 +51,14 @@ export default function FormGenderAndAge({
               placeholder="Enter your age"
               className={errors.age && touched.age ? 'input-error' : ''}
             />
-            <FormikStyledErrorMessage component="p" name="age" />
-          </label>
+            <Error component="p" name="age" />
+          </AgeWrapper>
 
-          <Button type="submit" disabled={!isValid || isSubmitting}>
+          <GenderAndAgeButton type="submit" disabled={!isValid || isSubmitting}>
             Next
-          </Button>
-        </FormikStyledForm>
+          </GenderAndAgeButton>
+          <BackButton onClick={handlePrevStep}>Back</BackButton>
+        </GenderAndAgeForm>
       )}
     </Formik>
   );
