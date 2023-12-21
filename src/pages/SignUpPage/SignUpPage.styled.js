@@ -65,22 +65,22 @@ export const SignInWrapper = styled.div`
   }
 `;
 
-export const SubText = styled(BodyTextFirst)`
-  color: var(--Color-Primary-Grey, #b6b6b6);
-`;
+// export const SubText = styled(BodyTextFirst)`
+//   color: var(--Color-Primary-Grey, #b6b6b6);
+// `;
 
-export const SubLink = styled(Link)`
-  font-weight: 500;
-  transition: color var(--transition-dur-and-fun);
-  margin-top: 16px;
-  display: block;
+// export const SubLink = styled(Link)`
+//   font-weight: 500;
+//   transition: color var(--transition-dur-and-fun);
+//   margin-top: 16px;
+//   display: block;
 
-  &:hover,
-  &:focus {
-    color: var(--green-light);
-  }
+//   &:hover,
+//   &:focus {
+//     color: var(--green-light);
+//   }
 
-  @media screen and (min-width: 834px) {
-    margin-top: 0px;
-  }
-`;
+//   @media screen and (min-width: 834px) {
+//     margin-top: 0px;
+//   }
+// `;
