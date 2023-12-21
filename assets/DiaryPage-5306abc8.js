@@ -1,4 +1,4 @@
-import{s as e,j as s,d as r}from"./index-90bad006.js";const p="/healthy-way/assets/breakfast@2x-7078c5bd.png",u="/healthy-way/assets/lunch@2x-e5d461bc.png",m="/healthy-way/assets/dinner@2x-692021a9.png",g="/healthy-way/assets/snack@2x-1b2c93f7.png",f=e.section`
+import{s as e,j as s,d as r}from"./index-78f4ce3d.js";const p="/healthy-way/assets/breakfast@2x-7078c5bd.png",u="/healthy-way/assets/lunch@2x-e5d461bc.png",m="/healthy-way/assets/dinner@2x-692021a9.png",g="/healthy-way/assets/snack@2x-1b2c93f7.png",f=e.section`
   padding: 16px 10px 40px;
 `,y=e.div`
   display: flex;
