@@ -9,7 +9,22 @@ import {
 } from './operations';
 
 const initialState = {
-  user: {},
+  user: {
+    name: null,
+    email: null,
+    age: null,
+    gender: '',
+    height: null,
+    weight: null,
+    goal: '',
+    baseWater: '',
+    activityRatio: '',
+    fat: '',
+    protein: '',
+    carbohydrate: '',
+    BMR: '',
+    avatarURL: '',
+  },
   isLogin: false,
   accessToken: '',
   refreshToken: '',

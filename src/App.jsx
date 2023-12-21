@@ -22,8 +22,8 @@ const RecommendedFoodPage = lazy(() =>
 );
 
 const App = () => {
-  const dispatch = useDispatch();
-  const { isLogin, isLoading } = useSelector(selectAuthInfo);
+  // const dispatch = useDispatch();
+  const { isLogin } = useSelector(selectAuthInfo);
 
   // useEffect(() => {
   //   dispatch(currentUser());
@@ -33,10 +33,7 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route
-            index
-            element={!isLogin || !isLoading ? <WelcomePage /> : <MainPage />}
-          />
+          <Route index element={!isLogin ? <WelcomePage /> : <MainPage />} />
           {/* public routes */}
           <Route
             path="welcome"

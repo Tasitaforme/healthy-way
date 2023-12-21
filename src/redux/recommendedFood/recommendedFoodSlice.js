@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getRecommendedFood } from './operations';
 
 const initialState = {
-  items: {},
+  items: [],
   isLoading: false,
   error: null,
 };
@@ -25,7 +25,7 @@ export const recommendedFoodSlice = createSlice({
   initialState,
   reducers: {
     resetRecommendedFood: (state) => {
-      state.items = {};
+      state.items = [];
     },
   },
   extraReducers: (builder) => {
