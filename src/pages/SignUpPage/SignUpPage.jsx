@@ -4,8 +4,6 @@ import {
   ImageWrapper,
   TextWrapper,
   SignInWrapper,
-  SubText,
-  SubLink,
 } from './SignUpPage.styled';
 import { Container } from '../../components/StyledComponents/Container';
 import { FlexBox } from './SignUpPage.styled';
@@ -41,8 +39,8 @@ export default function SignUpPage() {
             />
             {currentStep === 1 && (
               <SignInWrapper>
-                <SubText>Do you already have an account?</SubText>
-                <SubLink to="/signin">Sign in</SubLink>
+                <h3>Do you already have an account?</h3>
+                <h4 to="/signin">Sign in</h4>
               </SignInWrapper>
             )}
           </TextWrapper>
