@@ -32,7 +32,7 @@ export const StyledGoBackIcon = styled.svg`
   }
 `;
 
-export const GoBackTitle = styled.h2`
+export const GoBackTitle = styled.h1`
   color: #fff;
   font-size: 24px;
   font-weight: 500;
@@ -71,11 +71,11 @@ export const MealTitleWrapper = styled.div`
 export const MealAndNutritionWrapper = styled.div`
   @media (min-width: 768px) {
     display: flex;
-    gap: 196px;
+    justify-content: space-between;
   }
 `;
 
-export const MealTitle = styled.h3`
+export const MealTitle = styled.h2`
   font-size: 18px;
   font-weight: 400;
 
@@ -87,9 +87,13 @@ export const MealTitle = styled.h3`
 export const NutririonList = styled.ul`
   display: flex;
   gap: 20px;
-  width: 178px;
-  height: auto;
   margin: 12px 0;
+  @media (min-width: 768px) {
+    margin-right: 74px;
+  }
+  @media (min-width: 1200px) {
+    margin-right: 40px;
+  }
 `;
 
 export const NutririonListItem = styled.li``;
@@ -114,10 +118,6 @@ export const ListItem = styled.li`
   &:not(:last-child) {
     margin-bottom: 30px;
   }
-
-  /* @media (min-width: 1200px) {
-     width: calc((100% - 1 * 20px) / 2);
-  } */
 `;
 
 export const RecordBtn = styled.button`
@@ -130,7 +130,7 @@ export const RecordMealIcon = styled.svg`
   margin-right: 6px;
 `;
 
-export const RecordBtnLabel = styled.label`
+export const RecordBtnLabel = styled.span`
   color: var(--green-light);
   cursor: pointer;
 `;
@@ -150,4 +150,16 @@ export const StyledAddMealIcon = styled.svg`
   width: 16px;
   height: 16px;
   stroke: var(--green-light);
+`;
+
+export const ModalWrapper = styled.div`
+  width: 300px;
+  height: 546px;
+  background-color: var(--black-secondar);
+  padding: 16px 12px;
+`;
+
+export const ModalTitle = styled.h3`
+  font-size: 24px;
+  font-weight: 500;
 `;

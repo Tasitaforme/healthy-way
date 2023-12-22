@@ -41,7 +41,7 @@ export const createFoodDiary = createAsyncThunk(
  */
 export const updateFoodDiary = createAsyncThunk(
   'user/food/put',
-  async (id, thunkAPI) => {
+  async ({ id, body }, thunkAPI) => {
     try {
       const { data } = await instance.put(`/api/user/food/${id}`, body);
       return data;
