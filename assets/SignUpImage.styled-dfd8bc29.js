@@ -1,4 +1,4 @@
-import{s as e}from"./index-5f90541d.js";import"./Components.styled-a8d0f2d2.js";const p=e.div`
+import{s as e}from"./index-fa87ac77.js";import"./Components.styled-07967948.js";const p=e.div`
   padding: 0px 0px 40px 0px;
 
   @media screen and (min-width: 834px) {
