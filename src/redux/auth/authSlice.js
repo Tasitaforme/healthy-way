@@ -11,19 +11,13 @@ import {
 
 const initialState = {
   user: {
-    // name: null,
-    name: '',
+    name: null,
     email: null,
-    // age: null,
-    age: '',
-    // gender: '',
-    // gender: null,
-    gender: '',
-    // height: null,
-    height: '',
-    // weight: null,
-    weight: '',
-    goal: '',
+    age: null,
+    gender: null,
+    height: null,
+    weight: null,
+    goal: 0,
     baseWater: '',
     activityRatio: '',
     fat: '',
@@ -51,10 +45,11 @@ const handleRejected = (state, payload) => {
   state.error = payload.message;
 };
 
-// const handleUpdateUserFulfilled = (state, action) => {
-//   state.user = { ...state.user, ...action.payload };
-//   state.isLoggedIn = true;
-// };
+const handleUpdateUserFulfilled = (state, action) => {
+  state.user = { ...state.user, ...action.payload.data };
+  state.isLogin = true;
+  console.log(state.user);
+};
 
 const authSlice = createSlice({
   name: 'auth',
@@ -98,13 +93,7 @@ const authSlice = createSlice({
       .addCase(currentUser.rejected, (state, { payload }) => {
         handleRejected(state, payload);
       })
-      .addCase(updateUser.fulfilled, (state, { payload }) => {
-        state.user = {
-          ...state.user,
-          ...payload,
-        };
-        state.isLogin = true;
-      });
+      .addCase(updateUser.fulfilled, handleUpdateUserFulfilled);
   },
 });
 

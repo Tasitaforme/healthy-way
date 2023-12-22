@@ -28,7 +28,6 @@ import {
   UserButtonsWrapper,
 } from './UserInformation.styled';
 
-import testAvatar from './Avatar.png'; // не забути видалити
 import downloadIcon from '../../assets/images/profileSettings/download.png';
 
 export default function UserInformation() {
@@ -38,21 +37,9 @@ export default function UserInformation() {
   const [isAvatarChanged, setIsAvatarChanged] = useState(false);
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState();
-  const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    goal: '',
-    gender: '',
-    age: '',
-    height: '',
-    weight: '',
-    activity: '',
-  });
 
   // селектори
   const userProfile = useSelector(selectUserInfo);
-  const token = useSelector(selectAccessToken);
 
   const initialValues = {
     name: userProfile.name,
@@ -76,8 +63,9 @@ export default function UserInformation() {
   };
 
   const handleClickSave = (values) => {
-    setUserData((prev) => ({ ...prev, ...values }));
-    dispatch(updateUser(userData, token));
+    values.height = Number(values.height);
+    console.log(values);
+    dispatch(updateUser(values));
   };
 
   const handleClickCancel = (resetForm) => {
@@ -145,8 +133,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="gender"
-                  value="male"
-                  checked={formikProps.values.gender === 'Male'}
+                  value="Male"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserGenderText>Male</UserGenderText>
@@ -156,8 +143,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="gender"
-                  value="female"
-                  checked={formikProps.values.gender === 'Female'}
+                  value="Female"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserGenderText>Female</UserGenderText>

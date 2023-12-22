@@ -182,31 +182,40 @@ export const currentUser = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  'auth/update',
-  async ({ values, token }, thunkAPI) => {
+  'user/update',
+  async ({ values }, thunkAPI) => {
     try {
-      const response = await instance.put('/api/user/update', values, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
+      const response = await instance.put('/api/user/update', values);
       return response.data;
     } catch (error) {
-      if (error.response) {
-        const { status, data } = error.response;
-        const errorPayload = {
-          status,
-          message: data.message,
-        };
-        return thunkAPI.rejectWithValue(errorPayload);
-      } else {
-        return thunkAPI.rejectWithValue(error.message || 'Unknown error');
-      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
+// export const updateUser = createAsyncThunk(
+//   'auth/update',
+//   async ({ values }, thunkAPI) => {
+//     try {
+//       const response = await instance.put('/api/user/update', values, {
+//         headers: {
+//           'Content-Type': 'multipart/form-data',
+//         },
+//       });
+
+//       return response.data;
+//     } catch ({ response }) {
+//       setToken();
+//       const { status, data } = response;
+//       const error = {
+//         status,
+//         message: data.message,
+//       };
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
+
 /*
  * PUT @ /api/user/update
  * headers: Authorization: Bearer token
