@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { FormikStyledForm } from '../../StyledComponents/Formik.styled';
 import { Button } from '../../StyledComponents/Components.styled';
+import { SignUpError } from '../FormUserData/FormUserData.styled';
 
 export const GoalForm = styled(FormikStyledForm)`
   margin-top: 24px;
@@ -37,6 +38,7 @@ export const Label = styled.label`
 `;
 
 export const FlexWrapper = styled.div`
+  position: relative;
   @media screen and (min-width: 834px) {
     display: flex;
     gap: 24px;
@@ -63,4 +65,9 @@ export const BackButton = styled(Button)`
   &:hover {
     box-shadow: none;
   }
+`;
+
+export const Error = styled(SignUpError)`
+  top: -32px;
+  left: 20px;
 `;

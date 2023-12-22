@@ -3,9 +3,6 @@ import * as Yup from 'yup';
 const EMAIL_RULE =
   /^(([^<>()[\]\\.,;:\s@"]+(.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_RULE = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
-const AGE_RULE = /^(?:[1-9]|[1-9][0-9]|1[0-2][0-5])$/;
-const HEIGHT_RULE = /^(?:[1-9]|[1-9][0-9]|1[0-9][0-9]|200|25[0-9])$/;
-const WEIGHT_RULE = /^(?:[1-9]|[1-9][0-9]|1[0-9][0-9]|200|25[0-9])$/;
 
 export const registerSchema = Yup.object().shape({
   name: Yup.string()
@@ -26,23 +23,29 @@ export const registerSchema = Yup.object().shape({
 });
 
 export const goalSchema = Yup.object().shape({
-  goal: Yup.string().required('Required'),
+  goal: Yup.string().required('Required, choose one of three'),
 });
 
 export const genderAndAgeSchema = Yup.object().shape({
-  gender: Yup.string().required('Required'),
-  age: Yup.string()
+  gender: Yup.string().required('Required, choose one of two'),
+  age: Yup.number()
     .required('Required')
-    .matches(AGE_RULE, 'Age must be a number and can not be more than 125'),
+    .min(1, 'Age can not be less than 1')
+    .max(120, 'Age can not be more than 120')
+    .typeError('Age must be a number'),
 });
 
 export const parametersSchema = Yup.object().shape({
-  height: Yup.string()
+  height: Yup.number()
     .required('Required')
-    .matches(HEIGHT_RULE, "Number, can't be more than 250"),
-  weight: Yup.string()
+    .min(120, 'Height can not be less than 120')
+    .max(250, 'Height can not be more than 250')
+    .typeError('Height must be a number'),
+  weight: Yup.number()
     .required('Required')
-    .matches(WEIGHT_RULE, "Number, can't be more than 250"),
+    .min(30, 'Weight can not be less than 30')
+    .max(250, 'Weight can not be more than 250')
+    .typeError('Weight must be a number'),
 });
 
 export const activitySchema = Yup.object().shape({

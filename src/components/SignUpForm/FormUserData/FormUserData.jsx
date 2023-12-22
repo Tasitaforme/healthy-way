@@ -15,7 +15,6 @@ export default function FormUserData({
 }) {
   const onSubmit = (values) => {
     handleSubmit(values);
-    console.log(values);
     handleNextStep();
   };
 
