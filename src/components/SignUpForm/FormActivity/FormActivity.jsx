@@ -8,6 +8,7 @@ import {
   Label,
   ActivityButton,
   BackButtonLast,
+  Error,
 } from './FormActivity.styled';
 
 export default function FormActivity({
@@ -56,6 +57,7 @@ export default function FormActivity({
             1.9 - if your work is related to physical labor, you train 2 times a
             day and include strength exercises in your training program
           </Label>
+          <Error component="p" name="activity" />
 
           <ActivityButton type="submit" disabled={!isValid || isSubmitting}>
             Sign Up
