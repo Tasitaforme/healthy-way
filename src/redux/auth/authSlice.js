@@ -6,16 +6,23 @@ import {
   logOut,
   currentUser,
   refresh,
+  updateUser,
 } from './operations';
 
 const initialState = {
   user: {
-    name: null,
+    // name: null,
+    name: '',
     email: null,
-    age: null,
+    // age: null,
+    age: '',
+    // gender: '',
+    // gender: null,
     gender: '',
-    height: null,
-    weight: null,
+    // height: null,
+    height: '',
+    // weight: null,
+    weight: '',
     goal: '',
     baseWater: '',
     activityRatio: '',
@@ -43,6 +50,11 @@ const handleRejected = (state, payload) => {
   state.isLoading = false;
   state.error = payload.message;
 };
+
+// const handleUpdateUserFulfilled = (state, action) => {
+//   state.user = { ...state.user, ...action.payload };
+//   state.isLoggedIn = true;
+// };
 
 const authSlice = createSlice({
   name: 'auth',
@@ -85,6 +97,13 @@ const authSlice = createSlice({
       })
       .addCase(currentUser.rejected, (state, { payload }) => {
         handleRejected(state, payload);
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        state.user = {
+          ...state.user,
+          ...payload,
+        };
+        state.isLogin = true;
       });
   },
 });

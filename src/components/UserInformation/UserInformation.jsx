@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { profileSettingSchema } from '../../schemas/profileSettings';
+import { selectUserInfo } from '../../redux/auth/selectors';
+import { updateUser } from '../../redux/auth/operations.js';
+import { selectAccessToken } from '../../redux/auth/selectors';
 
 import {
   UserInformationField,
@@ -34,16 +37,31 @@ export default function UserInformation() {
   // локальні стейти
   const [isAvatarChanged, setIsAvatarChanged] = useState(false);
   const [avatarFile, setAvatarFile] = useState(null);
-  const [avatarPreview, setAvatarPreview] = useState(); //сюди треба поставити аватарку юзера з бекенду
+  const [avatarPreview, setAvatarPreview] = useState();
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    goal: '',
+    gender: '',
+    age: '',
+    height: '',
+    weight: '',
+    activity: '',
+  });
 
-  // початкові значення інпутів (сюди треба поставити  getCurrentUser) данні
+  // селектори
+  const userProfile = useSelector(selectUserInfo);
+  const token = useSelector(selectAccessToken);
+
   const initialValues = {
-    name: 'Konstantin',
-    age: '34',
-    gender: 'male',
-    height: '170',
-    weight: '90',
-    activity: '1.2',
+    name: userProfile.name,
+    age: userProfile.age,
+    gender: userProfile.gender,
+    height: userProfile.height,
+    weight: userProfile.weight,
+    activity: userProfile.activityRatio,
+    avatar: userProfile.avatarURL,
   };
 
   const handleChangeAvatar = (event) => {
@@ -58,7 +76,8 @@ export default function UserInformation() {
   };
 
   const handleClickSave = (values) => {
-    // dispatch(updateUser(values)); - функцію updateUser треба додати в operation
+    setUserData((prev) => ({ ...prev, ...values }));
+    dispatch(updateUser(userData, token));
   };
 
   const handleClickCancel = (resetForm) => {
@@ -71,9 +90,7 @@ export default function UserInformation() {
     <Formik
       initialValues={initialValues}
       validationSchema={profileSettingSchema}
-      // onSubmit={(values) => {
-      //   console.log(values); // прибрати цей консоль
-      // }}
+      onSubmit={handleClickSave}
     >
       {(formikProps) => (
         <UserForm>
@@ -98,7 +115,7 @@ export default function UserInformation() {
             <AvatarLabel htmlFor="avatar">
               <AvatarContainer>
                 <AvatarImg
-                  src={avatarPreview || testAvatar}
+                  src={avatarPreview || formikProps.values.avatar}
                   alt="userAvatar"
                 ></AvatarImg>
               </AvatarContainer>
@@ -129,6 +146,7 @@ export default function UserInformation() {
                   type="radio"
                   name="gender"
                   value="male"
+                  checked={formikProps.values.gender === 'Male'}
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserGenderText>Male</UserGenderText>
@@ -139,6 +157,7 @@ export default function UserInformation() {
                   type="radio"
                   name="gender"
                   value="female"
+                  checked={formikProps.values.gender === 'Female'}
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserGenderText>Female</UserGenderText>
@@ -177,6 +196,7 @@ export default function UserInformation() {
                   type="radio"
                   name="activity"
                   value="1.2"
+                  checked={formikProps.values.activity === 1.2}
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserInformationRadioText>
@@ -188,6 +208,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="activity"
+                  checked={formikProps.values.activity === 1.375}
                   value="1.375"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -201,6 +222,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="activity"
+                  checked={formikProps.values.activity === 1.55}
                   value="1.55"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -213,6 +235,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="activity"
+                  checked={formikProps.values.activity === 1.725}
                   value="1.725"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -225,6 +248,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="activity"
+                  checked={formikProps.values.activity === 1.9}
                   value="1.9"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
