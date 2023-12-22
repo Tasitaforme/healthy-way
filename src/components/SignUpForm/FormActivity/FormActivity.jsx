@@ -8,6 +8,7 @@ import {
   Label,
   ActivityButton,
   BackButtonLast,
+  Error,
 } from './FormActivity.styled';
 
 export default function FormActivity({
@@ -36,26 +37,27 @@ export default function FormActivity({
       {({ isSubmitting, isValid }) => (
         <ActivityForm>
           <Label>
-            <Field type="radio" name="activity" value="1.2" />
+            <Field type="radio" name="activityRatio" value="1.2" />
             1.2 - if you do not have physical activity and sedentary work
           </Label>
           <Label>
-            <Field type="radio" name="activity" value="1.375" />
+            <Field type="radio" name="activityRatio" value="1.375" />
             1.375 - if you do short runs or light gymnastics 1-3 times a week
           </Label>
           <Label>
-            <Field type="radio" name="activity" value="1.55" />
+            <Field type="radio" name="activityRatio" value="1.55" />
             1.55 - if you play sports with average loads 3-5 times a week
           </Label>
           <Label>
-            <Field type="radio" name="activity" value="1.725" />
+            <Field type="radio" name="activityRatio" value="1.725" />
             1.725 - if you train fully 6-7 times a week
           </Label>
           <Label>
-            <Field type="radio" name="activity" value="1.9" />
+            <Field type="radio" name="activityRatio" value="1.9" />
             1.9 - if your work is related to physical labor, you train 2 times a
             day and include strength exercises in your training program
           </Label>
+          <Error component="p" name="activityRatio" />
 
           <ActivityButton type="submit" disabled={!isValid || isSubmitting}>
             Sign Up

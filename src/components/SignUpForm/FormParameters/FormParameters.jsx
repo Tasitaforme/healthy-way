@@ -33,7 +33,13 @@ export default function FormParameters({
               type="text"
               name="height"
               placeholder="Enter your height"
-              className={errors.height && touched.height ? 'input-error' : ''}
+              className={
+                touched.height
+                  ? errors.height
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
             />
             <Error component="p" name="height" />
           </Label>
@@ -43,7 +49,13 @@ export default function FormParameters({
               type="text"
               name="weight"
               placeholder="Enter your weight"
-              className={errors.weight && touched.weight ? 'input-error' : ''}
+              className={
+                touched.weight
+                  ? errors.weight
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
             />
             <Error component="p" name="weight" />
           </Label>

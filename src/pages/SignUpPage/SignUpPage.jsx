@@ -4,13 +4,14 @@ import {
   ImageWrapper,
   TextWrapper,
   SignInWrapper,
+  SignInText,
+  SignInLink,
 } from './SignUpPage.styled';
 import { Container } from '../../components/StyledComponents/Container';
 import { FlexBox } from './SignUpPage.styled';
 import SignUpImage from '../../components/SignUpImage/SignUpImage';
 import SignUpText from '../../components/SignUpText/SignUpText';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
-import { SubLink, SubText } from '../SignInPage/SignInPage.styled';
 
 export default function SignUpPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -39,8 +40,8 @@ export default function SignUpPage() {
             />
             {currentStep === 1 && (
               <SignInWrapper>
-                <h3>Do you already have an account?</h3>
-                <h4 to="/signin">Sign in</h4>
+                <SignInText>Do you already have an account?</SignInText>
+                <SignInLink to="/signin">Sign in</SignInLink>
               </SignInWrapper>
             )}
           </TextWrapper>

@@ -6,6 +6,7 @@ import {
   FlexWrapper,
   GoalButton,
   BackButton,
+  Error,
 } from './FormGoal.styled';
 
 export default function FormGoal({
@@ -40,6 +41,7 @@ export default function FormGoal({
               <Field type="radio" name="goal" value="gain muscle" />
               Gain Muscle
             </Label>
+            <Error component="p" name="goal" />
           </FlexWrapper>
 
           <GoalButton type="submit" disabled={!isValid || isSubmitting}>

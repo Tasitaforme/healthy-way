@@ -41,9 +41,3 @@ export const FieldWrapper = styled.div`
     margin-top: 20px;
   }
 `;
-
-export const SignUpSuccess = styled.p`
-  position: absolute;
-  top: 25px;
-  left: 10px;
-`;

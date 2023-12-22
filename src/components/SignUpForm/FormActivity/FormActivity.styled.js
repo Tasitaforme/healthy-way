@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import { GenderAndAgeForm } from '../FormGenderAndAge/FormGenderAndAge.styled';
 import { Button } from '../../StyledComponents/Components.styled';
 import { BackButton } from '../FormGoal/FormGoal.styled';
+import { FormikStyledErrorMessage } from '../../StyledComponents/Formik.styled';
 
 export const ActivityForm = styled(GenderAndAgeForm)`
+  position: relative;
+
   @media screen and (min-width: 834px) {
     padding: 0px;
     width: 460px;
@@ -45,4 +48,10 @@ export const BackButtonLast = styled(BackButton)`
     width: 212px;
     margin-left: 0;
   }
+`;
+
+export const Error = styled(FormikStyledErrorMessage)`
+  position: absolute;
+  top: -30px;
+  left: 18px;
 `;

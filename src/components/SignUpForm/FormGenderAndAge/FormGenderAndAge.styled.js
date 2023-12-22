@@ -41,6 +41,8 @@ export const Text = styled.p`
 `;
 
 export const GenderWrapper = styled.div`
+  position: relative;
+
   margin-top: 12px;
   display: flex;
   gap: 16px;
@@ -70,4 +72,10 @@ export const Error = styled(FormikStyledErrorMessage)`
   position: absolute;
   left: 10px;
   top: 58px;
+`;
+
+export const RadioError = styled(FormikStyledErrorMessage)`
+  position: absolute;
+  top: -26px;
+  left: 20px;
 `;

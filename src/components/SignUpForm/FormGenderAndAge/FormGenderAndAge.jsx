@@ -10,6 +10,7 @@ import {
   Label,
   AgeWrapper,
   Error,
+  RadioError,
 } from './FormGenderAndAge.styled';
 
 export default function FormGenderAndAge({
@@ -19,7 +20,6 @@ export default function FormGenderAndAge({
   handlePrevStep,
 }) {
   const onSubmit = (values) => {
-    console.log(values);
     handleSubmit(values);
     handleNextStep();
   };
@@ -42,6 +42,7 @@ export default function FormGenderAndAge({
               <Field type="radio" name="gender" value="female" />
               Female
             </Label>
+            <RadioError component="p" name="gender" />
           </GenderWrapper>
           <AgeWrapper>
             Your age
@@ -49,7 +50,13 @@ export default function FormGenderAndAge({
               type="text"
               name="age"
               placeholder="Enter your age"
-              className={errors.age && touched.age ? 'input-error' : ''}
+              className={
+                touched.age
+                  ? errors.age
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
             />
             <Error component="p" name="age" />
           </AgeWrapper>

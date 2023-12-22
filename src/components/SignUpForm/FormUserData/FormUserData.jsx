@@ -5,7 +5,6 @@ import {
   SignUpButton,
   SignUpError,
   FieldWrapper,
-  SignUpSuccess,
 } from './FormUserData.styled.js';
 import { registerSchema } from '../../../schemas/formikRegister.js';
 
@@ -16,7 +15,6 @@ export default function FormUserData({
 }) {
   const onSubmit = (values) => {
     handleSubmit(values);
-    console.log(values);
     handleNextStep();
   };
 
@@ -34,7 +32,11 @@ export default function FormUserData({
               name="name"
               placeholder="Name"
               className={
-                errors.name && touched.name ? 'input-error' : 'input-success'
+                touched.name
+                  ? errors.name
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
               }
             />
             <SignUpError component="p" name="name" />
