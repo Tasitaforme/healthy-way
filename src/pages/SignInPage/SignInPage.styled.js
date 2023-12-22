@@ -14,8 +14,13 @@ export const SubText = styled(BodyTextFirst)`
   margin-bottom: 16px;
 
   @media screen and (min-width: 834px) {
+    margin-top: 100px;
     display: inline-block;
     margin-right: 16px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    text-align: left;
   }
 `;
 
