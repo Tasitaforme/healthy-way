@@ -1,8 +1,8 @@
-import{s as e,L as n}from"./index-3cc89d4c.js";import{a,b as p}from"./Components.styled-e4a8c982.js";const r=e(a)`
+import{s as n,L as e}from"./index-8810eb52.js";import{a,b as t}from"./Components.styled-84682f4e.js";const m=n(a)`
   color: var(--grey-light);
   margin-top: 16px;
   margin-bottom: 24px;
-`,o=e(p)`
+`,d=n(t)`
   color: var(--grey-light);
   margin-bottom: 16px;
 
@@ -15,7 +15,7 @@ import{s as e,L as n}from"./index-3cc89d4c.js";import{a,b as p}from"./Components
   @media screen and (min-width: 1440px) {
     text-align: left;
   }
-`,m=e(n)`
+`,p=n(e)`
   color: var(--white);
   font-size: 14px;
   font-weight: 500;
@@ -29,7 +29,7 @@ import{s as e,L as n}from"./index-3cc89d4c.js";import{a,b as p}from"./Components
   @media screen and (min-width: 834px) {
     display: inline-block;
   }
-`,x=e.div`
+`,x=n.div`
   padding: 0px 0px 40px 0px;
 
   @media screen and (min-width: 834px) {
@@ -40,20 +40,20 @@ import{s as e,L as n}from"./index-3cc89d4c.js";import{a,b as p}from"./Components
     display: flex;
     gap: 104px;
     justify-content: center;
-    padding: 0px 116px 0px 116px;
+    padding: 0px 116px 60px 116px;
   }
-`,s=e.main`
+`,g=n.main`
   margin-top: 24px;
 
   @media screen and (min-width: 834px) {
     margin-top: 40px;
   }
-`,g=e.div`
+`,s=n.div`
   @media screen and (min-width: 834px) {
     display: flex;
     justify-content: center;
   }
-`,c=e.div`
+`,c=n.div`
   margin-top: 24px;
 
   @media screen and (min-width: 834px) {
@@ -67,22 +67,31 @@ import{s as e,L as n}from"./index-3cc89d4c.js";import{a,b as p}from"./Components
     display: block;
     margin-top: 80px;
   }
-`,l=e.div`
+`,l=n.div`
   margin-top: 48px;
   width: 100%;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
 
   @media screen and (min-width: 834px) {
     margin-top: 206px;
     padding: 0px 32px 0px 32px;
-    display: flex;
-    gap: 16px;
+    flex-direction: row;
   }
 
   @media screen and (min-width: 1440px) {
     margin-top: 168px;
     padding: 0px;
   }
-`,h=e.div`
+`,h=n(d)`
+  margin-bottom: 0px;
+
+  @media screen and (min-width: 834px) {
+    margin-top: 0px;
+    margin-right: 0px;
+  }
+`,u=n(p)``,b=n.div`
   width: 100%;
   height: ${i=>i.$heightMob};
   background-image: ${i=>`url(${i.$imageMob1x})`};
@@ -119,4 +128,4 @@ import{s as e,L as n}from"./index-3cc89d4c.js";import{a,b as p}from"./Components
       background-image: ${i=>`url(${i.$imageDesk2x})`};
     }
   }
-`;export{h as B,x as F,r as H,g as I,s as M,o as S,c as T,m as a,l as b};
+`;export{b as B,x as F,m as H,s as I,g as M,d as S,c as T,p as a,l as b,h as c,u as d};
