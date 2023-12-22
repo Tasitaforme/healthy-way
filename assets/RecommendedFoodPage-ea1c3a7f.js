@@ -1,4 +1,4 @@
-import{z as d,s,a as n,j as e}from"./index-8810eb52.js";d.defaults.baseURL="https://healthy-way-app.onrender.com/api/user/";const a=async()=>{try{return(await d.get("/recommended-food")).data}catch(o){console.log(o)}},r=s.ul`
+import{z as d,s,b as n,j as e}from"./index-664b27fd.js";d.defaults.baseURL="https://healthy-way-app.onrender.com/api/user/";const a=async()=>{try{return(await d.get("/recommended-food")).data}catch(o){console.log(o)}},r=s.ul`
   /* display: flex;
   flex-direction: column; */
 

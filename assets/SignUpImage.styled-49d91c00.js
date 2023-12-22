@@ -1,4 +1,4 @@
-import{s as n,L as e}from"./index-8810eb52.js";import{a,b as t}from"./Components.styled-84682f4e.js";const m=n(a)`
+import{s as n,L as e}from"./index-664b27fd.js";import{a,b as t}from"./Components.styled-8218cd64.js";const m=n(a)`
   color: var(--grey-light);
   margin-top: 16px;
   margin-bottom: 24px;
