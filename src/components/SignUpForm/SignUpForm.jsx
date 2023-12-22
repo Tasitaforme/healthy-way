@@ -22,7 +22,7 @@ export default function SignUpForm({
     age: '',
     height: '',
     weight: '',
-    activity: '',
+    activityRatio: '',
   });
 
   const handleSubmit = (values) => {

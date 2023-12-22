@@ -49,5 +49,5 @@ export const parametersSchema = Yup.object().shape({
 });
 
 export const activitySchema = Yup.object().shape({
-  activity: Yup.string().required('Required, choose one of five'),
+  activityRatio: Yup.string().required('Required, choose one of five'),
 });
