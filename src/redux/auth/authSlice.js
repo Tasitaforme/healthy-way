@@ -46,9 +46,8 @@ const handleRejected = (state, payload) => {
 };
 
 const handleUpdateUserFulfilled = (state, action) => {
-  state.user = { ...state.user, ...action.payload.data };
+  state.user = { ...state.user, ...action.meta.arg };
   state.isLogin = true;
-  console.log(state.user);
 };
 
 const authSlice = createSlice({

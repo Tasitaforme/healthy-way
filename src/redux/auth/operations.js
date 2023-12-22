@@ -180,12 +180,12 @@ export const currentUser = createAsyncThunk(
     }
   }
 );
-
 export const updateUser = createAsyncThunk(
-  'auth/update',
-  async (data, thunkAPI) => {
+  'user/update',
+  async ({ data }, thunkAPI) => {
     try {
       const response = await instance.put('/api/user/update', data);
+      console.log('Response from updateUser:', response.data); // Добавьте эту строку
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

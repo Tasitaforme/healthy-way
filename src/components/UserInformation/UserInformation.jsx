@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { profileSettingSchema } from '../../schemas/profileSettings';
 import { selectUserInfo } from '../../redux/auth/selectors';
 import { updateUser } from '../../redux/auth/operations.js';
-import { selectAccessToken } from '../../redux/auth/selectors';
 
 import {
   UserInformationField,
@@ -80,14 +79,14 @@ export default function UserInformation() {
       validationSchema={profileSettingSchema}
       onSubmit={handleClickSave}
     >
-      {(formikProps) => (
+      {({ errors, values }) => (
         <UserForm>
           <UserInformationBlock>
             <label>Your name</label>
             <UserInformationField
               name="name"
               placeholder="Enter your name"
-              className={formikProps.errors.name ? 'input-error' : ''}
+              className={errors.name ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="name" component="p" />
           </UserInformationBlock>
@@ -103,7 +102,7 @@ export default function UserInformation() {
             <AvatarLabel htmlFor="avatar">
               <AvatarContainer>
                 <AvatarImg
-                  src={avatarPreview || formikProps.values.avatar}
+                  src={avatarPreview || values.avatar}
                   alt="userAvatar"
                 ></AvatarImg>
               </AvatarContainer>
@@ -118,7 +117,7 @@ export default function UserInformation() {
             <UserInformationField
               name="age"
               placeholder="Enter your age"
-              className={formikProps.errors.age ? 'input-error' : ''}
+              className={errors.age ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="age" component="div" />
           </UserInformationBlock>
@@ -156,7 +155,7 @@ export default function UserInformation() {
             <UserInformationField
               name="height"
               placeholder="Enter your height"
-              className={formikProps.errors.height ? 'input-error' : ''}
+              className={errors.height ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="height" component="div" />
           </UserInformationBlock>
@@ -166,7 +165,7 @@ export default function UserInformation() {
             <UserInformationField
               name="weight"
               placeholder="Enter your weight"
-              className={formikProps.errors.weight ? 'input-error' : ''}
+              className={errors.weight ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="weight" component="div" />
           </UserInformationBlock>
@@ -182,7 +181,7 @@ export default function UserInformation() {
                   type="radio"
                   name="activity"
                   value="1.2"
-                  checked={formikProps.values.activity === 1.2}
+                  checked={values.activity === 1.2}
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserInformationRadioText>
@@ -194,7 +193,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="activity"
-                  checked={formikProps.values.activity === 1.375}
+                  checked={values.activity === 1.375}
                   value="1.375"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -208,7 +207,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="activity"
-                  checked={formikProps.values.activity === 1.55}
+                  checked={values.activity === 1.55}
                   value="1.55"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -221,7 +220,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="activity"
-                  checked={formikProps.values.activity === 1.725}
+                  checked={values.activity === 1.725}
                   value="1.725"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -234,7 +233,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="activity"
-                  checked={formikProps.values.activity === 1.9}
+                  checked={values.activity === 1.9}
                   value="1.9"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -250,13 +249,13 @@ export default function UserInformation() {
           <UserButtonsWrapper>
             <UserInformationSubmitButton
               type="submit"
-              onClick={() => handleClickSave(formikProps.values)}
+              onClick={() => handleClickSave(values)}
             >
               Save
             </UserInformationSubmitButton>
             <UserInformationCancelButton
               type="button"
-              onClick={() => handleClickCancel(formikProps.resetForm)}
+              onClick={() => handleClickCancel(resetForm)}
             >
               Cancel
             </UserInformationCancelButton>
