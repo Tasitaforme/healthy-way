@@ -1,7 +1,11 @@
 import { Formik } from 'formik';
-import { FormikStyledErrorMessage } from '../../StyledComponents/Formik.styled';
-import { SignUpFormikForm, SignUpField } from './FormUserData.styled.js';
-import { Button } from '../../StyledComponents/Components.styled';
+import {
+  SignUpFormikForm,
+  SignUpField,
+  SignUpButton,
+  SignUpError,
+  FieldWrapper,
+} from './FormUserData.styled.js';
 import { registerSchema } from '../../../schemas/formikRegister.js';
 
 export default function FormUserData({
@@ -11,7 +15,6 @@ export default function FormUserData({
 }) {
   const onSubmit = (values) => {
     handleSubmit(values);
-    console.log(values);
     handleNextStep();
   };
 
@@ -23,47 +26,57 @@ export default function FormUserData({
     >
       {({ errors, touched, isValid, isSubmitting }) => (
         <SignUpFormikForm>
-          <SignUpField
-            type="text"
-            name="name"
-            placeholder="Name"
-            className={
-              errors.name && touched.name ? 'input-error' : 'input-success'
-            }
-          />
-          <FormikStyledErrorMessage component="p" name="name" />
+          <FieldWrapper>
+            <SignUpField
+              type="text"
+              name="name"
+              placeholder="Name"
+              className={
+                touched.name
+                  ? errors.name
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
+            />
+            <SignUpError component="p" name="name" />
+          </FieldWrapper>
 
-          <SignUpField
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            className={
-              touched.email
-                ? errors.email
-                  ? 'input-error'
-                  : 'input-success'
-                : 'input-normal'
-            }
-          />
-          <FormikStyledErrorMessage component="p" name="email" />
+          <FieldWrapper>
+            <SignUpField
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              className={
+                touched.email
+                  ? errors.email
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
+            />
+            <SignUpError component="p" name="email" />
+          </FieldWrapper>
 
-          <SignUpField
-            type="password"
-            name="password"
-            placeholder="Password"
-            className={
-              touched.password
-                ? errors.password
-                  ? 'input-error'
-                  : 'input-success'
-                : 'input-normal'
-            }
-          />
-          <FormikStyledErrorMessage component="p" name="password" />
+          <FieldWrapper>
+            <SignUpField
+              type="password"
+              name="password"
+              placeholder="Password"
+              className={
+                touched.password
+                  ? errors.password
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
+            />
+            <SignUpError component="p" name="password" />
+          </FieldWrapper>
 
-          <Button type="submit" disabled={!isValid || isSubmitting}>
+          <SignUpButton type="submit" disabled={!isValid || isSubmitting}>
             Next
-          </Button>
+          </SignUpButton>
         </SignUpFormikForm>
       )}
     </Formik>

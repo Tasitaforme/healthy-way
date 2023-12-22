@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { HeadlineSecond } from '../StyledComponents/Components.styled';
 
+export const RecFoodWrap = styled.li`
+  width: 100%;
+
+  @media screen and (min-width: 1440px) {
+    width: 676px;
+  }
+`;
+
 export const FoodList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -8,21 +16,10 @@ export const FoodList = styled.ul`
   margin-top: 16px;
   margin-bottom: 16px;
 
-  & li:nth-child(3),
-  & li:nth-child(4) {
-    display: none;
-  }
-
   @media screen and (min-width: 834px) {
     flex-direction: row;
     flex-wrap: wrap;
     column-gap: 20px;
-
-    & li:nth-child(3),
-    & li:nth-child(4) {
-      display: flex;
-      flex-basis: calc((100% - 20px) / 2);
-    }
   }
 `;
 

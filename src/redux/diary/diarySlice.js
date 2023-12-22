@@ -1,10 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getFoodDiaryToday } from './operations';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+  createFoodDiary,
+  deleteFoodDiary,
+  getFoodDiaryToday,
+  updateFoodDiary,
+} from './operations';
 
 const initialState = {
-  food: { breakfast: [], lunch: [], dinner: [], snack: [], calories: 0 },
+  meals: {
+    breakfast: [],
+    lunch: [],
+    dinner: [],
+    snack: [],
+  },
+  calories: 0,
   isLoading: false,
   error: null,
+  firstLoad: false,
 };
 
 const handlePending = (state) => {
@@ -30,12 +42,37 @@ export const diarySlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getFoodDiaryToday.pending, handlePending)
       .addCase(getFoodDiaryToday.fulfilled, (state, { payload }) => {
-        state.food = payload;
         handleFulfilled(state);
+        state.firstLoad = true;
+        const { calories, ...meals } = payload;
+        state.meals = meals;
+        state.calories = calories;
       })
-      .addCase(getFoodDiaryToday.rejected, handleRejected);
+      .addCase(createFoodDiary.fulfilled, (state, { payload }) => {
+        handleFulfilled(state);
+        // const type = toLowerCase(payload.diary);
+        // state.diary[type] = [...payload];
+        // TODO
+      })
+      .addMatcher(
+        isAnyOf(
+          getFoodDiaryToday.pending,
+          createFoodDiary.pending,
+          updateFoodDiary.pending,
+          deleteFoodDiary.pending
+        ),
+        handlePending
+      )
+      .addMatcher(
+        isAnyOf(
+          getFoodDiaryToday.rejected,
+          createFoodDiary.rejected,
+          updateFoodDiary.rejected,
+          deleteFoodDiary.rejected
+        ),
+        handleRejected
+      );
   },
 });
 

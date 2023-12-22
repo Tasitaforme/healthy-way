@@ -4,12 +4,9 @@ import FormGoal from './FormGoal/FormGoal';
 import FormGenderAndAge from './FormGenderAndAge/FormGenderAndAge';
 import FormParameters from './FormParameters/FormParameters';
 import FormActivity from './FormActivity/FormActivity';
-// temporary solution
-import { Button } from '../StyledComponents/Components.styled';
-/* 1. make a validation for each form */
-/* 2. add sign in component */
-/* 3. styles for every form */
-/* 4. send data to backend */
+/* 1. validation issue where radio and common inputes interfere */
+/* 2. icons on first form */
+/* 3. send data to backend */
 
 export default function SignUpForm({
   currentStep,
@@ -25,7 +22,7 @@ export default function SignUpForm({
     age: '',
     height: '',
     weight: '',
-    activity: '',
+    activityRatio: '',
   });
 
   const handleSubmit = (values) => {
@@ -46,6 +43,7 @@ export default function SignUpForm({
           handleNextStep={handleNextStep}
           handleSubmit={handleSubmit}
           userData={userData}
+          handlePrevStep={handlePrevStep}
         />
       )}
       {currentStep === 3 && (
@@ -53,6 +51,7 @@ export default function SignUpForm({
           handleNextStep={handleNextStep}
           handleSubmit={handleSubmit}
           userData={userData}
+          handlePrevStep={handlePrevStep}
         />
       )}
       {currentStep === 4 && (
@@ -60,12 +59,16 @@ export default function SignUpForm({
           handleNextStep={handleNextStep}
           handleSubmit={handleSubmit}
           userData={userData}
+          handlePrevStep={handlePrevStep}
         />
       )}
       {currentStep === 5 && (
-        <FormActivity handleSubmit={handleSubmit} userData={userData} />
+        <FormActivity
+          handleSubmit={handleSubmit}
+          userData={userData}
+          handlePrevStep={handlePrevStep}
+        />
       )}
-      {currentStep > 1 && <Button onClick={handlePrevStep}>Back</Button>}
     </>
   );
 }

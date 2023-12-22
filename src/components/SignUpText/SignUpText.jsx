@@ -1,5 +1,5 @@
-import { Subtitle } from './SignUpText.styled';
 import { HeadlineFirst } from '../StyledComponents/Components.styled';
+import { Subtitle } from './SignUpText.styled';
 
 export default function SignUpText({ currentStep }) {
   return (
@@ -19,7 +19,10 @@ export default function SignUpText({ currentStep }) {
       {currentStep === 3 && (
         <>
           <HeadlineFirst>Select gender, Age</HeadlineFirst>
-          <Subtitle>Choose a goal so that we can help you effectively</Subtitle>
+          <Subtitle>
+            Choose a goal so that we can <br />
+            help you effectively
+          </Subtitle>
         </>
       )}
       {currentStep === 4 && (
@@ -33,7 +36,10 @@ export default function SignUpText({ currentStep }) {
       {currentStep === 5 && (
         <>
           <HeadlineFirst>Your Activity</HeadlineFirst>
-          <Subtitle>To correctly calculate calorie and water intake</Subtitle>
+          <Subtitle>
+            To correctly calculate calorie <br />
+            and water intake
+          </Subtitle>
         </>
       )}
     </>

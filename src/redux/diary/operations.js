@@ -6,7 +6,7 @@ import instance from '../auth/operations';
  * headers: Authorization: Bearer token
  */
 export const getFoodDiaryToday = createAsyncThunk(
-  'user/food/get',
+  'user/diary/get',
   async (_, thunkAPI) => {
     try {
       const { data } = await instance('/api/user/food');
@@ -24,7 +24,7 @@ export const getFoodDiaryToday = createAsyncThunk(
  *          name, carbohydrate, protein, fat, BMR }
  */
 export const createFoodDiary = createAsyncThunk(
-  'user/food/post',
+  'user/diary/post',
   async (body, thunkAPI) => {
     try {
       const { data } = await instance.post('/api/user/food', body);
@@ -40,7 +40,7 @@ export const createFoodDiary = createAsyncThunk(
  * body: { id }
  */
 export const updateFoodDiary = createAsyncThunk(
-  'user/food/put',
+  'user/diary/put',
   async ({ id, body }, thunkAPI) => {
     try {
       const { data } = await instance.put(`/api/user/food/${id}`, body);
@@ -57,7 +57,7 @@ export const updateFoodDiary = createAsyncThunk(
  * body: { id }
  */
 export const deleteFoodDiary = createAsyncThunk(
-  'user/food/delete',
+  'user/diary/delete',
   async (id, thunkAPI) => {
     try {
       const { data } = await instance.delete(`/api/user/food/${id}`);

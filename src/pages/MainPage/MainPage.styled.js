@@ -28,34 +28,11 @@ export const FeatureWrap = styled.ul`
   @media screen and (min-width: 834px) {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
     column-gap: 20px;
     margin-bottom: 40px;
-
-    & li:nth-child(1),
-    li:nth-child(2) {
-      flex-basis: calc((100% - 20px) / 2);
-    }
-    & li:nth-child(3),
-    li:nth-child(4),
-    li:nth-child(5) {
-      flex-basis: 100%;
-    }
   }
   @media screen and (min-width: 1440px) {
     margin-bottom: 54px;
-
-    & li:nth-child(1),
-    li:nth-child(2) {
-      flex-basis: calc((100% - 2 * 20px) / 3);
-    }
-
-    & li:nth-child(3) {
-      flex-basis: calc((100% - 2 * 20px) / 3);
-    }
-
-    & li:nth-child(4),
-    li:nth-child(5) {
-      flex-basis: calc((100% - 20px) / 2);
-    }
   }
 `;

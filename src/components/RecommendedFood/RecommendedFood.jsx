@@ -1,32 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BodyTextFirst,
   BodyTextSecond,
   ButtonTextSecond,
   HeadlineSecond,
-  HeadlineThird,
   IconWrap,
   StyledLink,
 } from '../StyledComponents/Components.styled';
 import sprite from 'assets/sprite.svg';
-import { useSelector } from 'react-redux';
-import { selectRecommendedFoodInfo } from '../../redux/recommendedFood/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRecommendedFoodItems } from '../../redux/recommendedFood/selectors';
 import { getRandomItems } from '../../helpers';
 import {
   FoodInfo,
   FoodItem,
   FoodList,
   FoodName,
+  RecFoodWrap,
 } from './RecommendedFood.styled';
+import { getRecommendedFood } from '../../redux/recommendedFood/operations';
 
 export default function RecommendedFood() {
-  const food = useSelector(selectRecommendedFoodInfo);
-  const randomFood = getRandomItems(food, 4);
-  console.log(getRandomItems(food, 4));
+  const dispatch = useDispatch();
+  const recFood = useSelector(selectRecommendedFoodItems);
+  const randomFood = getRandomItems(recFood, 4);
+
+  useEffect(() => {
+    dispatch(getRecommendedFood());
+  }, []);
 
   return (
-    <>
+    <RecFoodWrap>
       <HeadlineSecond>Recommended food</HeadlineSecond>
+
       <FoodList>
         {randomFood.map((item) => (
           <FoodItem key={item._id}>
@@ -41,12 +47,13 @@ export default function RecommendedFood() {
           </FoodItem>
         ))}
       </FoodList>
+
       <StyledLink to="/recommended-food">
         <ButtonTextSecond>See more</ButtonTextSecond>
         <IconWrap width="16px" height="16px">
           <use href={`${sprite}#arrow-right`} />
         </IconWrap>
       </StyledLink>
-    </>
+    </RecFoodWrap>
   );
 }

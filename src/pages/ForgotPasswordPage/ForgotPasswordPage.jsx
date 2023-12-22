@@ -9,6 +9,7 @@ import {
   MainAuth,
 } from '../SignUpPage/SignUpPage.styled';
 import { BackgroundImage } from '../../components/SignUpImage/SignUpImage.styled';
+
 import watchDesk1x from '../../assets/images/watch/watch-desk@1x.png';
 import watchDesk2x from '../../assets/images/watch/watch-desk@2x.png';
 import watchTab1x from '../../assets/images/watch/watch-tab@1x.png';
@@ -40,7 +41,6 @@ export default function ForgotPasswordPage() {
               We will send you an email with recovery instructions
             </HeadSecond>
             <ForgotPasswordForm />
-
             <SubText>Do you already have an account?</SubText>
             <SubLink to="/signin">Sign in</SubLink>
           </TextWrapper>

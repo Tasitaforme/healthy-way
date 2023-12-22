@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { IconWrap, HeadlineThird } from '../StyledComponents/Components.styled';
 
+export const DiaryWrap = styled.li`
+  width: 100%;
+
+  @media screen and (min-width: 1440px) {
+    width: 558px;
+  }
+`;
+
 export const TitleWrap = styled.div`
   display: flex;
   flex-direction: row;

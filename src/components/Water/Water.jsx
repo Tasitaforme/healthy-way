@@ -17,6 +17,7 @@ import {
   PercentBox,
   RightSide,
   TextWrap,
+  WaterWrap,
   WrapMain,
 } from './Water.styled';
 import AddWaterModal from '../AddWaterModal/AddWaterModal';
@@ -61,7 +62,7 @@ export default function Water({ modalActive, setModalActive }) {
   };
 
   return (
-    <>
+    <WaterWrap>
       <HeadlineSecond>Water</HeadlineSecond>
       <WrapMain>
         <LeftSide>
@@ -112,6 +113,6 @@ export default function Water({ modalActive, setModalActive }) {
           ></AddWaterModal>
         </ModalMain>
       )}
-    </>
+    </WaterWrap>
   );
 }
