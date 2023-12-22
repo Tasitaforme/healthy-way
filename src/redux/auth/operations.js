@@ -182,10 +182,10 @@ export const currentUser = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  'user/update',
-  async ({ values }, thunkAPI) => {
+  'auth/update',
+  async (data, thunkAPI) => {
     try {
-      const response = await instance.put('/api/user/update', values);
+      const response = await instance.put('/api/user/update', data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
