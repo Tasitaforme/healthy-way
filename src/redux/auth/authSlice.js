@@ -7,6 +7,7 @@ import {
   currentUser,
   refresh,
   updateUser,
+  updateAvatar,
 } from './operations';
 
 const initialState = {
@@ -47,6 +48,11 @@ const handleRejected = (state, payload) => {
 
 const handleUpdateUserFulfilled = (state, action) => {
   state.user = { ...state.user, ...action.meta.arg };
+  state.isLogin = true;
+};
+
+const handleUpdateAvatarFulfilled = (state, action) => {
+  state.user = { ...state.user, avatarURL: action.payload };
   state.isLogin = true;
 };
 
@@ -92,7 +98,8 @@ const authSlice = createSlice({
       .addCase(currentUser.rejected, (state, { payload }) => {
         handleRejected(state, payload);
       })
-      .addCase(updateUser.fulfilled, handleUpdateUserFulfilled);
+      .addCase(updateUser.fulfilled, handleUpdateUserFulfilled)
+      .addCase(updateAvatar.fulfilled, handleUpdateAvatarFulfilled);
   },
 });
 

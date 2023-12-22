@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { profileSettingSchema } from '../../schemas/profileSettings';
 import { selectUserInfo } from '../../redux/auth/selectors';
-import { updateUser } from '../../redux/auth/operations.js';
+import { updateUser, updateAvatar } from '../../redux/auth/operations.js';
 
 import {
   UserInformationField,
@@ -47,7 +47,7 @@ export default function UserInformation() {
     height: userProfile.height,
     weight: userProfile.weight,
     activity: userProfile.activityRatio,
-    avatar: userProfile.avatarURL,
+    // avatar: userProfile.avatarURL,
   };
 
   const handleChangeAvatar = (event) => {
@@ -63,8 +63,15 @@ export default function UserInformation() {
 
   const handleClickSave = (values) => {
     values.height = Number(values.height);
-    console.log(values);
+    values.weight = Number(values.weight);
+    values.age = Number(values.age);
     dispatch(updateUser(values));
+
+    if (isAvatarChanged) {
+      const formData = new FormData();
+      formData.append('avatarURL', avatarFile);
+      dispatch(updateAvatar(formData));
+    }
   };
 
   const handleClickCancel = (resetForm) => {
@@ -79,7 +86,7 @@ export default function UserInformation() {
       validationSchema={profileSettingSchema}
       onSubmit={handleClickSave}
     >
-      {({ errors, values }) => (
+      {({ errors, values, resetForm }) => (
         <UserForm>
           <UserInformationBlock>
             <label>Your name</label>
@@ -102,7 +109,7 @@ export default function UserInformation() {
             <AvatarLabel htmlFor="avatar">
               <AvatarContainer>
                 <AvatarImg
-                  src={avatarPreview || values.avatar}
+                  src={avatarPreview || userProfile.avatarURL}
                   alt="userAvatar"
                 ></AvatarImg>
               </AvatarContainer>

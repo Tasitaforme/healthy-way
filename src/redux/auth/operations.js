@@ -180,12 +180,12 @@ export const currentUser = createAsyncThunk(
     }
   }
 );
+
 export const updateUser = createAsyncThunk(
   'user/update',
   async ({ data }, thunkAPI) => {
     try {
       const response = await instance.put('/api/user/update', data);
-      console.log('Response from updateUser:', response.data); // Добавьте эту строку
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -193,28 +193,25 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-// export const updateUser = createAsyncThunk(
-//   'auth/update',
-//   async ({ values }, thunkAPI) => {
-//     try {
-//       const response = await instance.put('/api/user/update', values, {
-//         headers: {
-//           'Content-Type': 'multipart/form-data',
-//         },
-//       });
-
-//       return response.data;
-//     } catch ({ response }) {
-//       setToken();
-//       const { status, data } = response;
-//       const error = {
-//         status,
-//         message: data.message,
-//       };
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
+export const updateAvatar = createAsyncThunk(
+  'user/updateAvatar',
+  async (avatarData, thunkAPI) => {
+    try {
+      const response = await instance.post(
+        '/api/user/load-avatar',
+        avatarData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 /*
  * PUT @ /api/user/update
