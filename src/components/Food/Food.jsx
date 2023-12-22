@@ -1,29 +1,64 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HeadlineSecond } from '../StyledComponents/Components.styled';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectDiaryInfo } from '../../redux/diary/selectors';
 import { getTotalNutrients } from '../../helpers';
 import { selectUserInfo } from '../../redux/auth/selectors';
-import { CaloriesWrap, NutrientsWrap, WrapMain } from './Food.styled';
+import { FoodWrap, NutrientsList, WrapMain } from './Food.styled';
+import BigDoughnutChart from './Doughnuts/DoughnutCalories';
+import { getFoodDiaryToday } from '../../redux/diary/operations';
+import DoughnutNutrients from './Doughnuts/DoughnutNutrients';
 
 export default function Food() {
+  const dispatch = useDispatch();
+
   const {
     fat: baseFat,
     protein: baseProtein,
     carbohydrate: baseCarbohydrate,
     BMR: baseCalories,
   } = useSelector(selectUserInfo);
-  const { meals } = useSelector(selectDiaryInfo);
+
+  const { meals, isLoading } = useSelector(selectDiaryInfo);
   const { fat, protein, carbohydrate, calories } = getTotalNutrients(meals);
-  console.log(fat);
-  console.log(baseFat);
+
+  // console.log(baseCalories);
+
+  useEffect(() => {
+    dispatch(getFoodDiaryToday()).unwrap();
+  }, [fat, protein, carbohydrate, calories]);
+
+  const nutrientsTitles = ['Carbonohidrates', 'Protein', 'Fat'];
+
   return (
-    <>
+    <FoodWrap>
       <HeadlineSecond>Food</HeadlineSecond>
-      <WrapMain>
-        <CaloriesWrap>sd</CaloriesWrap>
-        <NutrientsWrap></NutrientsWrap>
-      </WrapMain>
-    </>
+      {!isLoading && (
+        <WrapMain>
+          <BigDoughnutChart calories={calories} baseCalories={baseCalories} />
+
+          <NutrientsList>
+            <DoughnutNutrients
+              title={nutrientsTitles[0]}
+              arcColor={'#FFC4F7'}
+              nutrient={carbohydrate}
+              baseNutrient={baseCarbohydrate}
+            />
+            <DoughnutNutrients
+              title={nutrientsTitles[1]}
+              arcColor={'#FFF3B7'}
+              nutrient={protein}
+              baseNutrient={baseProtein}
+            />
+            <DoughnutNutrients
+              title={nutrientsTitles[2]}
+              arcColor={'#B6B6B6'}
+              nutrient={fat}
+              baseNutrient={baseFat}
+            />
+          </NutrientsList>
+        </WrapMain>
+      )}
+    </FoodWrap>
   );
 }

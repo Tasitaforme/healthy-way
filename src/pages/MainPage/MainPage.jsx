@@ -65,24 +65,14 @@ export default function MainPage() {
           </StyledLink>
         </TitleWrap>
         <FeatureWrap>
-          <li>
-            <DailyGoal></DailyGoal>
-          </li>
-          <li>
-            <Water
-              modalActive={modalActive}
-              setModalActive={setModalActive}
-            ></Water>
-          </li>
-          <li>
-            <Food></Food>
-          </li>
-          <li>
-            <Diary></Diary>
-          </li>
-          <li>
-            <RecommendedFood></RecommendedFood>
-          </li>
+          <DailyGoal></DailyGoal>
+          <Water
+            modalActive={modalActive}
+            setModalActive={setModalActive}
+          ></Water>
+          <Food></Food>
+          <Diary></Diary>
+          <RecommendedFood></RecommendedFood>
         </FeatureWrap>
         <Button type="submit" onClick={() => handleOut()}>
           Sign out

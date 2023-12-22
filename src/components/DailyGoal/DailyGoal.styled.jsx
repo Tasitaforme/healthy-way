@@ -1,4 +1,12 @@
 import styled from 'styled-components';
+export const DailyGoalWrap = styled.li`
+  @media screen and (min-width: 834px) {
+    min-width: 380px;
+  }
+  @media screen and (min-width: 1440px) {
+    min-width: 328px;
+  }
+`;
 
 export const List = styled.ul`
   display: flex;

@@ -4,7 +4,7 @@ import {
   HeadlineSecond,
   StyledLink,
 } from '../StyledComponents/Components.styled';
-import { DiaryList, TitleWrap } from './Diary.styled';
+import { DiaryList, DiaryWrap, TitleWrap } from './Diary.styled';
 // import { nanoid } from '@reduxjs/toolkit';
 
 import DiaryItem from './DiaryItem/DiaryItem';
@@ -18,19 +18,20 @@ export default function Diary() {
   const dispatch = useDispatch();
   const { meals, firstLoad } = useSelector(selectDiaryInfo);
 
-  useEffect(() => {
-    if (!firstLoad) {
-      dispatch(getFoodDiaryToday());
-    }
-  }, [firstLoad]);
+  // useEffect(() => {
+  //   if (!firstLoad) {
+  //     dispatch(getFoodDiaryToday()).unwrap();
+  //   }
+  // }, [firstLoad]);
+
+  // useEffect(() => {
+  //   dispatch(getFoodDiaryToday());
+  // }, [meals]);
 
   const totalNutrientsForMeals = getTotalNutrientsForMeals(meals);
-  // const totalNutrients = getTotalNutrients(meals);
-  // console.log(totalNutrientsForMeals);
-  // console.log(meals);
 
   return (
-    <>
+    <DiaryWrap>
       <TitleWrap>
         <HeadlineSecond>Diary</HeadlineSecond>
         <StyledLink to="/diary">
@@ -43,6 +44,6 @@ export default function Diary() {
           <DiaryItem key={index} data={item} meals={meals} />
         ))}
       </DiaryList>
-    </>
+    </DiaryWrap>
   );
 }
