@@ -1,4 +1,35 @@
-import{s as e}from"./index-edcf3ddb.js";import"./Components.styled-3fb1c3c3.js";const p=e.div`
+import{s as e,L as n}from"./index-3cc89d4c.js";import{a,b as p}from"./Components.styled-e4a8c982.js";const r=e(a)`
+  color: var(--grey-light);
+  margin-top: 16px;
+  margin-bottom: 24px;
+`,o=e(p)`
+  color: var(--grey-light);
+  margin-bottom: 16px;
+
+  @media screen and (min-width: 834px) {
+    margin-top: 100px;
+    display: inline-block;
+    margin-right: 16px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    text-align: left;
+  }
+`,m=e(n)`
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  transition: color var(--transition-dur-and-fun);
+
+  &:hover,
+  &:focus {
+    color: var(--green-light);
+  }
+  @media screen and (min-width: 834px) {
+    display: inline-block;
+  }
+`,x=e.div`
   padding: 0px 0px 40px 0px;
 
   @media screen and (min-width: 834px) {
@@ -11,18 +42,18 @@ import{s as e}from"./index-edcf3ddb.js";import"./Components.styled-3fb1c3c3.js";
     justify-content: center;
     padding: 0px 116px 0px 116px;
   }
-`,d=e.main`
+`,s=e.main`
   margin-top: 24px;
 
   @media screen and (min-width: 834px) {
     margin-top: 40px;
   }
-`,t=e.div`
+`,g=e.div`
   @media screen and (min-width: 834px) {
     display: flex;
     justify-content: center;
   }
-`,r=e.div`
+`,c=e.div`
   margin-top: 24px;
 
   @media screen and (min-width: 834px) {
@@ -36,7 +67,7 @@ import{s as e}from"./index-edcf3ddb.js";import"./Components.styled-3fb1c3c3.js";
     display: block;
     margin-top: 80px;
   }
-`,m=e.div`
+`,l=e.div`
   margin-top: 48px;
   width: 100%;
 
@@ -51,7 +82,7 @@ import{s as e}from"./index-edcf3ddb.js";import"./Components.styled-3fb1c3c3.js";
     margin-top: 168px;
     padding: 0px;
   }
-`,x=e.div`
+`,h=e.div`
   width: 100%;
   height: ${i=>i.$heightMob};
   background-image: ${i=>`url(${i.$imageMob1x})`};
@@ -88,4 +119,4 @@ import{s as e}from"./index-edcf3ddb.js";import"./Components.styled-3fb1c3c3.js";
       background-image: ${i=>`url(${i.$imageDesk2x})`};
     }
   }
-`;export{x as B,p as F,t as I,d as M,m as S,r as T};
+`;export{h as B,x as F,r as H,g as I,s as M,o as S,c as T,m as a,l as b};
