@@ -30,15 +30,15 @@ export default function FormGoal({
         <GoalForm>
           <FlexWrapper>
             <Label>
-              <Field type="radio" name="goal" value="lose fat" />
+              <Field type="radio" name="goal" value="Lose fat" />
               Lose Fat
             </Label>
             <Label>
-              <Field type="radio" name="goal" value="maintain" />
+              <Field type="radio" name="goal" value="Maintain" />
               Maintain
             </Label>
             <Label>
-              <Field type="radio" name="goal" value="gain muscle" />
+              <Field type="radio" name="goal" value="Gain muscle" />
               Gain Muscle
             </Label>
             <Error component="p" name="goal" />

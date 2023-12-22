@@ -20,7 +20,7 @@ export default function FormGenderAndAge({
   handlePrevStep,
 }) {
   const onSubmit = (values) => {
-    handleSubmit(values);
+    handleSubmit({ ...values, age: Number(values.age) });
     handleNextStep();
   };
 
@@ -35,11 +35,11 @@ export default function FormGenderAndAge({
           <Text>Gender</Text>
           <GenderWrapper>
             <Label>
-              <Field type="radio" name="gender" value="male" />
+              <Field type="radio" name="gender" value="Male" />
               Male
             </Label>
             <Label>
-              <Field type="radio" name="gender" value="female" />
+              <Field type="radio" name="gender" value="Female" />
               Female
             </Label>
             <RadioError component="p" name="gender" />
