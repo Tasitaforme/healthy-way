@@ -6,7 +6,6 @@ import FormParameters from './FormParameters/FormParameters';
 import FormActivity from './FormActivity/FormActivity';
 /* 1. validation issue where radio and common inputes interfere */
 /* 2. icons on first form */
-/* 3. send data to backend */
 
 export default function SignUpForm({
   currentStep,

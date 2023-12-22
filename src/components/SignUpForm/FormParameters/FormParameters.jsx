@@ -15,7 +15,11 @@ export default function FormParameters({
   handlePrevStep,
 }) {
   const onSubmit = (values) => {
-    handleSubmit(values);
+    handleSubmit({
+      ...values,
+      weight: Number(values.weight),
+      height: Number(values.height),
+    });
     handleNextStep();
   };
 

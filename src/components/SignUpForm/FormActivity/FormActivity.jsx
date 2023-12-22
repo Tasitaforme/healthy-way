@@ -1,6 +1,7 @@
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Field, Formik } from 'formik';
 import { activitySchema } from '../../../schemas/formikRegister';
-import { useDispatch } from 'react-redux';
 import { registration } from '../../../redux/auth/operations';
 import { toast } from 'react-hot-toast';
 import {
@@ -17,14 +18,19 @@ export default function FormActivity({
   handlePrevStep,
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
-    await handleSubmit(values);
+    await handleSubmit({
+      ...values,
+      activityRatio: Number(values.activityRatio),
+    });
     try {
-      await dispatch(registration(userData));
+      await dispatch(registration(userData)).unwrap();
       toast.success('You have successfully signed up!');
+      navigate('/signin');
     } catch (error) {
-      toast.error('Wrong data! Try again!');
+      toast.error('This email is in use');
     }
   };
 
