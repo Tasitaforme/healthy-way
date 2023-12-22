@@ -25,13 +25,15 @@ import {
 
 import sprite from 'assets/sprite.svg';
 
-export default function DiaryItem({ data }) {
-  // console.log(data);
+export default function DiaryItem({ data, meals }) {
   // console.log(data.mealType);
+  // const value = data.mealType;
+  // console.log(meals[`${data.mealType}`]);
+  // console.log(meals.(data.mealType));
 
   return (
     <ItemWrap>
-      {/* <ItemWrapTitle>
+      <ItemWrapTitle>
         {data.mealType === 'breakfast' && (
           <img
             srcSet={`${breakfast} 1x, ${breakfast2x} 2x`}
@@ -55,25 +57,31 @@ export default function DiaryItem({ data }) {
 
         <Title>{data.mealType}</Title>
       </ItemWrapTitle>
-      <ItemWrapInfo>
-        <BodyTextWrap>
-          <BodyTextFirst>Carbonohidrates:</BodyTextFirst>
-          <BodyTextSecond>{data.carbonohidrates}</BodyTextSecond>
-        </BodyTextWrap>
-        <BodyTextWrap>
-          <BodyTextFirst>Protein:</BodyTextFirst>
-          <BodyTextSecond>{data.protein}</BodyTextSecond>
-        </BodyTextWrap>
-        <BodyTextWrap>
-          <BodyTextFirst>Fat:</BodyTextFirst>
-          <BodyTextSecond>{data.fat}</BodyTextSecond>
-        </BodyTextWrap>
-        <ButtonIcon type="button" onClick={() => console.log('ТУУУ')}>
-          <IconWrap width="20px" height="20px" stroke="var(--green-light)">
-            <use href={`${sprite}#trash`} />
-          </IconWrap>
-        </ButtonIcon>
-      </ItemWrapInfo> */}
+      {meals[`${data.mealType}`] == [] ? (
+        <div>
+          <p>Record your meal</p>
+        </div>
+      ) : (
+        <ItemWrapInfo>
+          <BodyTextWrap>
+            <BodyTextFirst>Carbonohidrates:</BodyTextFirst>
+            <BodyTextSecond>{data.carbohydrate}</BodyTextSecond>
+          </BodyTextWrap>
+          <BodyTextWrap>
+            <BodyTextFirst>Protein:</BodyTextFirst>
+            <BodyTextSecond>{data.protein}</BodyTextSecond>
+          </BodyTextWrap>
+          <BodyTextWrap>
+            <BodyTextFirst>Fat:</BodyTextFirst>
+            <BodyTextSecond>{data.fat}</BodyTextSecond>
+          </BodyTextWrap>
+          <ButtonIcon type="button" onClick={() => console.log('ТУУУ')}>
+            <IconWrap width="20px" height="20px" stroke="var(--green-light)">
+              <use href={`${sprite}#trash`} />
+            </IconWrap>
+          </ButtonIcon>
+        </ItemWrapInfo>
+      )}
     </ItemWrap>
   );
 }

@@ -71,13 +71,8 @@ export const logOut = createAsyncThunk(
       store.dispatch(resetDiary());
       setToken();
       return data;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -139,25 +134,30 @@ export const refresh = createAsyncThunk(
   }
 );
 
-instance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const {
-      auth: { refreshToken },
-    } = store.getState();
-    if (error.response.status == 401) {
-      if (refreshToken) {
-        store.dispatch(refresh({ refreshToken }));
-      }
-      return Promise.reject(error);
-    }
-    if (error.response.status == 403) {
-      store.dispatch(logOut());
-      return Promise.reject(error);
-    }
-    return Promise.reject(error);
-  }
-);
+// instance.interceptors.response.use(
+//   (response) => response,
+//   async (error) => {
+//     const {
+//       auth: { refreshToken },
+//     } = store.getState();
+//     if (error.response.status === 401) {
+//       if (refreshToken) {
+//         try {
+//           await store.dispatch(refresh({ refreshToken }));
+//           return Promise.resolve();
+//         } catch (refreshError) {
+//           return Promise.reject(refreshError);
+//         }
+//       }
+//       return Promise.reject(error);
+//     }
+//     if (error.response.status === 403) {
+//       store.dispatch(logOut());
+//       return Promise.reject(error);
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 /*
  * GET @ /api/user/current

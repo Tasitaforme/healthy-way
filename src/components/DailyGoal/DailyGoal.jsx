@@ -8,7 +8,7 @@ import {
   SubtitleFirst,
   WrapMainBg,
 } from '../StyledComponents/Components.styled';
-import { List } from './DailyGoal.styled';
+import { DailyGoalWrap, List } from './DailyGoal.styled';
 import sprite from 'assets/sprite.svg';
 import { useSelector } from 'react-redux';
 import { selectUserInfo } from '../../redux/auth/selectors';
@@ -19,7 +19,7 @@ export default function DailyGoal() {
   const waterDayGoal = baseWater !== null ? baseWater * 1000 : 0;
 
   return (
-    <>
+    <DailyGoalWrap>
       <HeadlineSecond>Daily goal</HeadlineSecond>
       <WrapMainBg>
         <List>
@@ -46,6 +46,6 @@ export default function DailyGoal() {
           </li>
         </List>
       </WrapMainBg>
-    </>
+    </DailyGoalWrap>
   );
 }

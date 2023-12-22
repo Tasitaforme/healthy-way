@@ -4,6 +4,15 @@ import {
   HeadlineThird,
 } from 'components/StyledComponents/Components.styled';
 
+export const WaterWrap = styled.li`
+  @media screen and (min-width: 834px) {
+    min-width: 380px;
+  }
+  @media screen and (min-width: 1440px) {
+    min-width: 444px;
+  }
+`;
+
 export const WrapMain = styled(WrapMainBg)`
   width: 100%;
   display: flex;
