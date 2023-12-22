@@ -18,10 +18,10 @@ export const registerSchema = Yup.object().shape({
     .matches(EMAIL_RULE, 'Invalid email address'),
   password: Yup.string()
     .required('Required')
-    .min(7, 'The password must be at least 7 characters long')
+    .min(7, 'Min length: 7 characters')
     .matches(
       PASSWORD_RULE,
-      `The password must be at least 5 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number. The letters must be English.`
+      `Use uppercase, lowercase letters, number. Letters only in English.`
     ),
 });
 

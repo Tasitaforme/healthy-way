@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { BodyTextFirst } from '../../components/StyledComponents/Components.styled';
-import { Link } from 'react-router-dom';
+import { SubLink, SubText } from '../SignInPage/SignInPage.styled';
 
 export const FlexBox = styled.div`
   padding: 0px 0px 40px 0px;
@@ -13,7 +12,7 @@ export const FlexBox = styled.div`
     display: flex;
     gap: 104px;
     justify-content: center;
-    padding: 0px 116px 0px 116px;
+    padding: 0px 116px 60px 116px;
   }
 `;
 
@@ -51,12 +50,14 @@ export const TextWrapper = styled.div`
 export const SignInWrapper = styled.div`
   margin-top: 48px;
   width: 100%;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
 
   @media screen and (min-width: 834px) {
     margin-top: 206px;
     padding: 0px 32px 0px 32px;
-    display: flex;
-    gap: 16px;
+    flex-direction: row;
   }
 
   @media screen and (min-width: 1440px) {
@@ -65,22 +66,13 @@ export const SignInWrapper = styled.div`
   }
 `;
 
-// export const SubText = styled(BodyTextFirst)`
-//   color: var(--Color-Primary-Grey, #b6b6b6);
-// `;
+export const SignInText = styled(SubText)`
+  margin-bottom: 0px;
 
-// export const SubLink = styled(Link)`
-//   font-weight: 500;
-//   transition: color var(--transition-dur-and-fun);
-//   margin-top: 16px;
-//   display: block;
+  @media screen and (min-width: 834px) {
+    margin-top: 0px;
+    margin-right: 0px;
+  }
+`;
 
-//   &:hover,
-//   &:focus {
-//     color: var(--green-light);
-//   }
-
-//   @media screen and (min-width: 834px) {
-//     margin-top: 0px;
-//   }
-// `;
+export const SignInLink = styled(SubLink)``;
