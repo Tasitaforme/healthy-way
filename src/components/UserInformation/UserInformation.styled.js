@@ -104,6 +104,7 @@ export const AvatarIcon = styled.img`
   justify-content: center;
   align-items: center;
   margin-right: 6px;
+  stroke: green;
 `;
 
 export const GenderButtonsWrapper = styled.div`

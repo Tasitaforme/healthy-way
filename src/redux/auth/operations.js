@@ -221,11 +221,39 @@ export const updateAvatar = createAsyncThunk(
 
 // TODO (сюди потрібно прописати оновлення по вазі )
 
+export const updateWeight = createAsyncThunk(
+  'user/weight',
+  async (inputWeight, thunkAPI) => {
+    try {
+      const response = await instance.put('/api/user/weight', {
+        weight: inputWeight,
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 /*
  * PUT @ /api/user/goal
  * headers: Authorization: Bearer token
  * * body: {}
  */
 // TODO (сюди потрібно прописати оновлення по цілі)
+
+export const updateGoal = createAsyncThunk(
+  'user/goal',
+  async (selectedGoal, thunkAPI) => {
+    try {
+      const response = await instance.put('/api/user/goal', {
+        goal: selectedGoal,
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export default instance;
