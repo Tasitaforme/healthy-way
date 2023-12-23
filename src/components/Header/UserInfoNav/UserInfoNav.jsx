@@ -27,12 +27,10 @@ export default function UserInfoNav({
   showModalProfile,
   onWeightClick,
   showModalWeight,
-  // onTargetClick,
+  onTargetClick,
   showModalTarget,
   onDopMenuClick,
   showDopMenuModal,
-  openModalTarget,
-  closeModalTarget,
 }) {
   const userInfo = useSelector(selectUserInfo);
 
@@ -48,7 +46,7 @@ export default function UserInfoNav({
             <p>Lose fat</p>
           </div>
           <div>
-            <ArrowIcon onClick={openModalTarget}>
+            <ArrowIcon onClick={onTargetClick}>
               <use href={`${sprite}#arrow-down`} />
             </ArrowIcon>
           </div>
@@ -86,12 +84,7 @@ export default function UserInfoNav({
       </UserContentWrapper>
       {showModalProfile && <UserInfoModal />}
       {showModalWeight && <CurrentWeightModal onCloseModal={onWeightClick} />}
-      {showModalTarget && (
-        <TargetSelectionModal
-          onCloseModal={closeModalTarget}
-          showModalTarget={showModalTarget}
-        />
-      )}
+      {showModalTarget && <TargetSelectionModal onCloseModal={onTargetClick} />}
       {showDopMenuModal && (
         <DopMenuModal onCloseModal={onDopMenuClick} userInfo={userInfo} />
       )}

@@ -30,18 +30,14 @@ export default function Header() {
   const toggleModalWeight = () => {
     setShowModalWeight((showModalWeight) => !showModalWeight);
   };
-
-  const openModalTarget = () => {
-    setShowModalTarget(true);
-  };
-
-  const closeModalTarget = () => {
-    setShowModalTarget(false);
+  const toggleModalTarget = () => {
+    setShowModalTarget((showModalTarget) => !showModalTarget);
   };
 
   const toggleDopMenuModal = () => {
     setShowDopMenuModal((showDopMenuModal) => !showDopMenuModal);
   };
+
   return (
     <header>
       <Container>
@@ -53,9 +49,8 @@ export default function Header() {
               showModalProfile={showModalProfile}
               onWeightClick={toggleModalWeight}
               showModalWeight={showModalWeight}
-              // onTargetClick={toggleModalTarget}
-              openModalTarget={openModalTarget}
-              closeModalTarget={closeModalTarget}
+              onTargetClick={toggleModalTarget}
+              showModalTarget={showModalTarget}
               onDopMenuClick={toggleDopMenuModal}
               showDopMenuModal={showDopMenuModal}
             />

@@ -20,19 +20,21 @@ import loseFatMen from '../../assets/images/header/Lose-fat-image-men.png';
 import MusculeMen from '../../assets/images/header/Gain-muscle.png';
 import MaintakeMen from '../../assets/images/header/Maintake-image-men.png';
 
-export default function TargetSelectionModal({ onCloseModal }) {
+export default function TargetSelectionModal({ onTargetClick, onCloseModal }) {
   return (
     <ModalWrapper>
-      <CloseBtn onClick={onCloseModal}>
+      <CloseBtn type="button" onClick={onCloseModal}>
         <svg width="16px" height="16px" stroke="#fff">
           <use href={`${sprite}#close-circle`} />
         </svg>
       </CloseBtn>
+
       <Modal>
         <ModalTitle>Target selection</ModalTitle>
         <ModalText>
           The service will adjust your calorie intake to your goal
         </ModalText>
+
         <ModalForm>
           <ul>
             <TargetWrapper>
@@ -56,8 +58,10 @@ export default function TargetSelectionModal({ onCloseModal }) {
           </ul>
           <ModalBtn type="submit">Confirm</ModalBtn>
         </ModalForm>
+        <CancelBtn type="button" onClick={onTargetClick}>
+          Cancel
+        </CancelBtn>
       </Modal>
-      <CancelBtn onClick={onCloseModal}>Cancel</CancelBtn>
     </ModalWrapper>
   );
 }

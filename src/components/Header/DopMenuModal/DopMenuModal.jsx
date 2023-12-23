@@ -25,11 +25,18 @@ export const DopMenuModal = ({ onCloseModal, userInfo }) => {
   const [weightModalOpen, setWeightModalOpen] = useState(false);
 
   const openTargetMenu = () => {
-    setTargetModalOpen((targetModalOpen) => !targetModalOpen);
+    setTargetModalOpen(true);
+  };
+  const closeTargetMenu = () => {
+    setTargetModalOpen(false);
   };
 
   const openWeightMenu = () => {
-    setWeightModalOpen((weightModalOpen) => !weightModalOpen);
+    setWeightModalOpen(true);
+  };
+
+  const closeWeightMenu = () => {
+    setWeightModalOpen(false);
   };
 
   return (
@@ -78,8 +85,12 @@ export const DopMenuModal = ({ onCloseModal, userInfo }) => {
           </div>
         </IconWrapper>
       </GlobalWrapper>
-      {(targetModalOpen && <TargetSelectionModal />) ||
-        (weightModalOpen && <CurrentWeightModal />)}
+      {(targetModalOpen && (
+        <TargetSelectionModal onTargetClick={closeTargetMenu} />
+      )) ||
+        (weightModalOpen && (
+          <CurrentWeightModal onWeightClick={closeWeightMenu} />
+        ))}
     </ModalWrapper>
   );
 };

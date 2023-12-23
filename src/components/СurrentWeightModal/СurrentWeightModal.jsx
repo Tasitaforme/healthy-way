@@ -15,7 +15,7 @@ import {
   CancelBtn,
 } from './CurrentWeightModal.styled';
 
-export default function CurrentWeightModal({ onCloseModal }) {
+export default function CurrentWeightModal({ onCloseModal, onWeightClick }) {
   function getCurrentDateFormatted() {
     const currentDate = new Date();
 
@@ -27,8 +27,8 @@ export default function CurrentWeightModal({ onCloseModal }) {
   }
   const formattedDate = getCurrentDateFormatted();
   return (
-    <ModalWrapper onClick={onCloseModal}>
-      <CloseBtn>
+    <ModalWrapper>
+      <CloseBtn onClick={onCloseModal}>
         <svg width="16px" height="16px" stroke="#fff">
           <use href={`${sprite}#close-circle`} />
         </svg>
@@ -52,7 +52,7 @@ export default function CurrentWeightModal({ onCloseModal }) {
           <WeightFormBtn type="submit">Confirm</WeightFormBtn>
         </WeightForm>
       </Modal>
-      <CancelBtn>Cancel</CancelBtn>
+      <CancelBtn onClick={onWeightClick}>Cancel</CancelBtn>
     </ModalWrapper>
   );
 }

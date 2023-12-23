@@ -19,7 +19,7 @@ export const ModalWrapper = styled.div`
   border-radius: 12px;
 background:  #0F0F0F;
 box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
- right: 80px;
+left: 260px;
  top: 120px;
 }
 `;
