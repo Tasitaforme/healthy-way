@@ -30,7 +30,7 @@ import { selectBaseWater } from '../../redux/auth/selectors';
 
 export default function Water({ modalActive, setModalActive }) {
   const dispatch = useDispatch();
-  const { water: waterReal, error: errorBackend } =
+  const { water: waterReal = 0, error: errorBackend } =
     useSelector(selectWaterInfo);
 
   const baseWater = useSelector(selectBaseWater);
@@ -87,7 +87,7 @@ export default function Water({ modalActive, setModalActive }) {
           <Headline>Water consumption</Headline>
           <TextWrap>
             <BodyTextWrap>
-              <SubtitleSecond>{waterReal}</SubtitleSecond>
+              <SubtitleSecond>{waterReal || 0}</SubtitleSecond>
               <BodyTextFirst color="var(--grey-light)">ml</BodyTextFirst>
             </BodyTextWrap>
             <BodyTextWrap>

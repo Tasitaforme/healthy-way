@@ -22,6 +22,7 @@ import { logOut } from '../../redux/auth/operations';
 import { selectIsLogin } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
 import { selectWaterInfo } from '../../redux/water/selectors';
+import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm';
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -74,9 +75,12 @@ export default function MainPage() {
           <Diary></Diary>
           <RecommendedFood></RecommendedFood>
         </FeatureWrap>
+        {/* // TODO видалити потім, коли буде можливість вийти в хедері */}
         <Button type="submit" onClick={() => handleOut()}>
           Sign out
         </Button>
+        {/* // TODO видалити потім, коли буде додано в Профайл */}
+        <ChangePasswordForm />
       </Container>
     </main>
   );

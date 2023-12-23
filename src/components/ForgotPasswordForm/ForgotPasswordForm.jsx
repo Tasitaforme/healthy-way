@@ -6,25 +6,24 @@ import {
 } from '../StyledComponents/Formik.styled';
 import { Button } from '../StyledComponents/Components.styled';
 import { forgotPasswordSchema } from '../../schemas/formik';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { forgotPassword } from '../../requests/forgotPassword';
+import toast from 'react-hot-toast';
 
 export default function ForgotPasswordForm() {
   const initialValues = {
     email: '',
   };
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const onSubmit = async (values, actions) => {
-    // try {
-    //   await dispatch(forgotPassword(values)).unwrap();
-    //   toast.success('A new password has been sent to your email!');
-    //   navigate('/signin');
-    // } catch (error) {
-    //   toast.error(`${error}`);
-    // }
-
+    try {
+      await forgotPassword(values);
+      toast.success('A new password has been sent to your email!');
+      navigate('/signin');
+    } catch (error) {
+      toast.error(`${error}`);
+    }
     actions.resetForm();
   };
 
@@ -39,6 +38,7 @@ export default function ForgotPasswordForm() {
           <FormikStyledField
             type="email"
             name="email"
+            autoComplete="on"
             placeholder="E-mail"
             className={
               touched.quantity
