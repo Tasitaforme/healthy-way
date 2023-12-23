@@ -57,43 +57,7 @@ export default function TargetSelectionModal({ onCloseModal }) {
           <ModalBtn type="submit">Confirm</ModalBtn>
         </ModalForm>
       </Modal>
-      <CancelBtn>Cancel</CancelBtn>
-
-      <GlobalWrapper>
-        <IconWrapper>
-          <LoseMen>
-            <LoseMenImage src={loseMenImg} alt="" />
-          </LoseMen>
-          <div>
-            <p>Goal</p>
-            <p>Lose fat</p>
-          </div>
-          <div>
-            <ArrowIcon onClick={onTargetClick}>
-              <use href={`${sprite}#arrow-down`} />
-            </ArrowIcon>
-          </div>
-        </IconWrapper>
-        <IconWrapper>
-          <LoseMen>
-            <LoseMenImage src={weightImg} alt="" />
-          </LoseMen>
-          <div>
-            <p>Weight</p>
-            <p>
-              65
-              <span> kg</span>
-            </p>
-          </div>
-          <div>
-            <ArrowIcon onClick={onWeightClick}>
-              <use href={`${sprite}#edit`} />
-            </ArrowIcon>
-          </div>
-        </IconWrapper>
-      </GlobalWrapper>
+      <CancelBtn onClick={onCloseModal}>Cancel</CancelBtn>
     </ModalWrapper>
   );
 }
-
-// 2 картинки доскачать, вставить

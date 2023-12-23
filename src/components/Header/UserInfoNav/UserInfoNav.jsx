@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import sprite from 'assets/sprite.svg';
 import {
   UserinfoWrapper,
@@ -10,21 +10,32 @@ import {
   LoseMenImage,
   IconWrapper,
   GlobalWrapper,
+  AvatarImg,
 } from './UserInfoNav.styled';
-import avatarImg from '../avatar.png';
+
 import loseMenImg from '../../../assets/images/header/Lose-fat-image-men.png';
 import weightImg from '../../../assets/images/header/Waight-image.png';
 import UserInfoModal from '../../UserInfoModal/UserInfoModal';
-import CurrentWeightModal from '../../СurrentWeightModal/СurrentWeightModal';
+import CurrentWeightModal from '../../СurrentWeightModal/СurrentWeightModal.jsx';
 import TargetSelectionModal from '../../TargetSelectionModal/TargetSelectionModal';
+import { DopMenuModal } from '../DopMenuModal/DopMenuModal.jsx';
+import { useSelector } from 'react-redux';
+import { selectUserInfo } from '../../../redux/auth/selectors.js';
+
 export default function UserInfoNav({
   onClick,
   showModalProfile,
   onWeightClick,
   showModalWeight,
-  onTargetClick,
+  // onTargetClick,
   showModalTarget,
+  onDopMenuClick,
+  showDopMenuModal,
+  openModalTarget,
+  closeModalTarget,
 }) {
+  const userInfo = useSelector(selectUserInfo);
+
   return (
     <UserinfoWrapper>
       <GlobalWrapper>
@@ -37,7 +48,7 @@ export default function UserInfoNav({
             <p>Lose fat</p>
           </div>
           <div>
-            <ArrowIcon onClick={onTargetClick}>
+            <ArrowIcon onClick={openModalTarget}>
               <use href={`${sprite}#arrow-down`} />
             </ArrowIcon>
           </div>
@@ -49,7 +60,7 @@ export default function UserInfoNav({
           <div>
             <p>Weight</p>
             <p>
-              65
+              {userInfo.weight}
               <span> kg</span>
             </p>
           </div>
@@ -61,13 +72,13 @@ export default function UserInfoNav({
         </IconWrapper>
       </GlobalWrapper>
 
-      <MenuIcon>
+      <MenuIcon onClick={onDopMenuClick}>
         <use href={`${sprite}#menu`} />
       </MenuIcon>
       <UserContentWrapper>
-        <UserName>Konstantin</UserName>
+        <UserName>{userInfo.name}</UserName>
         <div>
-          <img src={avatarImg} alt="" />
+          <AvatarImg src={userInfo.avatarURL} alt="avatar" />
         </div>
         <ArrowIcon onClick={onClick}>
           <use href={`${sprite}#arrow-down`} />
@@ -75,7 +86,15 @@ export default function UserInfoNav({
       </UserContentWrapper>
       {showModalProfile && <UserInfoModal />}
       {showModalWeight && <CurrentWeightModal onCloseModal={onWeightClick} />}
-      {showModalTarget && <TargetSelectionModal onCloseModal={onTargetClick} />}
+      {showModalTarget && (
+        <TargetSelectionModal
+          onCloseModal={closeModalTarget}
+          showModalTarget={showModalTarget}
+        />
+      )}
+      {showDopMenuModal && (
+        <DopMenuModal onCloseModal={onDopMenuClick} userInfo={userInfo} />
+      )}
     </UserinfoWrapper>
   );
 }

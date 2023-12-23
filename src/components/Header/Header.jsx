@@ -7,17 +7,22 @@ import {
   SignUpLink,
   CircleProfile,
 } from './Header.styled';
+
 // import sprite from 'assets/sprite.svg';
 
+import { selectIsLogin } from '../../redux/auth/selectors';
 import avatar from '../../assets/images/header/profile-circle.png';
 import UserInfoNav from './UserInfoNav/UserInfoNav';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
-  const isLoggedIn = true;
   const [showModalProfile, setShowModalProfile] = useState(false);
   const [showModalWeight, setShowModalWeight] = useState(false);
   const [showModalTarget, setShowModalTarget] = useState(false);
+  const [showDopMenuModal, setShowDopMenuModal] = useState(false);
+
+  const isLoggedIn = useSelector(selectIsLogin);
 
   const toggleModalProfile = () => {
     setShowModalProfile((showModalProfile) => !showModalProfile);
@@ -25,8 +30,17 @@ export default function Header() {
   const toggleModalWeight = () => {
     setShowModalWeight((showModalWeight) => !showModalWeight);
   };
-  const toggleModalTarget = () => {
-    setShowModalTarget((showModalTarget) => !showModalTarget);
+
+  const openModalTarget = () => {
+    setShowModalTarget(true);
+  };
+
+  const closeModalTarget = () => {
+    setShowModalTarget(false);
+  };
+
+  const toggleDopMenuModal = () => {
+    setShowDopMenuModal((showDopMenuModal) => !showDopMenuModal);
   };
   return (
     <header>
@@ -39,8 +53,11 @@ export default function Header() {
               showModalProfile={showModalProfile}
               onWeightClick={toggleModalWeight}
               showModalWeight={showModalWeight}
-              onTargetClick={toggleModalTarget}
-              showModalTarget={showModalTarget}
+              // onTargetClick={toggleModalTarget}
+              openModalTarget={openModalTarget}
+              closeModalTarget={closeModalTarget}
+              onDopMenuClick={toggleDopMenuModal}
+              showDopMenuModal={showDopMenuModal}
             />
           ) : (
             <Navigation>
