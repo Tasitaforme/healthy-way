@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BodyTextFirst,
   BodyTextSecond,
@@ -18,15 +18,25 @@ import {
   FoodName,
   RecFoodWrap,
 } from './RecommendedFood.styled';
-import { getRecommendedFood } from '../../redux/recommendedFood/operations';
+import { getRecommendedFood } from '../../requests/getRecommendedFood';
+// import { getRecommendedFood } from '../../redux/recommendedFood/operations';
 
 export default function RecommendedFood() {
-  const dispatch = useDispatch();
-  const recFood = useSelector(selectRecommendedFoodItems);
+  // const dispatch = useDispatch();
+  // const recFood = useSelector(selectRecommendedFoodItems);
+  // useEffect(() => {
+  //   dispatch(getRecommendedFood());
+  // }, []);
+
+  const [recFood, setRecFood] = useState([]);
   const randomFood = getRandomItems(recFood, 4);
 
   useEffect(() => {
-    dispatch(getRecommendedFood());
+    getRecommendedFood()
+      .then((data) => {
+        setRecFood(data);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   return (
