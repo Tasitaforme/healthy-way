@@ -8,6 +8,7 @@ import { FoodWrap, NutrientsList, WrapMain } from './Food.styled';
 import BigDoughnutChart from './Doughnuts/DoughnutCalories';
 import { getFoodDiaryToday } from '../../redux/diary/operations';
 import DoughnutNutrients from './Doughnuts/DoughnutNutrients';
+import Loader from '../Loader/Loader';
 
 export default function Food() {
   const dispatch = useDispatch();
@@ -33,7 +34,9 @@ export default function Food() {
   return (
     <FoodWrap>
       <HeadlineSecond>Food</HeadlineSecond>
-      {!isLoading && (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <WrapMain>
           <BigDoughnutChart calories={calories} baseCalories={baseCalories} />
 

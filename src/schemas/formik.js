@@ -46,6 +46,16 @@ export const changePasswordSchema = Yup.object().shape({
     ),
 });
 
+export const deleteUserSchema = Yup.object().shape({
+  password: Yup.string()
+    .required('Password is required')
+    .min(7, 'The password must be at least 7 characters long')
+    .matches(
+      PASSWORD_RULE,
+      `Your password is at least 7 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number. The letters is in English.`
+    ),
+});
+
 // export const registerSchema = Yup.object().shape({
 //   name: Yup.string()
 //     .required('Name is required')
