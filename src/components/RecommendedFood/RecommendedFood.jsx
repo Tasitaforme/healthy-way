@@ -18,18 +18,23 @@ import {
 } from './RecommendedFood.styled';
 import { getRecommendedFood } from '../../requests/getRecommendedFood';
 import Loader from '../Loader/Loader';
+import { useSelector } from 'react-redux';
+import { selectIsLogin } from '../../redux/auth/selectors';
 
 export default function RecommendedFood() {
+  const isLogin = useSelector(selectIsLogin);
   const [recFood, setRecFood] = useState([]);
   const randomFood = getRandomItems(recFood, 4);
 
   useEffect(() => {
-    getRecommendedFood()
-      .then((data) => {
-        setRecFood(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    if (isLogin) {
+      getRecommendedFood()
+        .then((data) => {
+          setRecFood(data);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [isLogin]);
 
   return (
     <RecFoodWrap>

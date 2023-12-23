@@ -19,18 +19,23 @@ import {
   BodyTextSecond,
 } from '../../components/StyledComponents/Components.styled';
 import Loader from '../../components/Loader/Loader';
+import { useSelector } from 'react-redux';
+import { selectIsLogin } from '../../redux/auth/selectors';
 
 export default function RecommendedFoodPage() {
+  const isLogin = useSelector(selectIsLogin);
   const [recFood, setRecFood] = useState([]);
   const randomFood = getRandomItems(recFood, 10);
 
   useEffect(() => {
-    getRecommendedFood()
-      .then((data) => {
-        setRecFood(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    if (isLogin) {
+      getRecommendedFood()
+        .then((data) => {
+          setRecFood(data);
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [isLogin]);
 
   return (
     <main>
