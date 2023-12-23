@@ -38,16 +38,12 @@ export const genderAndAgeSchema = Yup.object().shape({
 export const parametersSchema = Yup.object().shape({
   height: Yup.number()
     .required('Required')
-    .min(120, 'Height can not be less than 120')
-    .max(250, 'Height can not be more than 250')
+    .min(140, 'Height can not be less than 140')
+    .max(240, 'Height can not be more than 240')
     .typeError('Height must be a number'),
   weight: Yup.number()
     .required('Required')
-    .min(30, 'Weight can not be less than 30')
-    .max(250, 'Weight can not be more than 250')
+    .min(40, 'Weight can not be less than 40')
+    .max(220, 'Weight can not be more than 220')
     .typeError('Weight must be a number'),
-});
-
-export const activitySchema = Yup.object().shape({
-  activityRatio: Yup.string().required('Required, choose one of five'),
 });

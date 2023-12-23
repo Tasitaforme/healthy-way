@@ -50,8 +50,10 @@ export const BackButtonLast = styled(BackButton)`
   }
 `;
 
-export const Error = styled(FormikStyledErrorMessage)`
+export const Error = styled.p`
   position: absolute;
-  top: -30px;
+  top: -20px;
   left: 18px;
+  font-size: 12px;
+  color: #e74a3b;
 `;
