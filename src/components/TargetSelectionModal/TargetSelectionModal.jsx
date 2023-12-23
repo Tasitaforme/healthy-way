@@ -17,6 +17,8 @@ import {
 } from './TargetSelectionModal.styled';
 
 import loseFatMen from '../../assets/images/header/Lose-fat-image-men.png';
+import MusculeMen from '../../assets/images/header/Gain-muscle.png';
+import MaintakeMen from '../../assets/images/header/Maintake-image-men.png';
 
 export default function TargetSelectionModal({ onCloseModal }) {
   return (
@@ -41,13 +43,13 @@ export default function TargetSelectionModal({ onCloseModal }) {
             </TargetWrapper>
             <TargetWrapper>
               <ImgBorder>
-                <TargetImg alt="Maintain" />
+                <TargetImg src={MaintakeMen} alt="Maintain" />
               </ImgBorder>
               <TargetText>Maintain</TargetText>
             </TargetWrapper>
             <TargetWrapper>
               <ImgBorder>
-                <TargetImg alt="Gain muscle" />
+                <TargetImg src={MusculeMen} alt="Gain muscle" />
               </ImgBorder>
               <TargetText>Gain muscle</TargetText>
             </TargetWrapper>
@@ -56,6 +58,40 @@ export default function TargetSelectionModal({ onCloseModal }) {
         </ModalForm>
       </Modal>
       <CancelBtn>Cancel</CancelBtn>
+
+      <GlobalWrapper>
+        <IconWrapper>
+          <LoseMen>
+            <LoseMenImage src={loseMenImg} alt="" />
+          </LoseMen>
+          <div>
+            <p>Goal</p>
+            <p>Lose fat</p>
+          </div>
+          <div>
+            <ArrowIcon onClick={onTargetClick}>
+              <use href={`${sprite}#arrow-down`} />
+            </ArrowIcon>
+          </div>
+        </IconWrapper>
+        <IconWrapper>
+          <LoseMen>
+            <LoseMenImage src={weightImg} alt="" />
+          </LoseMen>
+          <div>
+            <p>Weight</p>
+            <p>
+              65
+              <span> kg</span>
+            </p>
+          </div>
+          <div>
+            <ArrowIcon onClick={onWeightClick}>
+              <use href={`${sprite}#edit`} />
+            </ArrowIcon>
+          </div>
+        </IconWrapper>
+      </GlobalWrapper>
     </ModalWrapper>
   );
 }

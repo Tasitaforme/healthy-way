@@ -15,7 +15,13 @@ box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
  right: 80px;
  top: 120px;
 }
+`;
 
+export const GlobalMobileWrapper = styled.div`
+width: 300px;
+border-radius: 12px;
+background:  #0F0F0F;
+box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
 `;
 
 export const Modal = styled.div`

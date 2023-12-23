@@ -10,6 +10,14 @@ gap: 6px;
 display: flex;
 flex-direction: row;
 align-itams: center;
+
+
+@media screen and (min-width: 834px){
+   margin-left: 75px;
+  };
+  @media screen and (min-width: 1440px){
+    margin-left: 126px;
+  };
 `
 export const MenuIcon = styled.svg`
 margin: auto;
