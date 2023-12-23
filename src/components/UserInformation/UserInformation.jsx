@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { profileSettingSchema } from '../../schemas/profileSettings';
+import { selectUserInfo } from '../../redux/auth/selectors';
+import { updateUser, updateAvatar } from '../../redux/auth/operations.js';
+// import toast from 'react-hot-toast';
 
 import {
   UserInformationField,
@@ -25,25 +28,24 @@ import {
   UserButtonsWrapper,
 } from './UserInformation.styled';
 
-import testAvatar from './Avatar.png'; // не забути видалити
 import downloadIcon from '../../assets/images/profileSettings/download.png';
 
 export default function UserInformation() {
   const dispatch = useDispatch();
 
-  // локальні стейти
   const [isAvatarChanged, setIsAvatarChanged] = useState(false);
   const [avatarFile, setAvatarFile] = useState(null);
-  const [avatarPreview, setAvatarPreview] = useState(); //сюди треба поставити аватарку юзера з бекенду
+  const [avatarPreview, setAvatarPreview] = useState();
 
-  // початкові значення інпутів (сюди треба поставити  getCurrentUser) данні
+  const userProfile = useSelector(selectUserInfo);
+
   const initialValues = {
-    name: 'Konstantin',
-    age: '34',
-    gender: 'male',
-    height: '170',
-    weight: '90',
-    activity: '1.2',
+    name: userProfile.name,
+    age: userProfile.age,
+    gender: userProfile.gender,
+    height: userProfile.height,
+    weight: userProfile.weight,
+    activityRatio: userProfile.activityRatio.toString(),
   };
 
   const handleChangeAvatar = (event) => {
@@ -58,7 +60,18 @@ export default function UserInformation() {
   };
 
   const handleClickSave = (values) => {
-    // dispatch(updateUser(values)); - функцію updateUser треба додати в operation
+    values.height = Number(values.height);
+    values.weight = Number(values.weight);
+    values.age = Number(values.age);
+    values.activityRatio = Number(values.activityRatio);
+    dispatch(updateUser(values));
+    // toast.success('Your profile information has been successfully updated!');
+
+    if (isAvatarChanged) {
+      const formData = new FormData();
+      formData.append('avatarURL', avatarFile);
+      dispatch(updateAvatar(formData));
+    }
   };
 
   const handleClickCancel = (resetForm) => {
@@ -71,18 +84,16 @@ export default function UserInformation() {
     <Formik
       initialValues={initialValues}
       validationSchema={profileSettingSchema}
-      // onSubmit={(values) => {
-      //   console.log(values); // прибрати цей консоль
-      // }}
+      onSubmit={handleClickSave}
     >
-      {(formikProps) => (
+      {({ errors, values, resetForm }) => (
         <UserForm>
           <UserInformationBlock>
             <label>Your name</label>
             <UserInformationField
               name="name"
               placeholder="Enter your name"
-              className={formikProps.errors.name ? 'input-error' : ''}
+              className={errors.name ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="name" component="p" />
           </UserInformationBlock>
@@ -90,6 +101,7 @@ export default function UserInformation() {
           <UserInformationBlock>
             <p>Your photo</p>
             <AvatarInput
+              accept="image/*"
               id="avatar"
               name="avatar"
               type="file"
@@ -98,7 +110,7 @@ export default function UserInformation() {
             <AvatarLabel htmlFor="avatar">
               <AvatarContainer>
                 <AvatarImg
-                  src={avatarPreview || testAvatar}
+                  src={avatarPreview || userProfile.avatarURL}
                   alt="userAvatar"
                 ></AvatarImg>
               </AvatarContainer>
@@ -113,7 +125,7 @@ export default function UserInformation() {
             <UserInformationField
               name="age"
               placeholder="Enter your age"
-              className={formikProps.errors.age ? 'input-error' : ''}
+              className={errors.age ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="age" component="div" />
           </UserInformationBlock>
@@ -128,7 +140,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="gender"
-                  value="male"
+                  value="Male"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserGenderText>Male</UserGenderText>
@@ -138,7 +150,7 @@ export default function UserInformation() {
                 <UserInformationRadioInput
                   type="radio"
                   name="gender"
-                  value="female"
+                  value="Female"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserGenderText>Female</UserGenderText>
@@ -151,7 +163,7 @@ export default function UserInformation() {
             <UserInformationField
               name="height"
               placeholder="Enter your height"
-              className={formikProps.errors.height ? 'input-error' : ''}
+              className={errors.height ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="height" component="div" />
           </UserInformationBlock>
@@ -161,7 +173,7 @@ export default function UserInformation() {
             <UserInformationField
               name="weight"
               placeholder="Enter your weight"
-              className={formikProps.errors.weight ? 'input-error' : ''}
+              className={errors.weight ? 'input-error' : ''}
             />
             <UserInformationErrorMessage name="weight" component="div" />
           </UserInformationBlock>
@@ -175,8 +187,9 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
+                  name="activityRatio"
                   value="1.2"
+                  checked={values.activityRatio === '1.2'}
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserInformationRadioText>
@@ -187,7 +200,8 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
+                  name="activityRatio"
+                  checked={values.activityRatio === '1.375'}
                   value="1.375"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -200,7 +214,8 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
+                  name="activityRatio"
+                  checked={values.activityRatio === '1.55'}
                   value="1.55"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -212,7 +227,8 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
+                  name="activityRatio"
+                  checked={values.activityRatio === '1.725'}
                   value="1.725"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -224,7 +240,8 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
+                  name="activityRatio"
+                  checked={values.activityRatio === '1.9'}
                   value="1.9"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -240,13 +257,13 @@ export default function UserInformation() {
           <UserButtonsWrapper>
             <UserInformationSubmitButton
               type="submit"
-              onClick={() => handleClickSave(formikProps.values)}
+              onClick={() => handleClickSave(values)}
             >
               Save
             </UserInformationSubmitButton>
             <UserInformationCancelButton
               type="button"
-              onClick={() => handleClickCancel(formikProps.resetForm)}
+              onClick={() => handleClickCancel(resetForm)}
             >
               Cancel
             </UserInformationCancelButton>

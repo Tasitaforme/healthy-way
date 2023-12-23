@@ -181,25 +181,34 @@ export const currentUser = createAsyncThunk(
   }
 );
 
-/*
- * PUT @ /api/user/update
- * headers: Authorization: Bearer token
- * * body: {name, gender, age, height, weight, activityRatio}
- */
-// TODO (сюди потрібно прописати оновлення по юзеру (перевірити) )
 export const updateUser = createAsyncThunk(
-  'user/update',
-  async (body, { rejectWithValue }) => {
+  'user/updateUser',
+  async (data, thunkAPI) => {
     try {
-      const { data } = await instance.put('/api/user/current', body);
-      return data;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
+      const response = await instance.put('/api/user/update', data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  'user/updateAvatar',
+  async (avatarData, thunkAPI) => {
+    try {
+      const response = await instance.post(
+        '/api/user/load-avatar',
+        avatarData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -212,11 +221,39 @@ export const updateUser = createAsyncThunk(
 
 // TODO (сюди потрібно прописати оновлення по вазі )
 
+export const updateWeight = createAsyncThunk(
+  'user/weight',
+  async (inputWeight, thunkAPI) => {
+    try {
+      const response = await instance.put('/api/user/weight', {
+        weight: inputWeight,
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 /*
  * PUT @ /api/user/goal
  * headers: Authorization: Bearer token
  * * body: {}
  */
 // TODO (сюди потрібно прописати оновлення по цілі)
+
+export const updateGoal = createAsyncThunk(
+  'user/goal',
+  async (selectedGoal, thunkAPI) => {
+    try {
+      const response = await instance.put('/api/user/goal', {
+        goal: selectedGoal,
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export default instance;

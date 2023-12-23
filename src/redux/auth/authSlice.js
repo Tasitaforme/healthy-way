@@ -6,6 +6,10 @@ import {
   logOut,
   currentUser,
   refresh,
+  updateUser,
+  updateAvatar,
+  updateWeight,
+  updateGoal,
 } from './operations';
 
 const initialState = {
@@ -13,10 +17,10 @@ const initialState = {
     name: null,
     email: null,
     age: null,
-    gender: '',
+    gender: null,
     height: null,
     weight: null,
-    goal: '',
+    goal: 0,
     baseWater: '',
     activityRatio: '',
     fat: '',
@@ -42,6 +46,27 @@ const handleFulfilled = (state) => {
 const handleRejected = (state, payload) => {
   state.isLoading = false;
   state.error = payload.message;
+};
+
+const handleUpdateUserFulfilled = (state, { payload }) => {
+  state.user = { ...state.user, ...payload.data };
+  state.isLogin = true;
+};
+const handleUpdateAvatarFulfilled = (state, action) => {
+  state.user.avatarURL = action.payload;
+  state.isLogin = true;
+};
+
+const handleUpdateWeightFulfilled = (state, action) => {
+  state.user.weight = action.payload.weight;
+  // state.user.BMR = action.payload.bmr;
+};
+
+const handleUpdateGoalFulfilled = (state, action) => {
+  state.user.goal = action.payload.goal;
+  // state.user.fat = action.payload.fat;
+  // state.user.protein = action.payload.protein;
+  // state.user.carbohydrate = action.payload.carbohydrate;
 };
 
 const authSlice = createSlice({
@@ -85,7 +110,18 @@ const authSlice = createSlice({
       })
       .addCase(currentUser.rejected, (state, { payload }) => {
         handleRejected(state, payload);
-      });
+      })
+      .addCase(updateUser.pending, handlePending)
+      .addCase(updateUser.fulfilled, handleUpdateUserFulfilled)
+      .addCase(updateUser.rejected, handleRejected)
+      .addCase(updateAvatar.fulfilled, handleUpdateAvatarFulfilled)
+      .addCase(updateAvatar.rejected, handleRejected)
+      .addCase(updateWeight.pending, handlePending)
+      .addCase(updateWeight.fulfilled, handleUpdateWeightFulfilled)
+      .addCase(updateWeight.rejected, handleRejected)
+      .addCase(updateGoal.pending, handlePending)
+      .addCase(updateGoal.fulfilled, handleUpdateGoalFulfilled)
+      .addCase(updateGoal.rejected, handleRejected);
   },
 });
 
