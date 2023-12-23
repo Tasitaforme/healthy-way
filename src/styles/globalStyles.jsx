@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
         url(${PoppinsRegular}) format('truetype');
         font-weight: 400;
         font-style: normal;
+        font-display: swap;
     }
 
     @font-face {
@@ -20,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
         url(${PoppinsMedium}) format('truetype');
         font-weight: 500;
         font-style: normal;
+        font-display: swap;
     }
 
     @font-face {
@@ -28,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
         url(${PoppinsSemiBold}) format('truetype');
         font-weight: 600;
         font-style: normal;
+        font-display: swap;
     }
 
     @font-face {
@@ -36,6 +39,7 @@ export const GlobalStyle = createGlobalStyle`
         url(${PoppinsBold}) format('truetype');
         font-weight: 700;
         font-style: normal;
+        font-display: swap;
     }
     
     body {
