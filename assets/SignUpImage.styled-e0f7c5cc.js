@@ -1,35 +1,4 @@
-import{s as n,L as e}from"./index-664b27fd.js";import{a,b as t}from"./Components.styled-8218cd64.js";const m=n(a)`
-  color: var(--grey-light);
-  margin-top: 16px;
-  margin-bottom: 24px;
-`,d=n(t)`
-  color: var(--grey-light);
-  margin-bottom: 16px;
-
-  @media screen and (min-width: 834px) {
-    margin-top: 100px;
-    display: inline-block;
-    margin-right: 16px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    text-align: left;
-  }
-`,p=n(e)`
-  color: var(--white);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.43;
-  transition: color var(--transition-dur-and-fun);
-
-  &:hover,
-  &:focus {
-    color: var(--green-light);
-  }
-  @media screen and (min-width: 834px) {
-    display: inline-block;
-  }
-`,x=n.div`
+import{s as e}from"./index-75c8b229.js";import{S as n,a}from"./SignInPage.styled-f5f47880.js";const t=e.div`
   padding: 0px 0px 40px 0px;
 
   @media screen and (min-width: 834px) {
@@ -42,18 +11,18 @@ import{s as n,L as e}from"./index-664b27fd.js";import{a,b as t}from"./Components
     justify-content: center;
     padding: 0px 116px 60px 116px;
   }
-`,g=n.main`
+`,r=e.main`
   margin-top: 24px;
 
   @media screen and (min-width: 834px) {
     margin-top: 40px;
   }
-`,s=n.div`
+`,m=e.div`
   @media screen and (min-width: 834px) {
     display: flex;
     justify-content: center;
   }
-`,c=n.div`
+`,x=e.div`
   margin-top: 24px;
 
   @media screen and (min-width: 834px) {
@@ -67,7 +36,7 @@ import{s as n,L as e}from"./index-664b27fd.js";import{a,b as t}from"./Components
     display: block;
     margin-top: 80px;
   }
-`,l=n.div`
+`,o=e.div`
   margin-top: 48px;
   width: 100%;
   display: flex;
@@ -84,14 +53,14 @@ import{s as n,L as e}from"./index-664b27fd.js";import{a,b as t}from"./Components
     margin-top: 168px;
     padding: 0px;
   }
-`,h=n(d)`
+`,g=e(n)`
   margin-bottom: 0px;
 
   @media screen and (min-width: 834px) {
     margin-top: 0px;
     margin-right: 0px;
   }
-`,u=n(p)``,b=n.div`
+`,s=e(a)``,c=e.div`
   width: 100%;
   height: ${i=>i.$heightMob};
   background-image: ${i=>`url(${i.$imageMob1x})`};
@@ -128,4 +97,4 @@ import{s as n,L as e}from"./index-664b27fd.js";import{a,b as t}from"./Components
       background-image: ${i=>`url(${i.$imageDesk2x})`};
     }
   }
-`;export{b as B,x as F,m as H,s as I,g as M,d as S,c as T,p as a,l as b,h as c,u as d};
+`;export{c as B,t as F,m as I,r as M,o as S,x as T,g as a,s as b};
