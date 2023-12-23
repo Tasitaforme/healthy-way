@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { profileSettingSchema } from '../../schemas/profileSettings';
 import { selectUserInfo } from '../../redux/auth/selectors';
 import { updateUser, updateAvatar } from '../../redux/auth/operations.js';
+// import toast from 'react-hot-toast';
 
 import {
   UserInformationField,
@@ -32,12 +33,10 @@ import downloadIcon from '../../assets/images/profileSettings/download.png';
 export default function UserInformation() {
   const dispatch = useDispatch();
 
-  // локальні стейти
   const [isAvatarChanged, setIsAvatarChanged] = useState(false);
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState();
 
-  // селектори
   const userProfile = useSelector(selectUserInfo);
 
   const initialValues = {
@@ -46,8 +45,7 @@ export default function UserInformation() {
     gender: userProfile.gender,
     height: userProfile.height,
     weight: userProfile.weight,
-    activity: userProfile.activityRatio,
-    // avatar: userProfile.avatarURL,
+    activityRatio: userProfile.activityRatio.toString(),
   };
 
   const handleChangeAvatar = (event) => {
@@ -65,7 +63,9 @@ export default function UserInformation() {
     values.height = Number(values.height);
     values.weight = Number(values.weight);
     values.age = Number(values.age);
+    values.activityRatio = Number(values.activityRatio);
     dispatch(updateUser(values));
+    // toast.success('Your profile information has been successfully updated!');
 
     if (isAvatarChanged) {
       const formData = new FormData();
@@ -101,6 +101,7 @@ export default function UserInformation() {
           <UserInformationBlock>
             <p>Your photo</p>
             <AvatarInput
+              accept="image/*"
               id="avatar"
               name="avatar"
               type="file"
@@ -186,9 +187,9 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
+                  name="activityRatio"
                   value="1.2"
-                  checked={values.activity === 1.2}
+                  checked={values.activityRatio === '1.2'}
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
                 <UserInformationRadioText>
@@ -199,8 +200,8 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
-                  checked={values.activity === 1.375}
+                  name="activityRatio"
+                  checked={values.activityRatio === '1.375'}
                   value="1.375"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -213,8 +214,8 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
-                  checked={values.activity === 1.55}
+                  name="activityRatio"
+                  checked={values.activityRatio === '1.55'}
                   value="1.55"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -226,8 +227,8 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
-                  checked={values.activity === 1.725}
+                  name="activityRatio"
+                  checked={values.activityRatio === '1.725'}
                   value="1.725"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>
@@ -239,8 +240,8 @@ export default function UserInformation() {
               <UserInformationRadioLabel>
                 <UserInformationRadioInput
                   type="radio"
-                  name="activity"
-                  checked={values.activity === 1.9}
+                  name="activityRatio"
+                  checked={values.activityRatio === '1.9'}
                   value="1.9"
                 />
                 <UserInformationRadioFake></UserInformationRadioFake>

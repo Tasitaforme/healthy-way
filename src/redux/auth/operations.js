@@ -182,8 +182,8 @@ export const currentUser = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  'user/update',
-  async ({ data }, thunkAPI) => {
+  'user/updateUser',
+  async (data, thunkAPI) => {
     try {
       const response = await instance.put('/api/user/update', data);
       return response.data;
@@ -212,29 +212,6 @@ export const updateAvatar = createAsyncThunk(
     }
   }
 );
-
-/*
- * PUT @ /api/user/update
- * headers: Authorization: Bearer token
- * * body: {name, gender, age, height, weight, activityRatio}
- */
-// TODO (сюди потрібно прописати оновлення по юзеру (перевірити) )
-// export const updateUser = createAsyncThunk(
-//   'user/update',
-//   async (body, { rejectWithValue }) => {
-//     try {
-//       const { data } = await instance.put('/api/user/current', body);
-//       return data;
-//     } catch ({ response }) {
-//       const { status, data } = response;
-//       const error = {
-//         status,
-//         message: data.message,
-//       };
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
 
 /*
  * PUT @ /api/user/weight

@@ -46,13 +46,12 @@ const handleRejected = (state, payload) => {
   state.error = payload.message;
 };
 
-const handleUpdateUserFulfilled = (state, action) => {
-  state.user = { ...state.user, ...action.meta.arg };
+const handleUpdateUserFulfilled = (state, { payload }) => {
+  state.user = { ...state.user, ...payload.data };
   state.isLogin = true;
 };
-
 const handleUpdateAvatarFulfilled = (state, action) => {
-  state.user = { ...state.user, avatarURL: action.payload };
+  state.user.avatarURL = action.payload;
   state.isLogin = true;
 };
 
@@ -98,8 +97,11 @@ const authSlice = createSlice({
       .addCase(currentUser.rejected, (state, { payload }) => {
         handleRejected(state, payload);
       })
+      .addCase(updateUser.pending, handlePending)
       .addCase(updateUser.fulfilled, handleUpdateUserFulfilled)
-      .addCase(updateAvatar.fulfilled, handleUpdateAvatarFulfilled);
+      .addCase(updateUser.rejected, handleRejected)
+      .addCase(updateAvatar.fulfilled, handleUpdateAvatarFulfilled)
+      .addCase(updateAvatar.rejected, handleRejected);
   },
 });
 
