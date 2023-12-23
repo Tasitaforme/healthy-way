@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import {
   Chart as ChartJS,
@@ -11,6 +11,11 @@ import {
   Filler,
   Legend,
 } from 'chart.js';
+import {
+  IconWrap,
+  StyledLink,
+} from 'components/StyledComponents/Components.styled';
+import sprite from 'assets/sprite.svg';
 import { Line } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
 import {
@@ -28,9 +33,9 @@ import {
   TextAverageValue,
   TableBlock,
   SelectBlock,
-  // SelectForm,
   SelectOption,
 } from './DashboardPage.styled';
+import { GetStatisticsPerMonth } from '../../redux/statistics/operations';
 
 ChartJS.register(
   CategoryScale,
@@ -52,7 +57,7 @@ export const option = {
       backgroundColor: '#E3FFA8',
       borderColor: '#E3FFA8',
       borderWidth: 1,
-      pointBorderColor: '#000',
+      pointBorderColor: 'var(--black-primary)',
       pointBackgroundColor: '#E3FFA8',
       pointHoverRadius: 6,
     },
@@ -62,17 +67,17 @@ export const option = {
       enabled: true,
       mode: 'index',
       intersect: true,
-      backgroundColor: '#000',
+      backgroundColor: 'var(--black-primary)',
       bodyFontFamily: 'Poppins',
       bodyFont: { size: 32 },
       borderWidth: 186,
-      position: 'nearest',
+      position: 'average',
       displayColors: false,
       cornerRadius: 10,
       yAlign: 'bottom',
       bodyAlign: 'center',
       titleFont: { size: 0 },
-      titleAlign: 'center',
+      titleAlign: 'left',
       boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
     },
 
@@ -82,7 +87,6 @@ export const option = {
     },
     title: {
       display: false,
-      text: 'Chart.js Line Chart',
     },
   },
 };
@@ -103,8 +107,17 @@ function getDaysInMonth() {
   return daysInMonth;
 }
 
+function arrayMean(arr) {
+  const total = arr.reduce((previousValue, number) => {
+    return previousValue + number;
+  }, 0);
+  return total / arr.length;
+}
+
 let weight = 75;
 let AverageCalories = 1700;
+// let AverageCalories = arrayMean();
+
 let AverageWater = 1700;
 let AverageWeight = 75;
 const months = [
@@ -123,6 +136,7 @@ const months = [
 ];
 
 const currentMonth = currentDate.getMonth();
+console.log(currentMonth);
 function getMonthsList() {
   const monthsList = months
     .slice(currentMonth)
@@ -142,19 +156,19 @@ const customStyles = {
   dropdownIndicator: (provided, state) => ({
     ...provided,
     ':hover': {
-      color: '#E3FFA8',
+      color: 'var(--green-light)',
       transition: 'transform 0.3s ease',
       transform: 'rotate(180deg)',
     },
   }),
   control: (provided, state) => ({
     ...provided,
-    backgroundColor: '#000',
+    backgroundColor: 'var(--black-primary)',
     border: 'none',
     cursor: 'pointer',
     ':hover': {
-      borderColor: '#E3FFA8',
-      color: '#E3FFA8',
+      borderColor: 'var(--green-light)',
+      color: 'var(--green-light)',
     },
   }),
   menu: (provided, state) => ({
@@ -173,10 +187,9 @@ const customStyles = {
     ...provided,
     fontSize: '14px',
     backgroundColor: state.isSelected ? 'rgba(255, 255, 255, 0.03)' : '#0f0f0f',
-    color: state.isSelected ? '#b6b6b6' : '#b6b6b6',
+    color: '#b6b6b6',
     ':hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.03)',
-      color: '#E3FFA8',
+      color: 'var(--green-light)',
     },
   }),
 };
@@ -189,13 +202,37 @@ const ArrMonth = resultArrMonth.map((month) => ({
 
 export default function DashboardPage() {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [caloriesArr, setCaloriesArr] = useState([]);
+  const [waterArr, setWaterArr] = useState([]);
+  const [weightArr, setWeightArr] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let numberMonth = currentMonth;
+
+      if (selectedOption !== null) {
+        numberMonth = selectedOption;
+      }
+      const response = await GetStatisticsPerMonth(numberMonth);
+      console.log(response);
+
+      setCaloriesArr(response.calories);
+      setWaterArr(response.water);
+      setWeightArr(response.weight);
+    };
+    fetchData();
+  }, [selectedOption]);
+
+  console.log(GetStatisticsPerMonth(12));
+  console.log(caloriesArr);
+  console.log(waterArr);
+  console.log(weightArr);
   const daysInCurrentMonth = getDaysInMonth();
   let labels = createArrayWithNumbers(daysInCurrentMonth);
   if (selectedOption !== null) {
     const year = currentDate.getFullYear();
     const selectMonth = months.indexOf(selectedOption.label) + 1;
     const lastDayOfMonth = new Date(year, selectMonth, 0).getDate();
-    console.log(lastDayOfMonth);
     labels = createArrayWithNumbers(lastDayOfMonth);
   }
   const data = {
@@ -217,6 +254,15 @@ export default function DashboardPage() {
     <>
       <SelectBlock>
         <SelectOption>
+          <StyledLink to="/main">
+            <IconWrap
+              width="24px"
+              height="24px"
+              style={{ transform: 'rotate(180deg)' }}
+            >
+              <use href={`${sprite}#arrow-right`} />
+            </IconWrap>
+          </StyledLink>
           <h2>Months</h2>
           <Select
             styles={customStyles}
