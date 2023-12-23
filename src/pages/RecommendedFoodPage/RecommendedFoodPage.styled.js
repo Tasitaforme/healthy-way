@@ -40,7 +40,7 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 1440px) {
     flex-direction: row;
     column-gap: 44px;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-start;
   }
 `;
@@ -48,6 +48,8 @@ export const Wrapper = styled.div`
 export const BackgroundImage = styled.div`
   width: 300px;
   height: 312px;
+  flex-shrink: 0;
+
   background-image: url(${foodMob1x});
   background-position: center;
   background-size: cover;
@@ -75,7 +77,7 @@ export const BackgroundImage = styled.div`
     width: 536px;
     height: 560px;
     background-image: url(${foodDesk1x});
-
+    margin-left: 116px;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
