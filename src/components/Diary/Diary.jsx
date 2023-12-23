@@ -39,11 +39,11 @@ export default function Diary() {
         </StyledLink>
       </TitleWrap>
 
-      {/* <DiaryList>
+      <DiaryList>
         {totalNutrientsForMeals.map((item, index) => (
           <DiaryItem key={index} data={item} meals={meals} />
         ))}
-      </DiaryList> */}
+      </DiaryList>
     </DiaryWrap>
   );
 }
