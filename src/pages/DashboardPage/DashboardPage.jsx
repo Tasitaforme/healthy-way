@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import {
   Chart as ChartJS,
@@ -11,8 +11,13 @@ import {
   Filler,
   Legend,
 } from 'chart.js';
+import {
+  IconWrap,
+  StyledLink,
+} from 'components/StyledComponents/Components.styled';
+import sprite from 'assets/sprite.svg';
 import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+
 import {
   TextLabel,
   ListStat,
@@ -28,9 +33,9 @@ import {
   TextAverageValue,
   TableBlock,
   SelectBlock,
-  // SelectForm,
   SelectOption,
 } from './DashboardPage.styled';
+import { GetStatisticsPerMonth } from '../../requests/operationsStatistics';
 
 ChartJS.register(
   CategoryScale,
@@ -42,17 +47,15 @@ ChartJS.register(
   Filler,
   Legend
 );
-
-export const option = {
+const options = {
   responsive: true,
-
   elements: {
     point: {
       radius: 0,
       backgroundColor: '#E3FFA8',
       borderColor: '#E3FFA8',
       borderWidth: 1,
-      pointBorderColor: '#000',
+      pointBorderColor: 'var(--black-primary)',
       pointBackgroundColor: '#E3FFA8',
       pointHoverRadius: 6,
     },
@@ -62,17 +65,17 @@ export const option = {
       enabled: true,
       mode: 'index',
       intersect: true,
-      backgroundColor: '#000',
+      backgroundColor: 'var(--black-primary)',
       bodyFontFamily: 'Poppins',
       bodyFont: { size: 32 },
       borderWidth: 186,
-      position: 'nearest',
+      position: 'average',
       displayColors: false,
       cornerRadius: 10,
       yAlign: 'bottom',
       bodyAlign: 'center',
       titleFont: { size: 0 },
-      titleAlign: 'center',
+      titleAlign: 'left',
       boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
     },
 
@@ -82,7 +85,24 @@ export const option = {
     },
     title: {
       display: false,
-      text: 'Chart.js Line Chart',
+    },
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
+      ticks: {
+        callback: function (value, index, type) {
+          if (value === 0) {
+            return value;
+          } else {
+            const formattedValue = Math.round(value / 1000);
+            return `${formattedValue}${type === 'calories' ? 'K' : 'L'}`;
+          }
+        },
+      },
+    },
+    x: {
+      beginAtZero: false,
     },
   },
 };
@@ -103,10 +123,13 @@ function getDaysInMonth() {
   return daysInMonth;
 }
 
-let weight = 75;
-let AverageCalories = 1700;
-let AverageWater = 1700;
-let AverageWeight = 75;
+function arrayMean(arr) {
+  const total = arr.reduce((previousValue, number) => {
+    return previousValue + number;
+  }, 0);
+  return total / arr.length;
+}
+
 const months = [
   'January',
   'February',
@@ -142,19 +165,19 @@ const customStyles = {
   dropdownIndicator: (provided, state) => ({
     ...provided,
     ':hover': {
-      color: '#E3FFA8',
+      color: 'var(--green-light)',
       transition: 'transform 0.3s ease',
       transform: 'rotate(180deg)',
     },
   }),
   control: (provided, state) => ({
     ...provided,
-    backgroundColor: '#000',
+    backgroundColor: 'var(--black-primary)',
     border: 'none',
     cursor: 'pointer',
     ':hover': {
-      borderColor: '#E3FFA8',
-      color: '#E3FFA8',
+      borderColor: 'var(--green-light)',
+      color: 'var(--green-light)',
     },
   }),
   menu: (provided, state) => ({
@@ -173,38 +196,110 @@ const customStyles = {
     ...provided,
     fontSize: '14px',
     backgroundColor: state.isSelected ? 'rgba(255, 255, 255, 0.03)' : '#0f0f0f',
-    color: state.isSelected ? '#b6b6b6' : '#b6b6b6',
+    color: '#b6b6b6',
     ':hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.03)',
-      color: '#E3FFA8',
+      color: 'var(--green-light)',
     },
   }),
 };
 const resultArrMonth = getMonthsList();
 
-const ArrMonth = resultArrMonth.map((month) => ({
+let ArrMonth = resultArrMonth.map((month) => ({
   value: month,
   label: month,
 }));
 
 export default function DashboardPage() {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [caloriesArr, setCaloriesArr] = useState([]);
+  const [waterArr, setWaterArr] = useState([]);
+  const [weightArr, setWeightArr] = useState([]);
   const daysInCurrentMonth = getDaysInMonth();
   let labels = createArrayWithNumbers(daysInCurrentMonth);
+  let selectMonth = 0;
   if (selectedOption !== null) {
     const year = currentDate.getFullYear();
-    const selectMonth = months.indexOf(selectedOption.label) + 1;
+    selectMonth = months.indexOf(selectedOption.label) + 1;
     const lastDayOfMonth = new Date(year, selectMonth, 0).getDate();
-    console.log(lastDayOfMonth);
     labels = createArrayWithNumbers(lastDayOfMonth);
   }
-  const data = {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (weightArr.length !== 0) {
+          setCaloriesArr([]);
+          setWaterArr([]);
+          setWeightArr([]);
+        }
+        let numberMonth = currentMonth + 1;
+        if (selectedOption !== null) {
+          numberMonth = selectMonth;
+        }
+        console.log(numberMonth);
+        const response = await GetStatisticsPerMonth(numberMonth);
+        setCaloriesArr(response.calories);
+        setWaterArr(response.water);
+        setWeightArr(response.weight);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [selectedOption]);
+
+  const wightData = () => {
+    if (weightArr.length === 0) {
+      return labels.map((day) => (day = 0));
+    }
+    const weightAr = labels.map((day) => {
+      const matchingData = weightArr.find(
+        (data) => parseInt(data._id, 10) === day
+      );
+      return matchingData ? matchingData.total : 0;
+    });
+    const moreZero = weightAr.find((data) => data > 0);
+    const notZero = weightAr.map((dat) => (dat === 0 ? moreZero : dat));
+    return notZero;
+  };
+  const weightArrLab = wightData();
+  const caloriesArrLab = labels.map((day) => {
+    const matchingData = caloriesArr.find(
+      (data) => parseInt(data._id, 10) === day
+    );
+    return matchingData ? matchingData.total : 0;
+  });
+  const waterArrLab = labels.map((day) => {
+    const matchingData = waterArr.find(
+      (data) => parseInt(data._id, 10) === day
+    );
+    return matchingData ? matchingData.total : 0;
+  });
+
+  const AverageCalories = Math.round(arrayMean(caloriesArrLab));
+  const AverageWater = Math.round(arrayMean(waterArrLab));
+  const AverageWeight = Math.round(arrayMean(weightArrLab));
+
+  const dataCalories = {
     labels,
     datasets: [
       {
         fill: true,
         label: '',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 3000 })),
+        data: caloriesArrLab,
+        cubicInterpolationMode: 'monotone',
+        borderColor: '#E3FFA8',
+        backgroundColor: '#0F0F0F',
+        boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
+      },
+    ],
+  };
+  const dataWoter = {
+    labels,
+    datasets: [
+      {
+        fill: true,
+        label: '',
+        data: waterArrLab,
         cubicInterpolationMode: 'monotone',
         borderColor: '#E3FFA8',
         backgroundColor: '#0F0F0F',
@@ -217,6 +312,15 @@ export default function DashboardPage() {
     <>
       <SelectBlock>
         <SelectOption>
+          <StyledLink to="/main">
+            <IconWrap
+              width="24px"
+              height="24px"
+              style={{ transform: 'rotate(180deg)' }}
+            >
+              <use href={`${sprite}#arrow-right`} />
+            </IconWrap>
+          </StyledLink>
           <h2>Months</h2>
           <Select
             styles={customStyles}
@@ -245,7 +349,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <ChartBlock>
-              <Line options={option} data={data} />
+              <Line type={'calories'} options={options} data={dataCalories} />
             </ChartBlock>
           </LiCart>
           <LiCart>
@@ -257,7 +361,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <ChartBlock>
-              <Line options={option} data={data} />
+              <Line type={'water'} options={options} data={dataWoter} />
             </ChartBlock>
           </LiCart>
         </ListChart>
@@ -274,7 +378,7 @@ export default function DashboardPage() {
             <ListStat>
               {labels.map((dat, index) => (
                 <ListItem key={index}>
-                  <TextWeight>{weight}</TextWeight>
+                  <TextWeight>{weightArrLab[index]}</TextWeight>
                   <TextLabel>{dat}</TextLabel>
                 </ListItem>
               ))}

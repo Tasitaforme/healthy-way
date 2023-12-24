@@ -24,7 +24,7 @@ export default function ChangePasswordForm() {
       await changePassword({ email, ...values });
       toast.success('Your password has been successfully changed!');
     } catch (error) {
-      toast.error(`Something went wrong! ${error}`);
+      toast.error(`Something went wrong! \n ${error.message}`);
     }
     actions.resetForm();
   };

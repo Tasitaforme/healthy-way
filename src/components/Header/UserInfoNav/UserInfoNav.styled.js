@@ -23,7 +23,6 @@ export const MenuIcon = styled.svg`
 margin: auto;
 width: 16px;
 height: 16px; 
-stroke: #E3FFA8;
 
 @media screen and (min-width: 834px){
     display: none;
