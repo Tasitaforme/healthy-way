@@ -2,8 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { store } from '../store';
 import { resetWater } from '../water/waterSlice';
-import { resetRecommendedFood } from '../recommendedFood/recommendedFoodSlice';
-import { resetStatistics } from '../statistics/statisticsSlice';
 import { resetDiary } from '../diary/diarySlice';
 
 const instance = axios.create({
@@ -18,6 +16,21 @@ const setToken = (token) => {
   }
   instance.defaults.headers.common['Authorization'] = '';
 };
+
+instance.interceptors.request.use(
+  (config) => {
+    const {
+      auth: { accessToken },
+    } = store.getState();
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 /*
  * POST @ /api/auth/registration
@@ -45,13 +58,8 @@ export const logIn = createAsyncThunk('auth/login', async (body, thunkAPI) => {
     const { data } = await instance.post('/api/auth/login', body);
     setToken(data.accessToken);
     return data;
-  } catch ({ response }) {
-    const { status, data } = response;
-    const error = {
-      status,
-      message: data.message,
-    };
-    return thunkAPI.rejectWithValue(error);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response.data);
   }
 });
 
@@ -66,7 +74,6 @@ export const logOut = createAsyncThunk(
     try {
       const { data } = await instance.post('/api/auth/logout');
       store.dispatch(resetWater());
-      store.dispatch(resetRecommendedFood());
       store.dispatch(resetStatistics());
       store.dispatch(resetDiary());
       setToken();
@@ -96,30 +103,30 @@ export const refresh = createAsyncThunk(
   }
 );
 
-// instance.interceptors.response.use(
-//   (response) => response,
-//   async (error) => {
-//     const {
-//       auth: { refreshToken },
-//     } = store.getState();
-//     if (error.response.status === 401) {
-//       if (refreshToken) {
-//         try {
-//           await store.dispatch(refresh({ refreshToken }));
-//           return Promise.resolve();
-//         } catch (refreshError) {
-//           return Promise.reject(refreshError);
-//         }
-//       }
-//       return Promise.reject(error);
-//     }
-//     if (error.response.status === 403) {
-//       store.dispatch(logOut());
-//       return Promise.reject(error);
-//     }
-//     return Promise.reject(error);
-//   }
-// );
+instance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const {
+      auth: { refreshToken },
+    } = store.getState();
+    if (error.response.status === 401) {
+      if (refreshToken) {
+        try {
+          await store.dispatch(refresh({ refreshToken }));
+          return Promise.resolve();
+        } catch (refreshError) {
+          return Promise.reject(refreshError);
+        }
+      }
+      return Promise.reject(error);
+    }
+    if (error.response.status === 403) {
+      store.dispatch(logOut());
+      return Promise.reject(error);
+    }
+    return Promise.reject(error);
+  }
+);
 
 /*
  * GET @ /api/user/current
@@ -131,14 +138,9 @@ export const currentUser = createAsyncThunk(
     try {
       const { data } = await instance('/api/user/current');
       return data;
-    } catch ({ response }) {
+    } catch (error) {
       setToken();
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

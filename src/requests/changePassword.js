@@ -11,6 +11,6 @@ export const changePassword = async (body) => {
     const { data } = await instance.put('/api/auth/change-password', body);
     return data;
   } catch (error) {
-    return error;
+    return error.response.data;
   }
 };

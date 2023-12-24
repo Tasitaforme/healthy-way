@@ -26,6 +26,8 @@ export const waterSlice = createSlice({
   reducers: {
     resetWater: (state) => {
       state.water = null;
+      state.isLoading = false;
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
