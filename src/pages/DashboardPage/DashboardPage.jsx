@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { Container } from '../../components/StyledComponents/Container';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -16,8 +17,6 @@ import {
   StyledLink,
 } from 'components/StyledComponents/Components.styled';
 import sprite from 'assets/sprite.svg';
-import { Line } from 'react-chartjs-2';
-
 import {
   TextLabel,
   ListStat,
@@ -34,8 +33,10 @@ import {
   TableBlock,
   SelectBlock,
   SelectOption,
+  Scroll,
 } from './DashboardPage.styled';
 import { GetStatisticsPerMonth } from '../../requests/operationsStatistics';
+import Graph from './Graph/Graph';
 
 ChartJS.register(
   CategoryScale,
@@ -47,65 +48,6 @@ ChartJS.register(
   Filler,
   Legend
 );
-const options = {
-  responsive: true,
-  elements: {
-    point: {
-      radius: 0,
-      backgroundColor: '#E3FFA8',
-      borderColor: '#E3FFA8',
-      borderWidth: 1,
-      pointBorderColor: 'var(--black-primary)',
-      pointBackgroundColor: '#E3FFA8',
-      pointHoverRadius: 6,
-    },
-  },
-  plugins: {
-    tooltip: {
-      enabled: true,
-      mode: 'index',
-      intersect: true,
-      backgroundColor: 'var(--black-primary)',
-      bodyFontFamily: 'Poppins',
-      bodyFont: { size: 32 },
-      borderWidth: 186,
-      position: 'average',
-      displayColors: false,
-      cornerRadius: 10,
-      yAlign: 'bottom',
-      bodyAlign: 'center',
-      titleFont: { size: 0 },
-      titleAlign: 'left',
-      boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
-    },
-
-    legend: {
-      display: false,
-      position: 'top',
-    },
-    title: {
-      display: false,
-    },
-  },
-  scales: {
-    y: {
-      beginAtZero: true,
-      ticks: {
-        callback: function (value, index, type) {
-          if (value === 0) {
-            return value;
-          } else {
-            const formattedValue = Math.round(value / 1000);
-            return `${formattedValue}${type === 'calories' ? 'K' : 'L'}`;
-          }
-        },
-      },
-    },
-    x: {
-      beginAtZero: false,
-    },
-  },
-};
 
 function createArrayWithNumbers(n) {
   const result = [];
@@ -145,14 +87,6 @@ const months = [
   'December',
 ];
 
-const currentMonth = currentDate.getMonth();
-function getMonthsList() {
-  const monthsList = months
-    .slice(currentMonth)
-    .concat(months.slice(0, currentMonth));
-  return monthsList;
-}
-
 const customStyles = {
   valueContainer: (provided, state) => ({
     ...provided,
@@ -182,10 +116,8 @@ const customStyles = {
   }),
   menu: (provided, state) => ({
     ...provided,
-    // maxHeight: '144px',
     maxHeight: '300px',
     minWidth: '221px',
-    overflow: 'hidden',
     color: '#b6b6b6',
     backgroundColor: '#0f0f0f',
     borderRadius: '14px',
@@ -202,9 +134,16 @@ const customStyles = {
     },
   }),
 };
+const currentMonth = currentDate.getMonth();
+function getMonthsList() {
+  const monthsList = months
+    .slice(currentMonth)
+    .concat(months.slice(0, currentMonth));
+  return monthsList;
+}
 const resultArrMonth = getMonthsList();
 
-let ArrMonth = resultArrMonth.map((month) => ({
+const ArrMonth = resultArrMonth.map((month) => ({
   value: month,
   label: month,
 }));
@@ -235,7 +174,6 @@ export default function DashboardPage() {
         if (selectedOption !== null) {
           numberMonth = selectMonth;
         }
-        console.log(numberMonth);
         const response = await GetStatisticsPerMonth(numberMonth);
         setCaloriesArr(response.calories);
         setWaterArr(response.water);
@@ -288,8 +226,7 @@ export default function DashboardPage() {
         data: caloriesArrLab,
         cubicInterpolationMode: 'monotone',
         borderColor: '#E3FFA8',
-        backgroundColor: '#0F0F0F',
-        boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
+        backgroundColor: 'transparent',
       },
     ],
   };
@@ -302,14 +239,13 @@ export default function DashboardPage() {
         data: waterArrLab,
         cubicInterpolationMode: 'monotone',
         borderColor: '#E3FFA8',
-        backgroundColor: '#0F0F0F',
-        boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
+        backgroundColor: 'transparent',
       },
     ],
   };
 
   return (
-    <>
+    <Container>
       <SelectBlock>
         <SelectOption>
           <StyledLink to="/main">
@@ -348,10 +284,11 @@ export default function DashboardPage() {
                 <TextAverageValue>{AverageCalories} cal</TextAverageValue>
               </AverageBlock>
             </TextBlock>
-            <ChartBlock>
-              <Line type={'calories'} options={options} data={dataCalories} />
-            </ChartBlock>
+            <Scroll>
+              <Graph symbol={'K'} dataGraph={dataCalories} />
+            </Scroll>
           </LiCart>
+
           <LiCart>
             <TextBlock>
               <h2>Water</h2>
@@ -360,20 +297,21 @@ export default function DashboardPage() {
                 <TextAverageValue>{AverageWater} ml</TextAverageValue>
               </AverageBlock>
             </TextBlock>
-            <ChartBlock>
-              <Line type={'water'} options={options} data={dataWoter} />
-            </ChartBlock>
+            <Scroll>
+              <Graph symbol={'L'} dataGraph={dataWoter} />
+            </Scroll>
           </LiCart>
         </ListChart>
-        <TableBlock>
-          <TextBlock>
-            <h2>Weight</h2>
-            <AverageBlock>
-              <p>Average value:</p>
-              <TextAverageValue>{AverageWeight} kg</TextAverageValue>
-            </AverageBlock>
-          </TextBlock>
-
+      </DashboardBlock>
+      <TableBlock>
+        <TextBlock>
+          <h2>Weight</h2>
+          <AverageBlock>
+            <p>Average value:</p>
+            <TextAverageValue>{AverageWeight} kg</TextAverageValue>
+          </AverageBlock>
+        </TextBlock>
+        <Scroll>
           <Table>
             <ListStat>
               {labels.map((dat, index) => (
@@ -384,8 +322,8 @@ export default function DashboardPage() {
               ))}
             </ListStat>
           </Table>
-        </TableBlock>
-      </DashboardBlock>
-    </>
+        </Scroll>
+      </TableBlock>
+    </Container>
   );
 }
