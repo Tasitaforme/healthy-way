@@ -50,7 +50,7 @@ export default function MainPage() {
       await dispatch(logOut()).unwrap();
       toast.success('You have successfully logged out!');
     } catch (error) {
-      toast.error('Something went wrong !');
+      toast.error(`Something went wrong! \n ${error.message}`);
     }
   };
 

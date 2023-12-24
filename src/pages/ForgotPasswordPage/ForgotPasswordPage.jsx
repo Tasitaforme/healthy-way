@@ -1,6 +1,6 @@
 import { Container } from '../../components/StyledComponents/Container';
 import { HeadlineFirst } from '../../components/StyledComponents/Components.styled';
-import { HeadSecond, SubText, SubLink } from '../SignInPage/SignInPage.styled';
+import { HeadSecond, SubLink } from '../SignInPage/SignInPage.styled';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm/ForgotPasswordForm';
 import {
   FlexBox,
@@ -9,6 +9,7 @@ import {
   MainAuth,
 } from '../SignUpPage/SignUpPage.styled';
 import { BackgroundImage } from '../../components/SignUpImage/SignUpImage.styled';
+import { Text, SignIpWrapper } from './ForgotPasswordPage.styled';
 
 import watchDesk1x from '../../assets/images/watch/watch-desk@1x.png';
 import watchDesk2x from '../../assets/images/watch/watch-desk@2x.png';
@@ -41,8 +42,10 @@ export default function ForgotPasswordPage() {
               We will send you an email with recovery instructions
             </HeadSecond>
             <ForgotPasswordForm />
-            <SubText>Do you already have an account?</SubText>
-            <SubLink to="/signin">Sign in</SubLink>
+            <SignIpWrapper>
+              <Text>Do you already have an account?</Text>
+              <SubLink to="/signin">Sign in</SubLink>
+            </SignIpWrapper>
           </TextWrapper>
         </FlexBox>
       </Container>

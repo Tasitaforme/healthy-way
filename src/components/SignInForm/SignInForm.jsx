@@ -2,14 +2,16 @@ import { Formik } from 'formik';
 import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
-
 import { loginSchema } from '../../schemas/formik';
-import {
-  FormikStyledErrorMessage,
-  FormikStyledField,
-} from '../../components/StyledComponents/Formik.styled';
 import { Button } from '../StyledComponents/Components.styled';
-import { ForgotLink, SignInFormikForm } from './SignInForm.styled';
+import {
+  ForgotLink,
+  SignInFormikForm,
+  Error,
+  FieldWrapper,
+  Field,
+  FlexWrapper,
+} from './SignInForm.styled';
 
 export default function SignInForm() {
   const initialValues = {
@@ -23,7 +25,7 @@ export default function SignInForm() {
       await dispatch(logIn(values)).unwrap();
       toast.success('You have successfully logged in!');
     } catch (error) {
-      toast.error(`Something went wrong! ${error}`);
+      toast.error(`Something went wrong! \n ${error.message}`);
     }
 
     actions.resetForm();
@@ -38,34 +40,40 @@ export default function SignInForm() {
       >
         {({ errors, touched, isSubmitting, isValid }) => (
           <SignInFormikForm>
-            <FormikStyledField
-              type="email"
-              name="email"
-              placeholder="E-mail"
-              className={
-                touched.quantity
-                  ? errors.quantity
-                    ? 'input-error'
-                    : 'input-success'
-                  : 'input-normal'
-              }
-            />
-            <FormikStyledErrorMessage component="p" name="email" />
+            <FlexWrapper>
+              <FieldWrapper>
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="E-mail"
+                  className={
+                    touched.email
+                      ? errors.email
+                        ? 'input-error'
+                        : 'input-success'
+                      : 'input-normal'
+                  }
+                />
+                <Error component="p" name="email" />
+              </FieldWrapper>
 
-            <FormikStyledField
-              type="password"
-              name="password"
-              placeholder="Password"
-              autoComplete="off"
-              className={
-                touched.quantity
-                  ? errors.quantity
-                    ? 'input-error'
-                    : 'input-success'
-                  : 'input-normal'
-              }
-            />
-            <FormikStyledErrorMessage component="p" name="password" />
+              <FieldWrapper>
+                <Field
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  autoComplete="off"
+                  className={
+                    touched.password
+                      ? errors.password
+                        ? 'input-error'
+                        : 'input-success'
+                      : 'input-normal'
+                  }
+                />
+                <Error component="p" name="password" />
+              </FieldWrapper>
+            </FlexWrapper>
 
             <Button type="submit" disabled={!isValid || isSubmitting}>
               Sign in

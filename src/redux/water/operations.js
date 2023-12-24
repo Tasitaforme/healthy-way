@@ -35,7 +35,7 @@ export const addDailyWater = createAsyncThunk(
       const { data } = await instance.put('/api/user/water', body);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
@@ -50,13 +50,8 @@ export const removeDailyWater = createAsyncThunk(
     try {
       const { data } = await instance.delete('/api/user/water');
       return data;
-    } catch ({ response }) {
-      const { status, data } = response;
-      const error = {
-        status,
-        message: data.message,
-      };
-      return rejectWithValue(error);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   }
 );

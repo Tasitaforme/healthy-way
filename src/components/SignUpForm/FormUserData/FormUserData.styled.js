@@ -41,3 +41,10 @@ export const FieldWrapper = styled.div`
     margin-top: 20px;
   }
 `;
+
+export const ValidPassword = styled.p`
+  position: absolute;
+  left: 10px;
+  color: #3cbc81;
+  font-size: 12px;
+`;
