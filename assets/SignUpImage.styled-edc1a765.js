@@ -1,4 +1,4 @@
-import{s as e}from"./index-8bfa6acf.js";import{S as n,a}from"./SignInPage.styled-8c830e6e.js";const t=e.div`
+import{s as e}from"./index-57e1a65c.js";import{S as n,a}from"./SignInPage.styled-46f2f3e9.js";const t=e.div`
   padding: 0px 0px 40px 0px;
 
   @media screen and (min-width: 834px) {
@@ -17,12 +17,12 @@ import{s as e}from"./index-8bfa6acf.js";import{S as n,a}from"./SignInPage.styled
   @media screen and (min-width: 834px) {
     margin-top: 40px;
   }
-`,m=e.div`
+`,x=e.div`
   @media screen and (min-width: 834px) {
     display: flex;
     justify-content: center;
   }
-`,x=e.div`
+`,m=e.div`
   margin-top: 24px;
 
   @media screen and (min-width: 834px) {
@@ -35,6 +35,7 @@ import{s as e}from"./index-8bfa6acf.js";import{S as n,a}from"./SignInPage.styled
   @media screen and (min-width: 1440px) {
     display: block;
     margin-top: 80px;
+    width: 444px;
   }
 `,o=e.div`
   margin-top: 48px;
@@ -97,4 +98,4 @@ import{s as e}from"./index-8bfa6acf.js";import{S as n,a}from"./SignInPage.styled
       background-image: ${i=>`url(${i.$imageDesk2x})`};
     }
   }
-`;export{c as B,t as F,m as I,r as M,o as S,x as T,g as a,s as b};
+`;export{c as B,t as F,x as I,r as M,o as S,m as T,g as a,s as b};
