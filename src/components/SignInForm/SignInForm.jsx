@@ -23,7 +23,7 @@ export default function SignInForm() {
       await dispatch(logIn(values)).unwrap();
       toast.success('You have successfully logged in!');
     } catch (error) {
-      toast.error('Wrong login or password! Try again!');
+      toast.error(`Something went wrong! ${error}`);
     }
 
     actions.resetForm();

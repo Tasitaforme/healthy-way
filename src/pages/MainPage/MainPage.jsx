@@ -23,6 +23,7 @@ import { selectIsLogin } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
 import { selectWaterInfo } from '../../redux/water/selectors';
 import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm';
+import DeleteUser from '../../components/DeleteUser/DeleteUser';
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -81,6 +82,8 @@ export default function MainPage() {
         </Button>
         {/* // TODO видалити потім, коли буде додано в Профайл */}
         <ChangePasswordForm />
+        {/* // TODO видалити потім, коли буде додано в Профайл */}
+        <DeleteUser />
       </Container>
     </main>
   );

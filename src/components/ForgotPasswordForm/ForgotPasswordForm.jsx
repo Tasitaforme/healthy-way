@@ -22,7 +22,7 @@ export default function ForgotPasswordForm() {
       toast.success('A new password has been sent to your email!');
       navigate('/signin');
     } catch (error) {
-      toast.error(`${error}`);
+      toast.error(`Something went wrong! ${error}`);
     }
     actions.resetForm();
   };
