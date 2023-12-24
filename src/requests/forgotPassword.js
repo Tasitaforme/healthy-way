@@ -16,6 +16,6 @@ export const forgotPassword = async (body) => {
     );
     return data;
   } catch (error) {
-    return error;
+    return error.response.data;
   }
 };
