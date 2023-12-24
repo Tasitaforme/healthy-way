@@ -92,7 +92,6 @@ export default function FormActivity({
                 showError(true);
               } else {
                 showError(false);
-                onSubmit();
               }
             }}
           >

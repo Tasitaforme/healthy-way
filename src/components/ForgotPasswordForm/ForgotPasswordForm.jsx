@@ -1,14 +1,11 @@
 import { Formik } from 'formik';
-import { SignInFormikForm } from '../SignInForm/SignInForm.styled';
-import {
-  FormikStyledField,
-  FormikStyledErrorMessage,
-} from '../StyledComponents/Formik.styled';
+import { FormikStyledField } from '../StyledComponents/Formik.styled';
 import { Button } from '../StyledComponents/Components.styled';
 import { forgotPasswordSchema } from '../../schemas/formik';
 import { useNavigate } from 'react-router-dom';
 import { forgotPassword } from '../../requests/forgotPassword';
 import toast from 'react-hot-toast';
+import { Form, Error } from './ForgotPasswordForm.styled';
 
 export default function ForgotPasswordForm() {
   const initialValues = {
@@ -43,26 +40,26 @@ export default function ForgotPasswordForm() {
       onSubmit={onSubmit}
     >
       {({ errors, touched, isSubmitting, isValid }) => (
-        <SignInFormikForm>
+        <Form>
           <FormikStyledField
             type="email"
             name="email"
             autoComplete="on"
             placeholder="E-mail"
             className={
-              touched.quantity
-                ? errors.quantity
+              touched.email
+                ? errors.email
                   ? 'input-error'
                   : 'input-success'
                 : 'input-normal'
             }
           />
-          <FormikStyledErrorMessage component="p" name="email" />
+          <Error component="p" name="email" />
 
           <Button type="submit" disabled={!isValid || isSubmitting}>
             Send
           </Button>
-        </SignInFormikForm>
+        </Form>
       )}
     </Formik>
   );

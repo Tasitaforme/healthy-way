@@ -1,9 +1,14 @@
 import styled from 'styled-components';
-import { FormikStyledForm } from '../StyledComponents/Formik.styled';
+import {
+  FormikStyledForm,
+  FormikStyledErrorMessage,
+  FormikStyledField,
+} from '../StyledComponents/Formik.styled';
 import { SubLink } from '../../pages/SignInPage/SignInPage.styled';
 
 export const SignInFormikForm = styled(FormikStyledForm)`
   margin-bottom: 52px;
+
   & input + input {
     margin-top: 20px;
   }
@@ -26,4 +31,24 @@ export const ForgotLink = styled(SubLink)`
   font-weight: 500;
   color: var(--grey-light);
   text-align: center;
+`;
+
+export const Error = styled(FormikStyledErrorMessage)`
+  position: absolute;
+  top: 26px;
+  left: 10px;
+`;
+
+export const FieldWrapper = styled.div`
+  position: relative;
+`;
+
+export const Field = styled(FormikStyledField)`
+  width: 100%;
+`;
+
+export const FlexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;

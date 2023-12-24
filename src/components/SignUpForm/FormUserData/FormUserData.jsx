@@ -5,6 +5,7 @@ import {
   SignUpButton,
   SignUpError,
   FieldWrapper,
+  ValidPassword,
 } from './FormUserData.styled.js';
 import { registerSchema } from '../../../schemas/formikRegister.js';
 
@@ -72,6 +73,9 @@ export default function FormUserData({
               }
             />
             <SignUpError component="p" name="password" />
+            {!errors.password && touched.password && (
+              <ValidPassword>Password is secure</ValidPassword>
+            )}
           </FieldWrapper>
 
           <SignUpButton type="submit" disabled={!isValid || isSubmitting}>
