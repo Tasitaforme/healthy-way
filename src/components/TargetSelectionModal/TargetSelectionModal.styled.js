@@ -22,6 +22,10 @@ box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
 left: 260px;
  top: 120px;
 }
+
+  @media screen and (min-width: 1440px) {
+    left: 750px;
+  }
 `;
 
 export const GlobalWrapper = styled.div`

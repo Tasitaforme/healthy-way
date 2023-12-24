@@ -13,14 +13,10 @@ import {
 import TargetSelectionModal from '../../TargetSelectionModal/TargetSelectionModal';
 import { useState } from 'react';
 import CurrentWeightModal from '../../СurrentWeightModal/СurrentWeightModal';
-// import loseFatMen from '../../assets/images/header/Lose-fat-image-men.png';
-// import { loseMenImg } from '/images/header/Lose-fat-image-men.png';
-// import { weightImg } from '/images/header/Waight-image.png';
 
-import loseMenImg from '../../../assets/images/header/Lose-fat-image-men.png';
-import weightImg from '../../../assets/images/header/Waight-image.png';
+import weightImg from '../../../assets/images/header/weight-image.png';
 
-export const DopMenuModal = ({ onCloseModal, userInfo }) => {
+export const DopMenuModal = ({ onCloseModal, userInfo, goalImg }) => {
   const [targetModalOpen, setTargetModalOpen] = useState(false);
   const [weightModalOpen, setWeightModalOpen] = useState(false);
 
@@ -50,12 +46,12 @@ export const DopMenuModal = ({ onCloseModal, userInfo }) => {
       <GlobalWrapper>
         <IconWrapper>
           <LoseMen>
-            <LoseMenImage src={loseMenImg} alt="Lose fat" />
+            <LoseMenImage src={goalImg} alt="Lose fat" />
           </LoseMen>
 
           <div>
             <p>Goal</p>
-            <p>Lose fat</p>
+            <p>{userInfo.goal}</p>
           </div>
 
           <div>
