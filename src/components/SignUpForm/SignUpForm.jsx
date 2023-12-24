@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { registration } from '../../redux/auth/operations';
+import { toast } from 'react-hot-toast';
 import FormUserData from './FormUserData/FormUserData';
 import FormGoal from './FormGoal/FormGoal';
 import FormGenderAndAge from './FormGenderAndAge/FormGenderAndAge';
 import FormParameters from './FormParameters/FormParameters';
 import FormActivity from './FormActivity/FormActivity';
-/* 1. validation issue where radio and common inputes interfere */
-/* 2. icons on first form */
 
 export default function SignUpForm({
   currentStep,
@@ -23,9 +25,26 @@ export default function SignUpForm({
     weight: '',
     activityRatio: '',
   });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (values) => {
     setUserData((prev) => ({ ...prev, ...values }));
+  };
+
+  const handleChange = (value) => {
+    setUserData((prev) => ({ ...prev, activityRatio: value }));
+  };
+
+  const handleSubmitForm = async () => {
+    try {
+      await dispatch(registration(userData)).unwrap();
+
+      toast.success('You have successfully signed up!');
+      navigate('/signin');
+    } catch (error) {
+      toast.error(`Something went wrong! ${error.message}`);
+    }
   };
 
   return (
@@ -63,9 +82,10 @@ export default function SignUpForm({
       )}
       {currentStep === 5 && (
         <FormActivity
-          handleSubmit={handleSubmit}
           userData={userData}
           handlePrevStep={handlePrevStep}
+          handleSubmitForm={handleSubmitForm}
+          handleChange={handleChange}
         />
       )}
     </>
