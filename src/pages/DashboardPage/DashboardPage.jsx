@@ -17,7 +17,7 @@ import {
 } from 'components/StyledComponents/Components.styled';
 import sprite from 'assets/sprite.svg';
 import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+
 import {
   TextLabel,
   ListStat,
@@ -89,6 +89,24 @@ export const option = {
       display: false,
     },
   },
+  scales: {
+    y: {
+      beginAtZero: true,
+      ticks: {
+        callback: function (value, index, values) {
+          if (value === 0) {
+            return value;
+          } else {
+            const formattedValue = Math.round(value / 1000);
+            return `${formattedValue}K`;
+          }
+        },
+      },
+    },
+    x: {
+      beginAtZero: false,
+    },
+  },
 };
 
 function createArrayWithNumbers(n) {
@@ -114,12 +132,6 @@ function arrayMean(arr) {
   return total / arr.length;
 }
 
-let weight = 75;
-let AverageCalories = 1700;
-// let AverageCalories = arrayMean();
-
-let AverageWater = 1700;
-let AverageWeight = 75;
 const months = [
   'January',
   'February',
@@ -136,7 +148,6 @@ const months = [
 ];
 
 const currentMonth = currentDate.getMonth();
-console.log(currentMonth);
 function getMonthsList() {
   const monthsList = months
     .slice(currentMonth)
@@ -195,7 +206,7 @@ const customStyles = {
 };
 const resultArrMonth = getMonthsList();
 
-const ArrMonth = resultArrMonth.map((month) => ({
+let ArrMonth = resultArrMonth.map((month) => ({
   value: month,
   label: month,
 }));
@@ -205,17 +216,28 @@ export default function DashboardPage() {
   const [caloriesArr, setCaloriesArr] = useState([]);
   const [waterArr, setWaterArr] = useState([]);
   const [weightArr, setWeightArr] = useState([]);
-
+  const daysInCurrentMonth = getDaysInMonth();
+  let labels = createArrayWithNumbers(daysInCurrentMonth);
+  let selectMonth = 0;
+  if (selectedOption !== null) {
+    const year = currentDate.getFullYear();
+    selectMonth = months.indexOf(selectedOption.label) + 1;
+    const lastDayOfMonth = new Date(year, selectMonth, 0).getDate();
+    labels = createArrayWithNumbers(lastDayOfMonth);
+  }
   useEffect(() => {
     const fetchData = async () => {
-      let numberMonth = currentMonth;
-
-      if (selectedOption !== null) {
-        numberMonth = selectedOption;
+      if (weightArr.length !== 0) {
+        setCaloriesArr([]);
+        setWaterArr([]);
+        setWeightArr([]);
       }
+      let numberMonth = currentMonth + 1;
+      if (selectedOption !== null) {
+        numberMonth = selectMonth;
+      }
+      console.log(numberMonth);
       const response = await GetStatisticsPerMonth(numberMonth);
-      console.log(response);
-
       setCaloriesArr(response.calories);
       setWaterArr(response.water);
       setWeightArr(response.weight);
@@ -223,25 +245,59 @@ export default function DashboardPage() {
     fetchData();
   }, [selectedOption]);
 
-  console.log(GetStatisticsPerMonth(12));
-  console.log(caloriesArr);
-  console.log(waterArr);
-  console.log(weightArr);
-  const daysInCurrentMonth = getDaysInMonth();
-  let labels = createArrayWithNumbers(daysInCurrentMonth);
-  if (selectedOption !== null) {
-    const year = currentDate.getFullYear();
-    const selectMonth = months.indexOf(selectedOption.label) + 1;
-    const lastDayOfMonth = new Date(year, selectMonth, 0).getDate();
-    labels = createArrayWithNumbers(lastDayOfMonth);
-  }
-  const data = {
+  const wightData = () => {
+    if (weightArr.length === 0) {
+      return labels.map((day) => (day = 0));
+    }
+    const weightAr = labels.map((day) => {
+      const matchingData = weightArr.find(
+        (data) => parseInt(data._id, 10) === day
+      );
+      return matchingData ? matchingData.total : 0;
+    });
+    const moreZero = weightAr.find((data) => data > 0);
+    const notZero = weightAr.map((dat) => (dat === 0 ? moreZero : dat));
+    return notZero;
+  };
+  const weightArrLab = wightData();
+  const caloriesArrLab = labels.map((day) => {
+    const matchingData = caloriesArr.find(
+      (data) => parseInt(data._id, 10) === day
+    );
+    return matchingData ? matchingData.total : 0;
+  });
+  const waterArrLab = labels.map((day) => {
+    const matchingData = waterArr.find(
+      (data) => parseInt(data._id, 10) === day
+    );
+    return matchingData ? matchingData.total : 0;
+  });
+
+  const AverageCalories = Math.round(arrayMean(caloriesArrLab));
+  const AverageWater = Math.round(arrayMean(waterArrLab));
+  const AverageWeight = Math.round(arrayMean(weightArrLab));
+
+  const dataCalories = {
     labels,
     datasets: [
       {
         fill: true,
         label: '',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 3000 })),
+        data: caloriesArrLab,
+        cubicInterpolationMode: 'monotone',
+        borderColor: '#E3FFA8',
+        backgroundColor: '#0F0F0F',
+        boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
+      },
+    ],
+  };
+  const dataWoter = {
+    labels,
+    datasets: [
+      {
+        fill: true,
+        label: '',
+        data: waterArrLab,
         cubicInterpolationMode: 'monotone',
         borderColor: '#E3FFA8',
         backgroundColor: '#0F0F0F',
@@ -291,7 +347,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <ChartBlock>
-              <Line options={option} data={data} />
+              <Line options={option} data={dataCalories} />
             </ChartBlock>
           </LiCart>
           <LiCart>
@@ -303,7 +359,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <ChartBlock>
-              <Line options={option} data={data} />
+              <Line options={option} data={dataWoter} />
             </ChartBlock>
           </LiCart>
         </ListChart>
@@ -320,7 +376,7 @@ export default function DashboardPage() {
             <ListStat>
               {labels.map((dat, index) => (
                 <ListItem key={index}>
-                  <TextWeight>{weight}</TextWeight>
+                  <TextWeight>{weightArrLab[index]}</TextWeight>
                   <TextLabel>{dat}</TextLabel>
                 </ListItem>
               ))}
