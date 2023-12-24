@@ -12,38 +12,22 @@ import {
   MealImg,
   MealList,
   MealListItem,
-  ModalWrapper,
-  ModalTitle,
 } from './DiaryPage.styled';
-import dinnerImage from '../../assets/images/diary/dinner@2x.png';
-import breakfastImage from '../../assets/images/diary/breakfast@2x.png';
-import lunchImage from '../../assets/images/diary/lunch@2x.png';
-import snackImage from '../../assets/images/diary/snack@2x.png';
 import sprite from '../../assets/sprite.svg';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFoodDiaryToday } from '../../redux/diary/operations';
-import { selectDiaryInfo } from '../../redux/diary/selectors';
+import { selectDiaryMeals } from '../../redux/diary/selectors';
 import DiaryItem from './DiaryItem';
-import ModalMain from '../../components/ModalMain/ModalMain';
-
-const images = {
-  Breakfast: breakfastImage,
-  Lunch: lunchImage,
-  Dinner: dinnerImage,
-  Snack: snackImage,
-};
+import { Link } from 'react-router-dom';
+import { MEALS_IMAGES } from './constants';
 
 export default function DiaryPage() {
   const dispatch = useDispatch();
-  const {
-    food,
-    //isLoading, errors
-  } = useSelector(selectDiaryInfo);
+  const food = useSelector(selectDiaryMeals);
+  const backLink = location?.state?.from ?? '/main';
 
   const inited = useRef(false);
-
-  const [modalActive, setModalActive] = useState(false);
 
   useEffect(() => {
     if (!inited.current) {
@@ -55,12 +39,12 @@ export default function DiaryPage() {
   const meals = useMemo(() => {
     const { breakfast, snack, lunch, dinner } = food;
     return [
-      { key: 'Breakfast', data: breakfast },
-      { key: 'Lunch', data: lunch },
-      { key: 'Dinner', data: dinner },
-      { key: 'Snack', data: snack },
-    ].map(({ key, data }) => ({
-      key,
+      { type: 'Breakfast', data: breakfast },
+      { type: 'Lunch', data: lunch },
+      { type: 'Dinner', data: dinner },
+      { type: 'Snack', data: snack },
+    ].map(({ type, data }) => ({
+      type,
       data: data.concat(Array(4).fill({})).slice(0, 4),
       stats: {
         carbonohidrates: data.reduce(
@@ -73,13 +57,11 @@ export default function DiaryPage() {
     }));
   }, [food]);
 
-  const onAddItem = () => setModalActive(true);
-
   return (
     <>
       <DiarySection>
         <GoBackWrapper>
-          <GoBackBtn>
+          <GoBackBtn as={Link} to={backLink}>
             <StyledBackArrowIcon>
               <use href={`${sprite}#arrow-back`} />
             </StyledBackArrowIcon>
@@ -87,13 +69,13 @@ export default function DiaryPage() {
           </GoBackBtn>
         </GoBackWrapper>
         <MealList>
-          {meals.map(({ key, data, stats }) => {
+          {meals.map(({ type, data, stats }) => {
             return (
-              <MealListItem key={key}>
+              <MealListItem key={type}>
                 <MealAndNutritionWrapper>
                   <MealTitleWrapper>
-                    <MealImg src={images[key]} alt="breakfast" />
-                    <MealTitle>{key}</MealTitle>
+                    <MealImg src={MEALS_IMAGES[type]} alt="breakfast" />
+                    <MealTitle>{type}</MealTitle>
                   </MealTitleWrapper>
                   <NutririonList>
                     <li>
@@ -108,20 +90,13 @@ export default function DiaryPage() {
                   </NutririonList>
                 </MealAndNutritionWrapper>
                 <RecordMealWrapper>
-                  <DiaryItem data={data} onAddItem={onAddItem} />
+                  <DiaryItem data={data} type={type} stats={stats} />
                 </RecordMealWrapper>
               </MealListItem>
             );
           })}
         </MealList>
       </DiarySection>
-      {modalActive && (
-        <ModalMain modalActive={modalActive} setModalActive={setModalActive}>
-          <ModalWrapper>
-            <ModalTitle>Record your meal</ModalTitle>
-          </ModalWrapper>
-        </ModalMain>
-      )}
     </>
   );
 }

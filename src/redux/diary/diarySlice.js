@@ -51,9 +51,19 @@ export const diarySlice = createSlice({
       })
       .addCase(createFoodDiary.fulfilled, (state, { payload }) => {
         handleFulfilled(state);
-        // const type = toLowerCase(payload.diary);
-        // state.diary[type] = [...payload];
-        // TODO
+        const type = payload.diary;
+        state.diary[type] = [...payload];
+      })
+      .addCase(updateFoodDiary.fulfilled, (state, { payload }) => {
+        handleFulfilled(state);
+        const { calories, ...meals } = payload;
+        state.meals = meals;
+        state.calories = calories;
+      })
+      .addCase(deleteFoodDiary.fulfilled, (state) => {
+        handleFulfilled(state);
+        state.meals = [];
+        state.calories = 0;
       })
       .addMatcher(
         isAnyOf(

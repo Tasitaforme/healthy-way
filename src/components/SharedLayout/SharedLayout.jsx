@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { toastOptions } from '../StyledComponents/toastOptions';
@@ -13,10 +13,11 @@ export default function SharedLayout() {
   const dispatch = useDispatch();
   const { isLogin, refreshToken } = useSelector(selectAuthInfo);
 
+  const refreshing = useRef(false);
+
   useEffect(() => {
     const doRefresh = () => {
-      !isLogin &&
-        refreshToken &&
+      if (!isLogin && refreshToken) {
         dispatch(refresh({ refreshToken }))
           .unwrap()
           .then(() => {
@@ -30,9 +31,17 @@ export default function SharedLayout() {
               return;
             }
             toast.error('Sorry. You will be log out...');
-          });
+          })
+          .finally(() => (refreshing.current = false));
+      } else {
+        refreshing.current = false;
+      }
     };
-    doRefresh();
+
+    if (!refreshing.current) {
+      refreshing.current = true;
+      doRefresh();
+    }
   }, [isLogin, refreshToken, dispatch]);
 
   useEffect(() => {

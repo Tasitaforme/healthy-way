@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FormikStyledForm } from '../../components/StyledComponents/Formik.styled';
 
 export const DiarySection = styled.section`
   padding: 16px 10px 40px;
@@ -15,7 +16,7 @@ export const GoBackWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
-export const GoBackBtn = styled.button`
+export const GoBackBtn = styled.span`
   display: flex;
   align-items: center;
   gap: 4px;
@@ -157,9 +158,129 @@ export const ModalWrapper = styled.div`
   height: 546px;
   background-color: var(--black-secondar);
   padding: 16px 12px;
+
+  @media (min-width: 768px) {
+    width: 708px;
+    height: 408px;
+    padding: 24px;
+  }
 `;
 
 export const ModalTitle = styled.h3`
   font-size: 24px;
   font-weight: 500;
+  margin-bottom: 24px;
+`;
+
+export const FormikWrapper = styled.div``;
+
+export const FormikWrapperTablet = styled.div`
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+`;
+
+export const FormikWrapperMobile = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+export const NameForm = styled(FormikStyledForm)`
+  @media (min-width: 768px) {
+    width: 250px;
+  }
+`;
+
+export const CarbonohForm = styled(FormikStyledForm)`
+  @media (min-width: 768px) {
+    width: 100px;
+  }
+`;
+
+export const ProteinForm = styled(FormikStyledForm)`
+  @media (min-width: 768px) {
+    width: 86px;
+  }
+`;
+
+export const FatForm = styled(FormikStyledForm)`
+  max-width: 110px;
+  @media (min-width: 768px) {
+    width: 61px;
+  }
+`;
+
+export const CaloriesForm = styled(FormikStyledForm)`
+  max-width: 110px;
+  @media (min-width: 768px) {
+    width: 78px;
+  }
+`;
+
+export const TrashModalIcon = styled.svg`
+  width: 20px;
+  height: 20px;
+  stroke: var(--green-light);
+  margin-top: 10px;
+`;
+
+export const AddMoreBtn = styled.button`
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-top: 40px;
+`;
+
+export const AddMoreIcon = styled.svg`
+  width: 16px;
+  height: 16px;
+  stroke: var(--green-light);
+`;
+
+export const AddMoreLabel = styled.span`
+  color: var(--green-light);
+  cursor: pointer;
+`;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    margin-top: 70px;
+  }
+`;
+
+export const ConfirmModalBtn = styled.button`
+  background-color: var(--green-light);
+  border-radius: 12px;
+  width: 100%;
+  padding: 8px 0;
+  margin-top: 40px;
+  color: var(--black-secondary);
+
+  @media (min-width: 768px) {
+    width: 212px;
+  }
+`;
+
+export const CancelModalBtn = styled.button`
+  color: var(--grey-light);
+  padding: 8px 0;
+  margin-top: 10px;
+
+  @media (min-width: 768px) {
+    width: 212px;
+  }
 `;

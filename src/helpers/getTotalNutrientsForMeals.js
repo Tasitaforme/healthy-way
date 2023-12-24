@@ -22,12 +22,18 @@ export const getTotalNutrientsForMeals = (diaryData) => {
     };
   }
 
-  const totalNutrientsForMeals = Object.keys(diaryData).map((mealType) => {
-    return {
-      mealType,
-      ...getTotalNutrients(diaryData[mealType]),
-    };
-  });
+  const totalNutrientsForMeals = Object.keys(diaryData).reduce(
+    (acc, mealType) => {
+      if (Array.isArray(diaryData[mealType])) {
+        acc.push({
+          mealType,
+          ...getTotalNutrients(diaryData[mealType]),
+        });
+      }
+      return acc;
+    },
+    []
+  );
 
   return totalNutrientsForMeals;
 };
