@@ -1,4 +1,4 @@
-import{s as e,j as s,f as r}from"./index-57e1a65c.js";import{b as p,l as m,d as u,s as g}from"./snack@2x-c4dbc989.js";const f=e.section`
+import{s as e,j as s,f as r}from"./index-b6ef643f.js";import{b as p,l as m,d as u,s as g}from"./snack@2x-c4dbc989.js";const f=e.section`
   padding: 16px 10px 40px;
 `,y=e.div`
   display: flex;
