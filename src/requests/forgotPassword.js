@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const instanceDefault = axios.create({
+const instanceForgot = axios.create({
   baseURL: 'https://healthy-way-app.onrender.com',
 });
 
@@ -10,7 +10,7 @@ const instanceDefault = axios.create({
  */
 export const forgotPassword = async (body) => {
   try {
-    const { data } = await instanceDefault.post(
+    const { data } = await instanceForgot.post(
       '/api/auth/forgot-password',
       body
     );

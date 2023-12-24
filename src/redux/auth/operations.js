@@ -77,44 +77,6 @@ export const logOut = createAsyncThunk(
   }
 );
 
-// TODO POST forgot-password (ще не зроблений бек)
-/*
- * POST @ /api/auth/forgot-password
- * body: { email }
- */
-export const forgotPassword = createAsyncThunk(
-  'auth/forgot',
-
-  async (body, { rejectWithValue }) => {
-    try {
-      const { data } = await instance.post('/api/auth/forgot-password', body);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-// TODO DELETE USER (додати в слайс, якщо будемо використовувати)
-/*
- * DELETE @ /api/auth/delete
- * headers: Authorization: Bearer token
- * body: { email, password }
- */
-export const removeUser = createAsyncThunk(
-  'auth/delete',
-
-  async (body, { rejectWithValue }) => {
-    try {
-      const { data } = await instance.delete('/api/auth/delete', body);
-      setToken();
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
 /*
  * POST @ /api/auth/refresh
  * headers: Authorization: Bearer token
@@ -181,6 +143,11 @@ export const currentUser = createAsyncThunk(
   }
 );
 
+/*
+ * PUT @ /api/user/update
+ * headers: Authorization: Bearer token
+ * body: {name, gender, age, height, weight, activityRatio}
+ */
 export const updateUser = createAsyncThunk(
   'user/updateUser',
   async (data, thunkAPI) => {
@@ -193,6 +160,11 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+/*
+ * POST @ /api/user/load-avatar
+ * headers: Authorization: Bearer token
+ * form-data: "avatar"
+ */
 export const updateAvatar = createAsyncThunk(
   'user/updateAvatar',
   async (avatarData, thunkAPI) => {
@@ -216,11 +188,8 @@ export const updateAvatar = createAsyncThunk(
 /*
  * PUT @ /api/user/weight
  * headers: Authorization: Bearer token
- * * body: {}
+ * body: {weight}
  */
-
-// TODO (сюди потрібно прописати оновлення по вазі )
-
 export const updateWeight = createAsyncThunk(
   'user/weight',
   async (inputWeight, thunkAPI) => {
@@ -238,10 +207,8 @@ export const updateWeight = createAsyncThunk(
 /*
  * PUT @ /api/user/goal
  * headers: Authorization: Bearer token
- * * body: {}
+ * body: {goal}
  */
-// TODO (сюди потрібно прописати оновлення по цілі)
-
 export const updateGoal = createAsyncThunk(
   'user/goal',
   async (selectedGoal, thunkAPI) => {
