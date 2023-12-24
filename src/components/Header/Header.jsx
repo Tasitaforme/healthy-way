@@ -5,13 +5,12 @@ import {
   HeaderWrap,
   SignInLink,
   SignUpLink,
-  CircleProfile,
 } from './Header.styled';
 
-// import sprite from 'assets/sprite.svg';
+import sprite from 'assets/sprite.svg';
 
 import { selectIsLogin } from '../../redux/auth/selectors';
-import avatar from '../../assets/images/header/profile-circle.png';
+
 import UserInfoNav from './UserInfoNav/UserInfoNav';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -26,16 +25,24 @@ export default function Header() {
 
   const toggleModalProfile = () => {
     setShowModalProfile((showModalProfile) => !showModalProfile);
+    setShowModalTarget(false);
+    setShowModalWeight(false);
+    setShowDopMenuModal(false);
   };
   const toggleModalWeight = () => {
     setShowModalWeight((showModalWeight) => !showModalWeight);
+    setShowModalTarget(false);
+    setShowModalProfile(false);
   };
   const toggleModalTarget = () => {
     setShowModalTarget((showModalTarget) => !showModalTarget);
+    setShowModalWeight(false);
+    setShowModalProfile(false);
   };
 
   const toggleDopMenuModal = () => {
     setShowDopMenuModal((showDopMenuModal) => !showDopMenuModal);
+    setShowModalProfile(false);
   };
 
   return (
@@ -58,10 +65,9 @@ export default function Header() {
             <Navigation>
               <SignInLink to="/signin">Sign in</SignInLink>/
               <SignUpLink to="/signup">Sign up</SignUpLink>
-              {/* <svg width="26px" height="26px">
-                <use href={`${sprite}#profile`} />
-              </svg> */}
-              <CircleProfile src={avatar} />
+              <svg width="26px" height="26px">
+                <use href={`${sprite}#profile`} stroke="white" fill="none" />
+              </svg>
             </Navigation>
           )}
         </HeaderWrap>

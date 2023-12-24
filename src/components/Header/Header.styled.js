@@ -62,15 +62,6 @@ export const SignUpLink = styled(Link)`
   }
 `;
 
-export const CircleProfile = styled.img`
-  width: 26px;
-  height: 26px;
-  @media screen and (min-width: 834px) {
-    width: 28px;
-    height: 28px;
-  }
-`;
-
 
 
 
