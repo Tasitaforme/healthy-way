@@ -47,10 +47,8 @@ ChartJS.register(
   Filler,
   Legend
 );
-
-export const option = {
+const options = {
   responsive: true,
-
   elements: {
     point: {
       radius: 0,
@@ -93,12 +91,13 @@ export const option = {
     y: {
       beginAtZero: true,
       ticks: {
-        callback: function (value, index, values) {
+        callback: function (value, index, type) {
           if (value === 0) {
             return value;
           } else {
             const formattedValue = Math.round(value / 1000);
-            return `${formattedValue}K`;
+            console.log(type);
+            return `${formattedValue}${type === 'calories' ? 'K' : 'L'}`;
           }
         },
       },
@@ -227,20 +226,24 @@ export default function DashboardPage() {
   }
   useEffect(() => {
     const fetchData = async () => {
-      if (weightArr.length !== 0) {
-        setCaloriesArr([]);
-        setWaterArr([]);
-        setWeightArr([]);
+      try {
+        if (weightArr.length !== 0) {
+          setCaloriesArr([]);
+          setWaterArr([]);
+          setWeightArr([]);
+        }
+        let numberMonth = currentMonth + 1;
+        if (selectedOption !== null) {
+          numberMonth = selectMonth;
+        }
+        console.log(numberMonth);
+        const response = await GetStatisticsPerMonth(numberMonth);
+        setCaloriesArr(response.calories);
+        setWaterArr(response.water);
+        setWeightArr(response.weight);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-      let numberMonth = currentMonth + 1;
-      if (selectedOption !== null) {
-        numberMonth = selectMonth;
-      }
-      console.log(numberMonth);
-      const response = await GetStatisticsPerMonth(numberMonth);
-      setCaloriesArr(response.calories);
-      setWaterArr(response.water);
-      setWeightArr(response.weight);
     };
     fetchData();
   }, [selectedOption]);
@@ -347,7 +350,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <ChartBlock>
-              <Line options={option} data={dataCalories} />
+              <Line type={'calories'} options={options} data={dataCalories} />
             </ChartBlock>
           </LiCart>
           <LiCart>
@@ -359,7 +362,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <ChartBlock>
-              <Line options={option} data={dataWoter} />
+              <Line type={'water'} options={options} data={dataWoter} />
             </ChartBlock>
           </LiCart>
         </ListChart>
