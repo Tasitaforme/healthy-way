@@ -5,7 +5,7 @@ export const GetStatisticsPerMonth = async (numberMonth) => {
     const { data } = await instance.get(
       `/api/user/statistics?period=month&month=${numberMonth}`
     );
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log(error);

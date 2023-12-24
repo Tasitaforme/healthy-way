@@ -17,8 +17,6 @@ import {
   StyledLink,
 } from 'components/StyledComponents/Components.styled';
 import sprite from 'assets/sprite.svg';
-import { Line } from 'react-chartjs-2';
-
 import {
   TextLabel,
   ListStat,
@@ -38,6 +36,7 @@ import {
   Scroll,
 } from './DashboardPage.styled';
 import { GetStatisticsPerMonth } from '../../requests/operationsStatistics';
+import Graph from './Graph/Graph';
 
 ChartJS.register(
   CategoryScale,
@@ -49,91 +48,6 @@ ChartJS.register(
   Filler,
   Legend
 );
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  elements: {
-    line: {
-      tension: 100,
-    },
-    point: {
-      radius: 0,
-      backgroundColor: '#E3FFA8',
-      borderColor: '#E3FFA8',
-      borderWidth: 1,
-      pointBorderColor: 'var(--black-primary)',
-      pointBackgroundColor: '#E3FFA8',
-      pointHoverRadius: 6,
-    },
-  },
-  plugins: {
-    tooltip: {
-      enabled: true,
-      mode: 'index',
-      intersect: true,
-      backgroundColor: 'var(--black-primary)',
-      bodyFontFamily: 'Poppins',
-      bodyFont: { size: 32 },
-      borderWidth: 186,
-      position: 'average',
-      displayColors: false,
-      cornerRadius: 10,
-      yAlign: 'bottom',
-      bodyAlign: 'center',
-      titleFont: { size: 0 },
-      titleAlign: 'left',
-      boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
-    },
-
-    legend: {
-      display: false,
-      position: 'top',
-    },
-    title: {
-      display: false,
-    },
-  },
-  scales: {
-    y: {
-      beginAtZero: true,
-      min: 0,
-      max: 3200,
-      grid: {
-        color: '#292928',
-        drawBorder: false,
-      },
-      ticks: {
-        stepSize: 1000,
-        font: {
-          size: 10,
-        },
-        callback: function (value, index, type) {
-          if (value === 0) {
-            return value;
-          } else {
-            const formattedValue = Math.round(value / 1000);
-            return `${formattedValue}${type === 'calories' ? 'K' : 'L'}`;
-          }
-        },
-      },
-    },
-    x: {
-      beginAtZero: true,
-
-      grid: {
-        ticks: {
-          align: 'center',
-          font: {
-            size: 10,
-            lineHeight: 2,
-          },
-        },
-        color: '#292928',
-        drawBorder: false,
-      },
-    },
-  },
-};
 
 function createArrayWithNumbers(n) {
   const result = [];
@@ -173,14 +87,6 @@ const months = [
   'December',
 ];
 
-const currentMonth = currentDate.getMonth();
-function getMonthsList() {
-  const monthsList = months
-    .slice(currentMonth)
-    .concat(months.slice(0, currentMonth));
-  return monthsList;
-}
-
 const customStyles = {
   valueContainer: (provided, state) => ({
     ...provided,
@@ -210,10 +116,8 @@ const customStyles = {
   }),
   menu: (provided, state) => ({
     ...provided,
-    // maxHeight: '144px',
     maxHeight: '300px',
     minWidth: '221px',
-    // overflow: 'hidden',
     color: '#b6b6b6',
     backgroundColor: '#0f0f0f',
     borderRadius: '14px',
@@ -230,9 +134,16 @@ const customStyles = {
     },
   }),
 };
+const currentMonth = currentDate.getMonth();
+function getMonthsList() {
+  const monthsList = months
+    .slice(currentMonth)
+    .concat(months.slice(0, currentMonth));
+  return monthsList;
+}
 const resultArrMonth = getMonthsList();
 
-let ArrMonth = resultArrMonth.map((month) => ({
+const ArrMonth = resultArrMonth.map((month) => ({
   value: month,
   label: month,
 }));
@@ -263,7 +174,6 @@ export default function DashboardPage() {
         if (selectedOption !== null) {
           numberMonth = selectMonth;
         }
-        console.log(numberMonth);
         const response = await GetStatisticsPerMonth(numberMonth);
         setCaloriesArr(response.calories);
         setWaterArr(response.water);
@@ -375,14 +285,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <Scroll>
-              <ChartBlock>
-                <Line
-                  type={'calories'}
-                  options={options}
-                  data={dataCalories}
-                  style={{ width: '100%', fontSize: '10px' }}
-                />
-              </ChartBlock>
+              <Graph symbol={'K'} dataGraph={dataCalories} />
             </Scroll>
           </LiCart>
 
@@ -395,14 +298,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <Scroll>
-              <ChartBlock>
-                <Line
-                  type={'water'}
-                  options={options}
-                  data={dataWoter}
-                  style={{ width: '100%', fontSize: '10px' }}
-                />
-              </ChartBlock>
+              <Graph symbol={'L'} dataGraph={dataWoter} />
             </Scroll>
           </LiCart>
         </ListChart>

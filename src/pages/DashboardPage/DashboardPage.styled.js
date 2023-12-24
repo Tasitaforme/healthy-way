@@ -91,22 +91,22 @@ export const Table = styled.div`
 export const Scroll = styled.div`
   @media screen and (max-width: 833px) {
     padding-bottom: 8px;
-    max-width: 310px; /* максимальная высота меню с прокруткой */
-    overflow-x: auto; /* включаем вертикальную прокрутку */
+    max-width: 310px;
+    overflow-x: auto;
     overflow-y: hidden;
-    scrollbar-width: 94px; /* ширина ползунка */
-    scrollbar-color: #ffffff1a #0f0f0f; /* цвет ползунка и его фона */
+    scrollbar-width: 94px;
+    scrollbar-color: #ffffff1a #0f0f0f;
     &::-webkit-scrollbar {
-      height: 8px; /* высота ползунка */
+      height: 8px;
       width: 300px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: #ffffff1a; /* цвет ползунка */
-      border-radius: 12px; /* скругление углов ползунка */
+      background-color: #ffffff1a;
+      border-radius: 12px;
     }
     &::-webkit-scrollbar-track {
-      background-color: #0f0f0f; /* цвет фона ползунка */
-      border-radius: 12px; /* скругление углов фона ползунка */
+      background-color: #0f0f0f;
+      border-radius: 12px;
     }
   }
 `;
