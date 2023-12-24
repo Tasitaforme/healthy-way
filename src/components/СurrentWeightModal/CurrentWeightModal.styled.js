@@ -2,31 +2,34 @@ import styled from 'styled-components';
 
 export const ModalWrapper = styled.div`
    position: absolute;
-  border-radius: 12px;
+   z-index: 100;
   background: #0F0F0F;
-  top: 57px;
-//   left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100vh;
+  box-shadow: 0 4px 14px 0 rgba(227, 255, 168, 0.2);
+ padding: 24px 10px; 
   
 @media screen and (min-width: 834px) {
    box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
     top: 120px;
     width: 392px;
-    right: 0px;
+    left: 260px;
+   height: auto;
 }
   @media screen and (min-width: 1440px) {
-    right: 0px;
+    left: 960px;
   }
 `;
 
 export const Modal = styled.div`
-padding-top:24px;
 @media screen and (min-width: 834px) {
  padding: 20px 24px 40px;}
 `;
 
 export const CloseBtn = styled.button`
-display:none;
+display: none;
 
 @media screen and (min-width: 834px) {
     display: block;

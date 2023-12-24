@@ -2,14 +2,22 @@ import styled from 'styled-components';
 export const UserinfoWrapper = styled.div`
 display: flex;
 
-align-itams: center;
+align-items: center;
 `
 export const UserContentWrapper = styled.div`
 margin-left: 48px;
 gap: 6px;
 display: flex;
 flex-direction: row;
-align-itams: center;
+align-items: center;
+
+
+@media screen and (min-width: 834px){
+   margin-left: 75px;
+  };
+  @media screen and (min-width: 1440px){
+    margin-left: 126px;
+  };
 `
 export const MenuIcon = styled.svg`
 margin: auto;
@@ -29,8 +37,11 @@ stroke: #E3FFA8;
 `
 export const UserName = styled.p`
 margin: auto;
-font-size: 12px;
-line-height: 1.33;
+    font-size: 12px;
+    line-height: 1.33;
+    width: 78px;
+    display: flex;
+    justify-content: end;
 `
 export const LoseMen = styled.div`
 display: flex;
@@ -64,3 +75,8 @@ gap: 40px;
 gap: 80px;
   };
 `
+
+export const AvatarImg = styled.img`
+width: 24px;
+height: 24px;
+border-radius: 24px;`

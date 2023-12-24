@@ -17,20 +17,24 @@ import {
 } from './TargetSelectionModal.styled';
 
 import loseFatMen from '../../assets/images/header/Lose-fat-image-men.png';
+import MusculeMen from '../../assets/images/header/Gain-muscle.png';
+import MaintakeMen from '../../assets/images/header/Maintake-image-men.png';
 
-export default function TargetSelectionModal({ onCloseModal }) {
+export default function TargetSelectionModal({ onTargetClick, onCloseModal }) {
   return (
     <ModalWrapper>
-      <CloseBtn onClick={onCloseModal}>
+      <CloseBtn type="button" onClick={onCloseModal}>
         <svg width="16px" height="16px" stroke="#fff">
           <use href={`${sprite}#close-circle`} />
         </svg>
       </CloseBtn>
+
       <Modal>
         <ModalTitle>Target selection</ModalTitle>
         <ModalText>
           The service will adjust your calorie intake to your goal
         </ModalText>
+
         <ModalForm>
           <ul>
             <TargetWrapper>
@@ -41,23 +45,23 @@ export default function TargetSelectionModal({ onCloseModal }) {
             </TargetWrapper>
             <TargetWrapper>
               <ImgBorder>
-                <TargetImg alt="Maintain" />
+                <TargetImg src={MaintakeMen} alt="Maintain" />
               </ImgBorder>
               <TargetText>Maintain</TargetText>
             </TargetWrapper>
             <TargetWrapper>
               <ImgBorder>
-                <TargetImg alt="Gain muscle" />
+                <TargetImg src={MusculeMen} alt="Gain muscle" />
               </ImgBorder>
               <TargetText>Gain muscle</TargetText>
             </TargetWrapper>
           </ul>
           <ModalBtn type="submit">Confirm</ModalBtn>
         </ModalForm>
+        <CancelBtn type="button" onClick={onTargetClick}>
+          Cancel
+        </CancelBtn>
       </Modal>
-      <CancelBtn>Cancel</CancelBtn>
     </ModalWrapper>
   );
 }
-
-// 2 картинки доскачать, вставить

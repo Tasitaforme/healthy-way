@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import sprite from 'assets/sprite.svg';
 import {
   ModalWrapper,
@@ -13,8 +13,9 @@ import {
   WeightFormInput,
   WeightFormBtn,
   CancelBtn,
-} from '../СurrentWeightModal/CurrentWeightModal.styled';
-export default function СurrentWeightModal({ onCloseModal }) {
+} from './CurrentWeightModal.styled';
+
+export default function CurrentWeightModal({ onCloseModal, onWeightClick }) {
   function getCurrentDateFormatted() {
     const currentDate = new Date();
 
@@ -51,7 +52,7 @@ export default function СurrentWeightModal({ onCloseModal }) {
           <WeightFormBtn type="submit">Confirm</WeightFormBtn>
         </WeightForm>
       </Modal>
-      <CancelBtn onClick={onCloseModal}>Cancel</CancelBtn>
+      <CancelBtn onClick={onWeightClick}>Cancel</CancelBtn>
     </ModalWrapper>
   );
 }
