@@ -4,12 +4,9 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
 
 import { loginSchema } from '../../schemas/formik';
-import {
-  FormikStyledErrorMessage,
-  FormikStyledField,
-} from '../../components/StyledComponents/Formik.styled';
+import { FormikStyledField } from '../../components/StyledComponents/Formik.styled';
 import { Button } from '../StyledComponents/Components.styled';
-import { ForgotLink, SignInFormikForm } from './SignInForm.styled';
+import { ForgotLink, SignInFormikForm, Error } from './SignInForm.styled';
 
 export default function SignInForm() {
   const initialValues = {
@@ -43,14 +40,14 @@ export default function SignInForm() {
               name="email"
               placeholder="E-mail"
               className={
-                touched.quantity
-                  ? errors.quantity
+                touched.email
+                  ? errors.email
                     ? 'input-error'
                     : 'input-success'
                   : 'input-normal'
               }
             />
-            <FormikStyledErrorMessage component="p" name="email" />
+            <Error component="p" name="email" />
 
             <FormikStyledField
               type="password"
@@ -58,14 +55,14 @@ export default function SignInForm() {
               placeholder="Password"
               autoComplete="off"
               className={
-                touched.quantity
-                  ? errors.quantity
+                touched.password
+                  ? errors.password
                     ? 'input-error'
                     : 'input-success'
                   : 'input-normal'
               }
             />
-            <FormikStyledErrorMessage component="p" name="password" />
+            <Error component="p" name="password" />
 
             <Button type="submit" disabled={!isValid || isSubmitting}>
               Sign in

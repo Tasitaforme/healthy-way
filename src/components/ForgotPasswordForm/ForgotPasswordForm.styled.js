@@ -4,7 +4,7 @@ import { SignInFormikForm } from '../SignInForm/SignInForm.styled';
 
 export const Error = styled(FormikStyledErrorMessage)`
   position: absolute;
-  top: -32px;
+  top: 30px;
   left: 10px;
 `;
 
