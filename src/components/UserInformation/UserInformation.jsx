@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 import { Formik } from 'formik';
 import { profileSettingSchema } from '../../schemas/profileSettings';
 import { selectUserInfo } from '../../redux/auth/selectors';
 import { updateUser, updateAvatar } from '../../redux/auth/operations.js';
-// import toast from 'react-hot-toast';
+import sprite from 'assets/sprite.svg';
 
 import {
   UserInformationField,
@@ -27,8 +28,6 @@ import {
   UserForm,
   UserButtonsWrapper,
 } from './UserInformation.styled';
-
-import downloadIcon from '../../assets/images/profileSettings/download.png';
 
 export default function UserInformation() {
   const dispatch = useDispatch();
@@ -59,18 +58,22 @@ export default function UserInformation() {
     setIsAvatarChanged(true);
   };
 
-  const handleClickSave = (values) => {
+  const handleClickSave = async (values) => {
     values.height = Number(values.height);
     values.weight = Number(values.weight);
     values.age = Number(values.age);
     values.activityRatio = Number(values.activityRatio);
-    dispatch(updateUser(values));
-    // toast.success('Your profile information has been successfully updated!');
+    try {
+      await dispatch(updateUser(values));
+      toast.success('Your profile information has been successfully updated!');
 
-    if (isAvatarChanged) {
-      const formData = new FormData();
-      formData.append('avatarURL', avatarFile);
-      dispatch(updateAvatar(formData));
+      if (isAvatarChanged) {
+        const formData = new FormData();
+        formData.append('avatar', avatarFile);
+        await dispatch(updateAvatar(formData));
+      }
+    } catch (error) {
+      toast.error(`Something went wrong! ${error.message}`);
     }
   };
 
@@ -86,14 +89,20 @@ export default function UserInformation() {
       validationSchema={profileSettingSchema}
       onSubmit={handleClickSave}
     >
-      {({ errors, values, resetForm }) => (
+      {({ errors, values, resetForm, touched }) => (
         <UserForm>
           <UserInformationBlock>
             <label>Your name</label>
             <UserInformationField
               name="name"
               placeholder="Enter your name"
-              className={errors.name ? 'input-error' : ''}
+              className={
+                touched.name
+                  ? errors.name
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
             />
             <UserInformationErrorMessage name="name" component="p" />
           </UserInformationBlock>
@@ -114,7 +123,9 @@ export default function UserInformation() {
                   alt="userAvatar"
                 ></AvatarImg>
               </AvatarContainer>
-              <AvatarIcon src={downloadIcon} />
+              <AvatarIcon>
+                <use href={`${sprite}#download`} />
+              </AvatarIcon>
               Download new photo
             </AvatarLabel>
             <UserInformationErrorMessage name="avatar" component="div" />
@@ -125,7 +136,13 @@ export default function UserInformation() {
             <UserInformationField
               name="age"
               placeholder="Enter your age"
-              className={errors.age ? 'input-error' : ''}
+              className={
+                touched.age
+                  ? errors.age
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
             />
             <UserInformationErrorMessage name="age" component="div" />
           </UserInformationBlock>
@@ -163,7 +180,13 @@ export default function UserInformation() {
             <UserInformationField
               name="height"
               placeholder="Enter your height"
-              className={errors.height ? 'input-error' : ''}
+              className={
+                touched.height
+                  ? errors.height
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
             />
             <UserInformationErrorMessage name="height" component="div" />
           </UserInformationBlock>
@@ -173,7 +196,13 @@ export default function UserInformation() {
             <UserInformationField
               name="weight"
               placeholder="Enter your weight"
-              className={errors.weight ? 'input-error' : ''}
+              className={
+                touched.weight
+                  ? errors.weight
+                    ? 'input-error'
+                    : 'input-success'
+                  : 'input-normal'
+              }
             />
             <UserInformationErrorMessage name="weight" component="div" />
           </UserInformationBlock>

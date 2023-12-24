@@ -55,6 +55,10 @@ export const UserInformationField = styled(FormikStyledField)`
 
 export const UserInformationErrorMessage = styled(FormikStyledErrorMessage)`
   margin: 0;
+
+  @media screen and (min-width: 834px) {
+    width: 200px;
+  }
 `;
 
 export const AvatarInput = styled.input`
@@ -98,13 +102,14 @@ export const AvatarImg = styled.img`
   object-fit: cover;
 `;
 
-export const AvatarIcon = styled.img`
+export const AvatarIcon = styled.svg`
   width: 16px;
   height: 16px;
   justify-content: center;
   align-items: center;
   margin-right: 6px;
-  stroke: green;
+  stroke: var(--green-light);
+  fill: none;
 `;
 
 export const GenderButtonsWrapper = styled.div`
