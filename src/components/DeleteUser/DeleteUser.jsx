@@ -23,14 +23,13 @@ export default function DeleteUser() {
 
   const onSubmit = async (values, actions) => {
     try {
-      console.log({ email, ...values });
-      const data = await removeUser({ email, ...values });
-      console.log(data);
+      await removeUser({ email, ...values });
       toast.success('You have successfully delete your account!');
       navigate('/welcome');
     } catch (error) {
-      console.log(error);
-      toast.error(`Something went wrong! ${error}`);
+      // console.log(error);
+      console.log(error.message);
+      toast.error(`Something went wrong! ${error.message}`);
     }
     actions.resetForm();
   };
