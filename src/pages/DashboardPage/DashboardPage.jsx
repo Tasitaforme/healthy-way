@@ -35,7 +35,7 @@ import {
   SelectBlock,
   SelectOption,
 } from './DashboardPage.styled';
-import { GetStatisticsPerMonth } from '../../redux/statistics/operations';
+import { GetStatisticsPerMonth } from '../../requests/operationsStatistics';
 
 ChartJS.register(
   CategoryScale,
@@ -96,7 +96,6 @@ const options = {
             return value;
           } else {
             const formattedValue = Math.round(value / 1000);
-            console.log(type);
             return `${formattedValue}${type === 'calories' ? 'K' : 'L'}`;
           }
         },

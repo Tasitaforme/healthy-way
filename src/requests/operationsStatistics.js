@@ -1,4 +1,4 @@
-import instance from '../../redux/auth/operations';
+import instance from '../redux/auth/operations';
 
 export const GetStatisticsPerMonth = async (numberMonth) => {
   try {
