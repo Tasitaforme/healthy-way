@@ -14,11 +14,18 @@ export default function SharedLayout() {
   const { isLogin, accessToken } = useSelector(selectAuthInfo);
 
   useEffect(() => {
-    if (accessToken) {
+    if (isLogin || accessToken) {
       dispatch(currentUser());
-      dispatch(getFoodDiaryToday());
+      // dispatch(getFoodDiaryToday());
     }
   }, [dispatch, isLogin, accessToken]);
+
+  // useEffect(() => {
+  //   if (accessToken) {
+  //     dispatch(currentUser());
+  //     dispatch(getFoodDiaryToday());
+  //   }
+  // }, [dispatch, isLogin, accessToken]);
   //---------------------------------
   // useEffect(() => {
   //   const doRefresh = () => {

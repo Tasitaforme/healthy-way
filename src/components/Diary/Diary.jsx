@@ -5,7 +5,6 @@ import {
   StyledLink,
 } from '../StyledComponents/Components.styled';
 import { DiaryList, DiaryWrap, TitleWrap } from './Diary.styled';
-// import { nanoid } from '@reduxjs/toolkit';
 
 import DiaryItem from './DiaryItem/DiaryItem';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +15,7 @@ import { getTotalNutrients, getTotalNutrientsForMeals } from '../../helpers';
 
 export default function Diary() {
   const dispatch = useDispatch();
-  const { meals, firstLoad } = useSelector(selectDiaryInfo);
+  const { meals } = useSelector(selectDiaryInfo);
 
   // useEffect(() => {
   //   if (!firstLoad) {

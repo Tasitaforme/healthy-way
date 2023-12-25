@@ -21,20 +21,34 @@ import { toast } from 'react-hot-toast';
 import { logOut } from '../../redux/auth/operations';
 import { selectIsLogin } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
-import { selectWaterInfo } from '../../redux/water/selectors';
+// import { selectWaterInfo } from '../../redux/water/selectors';
 import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm';
 import DeleteUser from '../../components/DeleteUser/DeleteUser';
+import { getFoodDiaryToday } from '../../redux/diary/operations';
 
 export default function MainPage() {
   const dispatch = useDispatch();
   const isLogin = useSelector(selectIsLogin);
-  const { water: waterReal } = useSelector(selectWaterInfo);
 
   useEffect(() => {
     if (isLogin) {
       dispatch(getDailyWater());
     }
-  }, [isLogin, waterReal]);
+  }, [isLogin, dispatch]);
+
+  useEffect(() => {
+    if (isLogin) {
+      dispatch(getFoodDiaryToday());
+    }
+  }, [dispatch]);
+
+  // const { water: waterReal } = useSelector(selectWaterInfo);
+
+  // useEffect(() => {
+  //   if (isLogin) {
+  //     dispatch(getDailyWater());
+  //   }
+  // }, [isLogin, waterReal]);
 
   const [modalActive, setModalActive] = useState(false);
 
