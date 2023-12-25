@@ -1,11 +1,5 @@
 import { Container } from '../StyledComponents/Container';
-import {
-  Navigation,
-  Logo,
-  HeaderWrap,
-  SignInLink,
-  SignUpLink,
-} from './Header.styled';
+import { Navigation, Logo, HeaderWrap, NavigationLink } from './Header.styled';
 
 import sprite from 'assets/sprite.svg';
 
@@ -63,8 +57,8 @@ export default function Header() {
             />
           ) : (
             <Navigation>
-              <SignInLink to="/signin">Sign in</SignInLink>/
-              <SignUpLink to="/signup">Sign up</SignUpLink>
+              <NavigationLink to="/signin"> Sign in</NavigationLink>/
+              <NavigationLink to="/signup"> Sign up</NavigationLink>
               <svg width="26px" height="26px">
                 <use href={`${sprite}#profile`} stroke="white" fill="none" />
               </svg>
