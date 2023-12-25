@@ -9,7 +9,6 @@ import {
   StyledLink,
 } from 'components/StyledComponents/Components.styled';
 import sprite from 'assets/sprite.svg';
-
 import DailyGoal from 'components/DailyGoal/DailyGoal';
 import Water from 'components/Water/Water';
 import Food from 'components/Food/Food';
@@ -21,7 +20,6 @@ import { toast } from 'react-hot-toast';
 import { logOut } from '../../redux/auth/operations';
 import { selectIsLogin } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
-// import { selectWaterInfo } from '../../redux/water/selectors';
 import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm';
 import DeleteUser from '../../components/DeleteUser/DeleteUser';
 import { getFoodDiaryToday } from '../../redux/diary/operations';
@@ -41,14 +39,6 @@ export default function MainPage() {
       dispatch(getFoodDiaryToday());
     }
   }, [dispatch]);
-
-  // const { water: waterReal } = useSelector(selectWaterInfo);
-
-  // useEffect(() => {
-  //   if (isLogin) {
-  //     dispatch(getDailyWater());
-  //   }
-  // }, [isLogin, waterReal]);
 
   const [modalActive, setModalActive] = useState(false);
 

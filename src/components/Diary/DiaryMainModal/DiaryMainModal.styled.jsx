@@ -3,16 +3,14 @@ import {
   BodyTextFirst,
   HeadlineSecond,
 } from '../../StyledComponents/Components.styled';
-import { RecordBtn } from '../DiaryItem/DiaryItem.styled';
 
 export const ModalWrapper = styled.div`
-  /* width: 300px; */
   min-height: 346px;
   margin: 16px 12px 22px;
-  /* position: relative; */
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 834px) {
     margin: 24px;
+    min-width: 630px;
   }
 `;
 
@@ -37,10 +35,6 @@ export const MealsList = styled.ul`
   row-gap: 18px;
   align-items: center;
   justify-content: flex-start;
-
-  @media screen and (min-width: 834px) {
-    /* flex-direction: row; */
-  }
 `;
 
 export const MealsItem = styled.li``;

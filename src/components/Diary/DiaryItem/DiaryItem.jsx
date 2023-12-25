@@ -27,26 +27,9 @@ import {
 
 import sprite from 'assets/sprite.svg';
 import DiaryMainModal from '../DiaryMainModal/DiaryMainModal';
-import { useDispatch } from 'react-redux';
-import { getFoodDiaryToday } from '../../../redux/diary/operations';
 
 export default function DiaryItem({ data, meals }) {
   const [modalData, setModalData] = useState(false);
-
-  // console.log(data.mealType);
-  // const value = data.mealType;
-  // console.log(meals[`${data.mealType}`]);
-  // console.log(meals[`${data.mealType}`].length === 0);
-
-  // const dispatch = useDispatch();
-  // const needRefresh = useRef(false);
-
-  // useEffect(() => {
-  //   if (!needRefresh.current) {
-  //     dispatch(getFoodDiaryToday());
-  //     needRefresh.current = true;
-  //   }
-  // }, [dispatch]);
 
   return (
     <>
