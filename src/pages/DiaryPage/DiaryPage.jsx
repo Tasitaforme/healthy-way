@@ -47,8 +47,8 @@ export default function DiaryPage() {
       type,
       data: data.concat(Array(4).fill({})).slice(0, 4),
       stats: {
-        carbonohidrates: data.reduce(
-          (acc, { carbonohidrates }) => acc + carbonohidrates,
+        carbohydrate: data.reduce(
+          (acc, { carbohydrate }) => acc + carbohydrate,
           0
         ),
         protein: data.reduce((acc, { protein }) => acc + protein, 0),
@@ -79,7 +79,7 @@ export default function DiaryPage() {
                   </MealTitleWrapper>
                   <NutririonList>
                     <li>
-                      Carbonohidrates: <span>{stats.carbonohidrates}</span>
+                      Carbonohidrates: <span>{stats.carbohydrate}</span>
                     </li>
                     <li>
                       Protein: <span>{stats.protein}</span>

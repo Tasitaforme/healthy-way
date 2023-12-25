@@ -172,7 +172,7 @@ export const ModalTitle = styled.h3`
   margin-bottom: 24px;
 `;
 
-export const FormikWrapper = styled.div``;
+export const FormikWrapper = styled(FormikStyledForm)``;
 
 export const FormikWrapperTablet = styled.div`
   margin-top: 16px;
@@ -192,32 +192,37 @@ export const FormikWrapperMobile = styled.div`
   gap: 16px;
 `;
 
-export const NameForm = styled(FormikStyledForm)`
+const FormField = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const NameForm = styled(FormField)`
   @media (min-width: 768px) {
     width: 250px;
   }
 `;
 
-export const CarbonohForm = styled(FormikStyledForm)`
+export const CarbonohForm = styled(FormField)`
   @media (min-width: 768px) {
     width: 100px;
   }
 `;
 
-export const ProteinForm = styled(FormikStyledForm)`
+export const ProteinForm = styled(FormField)`
   @media (min-width: 768px) {
     width: 86px;
   }
 `;
 
-export const FatForm = styled(FormikStyledForm)`
+export const FatForm = styled(FormField)`
   max-width: 110px;
   @media (min-width: 768px) {
     width: 61px;
   }
 `;
 
-export const CaloriesForm = styled(FormikStyledForm)`
+export const CaloriesForm = styled(FormField)`
   max-width: 110px;
   @media (min-width: 768px) {
     width: 78px;
@@ -283,4 +288,25 @@ export const CancelModalBtn = styled.button`
   @media (min-width: 768px) {
     width: 212px;
   }
+`;
+
+export const RecordedMealWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const MealsName = styled.h4`
+  font-size: 14px;
+`;
+
+export const EditIcon = styled.svg`
+  width: 16px;
+  height: 16px;
+  stroke: var(--grey-light);
+`;
+
+export const EditLabel = styled.p`
+  font-size: 14px;
+  color: var(--grey-light);
+  margin-left: 6px;
 `;

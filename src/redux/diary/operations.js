@@ -21,7 +21,7 @@ export const getFoodDiaryToday = createAsyncThunk(
  * POST @ /api/user/food
  * headers: Authorization: Bearer token
  * body: {  diary: ["Breakfast", "Lunch", "Dinner", "Snack"],
- *          name, carbohydrate, protein, fat, BMR }
+ *          name, carbohydrate, protein, fat, calories }
  */
 export const createFoodDiary = createAsyncThunk(
   'user/diary/post',
