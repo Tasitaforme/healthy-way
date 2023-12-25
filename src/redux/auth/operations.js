@@ -7,7 +7,7 @@ import { resetStatistics } from '../statistics/statisticsSlice';
 import { resetDiary } from '../diary/diarySlice';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000', //'https://healthy-way-app.onrender.com',
+  baseURL: 'https://healthy-way-app.onrender.com',
 });
 
 const setToken = (token) => {
