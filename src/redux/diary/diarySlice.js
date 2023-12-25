@@ -49,8 +49,8 @@ const handleGetDiaryToday = (state, { payload }) => {
 };
 
 const handleCreateFoodDiary = (state, { payload }) => {
-  const { diary, ...data } = payload;
-  state.meals[diary.toLowerCase()].push(data);
+  const { diary, _id, ...data } = payload;
+  state.meals[diary.toLowerCase()].push({ ...data, id: data.id || _id });
 
   state.calories = payload.calories + data.calories || 0;
   state.protein = payload.protein + data.protein || 0;
@@ -62,27 +62,41 @@ const handleCreateFoodDiary = (state, { payload }) => {
 
 const handleUpdateFoodDiary = (state, { payload }) => {
   const { diary, ...data } = payload;
-  state.meals[diary.toLowerCase()].push(data);
 
-  state.calories = payload.calories + data.calories || 0;
-  state.protein = payload.protein + data.protein || 0;
-  state.carbohydrate = payload.carbohydrate + data.carbohydrate || 0;
-  state.fat = payload.fat + data.fat || 0;
+  state.meals[diary.toLowerCase()] = state.meals[diary.toLowerCase()].map(
+    (item) => {
+      if (item.id === data.id) {
+        state.calories = state.calories - item.calories + data.calories;
+        state.protein = state.protein - item.protein + data.protein;
+        state.carbohydrate =
+          state.carbohydrate - item.carbohydrate + data.carbohydrate;
+        state.fat = state.fat - item.fat + data.fat;
+        return data;
+      } else {
+        return item;
+      }
+    }
+  );
 
   handleFulfilled(state);
 };
 
 const handleDeleteFoodDiary = (state, { payload }) => {
-  const { diary, ...data } = payload;
-  state.meals[diary.toLowerCase()].push(data);
+  const { diary, id } = payload;
+  state.meals[diary.toLowerCase()] = state.meals[diary.toLowerCase()].filter(
+    (item) => {
+      if (item.id === id) {
+        state.calories = payload.calories - (item.calories || 0);
+        state.protein = payload.protein - (item.protein || 0);
+        state.carbohydrate = payload.carbohydrate - (item.carbohydrate || 0);
+        state.fat = payload.fat - (item.fat || 0);
 
-  state.calories = payload.calories - data.calories || 0;
-  state.protein = payload.protein - data.protein || 0;
-  state.carbohydrate = payload.carbohydrate - data.carbohydrate || 0;
-  state.fat = payload.fat - data.fat || 0;
-
-  const index = state.items.findIndex((data) => data.id === payload.id);
-  state.items.splice(index, 1);
+        return false;
+      } else {
+        return true;
+      }
+    }
+  );
 
   handleFulfilled(state);
 };
