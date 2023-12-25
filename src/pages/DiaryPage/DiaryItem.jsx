@@ -21,7 +21,12 @@ export default function DiaryItem({ data, type }) {
             <ListItem key={item?.id || index}>
               <p>{index + 1}</p>
               {item?.id ? (
-                <RecordedMeal />
+                <RecordedMeal
+                  data={item}
+                  type={type}
+                  modalData={modalData}
+                  setModalData={setModalData}
+                />
               ) : index === 0 || arr[index - 1].id ? (
                 <RecordBtn onClick={() => setModalData({ type })}>
                   <StyledAddMealIcon>
@@ -29,14 +34,16 @@ export default function DiaryItem({ data, type }) {
                   </StyledAddMealIcon>
                   <RecordBtnLabel>Record your meal</RecordBtnLabel>
                 </RecordBtn>
-              ) : (
-                <RecordedMeal />
-              )}
+              ) : null}
             </ListItem>
           );
         })}
       </List>
-      <DiaryModal modalData={modalData} setModalData={setModalData} />
+      <DiaryModal
+        key={modalData?.id}
+        modalData={modalData}
+        setModalData={setModalData}
+      />
     </>
   );
 }

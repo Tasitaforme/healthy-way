@@ -27,12 +27,17 @@ import sprite from '../../assets/sprite.svg';
 import { FormikStyledField } from '../../components/StyledComponents/Formik.styled';
 import { diarySchema } from '../../schemas/formikDiary';
 import { useCallback } from 'react';
-import { createFoodDiary } from '../../redux/diary/operations';
+import {
+  createFoodDiary,
+  deleteFoodDiary,
+  updateFoodDiary,
+} from '../../redux/diary/operations';
 import { useDispatch } from 'react-redux';
 
 export const DiaryModal = ({ modalData, setModalData }) => {
   const dispatch = useDispatch();
   const {
+    id,
     type,
     name = '',
     carbohydrate = '',
@@ -40,21 +45,29 @@ export const DiaryModal = ({ modalData, setModalData }) => {
     fat = '',
     calories = '',
   } = modalData;
+
   const onSubmit = useCallback(
     async (formData) => {
-      console.log(formData);
       try {
-        const res = await dispatch(
-          createFoodDiary({ ...formData, diary: type })
-        );
+        if (id) {
+          await dispatch(
+            updateFoodDiary({ id, body: { ...formData, diary: type } })
+          );
+        } else {
+          await dispatch(createFoodDiary({ ...formData, diary: type }));
+        }
         setModalData(false);
-        console.log('Res', res);
       } catch (err) {
         console.log('ERR', err);
       }
     },
-    [dispatch, setModalData, type]
+    [dispatch, id, type]
   );
+
+  const handleDelete = async () => {
+    await dispatch(deleteFoodDiary({ id, diary: type }));
+    setModalData(false);
+  };
 
   return (
     <ModalMain modalActive={!!modalData} setModalActive={setModalData}>
@@ -75,9 +88,9 @@ export const DiaryModal = ({ modalData, setModalData }) => {
           validationSchema={diarySchema}
           onSubmit={onSubmit}
         >
-          {({ errors, touched, isSubmitting, isValid, dirty }) => {
+          {({ errors, touched, isSubmitting, isValid, dirty, submitForm }) => {
             return (
-              <FormikWrapper>
+              <FormikWrapper as="div">
                 <FormikWrapperTablet>
                   <NameForm>
                     <FormikStyledField
@@ -155,12 +168,19 @@ export const DiaryModal = ({ modalData, setModalData }) => {
                         }
                       />
                     </CaloriesForm>
-                    <TrashModalIcon>
-                      <use href={`${sprite}#trash`} />
-                    </TrashModalIcon>
+                    {modalData?.id ? (
+                      <TrashModalIcon onClick={handleDelete}>
+                        <use href={`${sprite}#trash`} />
+                      </TrashModalIcon>
+                    ) : null}
                   </FormikWrapperMobile>
                 </FormikWrapperTablet>
-                <AddMoreBtn>
+                <AddMoreBtn
+                  onClick={async () => {
+                    await submitForm();
+                    setModalData({ type });
+                  }}
+                >
                   <AddMoreIcon>
                     <use href={`${sprite}#add`} />
                   </AddMoreIcon>
@@ -168,8 +188,10 @@ export const DiaryModal = ({ modalData, setModalData }) => {
                 </AddMoreBtn>
                 <BtnWrapper>
                   <ConfirmModalBtn
-                    type="submit"
                     disabled={!isValid || isSubmitting || !dirty || !touched}
+                    onClick={async () => {
+                      await submitForm();
+                    }}
                   >
                     Confirm
                   </ConfirmModalBtn>
