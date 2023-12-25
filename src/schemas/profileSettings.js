@@ -20,12 +20,14 @@ export const profileSettingSchema = Yup.object().shape({
     .max(120, 'Age must be lower than or equal to 120'),
   height: Yup.number()
     .required('Height is required')
+    .typeError('Age must be a number')
     .positive('Height must be a positive number')
     .integer('Height must be an integer number')
     .min(65, 'Height must be greater than or equal to 65sm')
     .max(250, 'Height must be lower than or equal to 250sm'),
   weight: Yup.number()
     .required('Weight is required')
+    .typeError('Age must be a number')
     .positive('Weight must be a positive number')
     .integer('Weight must be an integer number')
     .min(40, 'Weight must be greater than or equal to 40kg')
