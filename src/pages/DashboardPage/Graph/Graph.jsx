@@ -23,8 +23,12 @@ ChartJS.register(
   Legend
 );
 
-export default function Graph({ symbol, dataGraph }) {
+export default function Graph({ symbol, dataGraph, unit }) {
   const options = {
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
     responsive: true,
     maintainAspectRatio: false,
     elements: {
@@ -43,21 +47,37 @@ export default function Graph({ symbol, dataGraph }) {
     },
     plugins: {
       tooltip: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            if (tooltipItem) {
+              const formattedValue = Math.round(tooltipItem.raw);
+              return `${formattedValue}`;
+            }
+            return null;
+          },
+          afterLabel: function (tooltipItem, data) {
+            if (tooltipItem) {
+              return `${unit}`;
+            }
+            return null;
+          },
+        },
         enabled: true,
         mode: 'index',
+        padding: 8,
         intersect: true,
         backgroundColor: 'var(--black-primary)',
         bodyFontFamily: 'Poppins',
         bodyFont: { size: 32 },
-        borderWidth: 186,
-        position: 'average',
+        borderWidth: 2,
+        position: 'nearest',
         displayColors: false,
         cornerRadius: 10,
         yAlign: 'bottom',
         bodyAlign: 'center',
         titleFont: { size: 0 },
         titleAlign: 'left',
-        boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
+        boxShadow: ['0px 4px 14px 0px rgba(227, 255, 168, 0.20)'],
       },
 
       legend: {
@@ -71,7 +91,7 @@ export default function Graph({ symbol, dataGraph }) {
     scales: {
       y: {
         beginAtZero: true,
-        sensitivity: 140,
+
         min: 0,
         max: 3200,
         grid: {
@@ -83,6 +103,7 @@ export default function Graph({ symbol, dataGraph }) {
           font: {
             size: 10,
           },
+          sensitivity: 10,
 
           callback: function (value, index) {
             if (value === 0) {
@@ -115,8 +136,8 @@ export default function Graph({ symbol, dataGraph }) {
   return (
     <ChartBlock>
       <Line
-        options={options}
         data={dataGraph}
+        options={options}
         style={{ width: '100%', fontSize: '10px' }}
       />
     </ChartBlock>

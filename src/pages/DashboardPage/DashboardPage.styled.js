@@ -156,15 +156,12 @@ export const ChartBlock = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-
   @media screen and (min-width: 320px) {
     width: 676px;
   }
-
   @media screen and (min-width: 834px) {
     width: 780px;
   }
-
   @media screen and (min-width: 1440px) {
     width: 676px;
   }
