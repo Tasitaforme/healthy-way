@@ -6,7 +6,6 @@ import { profileSettingSchema } from '../../schemas/profileSettings';
 import { selectUserInfo } from '../../redux/auth/selectors';
 import { updateUser, updateAvatar } from '../../redux/auth/operations.js';
 import sprite from 'assets/sprite.svg';
-
 import {
   UserInformationField,
   UserInformationErrorMessage,
@@ -28,8 +27,6 @@ import {
   UserForm,
   UserButtonsWrapper,
 } from './UserInformation.styled';
-import ChangePasswordForm from '../ChangePasswordForm/ChangePasswordForm';
-import DeleteUser from '../DeleteUser/DeleteUser';
 
 export default function UserInformation() {
   const dispatch = useDispatch();
@@ -305,9 +302,6 @@ export default function UserInformation() {
           </UserForm>
         )}
       </Formik>
-
-      <ChangePasswordForm />
-      <DeleteUser />
     </>
   );
 }
