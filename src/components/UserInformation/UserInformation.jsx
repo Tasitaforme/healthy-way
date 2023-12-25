@@ -28,6 +28,8 @@ import {
   UserForm,
   UserButtonsWrapper,
 } from './UserInformation.styled';
+import ChangePasswordForm from '../ChangePasswordForm/ChangePasswordForm';
+import DeleteUser from '../DeleteUser/DeleteUser';
 
 export default function UserInformation() {
   const dispatch = useDispatch();
@@ -84,221 +86,228 @@ export default function UserInformation() {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={profileSettingSchema}
-      onSubmit={handleClickSave}
-    >
-      {({ errors, values, resetForm, touched }) => (
-        <UserForm>
-          <UserInformationBlock>
-            <label>Your name</label>
-            <UserInformationField
-              name="name"
-              placeholder="Enter your name"
-              className={
-                touched.name
-                  ? errors.name
-                    ? 'input-error'
-                    : 'input-success'
-                  : 'input-normal'
-              }
-            />
-            <UserInformationErrorMessage name="name" component="p" />
-          </UserInformationBlock>
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={profileSettingSchema}
+        onSubmit={handleClickSave}
+      >
+        {({ errors, values, resetForm, touched }) => (
+          <UserForm>
+            <UserInformationBlock>
+              <label>Your name</label>
+              <UserInformationField
+                name="name"
+                placeholder="Enter your name"
+                className={
+                  touched.name
+                    ? errors.name
+                      ? 'input-error'
+                      : 'input-success'
+                    : 'input-normal'
+                }
+              />
+              <UserInformationErrorMessage name="name" component="p" />
+            </UserInformationBlock>
 
-          <UserInformationBlock>
-            <p>Your photo</p>
-            <AvatarInput
-              accept="image/*"
-              id="avatar"
-              name="avatar"
-              type="file"
-              onChange={handleChangeAvatar}
-            />
-            <AvatarLabel htmlFor="avatar">
-              <AvatarContainer>
-                <AvatarImg
-                  src={avatarPreview || userProfile.avatarURL}
-                  alt="userAvatar"
-                ></AvatarImg>
-              </AvatarContainer>
-              <AvatarIcon>
-                <use href={`${sprite}#download`} />
-              </AvatarIcon>
-              Download new photo
-            </AvatarLabel>
-            <UserInformationErrorMessage name="avatar" component="div" />
-          </UserInformationBlock>
+            <UserInformationBlock>
+              <p>Your photo</p>
+              <AvatarInput
+                accept="image/*"
+                id="avatar"
+                name="avatar"
+                type="file"
+                onChange={handleChangeAvatar}
+              />
+              <AvatarLabel htmlFor="avatar">
+                <AvatarContainer>
+                  <AvatarImg
+                    src={avatarPreview || userProfile.avatarURL}
+                    alt="userAvatar"
+                  ></AvatarImg>
+                </AvatarContainer>
+                <AvatarIcon>
+                  <use href={`${sprite}#download`} />
+                </AvatarIcon>
+                Download new photo
+              </AvatarLabel>
+              <UserInformationErrorMessage name="avatar" component="div" />
+            </UserInformationBlock>
 
-          <UserInformationBlock>
-            <label htmlFor="age">Your age</label>
-            <UserInformationField
-              name="age"
-              placeholder="Enter your age"
-              className={
-                touched.age
-                  ? errors.age
-                    ? 'input-error'
-                    : 'input-success'
-                  : 'input-normal'
-              }
-            />
-            <UserInformationErrorMessage name="age" component="div" />
-          </UserInformationBlock>
+            <UserInformationBlock>
+              <label htmlFor="age">Your age</label>
+              <UserInformationField
+                name="age"
+                placeholder="Enter your age"
+                className={
+                  touched.age
+                    ? errors.age
+                      ? 'input-error'
+                      : 'input-success'
+                    : 'input-normal'
+                }
+              />
+              <UserInformationErrorMessage name="age" component="div" />
+            </UserInformationBlock>
 
-          <UserInformationBlock>
-            <div id="my-gender-group">Gender</div>
-            <GenderButtonsWrapper
-              role="group"
-              aria-labelledby="my-gender-group"
-            >
-              <UserInformationRadioLabel>
-                <UserInformationRadioInput
-                  type="radio"
-                  name="gender"
-                  value="Male"
-                />
-                <UserInformationRadioFake></UserInformationRadioFake>
-                <UserGenderText>Male</UserGenderText>
-              </UserInformationRadioLabel>
+            <UserInformationBlock>
+              <div id="my-gender-group">Gender</div>
+              <GenderButtonsWrapper
+                role="group"
+                aria-labelledby="my-gender-group"
+              >
+                <UserInformationRadioLabel>
+                  <UserInformationRadioInput
+                    type="radio"
+                    name="gender"
+                    value="Male"
+                  />
+                  <UserInformationRadioFake></UserInformationRadioFake>
+                  <UserGenderText>Male</UserGenderText>
+                </UserInformationRadioLabel>
 
-              <UserInformationRadioLabel>
-                <UserInformationRadioInput
-                  type="radio"
-                  name="gender"
-                  value="Female"
-                />
-                <UserInformationRadioFake></UserInformationRadioFake>
-                <UserGenderText>Female</UserGenderText>
-              </UserInformationRadioLabel>
-            </GenderButtonsWrapper>
-          </UserInformationBlock>
+                <UserInformationRadioLabel>
+                  <UserInformationRadioInput
+                    type="radio"
+                    name="gender"
+                    value="Female"
+                  />
+                  <UserInformationRadioFake></UserInformationRadioFake>
+                  <UserGenderText>Female</UserGenderText>
+                </UserInformationRadioLabel>
+              </GenderButtonsWrapper>
+            </UserInformationBlock>
 
-          <UserInformationBlock>
-            <label htmlFor="height">Height</label>
-            <UserInformationField
-              name="height"
-              placeholder="Enter your height"
-              className={
-                touched.height
-                  ? errors.height
-                    ? 'input-error'
-                    : 'input-success'
-                  : 'input-normal'
-              }
-            />
-            <UserInformationErrorMessage name="height" component="div" />
-          </UserInformationBlock>
+            <UserInformationBlock>
+              <label htmlFor="height">Height</label>
+              <UserInformationField
+                name="height"
+                placeholder="Enter your height"
+                className={
+                  touched.height
+                    ? errors.height
+                      ? 'input-error'
+                      : 'input-success'
+                    : 'input-normal'
+                }
+              />
+              <UserInformationErrorMessage name="height" component="div" />
+            </UserInformationBlock>
 
-          <UserInformationBlock>
-            <label htmlFor="weight">Weight</label>
-            <UserInformationField
-              name="weight"
-              placeholder="Enter your weight"
-              className={
-                touched.weight
-                  ? errors.weight
-                    ? 'input-error'
-                    : 'input-success'
-                  : 'input-normal'
-              }
-            />
-            <UserInformationErrorMessage name="weight" component="div" />
-          </UserInformationBlock>
+            <UserInformationBlock>
+              <label htmlFor="weight">Weight</label>
+              <UserInformationField
+                name="weight"
+                placeholder="Enter your weight"
+                className={
+                  touched.weight
+                    ? errors.weight
+                      ? 'input-error'
+                      : 'input-success'
+                    : 'input-normal'
+                }
+              />
+              <UserInformationErrorMessage name="weight" component="div" />
+            </UserInformationBlock>
 
-          <UserInformationBlock>
-            <div id="my-activity-group">Your activity</div>
-            <ActivityButtonsWrapper
-              role="group"
-              aria-labelledby="my-activity-group"
-            >
-              <UserInformationRadioLabel>
-                <UserInformationRadioInput
-                  type="radio"
-                  name="activityRatio"
-                  value="1.2"
-                  checked={values.activityRatio === '1.2'}
-                />
-                <UserInformationRadioFake></UserInformationRadioFake>
-                <UserInformationRadioText>
-                  1.2 - if you do not have physical activity and sedentary work
-                </UserInformationRadioText>
-              </UserInformationRadioLabel>
+            <UserInformationBlock>
+              <div id="my-activity-group">Your activity</div>
+              <ActivityButtonsWrapper
+                role="group"
+                aria-labelledby="my-activity-group"
+              >
+                <UserInformationRadioLabel>
+                  <UserInformationRadioInput
+                    type="radio"
+                    name="activityRatio"
+                    value="1.2"
+                    checked={values.activityRatio === '1.2'}
+                  />
+                  <UserInformationRadioFake></UserInformationRadioFake>
+                  <UserInformationRadioText>
+                    1.2 - if you do not have physical activity and sedentary
+                    work
+                  </UserInformationRadioText>
+                </UserInformationRadioLabel>
 
-              <UserInformationRadioLabel>
-                <UserInformationRadioInput
-                  type="radio"
-                  name="activityRatio"
-                  checked={values.activityRatio === '1.375'}
-                  value="1.375"
-                />
-                <UserInformationRadioFake></UserInformationRadioFake>
-                <UserInformationRadioText>
-                  1.375 - if you do short runs or light gymnastics 1-3 times a
-                  week
-                </UserInformationRadioText>
-              </UserInformationRadioLabel>
+                <UserInformationRadioLabel>
+                  <UserInformationRadioInput
+                    type="radio"
+                    name="activityRatio"
+                    checked={values.activityRatio === '1.375'}
+                    value="1.375"
+                  />
+                  <UserInformationRadioFake></UserInformationRadioFake>
+                  <UserInformationRadioText>
+                    1.375 - if you do short runs or light gymnastics 1-3 times a
+                    week
+                  </UserInformationRadioText>
+                </UserInformationRadioLabel>
 
-              <UserInformationRadioLabel>
-                <UserInformationRadioInput
-                  type="radio"
-                  name="activityRatio"
-                  checked={values.activityRatio === '1.55'}
-                  value="1.55"
-                />
-                <UserInformationRadioFake></UserInformationRadioFake>
-                <UserInformationRadioText>
-                  1.55 - if you play sports with average loads 3-5 times a week
-                </UserInformationRadioText>
-              </UserInformationRadioLabel>
+                <UserInformationRadioLabel>
+                  <UserInformationRadioInput
+                    type="radio"
+                    name="activityRatio"
+                    checked={values.activityRatio === '1.55'}
+                    value="1.55"
+                  />
+                  <UserInformationRadioFake></UserInformationRadioFake>
+                  <UserInformationRadioText>
+                    1.55 - if you play sports with average loads 3-5 times a
+                    week
+                  </UserInformationRadioText>
+                </UserInformationRadioLabel>
 
-              <UserInformationRadioLabel>
-                <UserInformationRadioInput
-                  type="radio"
-                  name="activityRatio"
-                  checked={values.activityRatio === '1.725'}
-                  value="1.725"
-                />
-                <UserInformationRadioFake></UserInformationRadioFake>
-                <UserInformationRadioText>
-                  1.725 ​​- if you train fully 6-7 times a week
-                </UserInformationRadioText>
-              </UserInformationRadioLabel>
+                <UserInformationRadioLabel>
+                  <UserInformationRadioInput
+                    type="radio"
+                    name="activityRatio"
+                    checked={values.activityRatio === '1.725'}
+                    value="1.725"
+                  />
+                  <UserInformationRadioFake></UserInformationRadioFake>
+                  <UserInformationRadioText>
+                    1.725 ​​- if you train fully 6-7 times a week
+                  </UserInformationRadioText>
+                </UserInformationRadioLabel>
 
-              <UserInformationRadioLabel>
-                <UserInformationRadioInput
-                  type="radio"
-                  name="activityRatio"
-                  checked={values.activityRatio === '1.9'}
-                  value="1.9"
-                />
-                <UserInformationRadioFake></UserInformationRadioFake>
-                <UserInformationRadioText>
-                  1.9 - if your work is related to physical labor, you train 2
-                  times a day and include strength exercises in your training
-                  program
-                </UserInformationRadioText>
-              </UserInformationRadioLabel>
-            </ActivityButtonsWrapper>
-          </UserInformationBlock>
+                <UserInformationRadioLabel>
+                  <UserInformationRadioInput
+                    type="radio"
+                    name="activityRatio"
+                    checked={values.activityRatio === '1.9'}
+                    value="1.9"
+                  />
+                  <UserInformationRadioFake></UserInformationRadioFake>
+                  <UserInformationRadioText>
+                    1.9 - if your work is related to physical labor, you train 2
+                    times a day and include strength exercises in your training
+                    program
+                  </UserInformationRadioText>
+                </UserInformationRadioLabel>
+              </ActivityButtonsWrapper>
+            </UserInformationBlock>
 
-          <UserButtonsWrapper>
-            <UserInformationSubmitButton
-              type="submit"
-              onClick={() => handleClickSave(values)}
-            >
-              Save
-            </UserInformationSubmitButton>
-            <UserInformationCancelButton
-              type="button"
-              onClick={() => handleClickCancel(resetForm)}
-            >
-              Cancel
-            </UserInformationCancelButton>
-          </UserButtonsWrapper>
-        </UserForm>
-      )}
-    </Formik>
+            <UserButtonsWrapper>
+              <UserInformationSubmitButton
+                type="submit"
+                onClick={() => handleClickSave(values)}
+              >
+                Save
+              </UserInformationSubmitButton>
+              <UserInformationCancelButton
+                type="button"
+                onClick={() => handleClickCancel(resetForm)}
+              >
+                Cancel
+              </UserInformationCancelButton>
+            </UserButtonsWrapper>
+          </UserForm>
+        )}
+      </Formik>
+
+      <ChangePasswordForm />
+      <DeleteUser />
+    </>
   );
 }
