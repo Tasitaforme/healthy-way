@@ -2,273 +2,101 @@ import {
   DiarySection,
   GoBackBtn,
   GoBackWrapper,
-  ListItem,
-  List,
-  MealWrapper,
   NutririonList,
   RecordMealWrapper,
-  RecordBtnLabel,
-  RecordBtn,
   MealTitleWrapper,
   GoBackTitle,
   MealTitle,
   MealAndNutritionWrapper,
   StyledBackArrowIcon,
-  StyledAddMealIcon,
+  MealImg,
+  MealList,
+  MealListItem,
 } from './DiaryPage.styled';
-import dinnerImage from '../../assets/images/diary/dinner@2x.png';
-import breakfastImage from '../../assets/images/diary/breakfast@2x.png';
-import lunchImage from '../../assets/images/diary/lunch@2x.png';
-import snackImage from '../../assets/images/diary/snack@2x.png';
 import sprite from '../../assets/sprite.svg';
+import { useEffect, useMemo, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFoodDiaryToday } from '../../redux/diary/operations';
+import { selectDiaryMeals } from '../../redux/diary/selectors';
+import DiaryItem from './DiaryItem';
+import { Link } from 'react-router-dom';
+import { MEALS_IMAGES } from './constants';
 
 export default function DiaryPage() {
+  const dispatch = useDispatch();
+  const food = useSelector(selectDiaryMeals);
+  const backLink = location?.state?.from ?? '/main';
+
+  const inited = useRef(false);
+
+  useEffect(() => {
+    if (!inited.current) {
+      dispatch(getFoodDiaryToday());
+      inited.current = true;
+    }
+  }, [dispatch]);
+
+  const meals = useMemo(() => {
+    const { breakfast, snack, lunch, dinner } = food;
+    return [
+      { type: 'Breakfast', data: breakfast },
+      { type: 'Lunch', data: lunch },
+      { type: 'Dinner', data: dinner },
+      { type: 'Snack', data: snack },
+    ].map(({ type, data }) => ({
+      type,
+      data: data.concat(Array(4).fill({})).slice(0, 4),
+      stats: {
+        carbohydrate: data.reduce(
+          (acc, { carbohydrate }) => acc + carbohydrate,
+          0
+        ),
+        protein: data.reduce((acc, { protein }) => acc + protein, 0),
+        fat: data.reduce((acc, { fat }) => acc + fat, 0),
+      },
+    }));
+  }, [food]);
+
   return (
-    <DiarySection>
-      <GoBackWrapper>
-        <GoBackBtn>
-          <StyledBackArrowIcon>
-            <use href={`${sprite}#arrow-back`} />
-          </StyledBackArrowIcon>
-          <GoBackTitle>Diary</GoBackTitle>
-        </GoBackBtn>
-      </GoBackWrapper>
-      <MealWrapper>
-        <MealAndNutritionWrapper>
-          <MealTitleWrapper>
-            <img src={breakfastImage} alt="breakfast" />
-            <MealTitle>Breakfast</MealTitle>
-          </MealTitleWrapper>
-          <NutririonList>
-            <li>
-              Carbonohidrates:<span></span>
-            </li>
-            <li>
-              Protein:<span></span>
-            </li>
-            <li>
-              Fat:<span></span>
-            </li>
-          </NutririonList>
-        </MealAndNutritionWrapper>
-        <RecordMealWrapper>
-          <List>
-            <ListItem>
-              <p>1</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>2</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>3</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>4</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-          </List>
-        </RecordMealWrapper>
-      </MealWrapper>
-      <MealWrapper>
-        <MealAndNutritionWrapper>
-          <MealTitleWrapper>
-            <img src={lunchImage} alt="lunch" />
-            <MealTitle>Lunch</MealTitle>
-          </MealTitleWrapper>
-          <NutririonList>
-            <li>
-              Carbonohidrates:<span></span>
-            </li>
-            <li>
-              Protein:<span></span>
-            </li>
-            <li>
-              Fat:<span></span>
-            </li>
-          </NutririonList>
-        </MealAndNutritionWrapper>
-        <RecordMealWrapper>
-          <List>
-            <ListItem>
-              <p>1</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>2</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>3</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>4</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-          </List>
-        </RecordMealWrapper>
-      </MealWrapper>
-      <MealWrapper>
-        <MealAndNutritionWrapper>
-          <MealTitleWrapper>
-            <img src={dinnerImage} alt="dinner" />
-            <MealTitle>Dinner</MealTitle>
-          </MealTitleWrapper>
-          <NutririonList>
-            <li>
-              Carbonohidrates:<span></span>
-            </li>
-            <li>
-              Protein:<span></span>
-            </li>
-            <li>
-              Fat:<span></span>
-            </li>
-          </NutririonList>
-        </MealAndNutritionWrapper>
-        <RecordMealWrapper>
-          <List>
-            <ListItem>
-              <p>1</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>2</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>3</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>4</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-          </List>
-        </RecordMealWrapper>
-      </MealWrapper>
-      <MealWrapper>
-        <MealAndNutritionWrapper>
-          <MealTitleWrapper>
-            <img src={snackImage} alt="snack" />
-            <MealTitle>Snack</MealTitle>
-          </MealTitleWrapper>
-          <NutririonList>
-            <li>
-              Carbonohidrates:<span></span>
-            </li>
-            <li>
-              Protein:<span></span>
-            </li>
-            <li>
-              Fat:<span></span>
-            </li>
-          </NutririonList>
-        </MealAndNutritionWrapper>
-        <RecordMealWrapper>
-          <List>
-            <ListItem>
-              <p>1</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>2</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>3</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-            <ListItem>
-              <p>4</p>
-              <RecordBtn>
-                <StyledAddMealIcon>
-                  <use href={`${sprite}#add`} />
-                </StyledAddMealIcon>
-                <RecordBtnLabel>Record your meal</RecordBtnLabel>
-              </RecordBtn>
-            </ListItem>
-          </List>
-        </RecordMealWrapper>
-      </MealWrapper>
-    </DiarySection>
+    <>
+      <DiarySection>
+        <GoBackWrapper>
+          <GoBackBtn as={Link} to={backLink}>
+            <StyledBackArrowIcon>
+              <use href={`${sprite}#arrow-back`} />
+            </StyledBackArrowIcon>
+            <GoBackTitle>Diary</GoBackTitle>
+          </GoBackBtn>
+        </GoBackWrapper>
+        <MealList>
+          {meals.map(({ type, data, stats }) => {
+            return (
+              <MealListItem key={type}>
+                <MealAndNutritionWrapper>
+                  <MealTitleWrapper>
+                    <MealImg src={MEALS_IMAGES[type]} alt="breakfast" />
+                    <MealTitle>{type}</MealTitle>
+                  </MealTitleWrapper>
+                  <NutririonList>
+                    <li>
+                      Carbonohidrates: <span>{stats.carbohydrate}</span>
+                    </li>
+                    <li>
+                      Protein: <span>{stats.protein}</span>
+                    </li>
+                    <li>
+                      Fat: <span>{stats.fat}</span>
+                    </li>
+                  </NutririonList>
+                </MealAndNutritionWrapper>
+                <RecordMealWrapper>
+                  <DiaryItem data={data} type={type} stats={stats} />
+                </RecordMealWrapper>
+              </MealListItem>
+            );
+          })}
+        </MealList>
+      </DiarySection>
+    </>
   );
 }
