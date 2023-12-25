@@ -1,4 +1,4 @@
-import{s as o,r as i,z as c,j as n}from"./index-d20d7bb4.js";const l=o.div`
+import{s as o,r as i,z as c,j as n}from"./index-60d419bc.js";const l=o.div`
   height: 100vh;
   width: 100vw;
   background-color: rgba(5, 5, 5, 0.8);
