@@ -1,4 +1,4 @@
-import{s as n,o as r,D as c,r as a,j as e,C as x,y as p}from"./index-17b07548.js";import{H as m,d as l,e as g}from"./Components.styled-2d0af848.js";import{g as h,a as f,b as u,c as w,d as b}from"./getRecommendedFood-b0de2ceb.js";const j="/healthy-way/assets/food-desk@1x-a984dc19.png",y="/healthy-way/assets/food-desk@2x-1318a229.png",k="/healthy-way/assets/food-tab@1x-20ca8956.png",F="/healthy-way/assets/food-tab@2x-f20df540.png",R="/healthy-way/assets/food-mob@1x-411148cb.png",v="/healthy-way/assets/food-mob@2x-5a8c6e43.png",I=n.section`
+import{s as n,o as r,B as c,r as a,j as e,C as x,x as p}from"./index-05a0b694.js";import{H as m,d as l,e as g}from"./Components.styled-01e6ba64.js";import{g as h,a as f,b as u,c as w,d as b}from"./getRecommendedFood-1615c713.js";const j="/healthy-way/assets/food-desk@1x-a984dc19.png",y="/healthy-way/assets/food-desk@2x-1318a229.png",k="/healthy-way/assets/food-tab@1x-20ca8956.png",F="/healthy-way/assets/food-tab@2x-f20df540.png",R="/healthy-way/assets/food-mob@1x-411148cb.png",v="/healthy-way/assets/food-mob@2x-5a8c6e43.png",I=n.section`
   padding-top: 16px;
   padding-bottom: 40px;
 
@@ -29,7 +29,7 @@ import{s as n,o as r,D as c,r as a,j as e,C as x,y as p}from"./index-17b07548.js
     justify-content: flex-start;
     align-items: flex-start;
   }
-`,L=n.div`
+`,B=n.div`
   width: 300px;
   height: 312px;
   flex-shrink: 0;
@@ -68,7 +68,7 @@ import{s as n,o as r,D as c,r as a,j as e,C as x,y as p}from"./index-17b07548.js
       background-image: url(${y});
     }
   }
-`,S=n.ul`
+`,L=n.ul`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -82,4 +82,4 @@ import{s as n,o as r,D as c,r as a,j as e,C as x,y as p}from"./index-17b07548.js
   @media screen and (min-width: 1440px) {
     width: 676px;
   }
-`;function C(){const i=r(c),[d,t]=a.useState([]),s=h(d,10);return a.useEffect(()=>{i&&f().then(o=>{t(o)}).catch(o=>console.log(o))},[i]),e.jsx("main",{children:e.jsx(I,{children:e.jsxs(x,{children:[e.jsx($,{children:"Recommended food"}),e.jsxs(T,{children:[e.jsx(L,{alt:"Illustration of women with food",width:"536px"}),d.length===0?e.jsx(p,{}):e.jsx(S,{children:s.map(o=>e.jsxs(u,{children:[e.jsx("img",{src:o.img,alt:o.name,width:"46px"}),e.jsxs("div",{children:[e.jsx(w,{children:o.name}),e.jsxs(b,{children:[e.jsx(l,{children:o.amount}),e.jsxs(g,{children:[o.calories," calories"]})]})]})]},o._id))})]})]})})})}export{C as default};
+`;function D(){const i=r(c),[d,t]=a.useState([]),s=h(d,10);return a.useEffect(()=>{i&&f().then(o=>{t(o)}).catch(o=>console.log(o))},[i]),e.jsx("main",{children:e.jsx(I,{children:e.jsxs(x,{children:[e.jsx($,{children:"Recommended food"}),e.jsxs(T,{children:[e.jsx(B,{alt:"Illustration of women with food",width:"536px"}),d.length===0?e.jsx(p,{}):e.jsx(L,{children:s.map(o=>e.jsxs(u,{children:[e.jsx("img",{src:o.img,alt:o.name,width:"46px"}),e.jsxs("div",{children:[e.jsx(w,{children:o.name}),e.jsxs(b,{children:[e.jsx(l,{children:o.amount}),e.jsxs(g,{children:[o.calories," calories"]})]})]})]},o._id))})]})]})})})}export{D as default};
