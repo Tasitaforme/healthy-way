@@ -1,4 +1,4 @@
-import{s as o,e as i,h as t,g as p}from"./index-05a0b694.js";import{B as s,I as n}from"./Components.styled-01e6ba64.js";const e=o(i)`
+import{s as o,e as i,h as p,g as t}from"./index-ea397ace.js";import{B as s,I as n}from"./Components.styled-b05377d2.js";const e=o(i)`
   margin-top: 24px;
   width: 100%;
 
@@ -10,21 +10,21 @@ import{s as o,e as i,h as t,g as p}from"./index-05a0b694.js";import{B as s,I as 
     padding: 0px 232px 0px 0px;
     width: 444px;
   }
-`,d=o(t)`
+`,d=o(p)`
   width: 100%;
 `,x=o(s)`
   margin-top: 40px;
   width: 100%;
-`,l=o(p)`
+`,c=o(t)`
   position: absolute;
   top: 25px;
   left: 10px;
-`,m=o.div`
+`,l=o.div`
   position: relative;
   &:not(:first-child) {
     margin-top: 20px;
   }
-`,c=o.p`
+`,m=o.p`
   position: absolute;
   left: 10px;
   color: #3cbc81;
@@ -35,4 +35,8 @@ import{s as o,e as i,h as t,g as p}from"./index-05a0b694.js";import{B as s,I as 
   top: 10px;
   right: -6px;
   display: flex;
-`;export{m as F,g as I,e as S,c as V,d as a,l as b,x as c};
+`,h=o.div`
+  &:hover {
+    cursor: pointer;
+  }
+`;export{l as F,h as I,e as S,m as V,g as a,d as b,c,x as d};
