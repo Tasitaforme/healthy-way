@@ -8,6 +8,7 @@ import {
   FieldWrapper,
   ValidPassword,
   Icon,
+  IconsWrapper,
 } from './FormUserData.styled.js';
 import sprite from 'assets/sprite.svg';
 import { registerSchema } from '../../../schemas/formikRegister.js';
@@ -77,33 +78,36 @@ export default function FormUserData({
                     : 'input-success'
                   : 'input-normal'
               }
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
             />
             <SignUpError component="p" name="password" />
             {!errors.password && touched.password && (
               <ValidPassword>Password is secure</ValidPassword>
             )}
-            {touched.password && !errors.password && (
-              <Icon width="32px" height="32px">
-                <use href={`${sprite}#correct`} />
-              </Icon>
-            )}
-            {touched.password && errors.password && (
-              <Icon width="32px" height="32px">
-                <use href={`${sprite}#error`} />
-              </Icon>
-            )}
-            {!touched.password && !isHovered && (
-              <Icon width="32px" height="32px">
-                <use href={`${sprite}#eye-off`} />
-              </Icon>
-            )}
-            {isHovered && !touched.password && (
-              <Icon width="32px" height="32px">
-                <use href={`${sprite}#eye`} />
-              </Icon>
-            )}
+            <IconsWrapper
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {touched.password && !errors.password && (
+                <Icon width="32px" height="32px">
+                  <use href={`${sprite}#correct`} />
+                </Icon>
+              )}
+              {touched.password && errors.password && (
+                <Icon width="32px" height="32px">
+                  <use href={`${sprite}#error`} />
+                </Icon>
+              )}
+              {!touched.password && !isHovered && (
+                <Icon width="32px" height="32px">
+                  <use href={`${sprite}#eye-off`} />
+                </Icon>
+              )}
+              {isHovered && !touched.password && (
+                <Icon width="32px" height="32px">
+                  <use href={`${sprite}#eye`} />
+                </Icon>
+              )}
+            </IconsWrapper>
           </FieldWrapper>
 
           <SignUpButton type="submit" disabled={!isValid || isSubmitting}>

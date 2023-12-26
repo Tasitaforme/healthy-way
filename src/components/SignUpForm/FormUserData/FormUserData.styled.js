@@ -56,3 +56,9 @@ export const Icon = styled(IconWrap)`
   right: -6px;
   display: flex;
 `;
+
+export const IconsWrapper = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
+`;

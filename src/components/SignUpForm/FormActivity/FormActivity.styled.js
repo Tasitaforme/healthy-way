@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { GenderAndAgeForm } from '../FormGenderAndAge/FormGenderAndAge.styled';
 import { Button } from '../../StyledComponents/Components.styled';
 import { BackButton } from '../FormGoal/FormGoal.styled';
-import { FormikStyledErrorMessage } from '../../StyledComponents/Formik.styled';
 
 export const ActivityForm = styled(GenderAndAgeForm)`
   position: relative;
@@ -25,6 +24,10 @@ export const Label = styled.label`
 
   &:not(:first-child) {
     margin-top: 16px;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 `;
 
