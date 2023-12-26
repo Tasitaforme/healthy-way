@@ -18,8 +18,7 @@ export default function DiaryItem({ data, type }) {
       <List>
         {data.map((item, index, arr) => {
           return (
-            <ListItem key={item?.id || index}>
-              <p>{index + 1}</p>
+            <ListItem key={item?.id || index} itemNumber={index + 1}>
               {item?.id ? (
                 <RecordedMeal
                   data={item}

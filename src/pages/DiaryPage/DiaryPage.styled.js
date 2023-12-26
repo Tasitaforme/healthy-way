@@ -107,23 +107,46 @@ export const List = styled.ul`
   padding: 16px 12px;
   margin-bottom: 24px;
 
+  @media (min-width: 768px) {
+    padding: 32px 14px;
+  }
+
   @media (min-width: 1200px) {
     margin-bottom: 0;
   }
 `;
 
 export const ListItem = styled.li`
+  position: relative;
   display: flex;
-
+  width: 100%;
+  height: 44px;
+  flex-wrap: wrap;
   &:not(:last-child) {
     margin-bottom: 30px;
+  }
+
+  &:before {
+    content: '${({ itemNumber }) => itemNumber}';
+    width: 16px;
+    position: absolute;
+    left: 0;
+  }
+
+  padding-left: 32px;
+  padding-right: 62px;
+
+  @media screen and (min-width(768px)) {
+    height: 22px;
   }
 `;
 
 export const RecordBtn = styled.button`
   display: flex;
-  align-items: center;
-  margin-left: 16px;
+  margin-top: 3px;
+  padding: 0;
+  border: none;
+  outline: none;
 `;
 
 export const RecordMealIcon = styled.svg`
@@ -291,11 +314,8 @@ export const CancelModalBtn = styled.button`
 `;
 
 export const RecordedMealWrapper = styled.div`
-  margin-left: 16px;
-`;
-
-export const MealsNameWrapper = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 export const MealsName = styled.h4`
@@ -304,6 +324,9 @@ export const MealsName = styled.h4`
 `;
 
 export const EditBtn = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   margin-left: auto;
   cursor: pointer;
@@ -322,21 +345,34 @@ export const EditLabel = styled.p`
   margin-left: 6px;
 `;
 
+export const EditAndNutritionWrapper = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-left: auto;
+    gap: 30px;
+  }
+`;
+
 export const RecordedNutritionsWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   gap: 12px;
   margin-top: 6px;
+  width: 100%;
 
-  /* @media (min-width: 768px) {
-    display: flex;
-    justify-content: flex-end;
-    gap: 30px;
-    margin-right: 80px;
-  } */
+  @media (min-width: 768px) {
+    margin-top: 0;
+    width: fit-content;
+    margin-left: auto;
+    gap: 40px;
+  }
 `;
 
 export const RecordedNutritions = styled.p`
   font-size: 12px;
   color: var(--grey-light);
+  & > span {
+    color: #fff;
+  }
 `;
