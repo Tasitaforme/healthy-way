@@ -23,7 +23,7 @@ ChartJS.register(
   Legend
 );
 
-export default function Graph({ symbol, dataGraph, unit }) {
+export default function Graph({ symbol, dataGraph, unit, labels }) {
   const options = {
     interaction: {
       mode: 'index',
@@ -37,10 +37,8 @@ export default function Graph({ symbol, dataGraph, unit }) {
       },
       point: {
         radius: 0,
-        backgroundColor: '#E3FFA8',
-        borderColor: '#E3FFA8',
         borderWidth: 1,
-        pointBorderColor: 'var(--black-primary)',
+        pointBorderColor: '#050505',
         pointBackgroundColor: '#E3FFA8',
         pointHoverRadius: 6,
       },
@@ -48,16 +46,13 @@ export default function Graph({ symbol, dataGraph, unit }) {
     plugins: {
       tooltip: {
         callbacks: {
+          footer: function () {
+            return unit;
+          },
           label: function (tooltipItem, data) {
             if (tooltipItem) {
               const formattedValue = Math.round(tooltipItem.raw);
               return `${formattedValue}`;
-            }
-            return null;
-          },
-          afterLabel: function (tooltipItem, data) {
-            if (tooltipItem) {
-              return `${unit}`;
             }
             return null;
           },
@@ -66,9 +61,17 @@ export default function Graph({ symbol, dataGraph, unit }) {
         mode: 'index',
         padding: 8,
         intersect: true,
-        backgroundColor: 'var(--black-primary)',
+        backgroundColor: '#050505',
         bodyFontFamily: 'Poppins',
         bodyFont: { size: 32 },
+        footerFont: {
+          family: 'Poppins',
+          size: 14,
+          weight: 500,
+          lineHeight: 1.4,
+        },
+
+        footerLineHeight: 1.4,
         borderWidth: 2,
         position: 'nearest',
         displayColors: false,
@@ -76,7 +79,7 @@ export default function Graph({ symbol, dataGraph, unit }) {
         yAlign: 'bottom',
         bodyAlign: 'center',
         titleFont: { size: 0 },
-        titleAlign: 'left',
+        footerAlign: 'center',
         boxShadow: ['0px 4px 14px 0px rgba(227, 255, 168, 0.20)'],
       },
 
@@ -93,7 +96,7 @@ export default function Graph({ symbol, dataGraph, unit }) {
         beginAtZero: true,
 
         min: 0,
-        max: 3200,
+        max: 5000,
         grid: {
           color: '#292928',
           drawBorder: false,
@@ -132,11 +135,23 @@ export default function Graph({ symbol, dataGraph, unit }) {
       },
     },
   };
-
+  const data = {
+    labels,
+    datasets: [
+      {
+        fill: true,
+        label: '',
+        data: dataGraph,
+        cubicInterpolationMode: 'monotone',
+        borderColor: '#E3FFA8',
+        backgroundColor: 'transparent',
+      },
+    ],
+  };
   return (
     <ChartBlock>
       <Line
-        data={dataGraph}
+        data={data}
         options={options}
         style={{ width: '100%', fontSize: '10px' }}
       />
