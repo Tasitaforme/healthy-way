@@ -5,11 +5,17 @@ import instance from '../redux/auth/operations';
  * headers: Authorization: Bearer token
  * body: { email, password }
  */
-export const removeUser = async (body) => {
+
+export const removeUser = async (password) => {
   try {
-    const { data } = await instance.delete('/api/auth/delete', { data: body });
-    return data;
+    const response = await instance.delete(`/api/auth/delete/${password}`);
+    if (response && response.data) {
+      const { data } = response;
+      return data;
+    }
+    return null;
   } catch (error) {
-    return error.response.data;
+    console.log(error);
+    return error;
   }
 };

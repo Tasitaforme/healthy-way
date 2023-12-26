@@ -74,12 +74,11 @@ export const logOut = createAsyncThunk(
     try {
       const { data } = await instance.post('/api/auth/logout');
       store.dispatch(resetWater());
-      store.dispatch(resetStatistics());
       store.dispatch(resetDiary());
       setToken();
       return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.message);
     }
   }
 );

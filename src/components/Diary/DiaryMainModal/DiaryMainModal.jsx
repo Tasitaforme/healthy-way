@@ -117,7 +117,7 @@ export default function DiaryMainModal({ modalData, setModalData }) {
                       <ButtonIcon
                         type="button"
                         onClick={() => {
-                          handleDelete(item.id);
+                          handleDelete({ id: item.id, diary: type });
                         }}
                       >
                         <IconWrap

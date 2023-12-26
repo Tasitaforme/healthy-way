@@ -47,8 +47,8 @@ export default function ChangePasswordForm() {
               placeholder="Password"
               autoComplete="off"
               className={
-                touched.quantity
-                  ? errors.quantity
+                touched.password
+                  ? errors.password
                     ? 'input-error'
                     : 'input-success'
                   : 'input-normal'
@@ -61,8 +61,8 @@ export default function ChangePasswordForm() {
               placeholder="New password"
               autoComplete="off"
               className={
-                touched.quantity
-                  ? errors.quantity
+                touched.newPassword
+                  ? errors.newPassword
                     ? 'input-error'
                     : 'input-success'
                   : 'input-normal'
