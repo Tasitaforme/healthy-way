@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderWrap = styled.div`
@@ -33,7 +33,7 @@ export const Logo = styled(Link)`
   }
 `;
 
-export const SignInLink = styled(Link)`
+export const NavigationLink = styled(NavLink)`
   color: #fff;
   text-align: right;
   font-family: Poppins;
@@ -42,25 +42,16 @@ export const SignInLink = styled(Link)`
   font-weight: 400;
   line-height: 1.33;
 
-  @media screen and (min-width: 834px) {
-    font-size: 14px;
-    line-height: 1.42;
+  &.active {
+     color: #e3ffa8;
   }
-`;
-
-export const SignUpLink = styled(Link)`
-  color: #e3ffa8;
-  font-family: Poppins;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.33;
 
   @media screen and (min-width: 834px) {
     font-size: 14px;
     line-height: 1.42;
   }
 `;
+
 
 
 

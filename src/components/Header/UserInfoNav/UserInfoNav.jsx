@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import sprite from 'assets/sprite.svg';
 import {
   UserinfoWrapper,
