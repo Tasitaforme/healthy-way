@@ -34,6 +34,7 @@ export const UserInformationField = styled(FormikStyledField)`
   display: block;
   border: 1px solid var(--grey-light);
   color: var(--white);
+  cursor: pointer;
 
   &.input-error {
     border-color: var(--error-color);

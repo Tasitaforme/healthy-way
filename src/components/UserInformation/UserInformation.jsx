@@ -43,7 +43,7 @@ export default function UserInformation() {
     gender: userProfile.gender,
     height: userProfile.height,
     weight: userProfile.weight,
-    activityRatio: userProfile.activityRatio.toString(),
+    activityRatio: userProfile.activityRatio,
   };
 
   const handleChangeAvatar = (event) => {
@@ -218,7 +218,7 @@ export default function UserInformation() {
                     type="radio"
                     name="activityRatio"
                     value="1.2"
-                    checked={values.activityRatio === '1.2'}
+                    checked={values.activityRatio === 1.2}
                   />
                   <UserInformationRadioFake></UserInformationRadioFake>
                   <UserInformationRadioText>
@@ -231,7 +231,7 @@ export default function UserInformation() {
                   <UserInformationRadioInput
                     type="radio"
                     name="activityRatio"
-                    checked={values.activityRatio === '1.375'}
+                    checked={values.activityRatio === 1.375}
                     value="1.375"
                   />
                   <UserInformationRadioFake></UserInformationRadioFake>
@@ -245,7 +245,7 @@ export default function UserInformation() {
                   <UserInformationRadioInput
                     type="radio"
                     name="activityRatio"
-                    checked={values.activityRatio === '1.55'}
+                    checked={values.activityRatio === 1.55}
                     value="1.55"
                   />
                   <UserInformationRadioFake></UserInformationRadioFake>
@@ -259,7 +259,7 @@ export default function UserInformation() {
                   <UserInformationRadioInput
                     type="radio"
                     name="activityRatio"
-                    checked={values.activityRatio === '1.725'}
+                    checked={values.activityRatio === 1.725}
                     value="1.725"
                   />
                   <UserInformationRadioFake></UserInformationRadioFake>
@@ -272,7 +272,7 @@ export default function UserInformation() {
                   <UserInformationRadioInput
                     type="radio"
                     name="activityRatio"
-                    checked={values.activityRatio === '1.9'}
+                    checked={values.activityRatio === 1.9}
                     value="1.9"
                   />
                   <UserInformationRadioFake></UserInformationRadioFake>
