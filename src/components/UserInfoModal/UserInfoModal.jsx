@@ -14,7 +14,7 @@ export default function UserInfoModal({ onCloseModal }) {
       toast.success('You have successfully logged out!');
       onCloseModal();
     } catch (error) {
-      toast.error(`Something went wrong! ${error.message}`);
+      toast.error(`Something went wrong! \n ${error}`);
     }
   };
 

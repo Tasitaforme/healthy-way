@@ -11,11 +11,11 @@ export const loginSchema = Yup.object().shape({
     .matches(EMAIL_RULE, 'Invalid email address'),
   password: Yup.string()
     .required('Password is required')
-    .min(7, 'The password must be at least 7 characters long')
-    .matches(
-      PASSWORD_RULE,
-      `Your password is at least 7 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number. The letters is in English.`
-    ),
+    .min(7, 'The password must be at least 7 characters long'),
+  // .matches(
+  //   PASSWORD_RULE,
+  //   `Your password is at least 7 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number. The letters is in English.`
+  // ),
 });
 
 export const forgotPasswordSchema = Yup.object().shape({
@@ -28,11 +28,11 @@ export const forgotPasswordSchema = Yup.object().shape({
 export const changePasswordSchema = Yup.object().shape({
   password: Yup.string()
     .required('Password is required')
-    .min(7, 'The password must be at least 7 characters long')
-    .matches(
-      PASSWORD_RULE,
-      `Your password is at least 7 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number. The letters is in English.`
-    ),
+    .min(7, 'The password must be at least 7 characters long'),
+  // .matches(
+  //   PASSWORD_RULE,
+  //   `Your password is at least 7 characters, contain  1 uppercase letter, 1 lowercase letter, 1 number. The letters is in English.`
+  // ),
   newPassword: Yup.string()
     .required('Password is required')
     .min(7, 'The password must be at least 7 characters long')

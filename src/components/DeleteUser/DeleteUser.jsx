@@ -9,8 +9,7 @@ import {
   Button,
   HeadlineSecond,
 } from '../StyledComponents/Components.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUserInfo } from '../../redux/auth/selectors';
+import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 
 import { deleteUserSchema } from '../../schemas/formik';
@@ -21,17 +20,17 @@ import { logOut } from '../../redux/auth/operations';
 export default function DeleteUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { email } = useSelector(selectUserInfo);
 
   const onSubmit = async (values, actions) => {
     try {
-      await removeUser({ email, ...values });
-      dispatch(logOut()).unwrap();
+      await removeUser(values.password);
+      await dispatch(logOut()).unwrap();
       toast.success('You have successfully deleted your account!');
       navigate('/welcome');
     } catch (error) {
       console.log(error);
-      toast.error(`Something went wrong! \n ${error.message}`);
+      toast.error(`Something went wrong! \n ${error.message}!`);
+      return;
     }
     actions.resetForm();
   };
@@ -60,8 +59,8 @@ export default function DeleteUser() {
               placeholder="Password"
               autoComplete="off"
               className={
-                touched.quantity
-                  ? errors.quantity
+                touched.password
+                  ? errors.password
                     ? 'input-error'
                     : 'input-success'
                   : 'input-normal'

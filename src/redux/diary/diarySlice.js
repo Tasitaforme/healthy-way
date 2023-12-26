@@ -19,7 +19,6 @@ const initialState = {
   carbohydrate: 0,
   isLoading: false,
   error: null,
-  firstLoad: false,
 };
 
 const handlePending = (state) => {

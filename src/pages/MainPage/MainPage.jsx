@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FeatureWrap, TitleWrap } from './MainPage.styled';
+import { FeatureWrap, MainWrap, TitleWrap } from './MainPage.styled';
 
 import { Container } from 'components/StyledComponents/Container';
 import {
@@ -14,14 +14,9 @@ import Water from 'components/Water/Water';
 import Food from 'components/Food/Food';
 import Diary from 'components/Diary/Diary';
 import RecommendedFood from 'components/RecommendedFood/RecommendedFood';
-import { Button } from '../../components/StyledComponents/Components.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
-import { logOut } from '../../redux/auth/operations';
 import { selectIsLogin } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
-import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm';
-import DeleteUser from '../../components/DeleteUser/DeleteUser';
 import { getFoodDiaryToday } from '../../redux/diary/operations';
 
 export default function MainPage() {
@@ -48,18 +43,8 @@ export default function MainPage() {
     document.body.style.overflow = 'auto';
   }
 
-  // TODO видалити потім, коли буде можливість вийти в хедері
-  const handleOut = async () => {
-    try {
-      await dispatch(logOut()).unwrap();
-      toast.success('You have successfully logged out!');
-    } catch (error) {
-      toast.error(`Something went wrong! \n ${error.message}`);
-    }
-  };
-
   return (
-    <main>
+    <MainWrap>
       <Container>
         <TitleWrap>
           <HeadlineFirst>Today</HeadlineFirst>
@@ -80,15 +65,7 @@ export default function MainPage() {
           <Diary></Diary>
           <RecommendedFood></RecommendedFood>
         </FeatureWrap>
-        {/* // TODO видалити потім, коли буде можливість вийти в хедері */}
-        <Button type="submit" onClick={() => handleOut()}>
-          Sign out
-        </Button>
-        {/* // TODO видалити потім, коли буде додано в Профайл */}
-        <ChangePasswordForm />
-        {/* // TODO видалити потім, коли буде додано в Профайл */}
-        <DeleteUser />
       </Container>
-    </main>
+    </MainWrap>
   );
 }

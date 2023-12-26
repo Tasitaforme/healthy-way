@@ -23,9 +23,9 @@ export default function Food() {
   const { meals, isLoading } = useSelector(selectDiaryInfo);
   const { fat, protein, carbohydrate, calories } = getTotalNutrients(meals);
 
-  useEffect(() => {
-    dispatch(getFoodDiaryToday()).unwrap();
-  }, [fat, protein, carbohydrate, calories]);
+  // useEffect(() => {
+  //   dispatch(getFoodDiaryToday()).unwrap();
+  // }, [fat, protein, carbohydrate, calories]);
 
   const nutrientsTitles = ['Carbonohidrates', 'Protein', 'Fat'];
 

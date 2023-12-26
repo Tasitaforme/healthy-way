@@ -33,7 +33,7 @@ export const MealsList = styled.ul`
   display: flex;
   flex-direction: column;
   row-gap: 18px;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 `;
 
