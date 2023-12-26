@@ -204,7 +204,7 @@ export default function DashboardPage() {
     const matchingData = caloriesArr.find(
       (data) => parseInt(data._id, 10) === day
     );
-    return matchingData ? matchingData.total : 0;
+    return matchingData ? matchingData.calories : 0;
   });
   const waterArrLab = labels.map((day) => {
     const matchingData = waterArr.find(
@@ -285,7 +285,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <Scroll>
-              <Graph symbol={'K'} dataGraph={dataCalories} />
+              <Graph symbol={'K'} dataGraph={dataCalories} unit={'calories'} />
             </Scroll>
           </LiCart>
 
@@ -298,7 +298,7 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <Scroll>
-              <Graph symbol={'L'} dataGraph={dataWoter} />
+              <Graph symbol={'L'} dataGraph={dataWoter} unit={'milliliters'} />
             </Scroll>
           </LiCart>
         </ListChart>
