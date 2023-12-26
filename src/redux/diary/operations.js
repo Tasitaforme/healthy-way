@@ -44,7 +44,7 @@ export const updateFoodDiary = createAsyncThunk(
   async ({ id, body }, thunkAPI) => {
     try {
       const { data } = await instance.put(`/api/user/food/${id}`, body);
-      return data;
+      return { id, ...data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -58,10 +58,10 @@ export const updateFoodDiary = createAsyncThunk(
  */
 export const deleteFoodDiary = createAsyncThunk(
   'user/diary/delete',
-  async (id, thunkAPI) => {
+  async ({ id, diary }, thunkAPI) => {
     try {
-      const { data } = await instance.delete(`/api/user/food/${id}`);
-      return data;
+      await instance.delete(`/api/user/food/${id}`);
+      return { id, diary };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { useState } from 'react';
 import { logIn } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-hot-toast';
@@ -12,8 +13,12 @@ import {
   Field,
   FlexWrapper,
 } from './SignInForm.styled';
+import { Icon } from '../SignUpForm/FormUserData/FormUserData.styled';
+import sprite from 'assets/sprite.svg';
 
 export default function SignInForm() {
+  const [isHovered, setIsHovered] = useState(false);
+
   const initialValues = {
     email: '',
     password: '',
@@ -59,7 +64,7 @@ export default function SignInForm() {
 
               <FieldWrapper>
                 <Field
-                  type="password"
+                  type={isHovered ? 'text' : 'password'}
                   name="password"
                   placeholder="Password"
                   autoComplete="off"
@@ -70,8 +75,30 @@ export default function SignInForm() {
                         : 'input-success'
                       : 'input-normal'
                   }
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
                 />
                 <Error component="p" name="password" />
+                {touched.password && !errors.password && (
+                  <Icon width="32px" height="32px">
+                    <use href={`${sprite}#correct`} />
+                  </Icon>
+                )}
+                {touched.password && errors.password && (
+                  <Icon width="32px" height="32px">
+                    <use href={`${sprite}#error`} />
+                  </Icon>
+                )}
+                {!touched.password && !isHovered && (
+                  <Icon width="32px" height="32px">
+                    <use href={`${sprite}#eye-off`} />
+                  </Icon>
+                )}
+                {isHovered && !touched.password && (
+                  <Icon width="32px" height="32px">
+                    <use href={`${sprite}#eye`} />
+                  </Icon>
+                )}
               </FieldWrapper>
             </FlexWrapper>
 

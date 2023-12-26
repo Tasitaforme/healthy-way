@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { useState } from 'react';
 import {
   SignUpFormikForm,
   SignUpField,
@@ -6,7 +7,9 @@ import {
   SignUpError,
   FieldWrapper,
   ValidPassword,
+  Icon,
 } from './FormUserData.styled.js';
+import sprite from 'assets/sprite.svg';
 import { registerSchema } from '../../../schemas/formikRegister.js';
 
 export default function FormUserData({
@@ -14,6 +17,8 @@ export default function FormUserData({
   handleSubmit,
   userData,
 }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   const onSubmit = (values) => {
     handleSubmit(values);
     handleNextStep();
@@ -61,9 +66,10 @@ export default function FormUserData({
 
           <FieldWrapper>
             <SignUpField
-              type="password"
+              type={isHovered ? 'text' : 'password'}
               name="password"
               placeholder="Password"
+              autoComplete="off"
               className={
                 touched.password
                   ? errors.password
@@ -71,10 +77,32 @@ export default function FormUserData({
                     : 'input-success'
                   : 'input-normal'
               }
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             />
             <SignUpError component="p" name="password" />
             {!errors.password && touched.password && (
               <ValidPassword>Password is secure</ValidPassword>
+            )}
+            {touched.password && !errors.password && (
+              <Icon width="32px" height="32px">
+                <use href={`${sprite}#correct`} />
+              </Icon>
+            )}
+            {touched.password && errors.password && (
+              <Icon width="32px" height="32px">
+                <use href={`${sprite}#error`} />
+              </Icon>
+            )}
+            {!touched.password && !isHovered && (
+              <Icon width="32px" height="32px">
+                <use href={`${sprite}#eye-off`} />
+              </Icon>
+            )}
+            {isHovered && !touched.password && (
+              <Icon width="32px" height="32px">
+                <use href={`${sprite}#eye`} />
+              </Icon>
             )}
           </FieldWrapper>
 

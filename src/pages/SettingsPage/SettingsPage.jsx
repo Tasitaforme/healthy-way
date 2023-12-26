@@ -1,20 +1,20 @@
 import React from 'react';
-
 import UserInformation from '../../components/UserInformation/UserInformation';
-
 import profileMob1x from '../../assets/images/profileSettings/profile-mob@1x.png';
 import profileMob2x from '../../assets/images/profileSettings/profile-mob@2x.png';
 import profileTab1x from '../../assets/images/profileSettings/profile-tab@1x.png';
 import profileTab2x from '../../assets/images/profileSettings/profile-tab@2x.png';
 import profileDesk1x from '../../assets/images/profileSettings/profile-desk@1x.png';
 import profileDesk2x from '../../assets/images/profileSettings/profile-desk@2x.png';
-
 import {
   SettingsPageTitle,
   SettingsPageImg,
   UserContentWrapper,
   SettingsContainer,
+  UserPrivateSettingsWrapper,
 } from './SettingsPage.styled';
+import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm';
+import DeleteUser from '../../components/DeleteUser/DeleteUser';
 
 export default function SettingsPage() {
   return (
@@ -37,6 +37,10 @@ export default function SettingsPage() {
             <UserInformation />
           </section>
         </UserContentWrapper>
+        <UserPrivateSettingsWrapper>
+          <ChangePasswordForm />
+          <DeleteUser />
+        </UserPrivateSettingsWrapper>
       </SettingsContainer>
     </main>
   );

@@ -108,13 +108,12 @@ export const List = styled.ul`
   margin-bottom: 24px;
 
   @media (min-width: 1200px) {
-    margin-bottom: 0%;
+    margin-bottom: 0;
   }
 `;
 
 export const ListItem = styled.li`
   display: flex;
-  align-items: center;
 
   &:not(:last-child) {
     margin-bottom: 30px;
@@ -234,6 +233,7 @@ export const TrashModalIcon = styled.svg`
   height: 20px;
   stroke: var(--green-light);
   margin-top: 10px;
+  cursor: pointer;
 `;
 
 export const AddMoreBtn = styled.button`
@@ -291,12 +291,23 @@ export const CancelModalBtn = styled.button`
 `;
 
 export const RecordedMealWrapper = styled.div`
+  margin-left: 16px;
+`;
+
+export const MealsNameWrapper = styled.div`
   display: flex;
-  align-items: center;
 `;
 
 export const MealsName = styled.h4`
   font-size: 14px;
+  font-weight: 400;
+`;
+
+export const EditBtn = styled.button`
+  display: flex;
+  margin-left: auto;
+  cursor: pointer;
+  padding: 0;
 `;
 
 export const EditIcon = styled.svg`
@@ -309,4 +320,23 @@ export const EditLabel = styled.p`
   font-size: 14px;
   color: var(--grey-light);
   margin-left: 6px;
+`;
+
+export const RecordedNutritionsWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+  margin-top: 6px;
+
+  /* @media (min-width: 768px) {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-right: 80px;
+  } */
+`;
+
+export const RecordedNutritions = styled.p`
+  font-size: 12px;
+  color: var(--grey-light);
 `;

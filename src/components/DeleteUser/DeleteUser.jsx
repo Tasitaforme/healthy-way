@@ -43,7 +43,7 @@ export default function DeleteUser() {
       >
         Delete account
       </HeadlineSecond>
-      <BodyTextFirst style={{ marginBottom: '12px' }}>
+      <BodyTextFirst style={{ marginBottom: '12px', maxWidth: '380px' }}>
         Once you delete your account, there is no going back. Please be certain.
       </BodyTextFirst>
 

@@ -34,8 +34,6 @@ width: 300px;
 border-radius: 12px;
 background:  #0F0F0F;
 box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
-
-
 `;
 
 export const Modal = styled.div`
@@ -130,7 +128,7 @@ line-height: 1.42;
 justify-content: center;
 
 @media screen and (min-width: 834px) {
-   width: 166px; 
+   width: 166px; }
 `;
 
 export const CancelBtn = styled.button`
@@ -161,7 +159,7 @@ margin-left: 48px;
 gap: 6px;
 display: flex;
 flex-direction: row;
-align-itams: center;
+align-items: center;
 
 
 @media screen and (min-width: 834px){
