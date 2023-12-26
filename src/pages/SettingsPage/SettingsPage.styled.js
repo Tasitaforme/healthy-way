@@ -81,3 +81,17 @@ export const SettingsPageImg = styled.div`
     }
   }
 `;
+
+export const UserPrivateSettingsWrapper = styled.div`
+  @media screen and (min-width: 834px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 1440px) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+`;

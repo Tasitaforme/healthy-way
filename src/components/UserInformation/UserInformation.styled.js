@@ -9,6 +9,8 @@ import {
 export const UserForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  margin-bottom: 52px;
+  padding-bottom: 40px;
 
   @media screen and (min-width: 834px) {
     flex-direction: row;
