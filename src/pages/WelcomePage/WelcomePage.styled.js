@@ -152,7 +152,6 @@ export const GoalList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 40px;
 
   @media screen and (min-width: 834px) {
     margin-top: 80px;
