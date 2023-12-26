@@ -93,7 +93,7 @@ export default function Graph({ symbol, dataGraph, unit }) {
         beginAtZero: true,
 
         min: 0,
-        max: 3200,
+        max: 5000,
         grid: {
           color: '#292928',
           drawBorder: false,
