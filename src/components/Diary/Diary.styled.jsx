@@ -37,21 +37,3 @@ export const DiaryList = styled.ul`
   flex-direction: column;
   row-gap: 28px;
 `;
-
-// export const DiaryItem = styled.li`
-//   display: flex;
-//   flex-direction: row;
-//   row-gap: 28px;
-// `;
-
-// export const ItemWrapTitle = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   column-gap: 12px;
-//   align-items: center;
-//   justify-content: flex-start;
-// `;
-
-// export const Title = styled(HeadlineThird)`
-//   text-transform: capitalize;
-// `;

@@ -23,8 +23,6 @@ export default function Food() {
   const { meals, isLoading } = useSelector(selectDiaryInfo);
   const { fat, protein, carbohydrate, calories } = getTotalNutrients(meals);
 
-  // console.log(baseCalories);
-
   useEffect(() => {
     dispatch(getFoodDiaryToday()).unwrap();
   }, [fat, protein, carbohydrate, calories]);
