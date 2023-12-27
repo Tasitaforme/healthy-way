@@ -146,7 +146,15 @@ export const RecordBtn = styled.button`
   margin-top: 3px;
   padding: 0;
   border: none;
+  height: 16px;
+  text-align: center;
   outline: none;
+  border-radius: 12px;
+  transition: var(--transition-dur-and-fun);
+
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
 `;
 
 export const RecordMealIcon = styled.svg`
@@ -257,13 +265,27 @@ export const TrashModalIcon = styled.svg`
   stroke: var(--green-light);
   margin-top: 10px;
   cursor: pointer;
+  transition: var(--transition-dur-and-fun);
+
+  &:hover {
+    stroke: #a1bd66;
+  }
 `;
 
 export const AddMoreBtn = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
+  height: 16px;
+  width: 92px;
+  text-align: center;
   margin-top: 40px;
+  border-radius: 15px;
+  transition: var(--transition-dur-and-fun);
+
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
 `;
 
 export const AddMoreIcon = styled.svg`
@@ -297,6 +319,11 @@ export const ConfirmModalBtn = styled.button`
   padding: 8px 0;
   margin-top: 40px;
   color: var(--black-secondary);
+  transition: var(--transition-dur-and-fun);
+
+  &:hover {
+    background-color: #a1bd66;
+  }
 
   @media (min-width: 768px) {
     width: 212px;
@@ -307,6 +334,11 @@ export const CancelModalBtn = styled.button`
   color: var(--grey-light);
   padding: 8px 0;
   margin-top: 10px;
+  transition: var(--transition-dur-and-fun);
+
+  &:hover {
+    color: #a1bd66;
+  }
 
   @media (min-width: 768px) {
     width: 212px;
@@ -329,8 +361,14 @@ export const EditBtn = styled.button`
   right: 0;
   display: flex;
   margin-left: auto;
+  border-radius: 15px;
   cursor: pointer;
   padding: 0;
+  transition: var(--transition-dur-and-fun);
+
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
 `;
 
 export const EditIcon = styled.svg`
@@ -362,7 +400,7 @@ export const RecordedNutritionsWrapper = styled.div`
   width: 100%;
 
   @media (min-width: 768px) {
-    margin-top: 0;
+    margin-top: 3px;
     width: fit-content;
     margin-left: auto;
     gap: 40px;
