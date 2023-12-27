@@ -33,9 +33,10 @@ import {
   SelectBlock,
   SelectOption,
   Scroll,
+  customStyles,
 } from './DashboardPage.styled';
 import { GetStatisticsPerMonth } from '../../requests/operationsStatistics';
-import Graph from './Graph/Graph';
+import Graph from '../../components/Graph/Graph';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -85,58 +86,6 @@ const months = [
   'December',
 ];
 
-const customStyles = {
-  valueContainer: (provided, state) => ({
-    ...provided,
-    display: 'none',
-  }),
-  indicatorSeparator: (provided, state) => ({
-    ...provided,
-    display: 'none',
-  }),
-  dropdownIndicator: (provided, state) => ({
-    ...provided,
-    ':hover': {
-      color: '#e3ffa8',
-      transition: 'transform 0.3s ease',
-      transform: 'rotate(180deg)',
-    },
-  }),
-  control: (provided, state) => ({
-    ...provided,
-    backgroundColor: '#050505',
-    border: 'none',
-    cursor: 'pointer',
-    ':hover': {
-      borderColor: '#e3ffa8',
-      color: '#e3ffa8',
-    },
-  }),
-  menu: (provided, state) => ({
-    ...provided,
-    borderRadius: '14px',
-    position: 'absolute',
-    top: '30px',
-    right: '-60px',
-    maxHeight: '300px',
-    minWidth: '221px',
-    maxWidth: '222px',
-    color: '#b6b6b6',
-    backgroundColor: '#0f0f0f',
-    scrollbarColor: 'rgba(255, 255, 255, 0.03)',
-    boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    fontSize: '14px',
-    backgroundColor: state.isSelected ? 'rgba(255, 255, 255, 0.03)' : '#0f0f0f',
-    color: '#b6b6b6',
-    ':hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.03)',
-      color: '#e3ffa8',
-    },
-  }),
-};
 const currentMonth = currentDate.getMonth();
 function getMonthsList() {
   const monthsList = months
