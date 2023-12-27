@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {
-  MainAuth,
+  // MainAuth,
   ImageWrapper,
   TextWrapper,
   SignInWrapper,
@@ -25,7 +25,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <MainAuth>
+    <main>
       <Container>
         <FlexBox>
           <ImageWrapper>
@@ -47,6 +47,6 @@ export default function SignUpPage() {
           </TextWrapper>
         </FlexBox>
       </Container>
-    </MainAuth>
+    </main>
   );
 }

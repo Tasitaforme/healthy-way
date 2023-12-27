@@ -6,7 +6,6 @@ import {
   FlexBox,
   ImageWrapper,
   TextWrapper,
-  MainAuth,
 } from '../SignUpPage/SignUpPage.styled';
 import { BackgroundImage } from '../../components/SignUpImage/SignUpImage.styled';
 
@@ -19,7 +18,7 @@ import watchMob2x from '../../assets/images/watch/watch-mob@2x.png';
 
 export default function SignInPage() {
   return (
-    <MainAuth>
+    <main>
       <Container>
         <FlexBox>
           <ImageWrapper>
@@ -39,11 +38,11 @@ export default function SignInPage() {
             <HeadlineFirst>Sign in</HeadlineFirst>
             <HeadSecond>You need to login to use the service</HeadSecond>
             <SignInForm />
-            <SubText>If you don't have an account yet</SubText>
+            <SubText>If you don't have an account yet</SubText>``
             <SubLink to="/signup">Sign up</SubLink>
           </TextWrapper>
         </FlexBox>
       </Container>
-    </MainAuth>
+    </main>
   );
 }

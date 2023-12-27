@@ -26,8 +26,12 @@ export const BackButton = styled(Button)`
   font-weight: 400;
   background-color: transparent;
   color: var(--Color-Primary-Grey, #b6b6b6);
-  &:hover {
+  transition: color var(--transition-dur-and-fun);
+
+  &:hover,
+  &:focus {
     box-shadow: none;
+    color: var(--green-light);
   }
 `;
 

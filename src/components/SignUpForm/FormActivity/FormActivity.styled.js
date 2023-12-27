@@ -60,3 +60,16 @@ export const Error = styled.p`
   font-size: 12px;
   color: #e74a3b;
 `;
+
+export const Text = styled.p`
+  display: block;
+  width: 280px;
+
+  @media screen and (min-width: 834px) {
+    width: 438px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 308px;
+  }
+`;
