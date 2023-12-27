@@ -13,19 +13,12 @@ export default function ForgotPasswordForm() {
   };
 
   const navigate = useNavigate();
+
   const onSubmit = async (values, actions) => {
     try {
-      const response = await forgotPassword(values);
-      if (response && response.success) {
-        toast.success('A new password has been sent to your email!');
-        navigate('/signin');
-      } else {
-        throw new Error(
-          response && response.message
-            ? response.message
-            : 'Something went wrong!'
-        );
-      }
+      await forgotPassword(values);
+      toast.success('A new password has been sent to your email!');
+      navigate('/signin');
     } catch (error) {
       toast.error(`Something went wrong! \n ${error.message}`);
     } finally {

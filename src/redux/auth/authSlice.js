@@ -10,6 +10,7 @@ import {
   updateAvatar,
   updateWeight,
   updateGoal,
+  removeUser,
 } from './operations';
 
 const initialState = {
@@ -95,6 +96,15 @@ const authSlice = createSlice({
         state.isLogin = false;
       })
       .addCase(logOut.rejected, handleRejected)
+      .addCase(removeUser.pending, handlePending)
+      .addCase(removeUser.fulfilled, (state) => {
+        handleFulfilled(state);
+        state.user = {};
+        state.isLogin = false;
+        state.accessToken = '';
+        state.refreshToken = '';
+      })
+      .addCase(removeUser.rejected, handleRejected)
       .addCase(refresh.pending, handlePending)
       .addCase(refresh.fulfilled, (state, { payload }) => {
         handleFulfilled(state);
