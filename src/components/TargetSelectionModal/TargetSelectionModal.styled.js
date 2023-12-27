@@ -1,5 +1,30 @@
 import styled from 'styled-components';
 
+export const ModalBackdrop = styled.div`
+  z-index: 999;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(5, 5, 5, 0.8);
+  margin: 0 auto;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none;
+
+  transition: opacity var(--transition-dur-and-fun);
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+`;
+
 export const ModalWrapper = styled.div`
   position: absolute;
   z-index: 100;
@@ -9,76 +34,59 @@ export const ModalWrapper = styled.div`
   height: 100vh;
   box-shadow: 0 4px 14px 0 rgba(227, 255, 168, 0.2);
   background-color: black;
- padding: 24px 10px; 
+  padding: 24px 10px;
 
-@media screen and (min-width: 834px) {
-  width: 392px;
+  @media screen and (min-width: 834px) {
+    width: 392px;
 
-  height: auto;
-  padding: 20px 32px 40px 24px;
-  border-radius: 12px;
-background:  #0F0F0F;
-box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
-left: 260px;
- top: 120px;
-}
+    height: auto;
+    padding: 20px 32px 40px 24px;
+    border-radius: 12px;
+    background: #0f0f0f;
+    box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.2);
+    left: 260px;
+    top: 120px;
+  }
 
   @media screen and (min-width: 1440px) {
     left: 750px;
   }
 `;
 
-export const GlobalWrapper = styled.div`
-display: none;
-width: 300px;
-border-radius: 12px;
-background:  #0F0F0F;
-box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
-`;
-
-export const Modal = styled.div`
-
-`;
+export const Modal = styled.div``;
 
 export const CloseBtn = styled.button`
-
-display: none;
+  display: none;
 
   @media screen and (min-width: 834px) {
     display: block;
     width: 16px;
-  height: 16px;
-  background: inherit;
-  border: none;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 32px;
-  top: 20px;
-  cursor: pointer;}
-
+    height: 16px;
+    background: inherit;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 32px;
+    top: 20px;
+    cursor: pointer;
+  }
 `;
 
 export const ModalTitle = styled.h3`
   font-size: 18px;
-font-weight: 500;
-line-height: 1.33;
-margin-bottom: 8px;
+  font-weight: 500;
+  line-height: 1.33;
+  margin-bottom: 8px;
 `;
 
 export const ModalText = styled.p`
- font-size: 14px;
-font-weight: 400;
-line-height: 1.42;
-color: #B6B6B6;
-width: 284px;
-margin-bottom: 16px;
-
- 
-`;
-
-export const ModalForm = styled.form`
-
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42;
+  color: #b6b6b6;
+  width: 284px;
+  margin-bottom: 16px;
 `;
 
 export const TargetWrapper = styled.li`
@@ -88,8 +96,10 @@ export const TargetWrapper = styled.li`
   cursor: pointer;
   gap: 12px;
 
-  &:hover {color: #B6C3FF};
-   
+  &:hover,
+  &:focus {
+    color: #b6c3ff;
+  }
 `;
 
 export const TargetImg = styled.img`
@@ -102,37 +112,40 @@ export const ImgBorder = styled.div`
   height: 40px;
   padding: 10px;
   margin-right: 12px;
-border-radius: 12px;
-border: 1px solid #292928;
-background: rgba(255, 255, 255, 0.01);
-&:hover {border-color: #B6C3FF};
+  border-radius: 12px;
+  border: 1px solid #292928;
+  background: rgba(255, 255, 255, 0.01);
+  &:hover {
+    border-color: #b6c3ff;
+  }
 `;
 
 export const TargetText = styled.p`
-font-size: 14px;
-font-weight: 400;
-line-height: 1.42;
-
-
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42;
 `;
 
 export const ModalBtn = styled.button`
-  width: 100%; 
-display: flex;
-padding: 8px 10px;
-border-radius: 12px;
-background: #E3FFA8;
-font-size: 14px;
-font-weight: 500;
-line-height: 1.42;
-justify-content: center;
-
-@media screen and (min-width: 834px) {
-   width: 166px; }
+  width: 100%;
+  display: flex;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: #e3ffa8;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.42;
+  justify-content: center;
+  transition: box-shadow var(--transition-dur-and-fun);
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
+  @media screen and (min-width: 834px) {
+    width: 166px;
+  }
 `;
 
 export const CancelBtn = styled.button`
-
   height: 20px;
   width: 100%;
   border: none;
@@ -141,87 +154,69 @@ export const CancelBtn = styled.button`
   font-size: 14px;
   font-weight: 400;
   margin-top: 24px;
-  color:#B6B6B6;
-  
- 
+  color: #b6b6b6;
+  transition: color var(--transition-dur-and-fun);
+  &:hover {
+    color: var(--green-light);
+  }
 
   @media screen and (min-width: 834px) {
-     display: none;
-     width: 192px;
+    display: none;
+    width: 192px;
   }
- 
 `;
-
-
 
 export const UserContentWrapper = styled.div`
-margin-left: 48px;
-gap: 6px;
-display: flex;
-flex-direction: row;
-align-items: center;
+  margin-left: 48px;
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-
-@media screen and (min-width: 834px){
-   margin-left: 75px;
-  };
-  @media screen and (min-width: 1440px){
+  @media screen and (min-width: 834px) {
+    margin-left: 75px;
+  }
+  @media screen and (min-width: 1440px) {
     margin-left: 126px;
-  };
-`
+  }
+`;
 export const MenuIcon = styled.svg`
-margin: auto;
-width: 16px;
-height: 16px; 
-stroke: #E3FFA8;
+  margin: auto;
+  width: 16px;
+  height: 16px;
+  stroke: #e3ffa8;
 
-@media screen and (min-width: 834px){
+  @media screen and (min-width: 834px) {
     display: none;
-  };
-`
+  }
+`;
 export const ArrowIcon = styled.svg`
-margin: auto;
-width: 14px;
-height: 14px; 
-stroke: #E3FFA8;
-`
+  margin: auto;
+  width: 14px;
+  height: 14px;
+  stroke: #e3ffa8;
+`;
 export const UserName = styled.p`
-margin: auto;
-font-size: 12px;
-line-height: 1.33;
-`
+  margin: auto;
+  font-size: 12px;
+  line-height: 1.33;
+`;
 export const LoseMen = styled.div`
-display: flex;
-padding: 10px;
-gap: 10px;
-border-radius: 12px;
-border: 1px solid #5F5E5C;
-background: rgba(255, 255, 255, 0.01);
-`
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 12px;
+  border: 1px solid #5f5e5c;
+  background: rgba(255, 255, 255, 0.01);
+`;
 export const LoseMenImage = styled.img`
-display: block;
-width: 28px;
-height: 28px; 
+  display: block;
+  width: 28px;
+  height: 28px;
 `;
 export const IconWrapper = styled.div`
-display: flex;
-flex-wrap: wrap;
-gap: 12px;
-align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
 `;
-// export const GlobalWrapper = styled.div`
-// display: none;
-// width: 300px;
-// border-radius: 12px;
-// background:  #0F0F0F;
-// box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
-
-// @media screen and (min-width: 834px){
-// display: flex;
-// flex-direction: row;
-// gap: 40px;
-//   };
-
-//   @media screen and (min-width: 1440px){
-// gap: 80px;
-//   };

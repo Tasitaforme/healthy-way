@@ -52,8 +52,10 @@ export default function Header() {
               showModalWeight={showModalWeight}
               onTargetClick={toggleModalTarget}
               showModalTarget={showModalTarget}
+              setShowModalWeight={setShowModalWeight}
               onDopMenuClick={toggleDopMenuModal}
               showDopMenuModal={showDopMenuModal}
+              setShowModalTarget={setShowModalTarget}
             />
           ) : (
             <Navigation>
