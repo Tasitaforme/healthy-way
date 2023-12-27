@@ -1,5 +1,10 @@
 import React from 'react';
-import { ModalWrapper, Modal, LinkModal } from './UserInfoModal.styled';
+import {
+  ModalWrapper,
+  Modal,
+  LinkModal,
+  LinkIcon,
+} from './UserInfoModal.styled';
 import sprite from 'assets/sprite.svg';
 import { logOut } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
@@ -22,11 +27,12 @@ export default function UserInfoModal({ onCloseModal }) {
     <ModalWrapper>
       <Modal>
         <LinkModal to={'/settings'} onClick={onCloseModal}>
-          <svg width="16px" height="16px" stroke="#fff">
+          <LinkIcon width="16px" height="16px" stroke="#fff" fill="none">
             <use href={`${sprite}#settings`} />
-          </svg>
+          </LinkIcon>
           Setting
         </LinkModal>
+
         <LinkModal to={'/'} onClick={() => handleOut()}>
           <svg width="16px" height="16px" stroke="#fff">
             <use href={`${sprite}#logout`} />

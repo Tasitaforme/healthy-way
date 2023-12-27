@@ -11,34 +11,32 @@ import {
   SpanText,
 } from './DopMenuModal.styled';
 import TargetSelectionModal from '../../TargetSelectionModal/TargetSelectionModal';
-import { useState } from 'react';
+
 import CurrentWeightModal from '../../СurrentWeightModal/СurrentWeightModal';
 
 import weightImg from '../../../assets/images/header/weight-image.png';
 
-export const DopMenuModal = ({ onCloseModal, userInfo, goalImg }) => {
-  const [targetModalOpen, setTargetModalOpen] = useState(false);
-  const [weightModalOpen, setWeightModalOpen] = useState(false);
-
+export const DopMenuModal = ({
+  onCloseModal,
+  userInfo,
+  goalImg,
+  setShowModalTarget,
+  showModalTarget,
+  setShowModalWeight,
+  showModalWeight,
+}) => {
   const openTargetMenu = () => {
-    setTargetModalOpen(true);
-  };
-  const closeTargetMenu = () => {
-    setTargetModalOpen(false);
+    setShowModalTarget(true);
   };
 
   const openWeightMenu = () => {
-    setWeightModalOpen(true);
-  };
-
-  const closeWeightMenu = () => {
-    setWeightModalOpen(false);
+    setShowModalWeight(true);
   };
 
   return (
     <ModalWrapper>
       <CloseBtn onClick={onCloseModal}>
-        <svg width="16px" height="16px" stroke="#fff">
+        <svg width="16px" height="16px" stroke="#b6b6b6">
           <use href={`${sprite}#close-circle`} />
         </svg>
       </CloseBtn>
@@ -81,12 +79,8 @@ export const DopMenuModal = ({ onCloseModal, userInfo, goalImg }) => {
           </div>
         </IconWrapper>
       </GlobalWrapper>
-      {(targetModalOpen && (
-        <TargetSelectionModal onTargetClick={closeTargetMenu} />
-      )) ||
-        (weightModalOpen && (
-          <CurrentWeightModal onWeightClick={closeWeightMenu} />
-        ))}
+      {(showModalTarget && <TargetSelectionModal />) ||
+        (showModalWeight && <CurrentWeightModal />)}
     </ModalWrapper>
   );
 };

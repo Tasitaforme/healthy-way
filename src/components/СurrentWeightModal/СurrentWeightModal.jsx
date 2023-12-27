@@ -16,23 +16,39 @@ import {
   WeightFormBtn,
   CancelBtn,
   ErrorMessage,
+  ModalBackdrop,
 } from './CurrentWeightModal.styled';
 import { useDispatch } from 'react-redux';
 import { updateWeight } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
+import { useEffect } from 'react';
 
-export default function CurrentWeightModal({ onCloseModal, onWeightClick }) {
+export default function CurrentWeightModal({
+  onCloseModal,
+  setShowModalWeight,
+  showModalWeight,
+}) {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const handlerEscape = (e) => {
+      if (e.code === 'Escape') {
+        setShowModalWeight(false);
+      }
+    };
+    window.addEventListener('keydown', handlerEscape);
+
+    return () => {
+      window.removeEventListener('keydown', handlerEscape);
+    };
+  }, [setShowModalWeight]);
 
   const onSubmit = async (values) => {
     try {
       await dispatch(updateWeight(values.weight));
       toast.success('Your weight has been successfully updated!');
-      if (window.innerWidth < 834) {
-        onWeightClick();
-        return;
-      }
-      onCloseModal();
+
+      setShowModalWeight(false);
     } catch (error) {
       toast.error(`Something went wrong! ${error.message}`);
     }
@@ -51,53 +67,60 @@ export default function CurrentWeightModal({ onCloseModal, onWeightClick }) {
   const formattedDate = getCurrentDateFormatted();
 
   return (
-    <ModalWrapper>
-      <CloseBtn onClick={onCloseModal}>
-        <svg width="16px" height="16px" stroke="#fff">
-          <use href={`${sprite}#close-circle`} />
-        </svg>
-      </CloseBtn>
-      <Modal>
-        <ModalTitle>Enter your current weight</ModalTitle>
-        <ModalText>You can record your weight once a day</ModalText>
-        <DateContainer>
-          <DateText>Today</DateText>
-          <DateDay>{formattedDate}</DateDay>
-        </DateContainer>
-        <Formik
-          initialValues={{
-            weight: '',
-          }}
-          validationSchema={weightSchema}
-          onSubmit={onSubmit}
-        >
-          {({ errors, touched, isSubmitting, isValid, dirty }) => (
-            <WeightForm>
-              <WeightFormInput
-                type="text"
-                name="weight"
-                placeholder="Enter your weight"
-                autoComplete="off"
-                className={
-                  touched.weight
-                    ? errors.weight
-                      ? 'input-error'
-                      : 'input-success'
-                    : 'input-normal'
-                }
-              />
-              <ErrorMessage component="p" name="weight" />
-              <WeightFormBtn
-                type="submit"
-                disabled={!isValid || isSubmitting || !dirty}
-              >
-                Confirm
-              </WeightFormBtn>
-            </WeightForm>
-          )}
-        </Formik>
-        <CancelBtn onClick={() => onWeightClick()}>Cancel</CancelBtn>
-      </Modal>
-    </ModalWrapper>
+    <ModalBackdrop
+      className={showModalWeight ? 'active' : ''}
+      onClick={() => setShowModalWeight(false)}
+    >
+      <ModalWrapper onClick={(e) => e.stopPropagation()}>
+        <CloseBtn onClick={onCloseModal}>
+          <svg width="16px" height="16px" stroke="#b6b6b6">
+            <use href={`${sprite}#close-circle`} />
+          </svg>
+        </CloseBtn>
+        <Modal>
+          <ModalTitle>Enter your current weight</ModalTitle>
+          <ModalText>You can record your weight once a day</ModalText>
+          <DateContainer>
+            <DateText>Today</DateText>
+            <DateDay>{formattedDate}</DateDay>
+          </DateContainer>
+          <Formik
+            initialValues={{
+              weight: '',
+            }}
+            validationSchema={weightSchema}
+            onSubmit={onSubmit}
+          >
+            {({ errors, touched, isSubmitting, isValid, dirty }) => (
+              <WeightForm>
+                <WeightFormInput
+                  type="text"
+                  name="weight"
+                  placeholder="Enter your weight"
+                  autoComplete="off"
+                  className={
+                    touched.weight
+                      ? errors.weight
+                        ? 'input-error'
+                        : 'input-success'
+                      : 'input-normal'
+                  }
+                />
+                <ErrorMessage component="p" name="weight" />
+                <WeightFormBtn
+                  type="submit"
+                  disabled={!isValid || isSubmitting || !dirty}
+                >
+                  Confirm
+                </WeightFormBtn>
+              </WeightForm>
+            )}
+          </Formik>
+          <CancelBtn onClick={() => setShowModalWeight(false)}>
+            Cancel
+          </CancelBtn>
+        </Modal>
+      </ModalWrapper>
+    </ModalBackdrop>
   );
 }
