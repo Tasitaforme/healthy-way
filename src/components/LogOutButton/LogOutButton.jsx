@@ -56,7 +56,7 @@ export default function LogOutButton() {
       localStorage.clear();
       toast.success('You have successfully logged out!');
       closeLogoutModal();
-      redirect('/');
+      //redirect('/');
     } catch (error) {
       toast.error(`Something went wrong! \n ${error}`);
     }
