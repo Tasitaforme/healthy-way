@@ -19,10 +19,10 @@ export const Button = styled(ButtonIcon)`
   font-weight: 500;
   line-height: 1.43;
 
-  transition: box-shadow var(--transition-dur-and-fun);
+  transition: color var(--transition-dur-and-fun);
 
   &:hover {
-    box-shadow: var(--box-shadow);
+    color: var(--green-light);
   }
 `;
 
@@ -31,20 +31,6 @@ export const LogoutModalWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-`;
-
-export const CloseBtn = styled.button`
-  display: block;
-  width: 16px;
-  height: 16px;
-  background: inherit;
-  border: none;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 0;
-  top: -10px;
-  cursor: pointer;
 `;
 
 export const Title = styled(HeadlineSecond)`
@@ -95,10 +81,10 @@ export const CancelButton = styled.button`
   font-weight: 400;
   color: #b6b6b6;
   cursor: pointer;
-  transition: box-shadow var(--transition-dur-and-fun);
+  transition: color var(--transition-dur-and-fun);
 
   &:hover {
-    box-shadow: var(--box-shadow);
+    color: var(--green-light);
   }
 
   @media screen and (min-width: 834px) {

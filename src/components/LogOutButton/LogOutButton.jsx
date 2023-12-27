@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Modal from 'react-modal';
+import { redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 import sprite from 'assets/sprite.svg';
@@ -8,7 +9,6 @@ import { IconWrap } from '../StyledComponents/Components.styled';
 import {
   Button,
   LogoutModalWrapper,
-  CloseBtn,
   Title,
   LogoutButton,
   ButtonsWrapper,
@@ -56,6 +56,7 @@ export default function LogOutButton() {
       localStorage.clear();
       toast.success('You have successfully logged out!');
       closeLogoutModal();
+      redirect('/');
     } catch (error) {
       toast.error(`Something went wrong! \n ${error}`);
     }
@@ -76,18 +77,9 @@ export default function LogOutButton() {
           style={customStyles}
         >
           <LogoutModalWrapper>
-            <CloseBtn onClick={closeLogoutModal}>
-              <IconWrap width="16px" height="16px" stroke="#b6b6b6">
-                <use href={`${sprite}#close-circle`} />
-              </IconWrap>
-            </CloseBtn>
             <Title>Are you sure you would like to log out?</Title>
             <ButtonsWrapper>
-              <LogoutButton
-                type="button"
-                to={'/'}
-                onClick={() => handleLogOut()}
-              >
+              <LogoutButton type="button" onClick={() => handleLogOut()}>
                 Log out
               </LogoutButton>
               <CancelButton type="button" onClick={closeLogoutModal}>

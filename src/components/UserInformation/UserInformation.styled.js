@@ -220,10 +220,10 @@ export const UserInformationCancelButton = styled.button`
   color: var(--grey-light);
   cursor: pointer;
   border-radius: 12px;
-  transition: box-shadow var(--transition-dur-and-fun);
+  transition: color var(--transition-dur-and-fun);
 
   &:hover {
-    box-shadow: var(--box-shadow);
+    color: var(--green-light);
   }
 
   @media screen and (min-width: 834px) {

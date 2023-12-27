@@ -22,6 +22,7 @@ export default function SettingsPage() {
     <main>
       <SettingsContainer>
         <SettingsPageTitle>Profile setting</SettingsPageTitle>
+        <LogOutButton />
         <UserContentWrapper>
           <SettingsPageImg
             $imageDesk1x={profileDesk1x}
