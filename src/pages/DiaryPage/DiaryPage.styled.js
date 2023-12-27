@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FormikStyledForm } from '../../components/StyledComponents/Formik.styled';
+import { IconWrap } from '../../components/StyledComponents/Components.styled';
 
 export const DiarySection = styled.section`
   padding: 16px 10px 40px;
@@ -23,7 +24,7 @@ export const GoBackBtn = styled.span`
   padding: 0;
 `;
 
-export const StyledGoBackIcon = styled.svg`
+export const StyledGoBackIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
 
@@ -157,7 +158,7 @@ export const RecordBtn = styled.button`
   }
 `;
 
-export const RecordMealIcon = styled.svg`
+export const RecordMealIcon = styled(IconWrap)`
   margin-right: 6px;
 `;
 
@@ -166,7 +167,7 @@ export const RecordBtnLabel = styled.span`
   cursor: pointer;
 `;
 
-export const StyledBackArrowIcon = styled.svg`
+export const StyledBackArrowIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
   stroke: var(--grey-light);
@@ -177,7 +178,7 @@ export const StyledBackArrowIcon = styled.svg`
   }
 `;
 
-export const StyledAddMealIcon = styled.svg`
+export const StyledAddMealIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
   stroke: var(--green-light);
@@ -259,7 +260,7 @@ export const CaloriesForm = styled(FormField)`
   }
 `;
 
-export const TrashModalIcon = styled.svg`
+export const TrashModalIcon = styled(IconWrap)`
   width: 20px;
   height: 20px;
   stroke: var(--green-light);
@@ -288,7 +289,7 @@ export const AddMoreBtn = styled.button`
   }
 `;
 
-export const AddMoreIcon = styled.svg`
+export const AddMoreIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
   stroke: var(--green-light);
@@ -371,7 +372,7 @@ export const EditBtn = styled.button`
   }
 `;
 
-export const EditIcon = styled.svg`
+export const EditIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
   stroke: var(--grey-light);
