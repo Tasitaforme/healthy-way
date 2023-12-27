@@ -15,14 +15,12 @@ import {
 } from './SettingsPage.styled';
 import ChangePasswordForm from '../../components/ChangePasswordForm/ChangePasswordForm';
 import DeleteUser from '../../components/DeleteUser/DeleteUser';
-import LogOutButton from '../../components/LogOutButton/LogOutButton';
 
 export default function SettingsPage() {
   return (
     <main>
       <SettingsContainer>
         <SettingsPageTitle>Profile setting</SettingsPageTitle>
-        <LogOutButton />
         <UserContentWrapper>
           <SettingsPageImg
             $imageDesk1x={profileDesk1x}
