@@ -127,7 +127,7 @@ export const ListItem = styled.li`
   }
 
   &:before {
-    content: '${({ itemNumber }) => itemNumber}';
+    content: '${({ itemnumber }) => itemnumber}';
     width: 16px;
     position: absolute;
     left: 0;
