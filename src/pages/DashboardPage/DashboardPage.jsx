@@ -25,7 +25,6 @@ import {
   Table,
   ListChart,
   LiCart,
-  ChartBlock,
   DashboardBlock,
   TextBlock,
   AverageBlock,
@@ -37,7 +36,6 @@ import {
 } from './DashboardPage.styled';
 import { GetStatisticsPerMonth } from '../../requests/operationsStatistics';
 import Graph from './Graph/Graph';
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -99,29 +97,33 @@ const customStyles = {
   dropdownIndicator: (provided, state) => ({
     ...provided,
     ':hover': {
-      color: 'var(--green-light)',
+      color: '#e3ffa8',
       transition: 'transform 0.3s ease',
       transform: 'rotate(180deg)',
     },
   }),
   control: (provided, state) => ({
     ...provided,
-    backgroundColor: 'var(--black-primary)',
+    backgroundColor: '#050505',
     border: 'none',
     cursor: 'pointer',
     ':hover': {
-      borderColor: 'var(--green-light)',
-      color: 'var(--green-light)',
+      borderColor: '#e3ffa8',
+      color: '#e3ffa8',
     },
   }),
   menu: (provided, state) => ({
     ...provided,
+    borderRadius: '14px',
+    position: 'absolute',
+    top: '30px',
+    right: '-60px',
     maxHeight: '300px',
     minWidth: '221px',
+    maxWidth: '222px',
     color: '#b6b6b6',
     backgroundColor: '#0f0f0f',
-    borderRadius: '14px',
-    scrollbarColor: '#0f0f0f',
+    scrollbarColor: 'rgba(255, 255, 255, 0.03)',
     boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
   }),
   option: (provided, state) => ({
@@ -130,7 +132,8 @@ const customStyles = {
     backgroundColor: state.isSelected ? 'rgba(255, 255, 255, 0.03)' : '#0f0f0f',
     color: '#b6b6b6',
     ':hover': {
-      color: 'var(--green-light)',
+      backgroundColor: 'rgba(255, 255, 255, 0.03)',
+      color: '#e3ffa8',
     },
   }),
 };
@@ -142,7 +145,6 @@ function getMonthsList() {
   return monthsList;
 }
 const resultArrMonth = getMonthsList();
-
 const ArrMonth = resultArrMonth.map((month) => ({
   value: month,
   label: month,
@@ -217,33 +219,6 @@ export default function DashboardPage() {
   const AverageWater = Math.round(arrayMean(waterArrLab));
   const AverageWeight = Math.round(arrayMean(weightArrLab));
 
-  const dataCalories = {
-    labels,
-    datasets: [
-      {
-        fill: true,
-        label: '',
-        data: caloriesArrLab,
-        cubicInterpolationMode: 'monotone',
-        borderColor: '#E3FFA8',
-        backgroundColor: 'transparent',
-      },
-    ],
-  };
-  const dataWoter = {
-    labels,
-    datasets: [
-      {
-        fill: true,
-        label: '',
-        data: waterArrLab,
-        cubicInterpolationMode: 'monotone',
-        borderColor: '#E3FFA8',
-        backgroundColor: 'transparent',
-      },
-    ],
-  };
-
   return (
     <Container>
       <SelectBlock>
@@ -285,7 +260,12 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <Scroll>
-              <Graph symbol={'K'} dataGraph={dataCalories} unit={'calories'} />
+              <Graph
+                symbol={'K'}
+                dataGraph={caloriesArrLab}
+                unit={'calories'}
+                labels={labels}
+              />
             </Scroll>
           </LiCart>
 
@@ -298,7 +278,12 @@ export default function DashboardPage() {
               </AverageBlock>
             </TextBlock>
             <Scroll>
-              <Graph symbol={'L'} dataGraph={dataWoter} unit={'milliliters'} />
+              <Graph
+                symbol={'L'}
+                dataGraph={waterArrLab}
+                unit={'milliliters'}
+                labels={labels}
+              />
             </Scroll>
           </LiCart>
         </ListChart>

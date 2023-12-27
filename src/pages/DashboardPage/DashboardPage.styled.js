@@ -110,6 +110,7 @@ export const Scroll = styled.div`
     }
   }
 `;
+
 export const ListChart = styled.ul`
   display: flex;
   flex-wrap: wrap;
