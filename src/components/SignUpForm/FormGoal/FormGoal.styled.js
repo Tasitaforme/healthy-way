@@ -23,6 +23,10 @@ export const Label = styled.label`
     margin-top: 24px;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+
   @media screen and (min-width: 834px) {
     &:not(:first-child) {
       margin-top: 0px;

@@ -8,6 +8,7 @@ import { FoodWrap, NutrientsList, WrapMain } from './Food.styled';
 import BigDoughnutChart from './Doughnuts/DoughnutCalories';
 import { getFoodDiaryToday } from '../../redux/diary/operations';
 import DoughnutNutrients from './Doughnuts/DoughnutNutrients';
+import Loader from '../Loader/Loader';
 
 export default function Food() {
   const dispatch = useDispatch();
@@ -22,18 +23,18 @@ export default function Food() {
   const { meals, isLoading } = useSelector(selectDiaryInfo);
   const { fat, protein, carbohydrate, calories } = getTotalNutrients(meals);
 
-  // console.log(baseCalories);
-
-  useEffect(() => {
-    dispatch(getFoodDiaryToday()).unwrap();
-  }, [fat, protein, carbohydrate, calories]);
+  // useEffect(() => {
+  //   dispatch(getFoodDiaryToday()).unwrap();
+  // }, [fat, protein, carbohydrate, calories]);
 
   const nutrientsTitles = ['Carbonohidrates', 'Protein', 'Fat'];
 
   return (
     <FoodWrap>
       <HeadlineSecond>Food</HeadlineSecond>
-      {!isLoading && (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <WrapMain>
           <BigDoughnutChart calories={calories} baseCalories={baseCalories} />
 

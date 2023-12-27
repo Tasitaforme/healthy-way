@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FeatureWrap, TitleWrap } from './MainPage.styled';
+import { FeatureWrap, MainWrap, TitleWrap } from './MainPage.styled';
 
 import { Container } from 'components/StyledComponents/Container';
 import {
@@ -9,30 +9,31 @@ import {
   StyledLink,
 } from 'components/StyledComponents/Components.styled';
 import sprite from 'assets/sprite.svg';
-
 import DailyGoal from 'components/DailyGoal/DailyGoal';
 import Water from 'components/Water/Water';
 import Food from 'components/Food/Food';
 import Diary from 'components/Diary/Diary';
 import RecommendedFood from 'components/RecommendedFood/RecommendedFood';
-import { Button } from '../../components/StyledComponents/Components.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-hot-toast';
-import { logOut } from '../../redux/auth/operations';
 import { selectIsLogin } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
-import { selectWaterInfo } from '../../redux/water/selectors';
+import { getFoodDiaryToday } from '../../redux/diary/operations';
 
 export default function MainPage() {
   const dispatch = useDispatch();
   const isLogin = useSelector(selectIsLogin);
-  const { water: waterReal } = useSelector(selectWaterInfo);
 
   useEffect(() => {
     if (isLogin) {
       dispatch(getDailyWater());
     }
-  }, [isLogin, waterReal]);
+  }, [isLogin, dispatch]);
+
+  useEffect(() => {
+    if (isLogin) {
+      dispatch(getFoodDiaryToday());
+    }
+  }, [dispatch]);
 
   const [modalActive, setModalActive] = useState(false);
 
@@ -42,18 +43,8 @@ export default function MainPage() {
     document.body.style.overflow = 'auto';
   }
 
-  // TODO видалити потім, коли буде можливість вийти в хедері
-  const handleOut = async () => {
-    try {
-      await dispatch(logOut()).unwrap();
-      toast.success('You have successfully logged out!');
-    } catch (error) {
-      toast.error('Something went wrong !');
-    }
-  };
-
   return (
-    <main>
+    <MainWrap>
       <Container>
         <TitleWrap>
           <HeadlineFirst>Today</HeadlineFirst>
@@ -74,10 +65,7 @@ export default function MainPage() {
           <Diary></Diary>
           <RecommendedFood></RecommendedFood>
         </FeatureWrap>
-        <Button type="submit" onClick={() => handleOut()}>
-          Sign out
-        </Button>
       </Container>
-    </main>
+    </MainWrap>
   );
 }

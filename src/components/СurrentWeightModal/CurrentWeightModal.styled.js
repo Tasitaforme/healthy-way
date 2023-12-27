@@ -1,44 +1,62 @@
-import styled from 'styled-components'; 
+import styled from 'styled-components';
+import { Field, Form } from 'formik';
+import { FormikStyledErrorMessage } from '../StyledComponents/Formik.styled';
+
+export const ErrorMessage = styled(FormikStyledErrorMessage)`
+  margin-top: 0;
+
+  @media screen and (min-width: 834px) {
+    margin-top: 10px;
+    position: absolute;
+    top: 40px;
+    left: 0;
+  }
+`;
 
 export const ModalWrapper = styled.div`
-   position: absolute;
-  border-radius: 12px;
-  background: #0F0F0F;
-  top: 57px;
-//   left: 0;
+  position: absolute;
+  z-index: 100;
+  background: #0f0f0f;
+  top: 0;
+  left: 0;
   width: 100%;
-  
-@media screen and (min-width: 834px) {
-   box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.20);
+  height: 100vh;
+  box-shadow: 0 4px 14px 0 rgba(227, 255, 168, 0.2);
+  padding: 24px 10px;
+
+  @media screen and (min-width: 834px) {
+    box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.2);
     top: 120px;
     width: 392px;
-    right: 0px;
-}
+    left: 260px;
+    height: auto;
+  }
   @media screen and (min-width: 1440px) {
-    right: 0px;
+    left: 960px;
   }
 `;
 
 export const Modal = styled.div`
-padding-top:24px;
-@media screen and (min-width: 834px) {
- padding: 20px 24px 40px;}
+  @media screen and (min-width: 834px) {
+    padding: 20px 24px 40px;
+  }
 `;
 
 export const CloseBtn = styled.button`
-display:none;
+  display: none;
 
-@media screen and (min-width: 834px) {
+  @media screen and (min-width: 834px) {
     display: block;
-background: inherit;
-  border: none;
-  justify-content: center;
-  align-items: center;
-  width: 26px;
-  height: 26px;
-  position: absolute;
-  right: 25px;
-  top: 12px;}
+    background: inherit;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    right: 25px;
+    top: 12px;
+  }
 `;
 
 export const ModalTitle = styled.h3`
@@ -50,7 +68,7 @@ export const ModalTitle = styled.h3`
 `;
 
 export const ModalText = styled.p`
-  color: #B6B6B6;
+  color: #b6b6b6;
   font-weight: 400;
   font-size: 14px;
   margin-bottom: 16px;
@@ -58,8 +76,7 @@ export const ModalText = styled.p`
 `;
 
 export const DateContainer = styled.div`
-  
-display: flex;
+  display: flex;
   align-items: center;
   gap: 6px;
   margin-bottom: 16px;
@@ -74,32 +91,29 @@ export const DateText = styled.p`
 `;
 
 export const DateDay = styled.p`
-   
-color: #B6B6B6;
+  color: #b6b6b6;
   font-weight: 500;
   font-size: 14px;
   margin-bottom: 16px;
-  line-height: 1.42 
-
+  line-height: 1.42;
 `;
 
-export const WeightForm = styled.form`
+export const WeightForm = styled(Form)`
+  position: relative;
+  flex-direction: column;
 
-  flex-direction: collum; 
-
-@media screen and (min-width: 834px) {
+  @media screen and (min-width: 834px) {
     flex-direction: row;
     justify-content: space-between;
-    display: flex;  
+    display: flex;
     gap: 12px;
   }
-  
 `;
 
-export const WeightFormInput = styled.input`
-width: 100%; 
-margin-bottom: 12px;
-padding: 8px 10px;
+export const WeightFormInput = styled(Field)`
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px 10px;
   border-radius: 12px;
   border: 1px solid var(--green-light);
   background-color: var(--black-secondary);
@@ -139,35 +153,34 @@ padding: 8px 10px;
   @media screen and (min-width: 834px) {
     margin: 0;
   }
-
 `;
 
 export const WeightFormBtn = styled.button`
-width: 100%; 
-display: flex;
-padding: 8px 10px;
-align-items: flex-start;
-border-radius: 12px;
-background: #E3FFA8;
-font-size: 14px;
-font-weight: 500;
-line-height: 1.42;
-justify-content: center;
+  width: 100%;
+  display: flex;
+  padding: 8px 10px;
+  align-items: flex-start;
+  border-radius: 12px;
+  background: #e3ffa8;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.42;
+  justify-content: center;
+  color: #0f0f0f;
 `;
 
 export const CancelBtn = styled.button`
-display: block;  
-margin: 0 auto;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height:1.42;
-color: #B6B6B6;
-margin-top: 24px;
-justify-content: center;
-
+  display: block;
+  margin: 0 auto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.42;
+  color: #b6b6b6;
+  margin-top: 24px;
+  justify-content: center;
 
   @media screen and (min-width: 834px) {
-    display: none; }
-
- `;
+    display: none;
+  }
+`;

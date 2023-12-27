@@ -13,24 +13,20 @@ import {
 } from 'redux-persist';
 
 import { authReducer } from './auth/authSlice';
-import { recommendedFoodReducer } from './recommendedFood/recommendedFoodSlice';
 import { diaryReducer } from './diary/diarySlice';
-import { statisticsReducer } from './statistics/statisticsSlice';
 import { waterReducer } from './water/waterSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['refreshToken'],
+  whitelist: ['accessToken', 'refreshToken'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
     diary: diaryReducer,
-    statistics: statisticsReducer,
     water: waterReducer,
-    recommendedFood: recommendedFoodReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

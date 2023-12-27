@@ -9,6 +9,8 @@ import {
 export const UserForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  margin-bottom: 52px;
+  padding-bottom: 40px;
 
   @media screen and (min-width: 834px) {
     flex-direction: row;
@@ -19,7 +21,6 @@ export const UserForm = styled(Form)`
   }
 `;
 
-// кожнна група лейбл та інпути загорнути в цей дів
 export const UserInformationBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,7 +28,6 @@ export const UserInformationBlock = styled.div`
   margin-bottom: 40px;
 `;
 
-// стилі для інпутів у форміку Field
 export const UserInformationField = styled(FormikStyledField)`
   width: 100%;
   position: relative;
@@ -49,14 +49,20 @@ export const UserInformationField = styled(FormikStyledField)`
     outline: none;
     border-color: var(--green-light);
   }
+
+  @media screen and (min-width: 834px) {
+    width: 212px;
+  }
 `;
 
-// стилі для повідомлення про помилку
 export const UserInformationErrorMessage = styled(FormikStyledErrorMessage)`
   margin: 0;
+
+  @media screen and (min-width: 834px) {
+    width: 200px;
+  }
 `;
 
-// стилі для avatar
 export const AvatarInput = styled.input`
   width: 0px;
   height: 0px;
@@ -98,15 +104,16 @@ export const AvatarImg = styled.img`
   object-fit: cover;
 `;
 
-export const AvatarIcon = styled.img`
+export const AvatarIcon = styled.svg`
   width: 16px;
   height: 16px;
   justify-content: center;
   align-items: center;
   margin-right: 6px;
+  stroke: var(--green-light);
+  fill: none;
 `;
 
-// стилі для секції gender
 export const GenderButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -160,18 +167,18 @@ export const UserInformationRadioText = styled.span`
 export const UserGenderText = styled(UserInformationRadioText)`
   width: auto;
 `;
-// стилі для секції gender
 
-// стилі для секції activity
 export const ActivityButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media screen and (min-width: 834px) {
+    width: 464px;
+  }
 `;
 
-// стилі для кнопок
 export const UserButtonsWrapper = styled.div`
-  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -179,8 +186,6 @@ export const UserButtonsWrapper = styled.div`
 
   @media screen and (min-width: 834px) {
     flex-direction: row;
-    gap: 0px;
-    margin-bottom: 174px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -198,7 +203,7 @@ export const UserInformationSubmitButton = styled.button`
   cursor: pointer;
 
   @media screen and (min-width: 834px) {
-    width: 192px;
+    width: 212px;
   }
 `;
 

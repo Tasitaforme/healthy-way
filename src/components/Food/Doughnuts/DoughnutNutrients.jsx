@@ -14,7 +14,7 @@ import {
 
 ChartJS.register(ArcElement);
 
-const DoughnutNutrients = ({ title, arcColor, nutrient, baseNutrient }) => {
+const DoughnutNutrients = ({ title, arcColor, nutrient, baseNutrient = 0 }) => {
   const calculatedPercentage = useMemo(() => {
     if (nutrient >= baseNutrient) return 100;
     return Math.round((nutrient / baseNutrient) * 100);

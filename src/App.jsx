@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import ErrorPage from 'pages/ErrorPage/ErrorPage';
-import { lazy, useEffect } from 'react';
+import { lazy } from 'react';
 import PublicGuard from './guards/PublicGuard';
 import PrivateGuard from './guards/PrivateGuard';
 import SharedLayout from './components/SharedLayout/SharedLayout';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectAuthInfo } from './redux/auth/selectors';
 
 const WelcomePage = lazy(() => import('./pages/WelcomePage/WelcomePage'));
@@ -22,12 +22,7 @@ const RecommendedFoodPage = lazy(() =>
 );
 
 const App = () => {
-  // const dispatch = useDispatch();
   const { isLogin } = useSelector(selectAuthInfo);
-
-  // useEffect(() => {
-  //   dispatch(currentUser());
-  // }, [dispatch, isLogin]);
 
   return (
     <>

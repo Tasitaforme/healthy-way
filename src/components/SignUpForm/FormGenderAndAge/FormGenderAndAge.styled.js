@@ -57,6 +57,10 @@ export const Label = styled.label`
   display: flex;
   gap: 8px;
   align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const AgeWrapper = styled.label`

@@ -1,32 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import {
   ButtonTextSecond,
   HeadlineSecond,
   StyledLink,
 } from '../StyledComponents/Components.styled';
 import { DiaryList, DiaryWrap, TitleWrap } from './Diary.styled';
-// import { nanoid } from '@reduxjs/toolkit';
-
 import DiaryItem from './DiaryItem/DiaryItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDiaryInfo } from '../../redux/diary/selectors';
-import { getFoodDiaryToday } from '../../redux/diary/operations';
-import { selectIsLogin } from '../../redux/auth/selectors';
-import { getTotalNutrients, getTotalNutrientsForMeals } from '../../helpers';
+import { getTotalNutrientsForMeals } from '../../helpers';
 
 export default function Diary() {
   const dispatch = useDispatch();
-  const { meals, firstLoad } = useSelector(selectDiaryInfo);
-
-  // useEffect(() => {
-  //   if (!firstLoad) {
-  //     dispatch(getFoodDiaryToday()).unwrap();
-  //   }
-  // }, [firstLoad]);
-
-  // useEffect(() => {
-  //   dispatch(getFoodDiaryToday());
-  // }, [meals]);
+  const { meals } = useSelector(selectDiaryInfo);
 
   const totalNutrientsForMeals = getTotalNutrientsForMeals(meals);
 

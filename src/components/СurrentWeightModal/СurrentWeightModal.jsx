@@ -1,5 +1,7 @@
-import React from 'react';
+// import React from 'react';
+import { Formik } from 'formik';
 import sprite from 'assets/sprite.svg';
+import { weightSchema } from '../../schemas/formikWeight';
 import {
   ModalWrapper,
   CloseBtn,
@@ -13,9 +15,30 @@ import {
   WeightFormInput,
   WeightFormBtn,
   CancelBtn,
-} from '../СurrentWeightModal/CurrentWeightModal.styled';
-export default function СurrentWeightModal({ onCloseModal }) {
-  function getCurrentDateFormatted() {
+  ErrorMessage,
+} from './CurrentWeightModal.styled';
+import { useDispatch } from 'react-redux';
+import { updateWeight } from '../../redux/auth/operations';
+import toast from 'react-hot-toast';
+
+export default function CurrentWeightModal({ onCloseModal, onWeightClick }) {
+  const dispatch = useDispatch();
+
+  const onSubmit = async (values) => {
+    try {
+      await dispatch(updateWeight(values.weight));
+      toast.success('Your weight has been successfully updated!');
+      if (window.innerWidth < 834) {
+        onWeightClick();
+        return;
+      }
+      onCloseModal();
+    } catch (error) {
+      toast.error(`Something went wrong! ${error.message}`);
+    }
+  };
+
+  const getCurrentDateFormatted = () => {
     const currentDate = new Date();
 
     const day = currentDate.getDate().toString().padStart(2, '0');
@@ -23,8 +46,10 @@ export default function СurrentWeightModal({ onCloseModal }) {
     const year = currentDate.getFullYear();
 
     return `${day}.${month}.${year}`;
-  }
+  };
+
   const formattedDate = getCurrentDateFormatted();
+
   return (
     <ModalWrapper>
       <CloseBtn onClick={onCloseModal}>
@@ -39,19 +64,40 @@ export default function СurrentWeightModal({ onCloseModal }) {
           <DateText>Today</DateText>
           <DateDay>{formattedDate}</DateDay>
         </DateContainer>
-        <WeightForm>
-          <WeightFormInput
-            type="number"
-            name="weight"
-            placeholder="Enter your weight"
-            autoComplete="off"
-            required
-            autoFocus
-          />
-          <WeightFormBtn type="submit">Confirm</WeightFormBtn>
-        </WeightForm>
+        <Formik
+          initialValues={{
+            weight: '',
+          }}
+          validationSchema={weightSchema}
+          onSubmit={onSubmit}
+        >
+          {({ errors, touched, isSubmitting, isValid, dirty }) => (
+            <WeightForm>
+              <WeightFormInput
+                type="text"
+                name="weight"
+                placeholder="Enter your weight"
+                autoComplete="off"
+                className={
+                  touched.weight
+                    ? errors.weight
+                      ? 'input-error'
+                      : 'input-success'
+                    : 'input-normal'
+                }
+              />
+              <ErrorMessage component="p" name="weight" />
+              <WeightFormBtn
+                type="submit"
+                disabled={!isValid || isSubmitting || !dirty}
+              >
+                Confirm
+              </WeightFormBtn>
+            </WeightForm>
+          )}
+        </Formik>
+        <CancelBtn onClick={() => onWeightClick()}>Cancel</CancelBtn>
       </Modal>
-      <CancelBtn onClick={onCloseModal}>Cancel</CancelBtn>
     </ModalWrapper>
   );
 }

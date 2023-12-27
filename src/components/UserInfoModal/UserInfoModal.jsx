@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ModalWrapper, Modal, LinkModal } from './UserInfoModal.styled';
 import sprite from 'assets/sprite.svg';
+import { logOut } from '../../redux/auth/operations';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 
-// добавить функцию логаут
+export default function UserInfoModal({ onCloseModal }) {
+  const dispatch = useDispatch();
 
-export default function UserInfoModal() {
+  const handleOut = async () => {
+    try {
+      await dispatch(logOut()).unwrap();
+      toast.success('You have successfully logged out!');
+      onCloseModal();
+    } catch (error) {
+      toast.error(`Something went wrong! \n ${error}`);
+    }
+  };
+
   return (
     <ModalWrapper>
       <Modal>
-        <LinkModal to={'/settings'}>
+        <LinkModal to={'/settings'} onClick={onCloseModal}>
           <svg width="16px" height="16px" stroke="#fff">
             <use href={`${sprite}#settings`} />
           </svg>
           Setting
         </LinkModal>
-        <LinkModal to={'/'}>
+        <LinkModal to={'/'} onClick={() => handleOut()}>
           <svg width="16px" height="16px" stroke="#fff">
             <use href={`${sprite}#logout`} />
           </svg>

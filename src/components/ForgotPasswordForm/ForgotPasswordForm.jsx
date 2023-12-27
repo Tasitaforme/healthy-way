@@ -1,31 +1,29 @@
 import { Formik } from 'formik';
-import { SignInFormikForm } from '../SignInForm/SignInForm.styled';
-import {
-  FormikStyledField,
-  FormikStyledErrorMessage,
-} from '../StyledComponents/Formik.styled';
+import { FormikStyledField } from '../StyledComponents/Formik.styled';
 import { Button } from '../StyledComponents/Components.styled';
 import { forgotPasswordSchema } from '../../schemas/formik';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { forgotPassword } from '../../requests/forgotPassword';
+import toast from 'react-hot-toast';
+import { Form, Error } from './ForgotPasswordForm.styled';
 
 export default function ForgotPasswordForm() {
   const initialValues = {
     email: '',
   };
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const onSubmit = async (values, actions) => {
-    // try {
-    //   await dispatch(forgotPassword(values)).unwrap();
-    //   toast.success('A new password has been sent to your email!');
-    //   navigate('/signin');
-    // } catch (error) {
-    //   toast.error(`${error}`);
-    // }
 
-    actions.resetForm();
+  const onSubmit = async (values, actions) => {
+    try {
+      await forgotPassword(values);
+      toast.success('A new password has been sent to your email!');
+      navigate('/signin');
+    } catch (error) {
+      toast.error(`Something went wrong! \n ${error.message}`);
+    } finally {
+      actions.resetForm();
+    }
   };
 
   return (
@@ -35,25 +33,26 @@ export default function ForgotPasswordForm() {
       onSubmit={onSubmit}
     >
       {({ errors, touched, isSubmitting, isValid }) => (
-        <SignInFormikForm>
+        <Form>
           <FormikStyledField
             type="email"
             name="email"
+            autoComplete="on"
             placeholder="E-mail"
             className={
-              touched.quantity
-                ? errors.quantity
+              touched.email
+                ? errors.email
                   ? 'input-error'
                   : 'input-success'
                 : 'input-normal'
             }
           />
-          <FormikStyledErrorMessage component="p" name="email" />
+          <Error component="p" name="email" />
 
           <Button type="submit" disabled={!isValid || isSubmitting}>
             Send
           </Button>
-        </SignInFormikForm>
+        </Form>
       )}
     </Formik>
   );

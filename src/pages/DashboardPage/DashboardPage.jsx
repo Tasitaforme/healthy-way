@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { Container } from '../../components/StyledComponents/Container';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,8 +12,11 @@ import {
   Filler,
   Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+import {
+  IconWrap,
+  StyledLink,
+} from 'components/StyledComponents/Components.styled';
+import sprite from 'assets/sprite.svg';
 import {
   TextLabel,
   ListStat,
@@ -21,17 +25,17 @@ import {
   Table,
   ListChart,
   LiCart,
-  ChartBlock,
   DashboardBlock,
   TextBlock,
   AverageBlock,
   TextAverageValue,
   TableBlock,
   SelectBlock,
-  // SelectForm,
   SelectOption,
+  Scroll,
 } from './DashboardPage.styled';
-
+import { GetStatisticsPerMonth } from '../../requests/operationsStatistics';
+import Graph from './Graph/Graph';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -42,50 +46,6 @@ ChartJS.register(
   Filler,
   Legend
 );
-
-export const option = {
-  responsive: true,
-
-  elements: {
-    point: {
-      radius: 0,
-      backgroundColor: '#E3FFA8',
-      borderColor: '#E3FFA8',
-      borderWidth: 1,
-      pointBorderColor: '#000',
-      pointBackgroundColor: '#E3FFA8',
-      pointHoverRadius: 6,
-    },
-  },
-  plugins: {
-    tooltip: {
-      enabled: true,
-      mode: 'index',
-      intersect: true,
-      backgroundColor: '#000',
-      bodyFontFamily: 'Poppins',
-      bodyFont: { size: 32 },
-      borderWidth: 186,
-      position: 'nearest',
-      displayColors: false,
-      cornerRadius: 10,
-      yAlign: 'bottom',
-      bodyAlign: 'center',
-      titleFont: { size: 0 },
-      titleAlign: 'center',
-      boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
-    },
-
-    legend: {
-      display: false,
-      position: 'top',
-    },
-    title: {
-      display: false,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
 
 function createArrayWithNumbers(n) {
   const result = [];
@@ -103,10 +63,13 @@ function getDaysInMonth() {
   return daysInMonth;
 }
 
-let weight = 75;
-let AverageCalories = 1700;
-let AverageWater = 1700;
-let AverageWeight = 75;
+function arrayMean(arr) {
+  const total = arr.reduce((previousValue, number) => {
+    return previousValue + number;
+  }, 0);
+  return total / arr.length;
+}
+
 const months = [
   'January',
   'February',
@@ -122,14 +85,6 @@ const months = [
   'December',
 ];
 
-const currentMonth = currentDate.getMonth();
-function getMonthsList() {
-  const monthsList = months
-    .slice(currentMonth)
-    .concat(months.slice(0, currentMonth));
-  return monthsList;
-}
-
 const customStyles = {
   valueContainer: (provided, state) => ({
     ...provided,
@@ -142,46 +97,54 @@ const customStyles = {
   dropdownIndicator: (provided, state) => ({
     ...provided,
     ':hover': {
-      color: '#E3FFA8',
+      color: '#e3ffa8',
       transition: 'transform 0.3s ease',
       transform: 'rotate(180deg)',
     },
   }),
   control: (provided, state) => ({
     ...provided,
-    backgroundColor: '#000',
+    backgroundColor: '#050505',
     border: 'none',
     cursor: 'pointer',
     ':hover': {
-      borderColor: '#E3FFA8',
-      color: '#E3FFA8',
+      borderColor: '#e3ffa8',
+      color: '#e3ffa8',
     },
   }),
   menu: (provided, state) => ({
     ...provided,
-    // maxHeight: '144px',
+    borderRadius: '14px',
+    position: 'absolute',
+    top: '30px',
+    right: '-60px',
     maxHeight: '300px',
     minWidth: '221px',
-    overflow: 'hidden',
+    maxWidth: '222px',
     color: '#b6b6b6',
     backgroundColor: '#0f0f0f',
-    borderRadius: '14px',
-    scrollbarColor: '#0f0f0f',
+    scrollbarColor: 'rgba(255, 255, 255, 0.03)',
     boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
   }),
   option: (provided, state) => ({
     ...provided,
     fontSize: '14px',
     backgroundColor: state.isSelected ? 'rgba(255, 255, 255, 0.03)' : '#0f0f0f',
-    color: state.isSelected ? '#b6b6b6' : '#b6b6b6',
+    color: '#b6b6b6',
     ':hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.03)',
-      color: '#E3FFA8',
+      color: '#e3ffa8',
     },
   }),
 };
+const currentMonth = currentDate.getMonth();
+function getMonthsList() {
+  const monthsList = months
+    .slice(currentMonth)
+    .concat(months.slice(0, currentMonth));
+  return monthsList;
+}
 const resultArrMonth = getMonthsList();
-
 const ArrMonth = resultArrMonth.map((month) => ({
   value: month,
   label: month,
@@ -189,34 +152,86 @@ const ArrMonth = resultArrMonth.map((month) => ({
 
 export default function DashboardPage() {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [caloriesArr, setCaloriesArr] = useState([]);
+  const [waterArr, setWaterArr] = useState([]);
+  const [weightArr, setWeightArr] = useState([]);
   const daysInCurrentMonth = getDaysInMonth();
   let labels = createArrayWithNumbers(daysInCurrentMonth);
+  let selectMonth = 0;
   if (selectedOption !== null) {
     const year = currentDate.getFullYear();
-    const selectMonth = months.indexOf(selectedOption.label) + 1;
+    selectMonth = months.indexOf(selectedOption.label) + 1;
     const lastDayOfMonth = new Date(year, selectMonth, 0).getDate();
-    console.log(lastDayOfMonth);
     labels = createArrayWithNumbers(lastDayOfMonth);
   }
-  const data = {
-    labels,
-    datasets: [
-      {
-        fill: true,
-        label: '',
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 3000 })),
-        cubicInterpolationMode: 'monotone',
-        borderColor: '#E3FFA8',
-        backgroundColor: '#0F0F0F',
-        boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.20)',
-      },
-    ],
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (weightArr.length !== 0) {
+          setCaloriesArr([]);
+          setWaterArr([]);
+          setWeightArr([]);
+        }
+        let numberMonth = currentMonth + 1;
+        if (selectedOption !== null) {
+          numberMonth = selectMonth;
+        }
+        const response = await GetStatisticsPerMonth(numberMonth);
+        setCaloriesArr(response.calories);
+        setWaterArr(response.water);
+        setWeightArr(response.weight);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [selectedOption]);
+
+  const wightData = () => {
+    if (weightArr.length === 0) {
+      return labels.map((day) => (day = 0));
+    }
+    const weightAr = labels.map((day) => {
+      const matchingData = weightArr.find(
+        (data) => parseInt(data._id, 10) === day
+      );
+      return matchingData ? matchingData.total : 0;
+    });
+    const moreZero = weightAr.find((data) => data > 0);
+    const notZero = weightAr.map((dat) => (dat === 0 ? moreZero : dat));
+    return notZero;
   };
+  const weightArrLab = wightData();
+  const caloriesArrLab = labels.map((day) => {
+    const matchingData = caloriesArr.find(
+      (data) => parseInt(data._id, 10) === day
+    );
+    return matchingData ? matchingData.calories : 0;
+  });
+  const waterArrLab = labels.map((day) => {
+    const matchingData = waterArr.find(
+      (data) => parseInt(data._id, 10) === day
+    );
+    return matchingData ? matchingData.total : 0;
+  });
+
+  const AverageCalories = Math.round(arrayMean(caloriesArrLab));
+  const AverageWater = Math.round(arrayMean(waterArrLab));
+  const AverageWeight = Math.round(arrayMean(weightArrLab));
 
   return (
-    <>
+    <Container>
       <SelectBlock>
         <SelectOption>
+          <StyledLink to="/main">
+            <IconWrap
+              width="24px"
+              height="24px"
+              style={{ transform: 'rotate(180deg)' }}
+            >
+              <use href={`${sprite}#arrow-right`} />
+            </IconWrap>
+          </StyledLink>
           <h2>Months</h2>
           <Select
             styles={customStyles}
@@ -244,10 +259,16 @@ export default function DashboardPage() {
                 <TextAverageValue>{AverageCalories} cal</TextAverageValue>
               </AverageBlock>
             </TextBlock>
-            <ChartBlock>
-              <Line options={option} data={data} />
-            </ChartBlock>
+            <Scroll>
+              <Graph
+                symbol={'K'}
+                dataGraph={caloriesArrLab}
+                unit={'calories'}
+                labels={labels}
+              />
+            </Scroll>
           </LiCart>
+
           <LiCart>
             <TextBlock>
               <h2>Water</h2>
@@ -256,32 +277,38 @@ export default function DashboardPage() {
                 <TextAverageValue>{AverageWater} ml</TextAverageValue>
               </AverageBlock>
             </TextBlock>
-            <ChartBlock>
-              <Line options={option} data={data} />
-            </ChartBlock>
+            <Scroll>
+              <Graph
+                symbol={'L'}
+                dataGraph={waterArrLab}
+                unit={'milliliters'}
+                labels={labels}
+              />
+            </Scroll>
           </LiCart>
         </ListChart>
-        <TableBlock>
-          <TextBlock>
-            <h2>Weight</h2>
-            <AverageBlock>
-              <p>Average value:</p>
-              <TextAverageValue>{AverageWeight} kg</TextAverageValue>
-            </AverageBlock>
-          </TextBlock>
-
+      </DashboardBlock>
+      <TableBlock>
+        <TextBlock>
+          <h2>Weight</h2>
+          <AverageBlock>
+            <p>Average value:</p>
+            <TextAverageValue>{AverageWeight} kg</TextAverageValue>
+          </AverageBlock>
+        </TextBlock>
+        <Scroll>
           <Table>
             <ListStat>
               {labels.map((dat, index) => (
                 <ListItem key={index}>
-                  <TextWeight>{weight}</TextWeight>
+                  <TextWeight>{weightArrLab[index]}</TextWeight>
                   <TextLabel>{dat}</TextLabel>
                 </ListItem>
               ))}
             </ListStat>
           </Table>
-        </TableBlock>
-      </DashboardBlock>
-    </>
+        </Scroll>
+      </TableBlock>
+    </Container>
   );
 }

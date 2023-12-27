@@ -4,7 +4,7 @@ import {
   FormikStyledField,
   FormikStyledErrorMessage,
 } from '../../StyledComponents/Formik.styled';
-import { Button } from '../../StyledComponents/Components.styled';
+import { Button, IconWrap } from '../../StyledComponents/Components.styled';
 
 export const SignUpFormikForm = styled(FormikStyledForm)`
   margin-top: 24px;
@@ -39,5 +39,26 @@ export const FieldWrapper = styled.div`
   position: relative;
   &:not(:first-child) {
     margin-top: 20px;
+  }
+`;
+
+export const ValidPassword = styled.p`
+  position: absolute;
+  left: 10px;
+  color: #3cbc81;
+  font-size: 12px;
+`;
+
+export const Icon = styled(IconWrap)`
+  stroke: none;
+  position: absolute;
+  top: 10px;
+  right: -6px;
+  display: flex;
+`;
+
+export const IconsWrapper = styled.div`
+  &:hover {
+    cursor: pointer;
   }
 `;
