@@ -32,6 +32,7 @@ export default function UserInfoModal({ onCloseModal }) {
           </LinkIcon>
           Setting
         </LinkModal>
+
         <LinkModal to={'/'} onClick={() => handleOut()}>
           <svg width="16px" height="16px" stroke="#fff">
             <use href={`${sprite}#logout`} />

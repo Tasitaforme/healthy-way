@@ -95,6 +95,9 @@ export const TargetWrapper = styled.li`
   margin-bottom: 16px;
   cursor: pointer;
   gap: 12px;
+  transition:
+    color var(--transition-dur-and-fun),
+    border-color var(--transition-dur-and-fun);
 
   &:hover > div,
   &:focus > div,
