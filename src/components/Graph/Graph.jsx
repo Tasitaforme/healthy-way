@@ -10,7 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { ChartBlock } from '../DashboardPage.styled';
+import { ChartBlock } from './../../pages/DashboardPage/DashboardPage.styled';
 
 ChartJS.register(
   CategoryScale,
