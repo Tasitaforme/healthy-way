@@ -65,7 +65,7 @@ export default function LogOutButton() {
   return (
     <>
       <Button type="button" onClick={openLogoutModal}>
-        <IconWrap stroke="white">
+        <IconWrap>
           <use href={`${sprite}#logout`} />
         </IconWrap>
         Log out
