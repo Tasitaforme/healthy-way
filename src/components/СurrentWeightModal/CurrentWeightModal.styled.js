@@ -6,7 +6,7 @@ export const ModalBackdrop = styled.div`
   z-index: 990;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(5, 5, 5, 0.8);
+  background-color: transparent;
   margin: 0 auto;
 
   position: fixed;
@@ -49,6 +49,7 @@ export const ModalWrapper = styled.div`
   box-shadow: 0 4px 14px 0 rgba(227, 255, 168, 0.2);
   padding: 24px 10px;
   opacity: 1;
+  border-radius: 12px;
 
   @media screen and (min-width: 834px) {
     box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.2);

@@ -17,6 +17,7 @@ import {
 } from './TargetSelectionModal.styled';
 import { updateGoal } from '../../redux/auth/operations';
 import { selectUserInfo } from '../../redux/auth/selectors';
+import { currentUser } from '../../redux/auth/operations';
 
 import loseFatMen from '../../assets/images/header/lose-fat-image-men.png';
 import loseFatGirl from '../../assets/images/header/lose-fat-image-girl.png';
@@ -60,12 +61,8 @@ export default function TargetSelectionModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateGoal(newGoal));
+    dispatch(currentUser);
     toast.success('Your goal has neen successfully updated!');
-
-    if (window.innerWidth < 834) {
-      setShowModalTarget(false);
-      return;
-    }
     setShowModalTarget(false);
   };
 

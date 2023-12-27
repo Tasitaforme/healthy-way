@@ -4,7 +4,7 @@ export const ModalBackdrop = styled.div`
   z-index: 999;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(5, 5, 5, 0.8);
+  background-color: transparent;
   margin: 0 auto;
 
   position: fixed;
@@ -96,9 +96,12 @@ export const TargetWrapper = styled.li`
   cursor: pointer;
   gap: 12px;
 
-  &:hover,
-  &:focus {
+  &:hover > div,
+  &:focus > div,
+  &: hover > p,
+  &:focus > p {
     color: #b6c3ff;
+    border-color: #b6c3ff;
   }
 `;
 
@@ -124,6 +127,10 @@ export const TargetText = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 1.42;
+  &:hover,
+  &:focus {
+    color: #b6c3ff;
+  }
 `;
 
 export const ModalBtn = styled.button`
