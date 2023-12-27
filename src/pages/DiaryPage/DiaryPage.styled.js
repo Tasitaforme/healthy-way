@@ -17,13 +17,6 @@ export const GoBackWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
-export const GoBackBtn = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0;
-`;
-
 export const StyledGoBackIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
@@ -32,6 +25,13 @@ export const StyledGoBackIcon = styled(IconWrap)`
     width: 24px;
     height: 24px;
   }
+`;
+
+export const GoBackBtn = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
 `;
 
 export const GoBackTitle = styled.h1`
@@ -128,7 +128,7 @@ export const ListItem = styled.li`
   }
 
   &:before {
-    content: '${({ itemnumber }) => itemnumber}';
+    content: '${({ $itemNumber }) => $itemNumber}';
     width: 16px;
     position: absolute;
     left: 0;
@@ -151,11 +151,6 @@ export const RecordBtn = styled.button`
   text-align: center;
   outline: none;
   border-radius: 12px;
-  transition: var(--transition-dur-and-fun);
-
-  &:hover {
-    box-shadow: var(--box-shadow);
-  }
 `;
 
 export const RecordMealIcon = styled(IconWrap)`
@@ -282,11 +277,6 @@ export const AddMoreBtn = styled.button`
   text-align: center;
   margin-top: 40px;
   border-radius: 15px;
-  transition: var(--transition-dur-and-fun);
-
-  &:hover {
-    box-shadow: var(--box-shadow);
-  }
 `;
 
 export const AddMoreIcon = styled(IconWrap)`
@@ -320,10 +310,10 @@ export const ConfirmModalBtn = styled.button`
   padding: 8px 0;
   margin-top: 40px;
   color: var(--black-secondary);
-  transition: var(--transition-dur-and-fun);
+  transition: box-shadow var(--transition-dur-and-fun);
 
   &:hover {
-    background-color: #a1bd66;
+    box-shadow: var(--box-shadow);
   }
 
   @media (min-width: 768px) {
@@ -356,6 +346,13 @@ export const MealsName = styled.h4`
   font-weight: 400;
 `;
 
+export const EditIcon = styled(IconWrap)`
+  width: 16px;
+  height: 16px;
+  stroke: var(--grey-light);
+  transition: stroke var(--transition-dur-and-fun);
+`;
+
 export const EditBtn = styled.button`
   position: absolute;
   top: 0;
@@ -365,22 +362,19 @@ export const EditBtn = styled.button`
   border-radius: 15px;
   cursor: pointer;
   padding: 0;
-  transition: var(--transition-dur-and-fun);
-
+  transition: color var(--transition-dur-and-fun);
+  color: var(--grey-light);
   &:hover {
-    box-shadow: var(--box-shadow);
+    color: #757575;
+    ${EditIcon} {
+      stroke: #757575;
+    }
   }
 `;
 
-export const EditIcon = styled(IconWrap)`
-  width: 16px;
-  height: 16px;
-  stroke: var(--grey-light);
-`;
-
-export const EditLabel = styled.p`
+export const EditLabel = styled.span`
   font-size: 14px;
-  color: var(--grey-light);
+
   margin-left: 6px;
 `;
 
