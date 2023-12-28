@@ -9,6 +9,7 @@ import sprite from 'assets/sprite.svg';
 import { logOut } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
+import LogOutButton from '../LogOutButton/LogOutButton';
 
 export default function UserInfoModal({ onCloseModal }) {
   const dispatch = useDispatch();
@@ -32,13 +33,7 @@ export default function UserInfoModal({ onCloseModal }) {
           </LinkIcon>
           Setting
         </LinkModal>
-
-        <LinkModal to={'/'} onClick={() => handleOut()}>
-          <svg width="16px" height="16px" stroke="#fff">
-            <use href={`${sprite}#logout`} />
-          </svg>
-          Log out
-        </LinkModal>
+        <LogOutButton />
       </Modal>
     </ModalWrapper>
   );
