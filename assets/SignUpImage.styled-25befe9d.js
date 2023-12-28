@@ -1,4 +1,4 @@
-import{s as e}from"./index-175388e3.js";import{S as n,a}from"./SignInPage.styled-e05dc4cb.js";const t=e.div`
+import{s as e}from"./index-f29e7426.js";import{S as n,a}from"./SignInPage.styled-35b0b50b.js";const t=e.div`
   padding: 0px 0px 40px 0px;
 
   @media screen and (min-width: 834px) {
