@@ -31,7 +31,7 @@ export default function FormUserData({
       validationSchema={registerSchema}
       onSubmit={onSubmit}
     >
-      {({ errors, touched, isValid, isSubmitting }) => (
+      {({ errors, touched }) => (
         <SignUpFormikForm>
           <FieldWrapper>
             <SignUpField
@@ -110,9 +110,7 @@ export default function FormUserData({
             </IconsWrapper>
           </FieldWrapper>
 
-          <SignUpButton type="submit" disabled={!isValid || isSubmitting}>
-            Next
-          </SignUpButton>
+          <SignUpButton type="submit">Next</SignUpButton>
         </SignUpFormikForm>
       )}
     </Formik>

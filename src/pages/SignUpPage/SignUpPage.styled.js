@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { SubLink, SubText } from '../SignInPage/SignInPage.styled';
 
 export const FlexBox = styled.div`
-  padding: 0px 0px 40px 0px;
+  padding: 24px 0px 40px 0px;
 
   @media screen and (min-width: 834px) {
-    padding: 0px 168px 60px 168px;
+    padding: 40px 168px 60px 168px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -13,14 +13,6 @@ export const FlexBox = styled.div`
     gap: 104px;
     justify-content: center;
     padding: 0px 116px 60px 116px;
-  }
-`;
-
-export const MainAuth = styled.main`
-  margin-top: 24px;
-
-  @media screen and (min-width: 834px) {
-    margin-top: 40px;
   }
 `;
 

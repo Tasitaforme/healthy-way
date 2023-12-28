@@ -30,7 +30,7 @@ export default function FormGenderAndAge({
       validationSchema={genderAndAgeSchema}
       onSubmit={onSubmit}
     >
-      {({ errors, touched, isSubmitting, isValid }) => (
+      {({ errors, touched }) => (
         <GenderAndAgeForm>
           <Text>Gender</Text>
           <GenderWrapper>
@@ -61,9 +61,7 @@ export default function FormGenderAndAge({
             <Error component="p" name="age" />
           </AgeWrapper>
 
-          <GenderAndAgeButton type="submit" disabled={!isValid || isSubmitting}>
-            Next
-          </GenderAndAgeButton>
+          <GenderAndAgeButton type="submit">Next</GenderAndAgeButton>
           <BackButton onClick={handlePrevStep}>Back</BackButton>
         </GenderAndAgeForm>
       )}

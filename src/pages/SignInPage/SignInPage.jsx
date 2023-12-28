@@ -6,7 +6,6 @@ import {
   FlexBox,
   ImageWrapper,
   TextWrapper,
-  MainAuth,
 } from '../SignUpPage/SignUpPage.styled';
 import { BackgroundImage } from '../../components/SignUpImage/SignUpImage.styled';
 
@@ -33,7 +32,7 @@ export default function SignInPage() {
   }, []);
 
   return (
-    <MainAuth>
+    <main>
       <Container>
         <FlexBox>
           <ImageWrapper>
@@ -58,6 +57,6 @@ export default function SignInPage() {
           </TextWrapper>
         </FlexBox>
       </Container>
-    </MainAuth>
+    </main>
   );
 }

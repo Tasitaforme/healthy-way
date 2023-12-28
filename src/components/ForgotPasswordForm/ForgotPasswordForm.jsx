@@ -32,7 +32,7 @@ export default function ForgotPasswordForm() {
       validationSchema={forgotPasswordSchema}
       onSubmit={onSubmit}
     >
-      {({ errors, touched, isSubmitting, isValid }) => (
+      {({ errors, touched }) => (
         <Form>
           <FormikStyledField
             type="email"
@@ -49,9 +49,7 @@ export default function ForgotPasswordForm() {
           />
           <Error component="p" name="email" />
 
-          <Button type="submit" disabled={!isValid || isSubmitting}>
-            Send
-          </Button>
+          <Button type="submit">Send</Button>
         </Form>
       )}
     </Formik>

@@ -31,7 +31,7 @@ export const genderAndAgeSchema = Yup.object().shape({
   age: Yup.number()
     .required('Required')
     .min(1, 'Age can not be less than 1')
-    .max(120, 'Age can not be more than 120')
+    .max(90, 'Age can not be more than 90')
     .typeError('Age must be a number'),
 });
 

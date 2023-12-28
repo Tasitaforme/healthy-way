@@ -6,7 +6,6 @@ import {
   FlexBox,
   ImageWrapper,
   TextWrapper,
-  MainAuth,
 } from '../SignUpPage/SignUpPage.styled';
 import { BackgroundImage } from '../../components/SignUpImage/SignUpImage.styled';
 import { Text, SignIpWrapper } from './ForgotPasswordPage.styled';
@@ -20,7 +19,7 @@ import watchMob2x from '../../assets/images/watch/watch-mob@2x.png';
 
 export default function ForgotPasswordPage() {
   return (
-    <MainAuth>
+    <main>
       <Container>
         <FlexBox>
           <ImageWrapper>
@@ -49,6 +48,6 @@ export default function ForgotPasswordPage() {
           </TextWrapper>
         </FlexBox>
       </Container>
-    </MainAuth>
+    </main>
   );
 }

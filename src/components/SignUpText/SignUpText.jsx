@@ -18,10 +18,10 @@ export default function SignUpText({ currentStep }) {
       )}
       {currentStep === 3 && (
         <>
-          <HeadlineFirst>Select gender, Age</HeadlineFirst>
+          <HeadlineFirst>Select gender and age</HeadlineFirst>
           <Subtitle>
-            Choose a goal so that we can <br />
-            help you effectively
+            Enter your gender and age for correct <br />
+            performance tracking
           </Subtitle>
         </>
       )}
