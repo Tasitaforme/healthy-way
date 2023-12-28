@@ -7,6 +7,7 @@ import Loader from '../Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthInfo } from '../../redux/auth/selectors';
 import { currentUser } from '../../redux/auth/operations';
+// import LoadingModal from '../Loader/LoadingModal';
 
 export default function SharedLayout() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export default function SharedLayout() {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
+      {/* {isLoading && <LoadingModal isOpen={isLoading} />} */}
       <Toaster toastOptions={toastOptions} />
     </>
   );

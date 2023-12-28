@@ -52,15 +52,18 @@ const handleRejected = (state, payload) => {
 const handleUpdateUserFulfilled = (state, { payload }) => {
   state.user = { ...state.user, ...payload.data };
   state.isLogin = true;
+  state.isLoading = false;
 };
 const handleUpdateAvatarFulfilled = (state, action) => {
   state.user.avatarURL = action.payload;
   state.isLogin = true;
+  state.isLoading = false;
 };
 
 const handleUpdateWeightFulfilled = (state, action) => {
   state.user.weight = action.payload.weight;
   // state.user.BMR = action.payload.bmr;
+  state.isLoading = false;
 };
 
 const handleUpdateGoalFulfilled = (state, action) => {
@@ -68,6 +71,7 @@ const handleUpdateGoalFulfilled = (state, action) => {
   // state.user.fat = action.payload.fat;
   // state.user.protein = action.payload.protein;
   // state.user.carbohydrate = action.payload.carbohydrate;
+  state.isLoading = false;
 };
 
 const authSlice = createSlice({
