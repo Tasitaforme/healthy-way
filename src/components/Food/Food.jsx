@@ -6,7 +6,6 @@ import { getTotalNutrients } from '../../helpers';
 import { selectUserInfo } from '../../redux/auth/selectors';
 import { FoodWrap, NutrientsList, WrapMain } from './Food.styled';
 import BigDoughnutChart from './Doughnuts/DoughnutCalories';
-import { getFoodDiaryToday } from '../../redux/diary/operations';
 import DoughnutNutrients from './Doughnuts/DoughnutNutrients';
 import Loader from '../Loader/Loader';
 
@@ -22,10 +21,6 @@ export default function Food() {
 
   const { meals, isLoading } = useSelector(selectDiaryInfo);
   const { fat, protein, carbohydrate, calories } = getTotalNutrients(meals);
-
-  // useEffect(() => {
-  //   dispatch(getFoodDiaryToday()).unwrap();
-  // }, [fat, protein, carbohydrate, calories]);
 
   const nutrientsTitles = ['Carbonohidrates', 'Protein', 'Fat'];
 
