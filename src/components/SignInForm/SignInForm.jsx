@@ -46,7 +46,7 @@ export default function SignInForm() {
         validationSchema={loginSchema}
         onSubmit={onSubmit}
       >
-        {({ errors, touched, isSubmitting, isValid }) => (
+        {({ errors, touched }) => (
           <SignInFormikForm>
             <FlexWrapper>
               <FieldWrapper>
@@ -108,9 +108,7 @@ export default function SignInForm() {
               </FieldWrapper>
             </FlexWrapper>
 
-            <Button type="submit" disabled={!isValid || isSubmitting}>
-              Sign in
-            </Button>
+            <Button type="submit">Sign in</Button>
             <ForgotLink to="/forgot-password">Forgot your password?</ForgotLink>
           </SignInFormikForm>
         )}

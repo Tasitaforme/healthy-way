@@ -40,10 +40,12 @@ export default function SignUpForm({
     try {
       await dispatch(registration(userData)).unwrap();
 
-      toast.success('You have successfully signed up!');
+      toast.success(
+        'You have successfully signed up! \n A confirmation letter has been sent to your email, please check it!'
+      );
       navigate('/signin');
     } catch (error) {
-      toast.error(`Something went wrong! ${error.message}`);
+      toast.error(`Something went wrong! \n ${error.message}`);
     }
   };
 

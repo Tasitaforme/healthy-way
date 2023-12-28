@@ -29,7 +29,7 @@ export default function FormParameters({
       validationSchema={parametersSchema}
       onSubmit={onSubmit}
     >
-      {({ errors, touched, isSubmitting, isValid }) => (
+      {({ errors, touched }) => (
         <ParametersForm>
           <Label>
             Height
@@ -64,9 +64,7 @@ export default function FormParameters({
             <Error component="p" name="weight" />
           </Label>
 
-          <ParametersButton type="submit" disabled={!isValid || isSubmitting}>
-            Next
-          </ParametersButton>
+          <ParametersButton type="submit">Next</ParametersButton>
           <BackButton onClick={handlePrevStep}>Back</BackButton>
         </ParametersForm>
       )}

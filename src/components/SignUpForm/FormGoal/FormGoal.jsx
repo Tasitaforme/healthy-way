@@ -26,7 +26,7 @@ export default function FormGoal({
       validationSchema={goalSchema}
       onSubmit={onSubmit}
     >
-      {({ isValid, isSubmitting }) => (
+      {() => (
         <GoalForm>
           <FlexWrapper>
             <Label>
@@ -44,9 +44,7 @@ export default function FormGoal({
             <Error component="p" name="goal" />
           </FlexWrapper>
 
-          <GoalButton type="submit" disabled={!isValid || isSubmitting}>
-            Next
-          </GoalButton>
+          <GoalButton type="submit">Next</GoalButton>
           <BackButton onClick={handlePrevStep}>Back</BackButton>
         </GoalForm>
       )}

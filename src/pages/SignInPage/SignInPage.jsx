@@ -52,7 +52,7 @@ export default function SignInPage() {
             <HeadlineFirst>Sign in</HeadlineFirst>
             <HeadSecond>You need to login to use the service</HeadSecond>
             <SignInForm />
-            <SubText>If you don't have an account yet</SubText>``
+            <SubText>If you don't have an account yet</SubText>
             <SubLink to="/signup">Sign up</SubLink>
           </TextWrapper>
         </FlexBox>
