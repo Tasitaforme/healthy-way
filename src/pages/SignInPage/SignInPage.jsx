@@ -16,8 +16,22 @@ import watchTab1x from '../../assets/images/watch/watch-tab@1x.png';
 import watchTab2x from '../../assets/images/watch/watch-tab@2x.png';
 import watchMob1x from '../../assets/images/watch/watch-mob@1x.png';
 import watchMob2x from '../../assets/images/watch/watch-mob@2x.png';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function SignInPage() {
+  const [hasShownToast, setHasShownToast] = useState(false);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const messageFromURL = urlParams.get('message');
+
+    if (messageFromURL && !hasShownToast) {
+      toast.success(`${messageFromURL}`);
+      setHasShownToast(true);
+    }
+  }, []);
+
   return (
     <MainAuth>
       <Container>

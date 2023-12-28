@@ -15,13 +15,15 @@ import Food from 'components/Food/Food';
 import Diary from 'components/Diary/Diary';
 import RecommendedFood from 'components/RecommendedFood/RecommendedFood';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLogin } from '../../redux/auth/selectors';
+import { selectIsLogin, selectUserInfo } from '../../redux/auth/selectors';
 import { getDailyWater } from '../../redux/water/operations';
 import { getFoodDiaryToday } from '../../redux/diary/operations';
+import { currentUser } from '../../redux/auth/operations';
 
 export default function MainPage() {
   const dispatch = useDispatch();
   const isLogin = useSelector(selectIsLogin);
+  const { weight, goal } = useSelector(selectUserInfo);
 
   useEffect(() => {
     if (isLogin) {
@@ -34,6 +36,12 @@ export default function MainPage() {
       dispatch(getFoodDiaryToday());
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isLogin) {
+      dispatch(currentUser());
+    }
+  }, [weight, goal]);
 
   const [modalActive, setModalActive] = useState(false);
 
