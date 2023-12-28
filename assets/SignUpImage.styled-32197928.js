@@ -1,8 +1,8 @@
-import{s as e}from"./index-f29e7426.js";import{S as n,a}from"./SignInPage.styled-35b0b50b.js";const t=e.div`
-  padding: 0px 0px 40px 0px;
+import{s as e}from"./index-600d6b10.js";import{S as n,a}from"./SignInPage.styled-0c136cc2.js";const t=e.div`
+  padding: 24px 0px 40px 0px;
 
   @media screen and (min-width: 834px) {
-    padding: 0px 168px 60px 168px;
+    padding: 40px 168px 60px 168px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -11,18 +11,12 @@ import{s as e}from"./index-f29e7426.js";import{S as n,a}from"./SignInPage.styled
     justify-content: center;
     padding: 0px 116px 60px 116px;
   }
-`,r=e.main`
-  margin-top: 24px;
-
-  @media screen and (min-width: 834px) {
-    margin-top: 40px;
-  }
-`,x=e.div`
+`,r=e.div`
   @media screen and (min-width: 834px) {
     display: flex;
     justify-content: center;
   }
-`,m=e.div`
+`,x=e.div`
   margin-top: 24px;
 
   @media screen and (min-width: 834px) {
@@ -37,7 +31,7 @@ import{s as e}from"./index-f29e7426.js";import{S as n,a}from"./SignInPage.styled
     margin-top: 80px;
     width: 444px;
   }
-`,o=e.div`
+`,m=e.div`
   margin-top: 48px;
   width: 100%;
   display: flex;
@@ -54,14 +48,14 @@ import{s as e}from"./index-f29e7426.js";import{S as n,a}from"./SignInPage.styled
     margin-top: 168px;
     padding: 0px;
   }
-`,g=e(n)`
+`,o=e(n)`
   margin-bottom: 0px;
 
   @media screen and (min-width: 834px) {
     margin-top: 0px;
     margin-right: 0px;
   }
-`,s=e(a)``,c=e.div`
+`,g=e(a)``,s=e.div`
   width: 100%;
   height: ${i=>i.$heightMob};
   background-image: ${i=>`url(${i.$imageMob1x})`};
@@ -98,4 +92,4 @@ import{s as e}from"./index-f29e7426.js";import{S as n,a}from"./SignInPage.styled
       background-image: ${i=>`url(${i.$imageDesk2x})`};
     }
   }
-`;export{c as B,t as F,x as I,r as M,o as S,m as T,g as a,s as b};
+`;export{s as B,t as F,r as I,m as S,x as T,o as a,g as b};
