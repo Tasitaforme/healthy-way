@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FormikStyledForm } from '../../components/StyledComponents/Formik.styled';
+import { IconWrap } from '../../components/StyledComponents/Components.styled';
 
 export const DiarySection = styled.section`
   padding: 16px 10px 40px;
@@ -16,14 +17,7 @@ export const GoBackWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
-export const GoBackBtn = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0;
-`;
-
-export const StyledGoBackIcon = styled.svg`
+export const StyledGoBackIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
 
@@ -31,6 +25,13 @@ export const StyledGoBackIcon = styled.svg`
     width: 24px;
     height: 24px;
   }
+`;
+
+export const GoBackBtn = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
 `;
 
 export const GoBackTitle = styled.h1`
@@ -127,7 +128,7 @@ export const ListItem = styled.li`
   }
 
   &:before {
-    content: '${({ itemNumber }) => itemNumber}';
+    content: '${({ $itemNumber }) => $itemNumber}';
     width: 16px;
     position: absolute;
     left: 0;
@@ -146,10 +147,13 @@ export const RecordBtn = styled.button`
   margin-top: 3px;
   padding: 0;
   border: none;
+  height: 16px;
+  text-align: center;
   outline: none;
+  border-radius: 12px;
 `;
 
-export const RecordMealIcon = styled.svg`
+export const RecordMealIcon = styled(IconWrap)`
   margin-right: 6px;
 `;
 
@@ -158,7 +162,7 @@ export const RecordBtnLabel = styled.span`
   cursor: pointer;
 `;
 
-export const StyledBackArrowIcon = styled.svg`
+export const StyledBackArrowIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
   stroke: var(--grey-light);
@@ -169,7 +173,7 @@ export const StyledBackArrowIcon = styled.svg`
   }
 `;
 
-export const StyledAddMealIcon = styled.svg`
+export const StyledAddMealIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
   stroke: var(--green-light);
@@ -251,22 +255,31 @@ export const CaloriesForm = styled(FormField)`
   }
 `;
 
-export const TrashModalIcon = styled.svg`
+export const TrashModalIcon = styled(IconWrap)`
   width: 20px;
   height: 20px;
   stroke: var(--green-light);
   margin-top: 10px;
   cursor: pointer;
+  transition: var(--transition-dur-and-fun);
+
+  &:hover {
+    stroke: #a1bd66;
+  }
 `;
 
 export const AddMoreBtn = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
+  height: 16px;
+  width: 92px;
+  text-align: center;
   margin-top: 40px;
+  border-radius: 15px;
 `;
 
-export const AddMoreIcon = styled.svg`
+export const AddMoreIcon = styled(IconWrap)`
   width: 16px;
   height: 16px;
   stroke: var(--green-light);
@@ -297,6 +310,11 @@ export const ConfirmModalBtn = styled.button`
   padding: 8px 0;
   margin-top: 40px;
   color: var(--black-secondary);
+  transition: box-shadow var(--transition-dur-and-fun);
+
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
 
   @media (min-width: 768px) {
     width: 212px;
@@ -307,6 +325,11 @@ export const CancelModalBtn = styled.button`
   color: var(--grey-light);
   padding: 8px 0;
   margin-top: 10px;
+  transition: var(--transition-dur-and-fun);
+
+  &:hover {
+    color: #a1bd66;
+  }
 
   @media (min-width: 768px) {
     width: 212px;
@@ -323,25 +346,35 @@ export const MealsName = styled.h4`
   font-weight: 400;
 `;
 
+export const EditIcon = styled(IconWrap)`
+  width: 16px;
+  height: 16px;
+  stroke: var(--grey-light);
+  transition: stroke var(--transition-dur-and-fun);
+`;
+
 export const EditBtn = styled.button`
   position: absolute;
   top: 0;
   right: 0;
   display: flex;
   margin-left: auto;
+  border-radius: 15px;
   cursor: pointer;
   padding: 0;
-`;
-
-export const EditIcon = styled.svg`
-  width: 16px;
-  height: 16px;
-  stroke: var(--grey-light);
-`;
-
-export const EditLabel = styled.p`
-  font-size: 14px;
+  transition: color var(--transition-dur-and-fun);
   color: var(--grey-light);
+  &:hover {
+    color: #757575;
+    ${EditIcon} {
+      stroke: #757575;
+    }
+  }
+`;
+
+export const EditLabel = styled.span`
+  font-size: 14px;
+
   margin-left: 6px;
 `;
 
@@ -362,7 +395,7 @@ export const RecordedNutritionsWrapper = styled.div`
   width: 100%;
 
   @media (min-width: 768px) {
-    margin-top: 0;
+    margin-top: 3px;
     width: fit-content;
     margin-left: auto;
     gap: 40px;
