@@ -286,10 +286,7 @@ export default function UserInformation() {
             </UserInformationBlock>
 
             <UserButtonsWrapper>
-              <UserInformationSubmitButton
-                type="submit"
-                onClick={() => handleClickSave(values)}
-              >
+              <UserInformationSubmitButton type="submit">
                 Save
               </UserInformationSubmitButton>
               <UserInformationCancelButton

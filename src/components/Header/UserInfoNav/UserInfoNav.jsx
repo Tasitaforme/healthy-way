@@ -38,6 +38,8 @@ export default function UserInfoNav({
   showModalTarget,
   onDopMenuClick,
   showDopMenuModal,
+  setShowModalTarget,
+  setShowModalWeight,
 }) {
   const userInfo = useSelector(selectUserInfo);
 
@@ -143,13 +145,29 @@ export default function UserInfoNav({
         )}
       </UserContentWrapper>
       {showModalProfile && <UserInfoModal onCloseModal={onClick} />}
-      {showModalWeight && <CurrentWeightModal onCloseModal={onWeightClick} />}
-      {showModalTarget && <TargetSelectionModal onCloseModal={onTargetClick} />}
+      {showModalWeight && (
+        <CurrentWeightModal
+          onCloseModal={onWeightClick}
+          setShowModalWeight={setShowModalWeight}
+          showModalWeight={showModalWeight}
+        />
+      )}
+      {showModalTarget && (
+        <TargetSelectionModal
+          onCloseModal={onTargetClick}
+          setShowModalTarget={setShowModalTarget}
+          showModalTarget={showModalTarget}
+        />
+      )}
       {showDopMenuModal && (
         <DopMenuModal
           onCloseModal={onDopMenuClick}
           userInfo={userInfo}
           goalImg={goalImg}
+          setShowModalTarget={setShowModalTarget}
+          showModalTarget={showModalTarget}
+          setShowModalWeight={setShowModalWeight}
+          showModalWeight={showModalWeight}
         />
       )}
     </UserinfoWrapper>

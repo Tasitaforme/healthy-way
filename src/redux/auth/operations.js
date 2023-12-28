@@ -84,6 +84,32 @@ export const logOut = createAsyncThunk(
 );
 
 /*
+ * DELETE @ /api/auth/delete
+ * headers: Authorization: Bearer token
+ * body: { password }
+ */
+
+export const removeUser = createAsyncThunk(
+  'auth/delete',
+
+  async (body, { rejectWithValue }) => {
+    try {
+      const response = await instance.delete(`/api/auth/delete/${body}`);
+      store.dispatch(resetWater());
+      store.dispatch(resetDiary());
+      setToken();
+      if (response && response.data) {
+        const { data } = response;
+        return data;
+      }
+      return null;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+/*
  * POST @ /api/auth/refresh
  * headers: Authorization: Bearer token
  * body: { refreshToken }

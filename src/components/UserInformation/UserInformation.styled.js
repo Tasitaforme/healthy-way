@@ -34,6 +34,7 @@ export const UserInformationField = styled(FormikStyledField)`
   display: block;
   border: 1px solid var(--grey-light);
   color: var(--white);
+  cursor: pointer;
 
   &.input-error {
     border-color: var(--error-color);
@@ -70,6 +71,7 @@ export const AvatarInput = styled.input`
   overflow: hidden;
   position: absolute;
   z-index: -1;
+  cursor: pointer;
 
   & + label {
     color: #fff;
@@ -124,6 +126,7 @@ export const GenderButtonsWrapper = styled.div`
 export const UserInformationRadioLabel = styled.label`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const UserInformationRadioInput = styled(Field)`
@@ -201,6 +204,11 @@ export const UserInformationSubmitButton = styled.button`
   color: var(--black-secondary);
   font-weight: 500;
   cursor: pointer;
+  transition: box-shadow var(--transition-dur-and-fun);
+
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
 
   @media screen and (min-width: 834px) {
     width: 212px;
@@ -210,6 +218,17 @@ export const UserInformationSubmitButton = styled.button`
 export const UserInformationCancelButton = styled.button`
   line-height: 1.43;
   color: var(--grey-light);
+  cursor: pointer;
+  border-radius: 12px;
+  transition: color var(--transition-dur-and-fun);
+
+  &:hover {
+    color: var(--green-light);
+  }
+
+  @media screen and (min-width: 834px) {
+    width: 212px;
+  }
 
   @media screen and (min-width: 834px) {
     width: 192px;

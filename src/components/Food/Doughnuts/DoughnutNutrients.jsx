@@ -73,8 +73,9 @@ const DoughnutNutrients = ({ title, arcColor, nutrient, baseNutrient = 0 }) => {
       <div
         className="doughnut"
         style={{
-          height: 48,
-          width: 48,
+          height: '48px',
+          width: '48px',
+          flexShrink: 0,
         }}
       >
         <Doughnut plugins={[textCenterPlugin, backgroundCircle]} data={data} />
@@ -89,7 +90,9 @@ const DoughnutNutrients = ({ title, arcColor, nutrient, baseNutrient = 0 }) => {
           <NutrientsItem>
             <BodyTextFirst>left:</BodyTextFirst>
             <BodyTextSecond>
-              {nutrient >= baseNutrient ? 0 : baseNutrient - nutrient}
+              {nutrient >= baseNutrient
+                ? 0
+                : parseFloat(baseNutrient - nutrient).toFixed(0)}
             </BodyTextSecond>
           </NutrientsItem>
         </NutrientsItemList>

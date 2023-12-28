@@ -21,12 +21,23 @@ export default function ChangePasswordForm() {
 
   const onSubmit = async (values, actions) => {
     try {
-      await changePassword({ email, ...values });
-      toast.success('Your password has been successfully changed!');
+      const response = await changePassword({ email, ...values });
+      if (response && response.data && response.data.message) {
+        toast.success('Your password has been successfully changed!');
+      } else {
+        throw new Error('Did you really enter a valid password?');
+      }
     } catch (error) {
-      toast.error(`Something went wrong! \n ${error.message}`);
+      if (error.message) {
+        toast.error(`Something went wrong! \n ${error.message}`);
+      } else {
+        toast.error(
+          'Something went wrong while changing the password. Try again!'
+        );
+      }
+    } finally {
+      actions.resetForm();
     }
-    actions.resetForm();
   };
 
   return (

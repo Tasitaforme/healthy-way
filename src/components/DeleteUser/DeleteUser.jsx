@@ -13,9 +13,8 @@ import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
 
 import { deleteUserSchema } from '../../schemas/formik';
-import { removeUser } from '../../requests/deleteUser';
 import { useNavigate } from 'react-router-dom';
-import { logOut } from '../../redux/auth/operations';
+import { removeUser } from '../../redux/auth/operations';
 
 export default function DeleteUser() {
   const dispatch = useDispatch();
@@ -23,16 +22,15 @@ export default function DeleteUser() {
 
   const onSubmit = async (values, actions) => {
     try {
-      await removeUser(values.password);
-      await dispatch(logOut()).unwrap();
+      await dispatch(removeUser(values.password)).unwrap();
       toast.success('You have successfully deleted your account!');
       navigate('/welcome');
     } catch (error) {
-      console.log(error);
       toast.error(`Something went wrong! \n ${error.message}!`);
       return;
+    } finally {
+      actions.resetForm();
     }
-    actions.resetForm();
   };
 
   return (

@@ -2,6 +2,31 @@ import styled from 'styled-components';
 import { Field, Form } from 'formik';
 import { FormikStyledErrorMessage } from '../StyledComponents/Formik.styled';
 
+export const ModalBackdrop = styled.div`
+  z-index: 990;
+  height: 100vh;
+  width: 100vw;
+  background-color: transparent;
+  margin: 0 auto;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  pointer-events: none;
+
+  transition: opacity var(--transition-dur-and-fun);
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+`;
+
 export const ErrorMessage = styled(FormikStyledErrorMessage)`
   margin-top: 0;
 
@@ -15,7 +40,7 @@ export const ErrorMessage = styled(FormikStyledErrorMessage)`
 
 export const ModalWrapper = styled.div`
   position: absolute;
-  z-index: 100;
+  z-index: 1000;
   background: #0f0f0f;
   top: 0;
   left: 0;
@@ -23,6 +48,8 @@ export const ModalWrapper = styled.div`
   height: 100vh;
   box-shadow: 0 4px 14px 0 rgba(227, 255, 168, 0.2);
   padding: 24px 10px;
+  opacity: 1;
+  border-radius: 12px;
 
   @media screen and (min-width: 834px) {
     box-shadow: 0px 4px 14px 0px rgba(227, 255, 168, 0.2);
@@ -121,6 +148,7 @@ export const WeightFormInput = styled(Field)`
   font-size: 14px;
   font-weight: 400;
   line-height: 1.43;
+  cursor: pointer;
 
   &::placeholder {
     font-family: inherit;
@@ -167,6 +195,11 @@ export const WeightFormBtn = styled.button`
   line-height: 1.42;
   justify-content: center;
   color: #0f0f0f;
+  transition: box-shadow var(--transition-dur-and-fun);
+
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
 `;
 
 export const CancelBtn = styled.button`
@@ -179,6 +212,11 @@ export const CancelBtn = styled.button`
   color: #b6b6b6;
   margin-top: 24px;
   justify-content: center;
+  cursor: pointer;
+  transition: color var(--transition-dur-and-fun);
+  &:hover {
+    color: var(--green-light);
+  }
 
   @media screen and (min-width: 834px) {
     display: none;

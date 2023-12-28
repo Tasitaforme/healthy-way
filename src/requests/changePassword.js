@@ -8,9 +8,9 @@ import instance from '../redux/auth/operations';
 
 export const changePassword = async (body) => {
   try {
-    const { data } = await instance.put('/api/auth/change-password', body);
-    return data;
+    const response = await instance.put('/api/auth/change-password', body);
+    return response;
   } catch (error) {
-    return error.response.data;
+    throw error.response.data;
   }
 };

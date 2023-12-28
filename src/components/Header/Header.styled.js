@@ -41,9 +41,15 @@ export const NavigationLink = styled(NavLink)`
   font-style: normal;
   font-weight: 400;
   line-height: 1.33;
+  cursor: pointer;
+  transition: color var(--transition-dur-and-fun);
+
+  &:hover {
+    color: var(--green-light);
+  }
 
   &.active {
-     color: #e3ffa8;
+    color: #e3ffa8;
   }
 
   @media screen and (min-width: 834px) {
@@ -51,8 +57,3 @@ export const NavigationLink = styled(NavLink)`
     line-height: 1.42;
   }
 `;
-
-
-
-
-
