@@ -1,4 +1,4 @@
-import{s as n,C as r,H as o,a as d,L as a,j as i}from"./index-eeab6bbc.js";import{w as s,a as m,b as x,c,d as g,e as p}from"./watch-desk@2x-2cdfc254.js";const l=n(r)`
+import{s as n,C as r,H as o,a as d,L as a,j as i}from"./index-4697b5a6.js";import{w as s,a as m,b as x,c,d as g,e as p}from"./watch-desk@2x-2cdfc254.js";const l=n(r)`
   @media screen and (min-width: 1440px) {
     display: flex;
     flex-direction: row;
