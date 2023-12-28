@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registration } from '../../redux/auth/operations';
 import { toast } from 'react-hot-toast';
@@ -8,12 +8,16 @@ import FormGoal from './FormGoal/FormGoal';
 import FormGenderAndAge from './FormGenderAndAge/FormGenderAndAge';
 import FormParameters from './FormParameters/FormParameters';
 import FormActivity from './FormActivity/FormActivity';
+import { selectAuthInfo } from '../../redux/auth/selectors';
+import LoadingModal from '../Loader/LoadingModal';
 
 export default function SignUpForm({
   currentStep,
   handleNextStep,
   handlePrevStep,
 }) {
+  const { isLoading } = useSelector(selectAuthInfo);
+
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -45,7 +49,7 @@ export default function SignUpForm({
       );
       navigate('/signin');
     } catch (error) {
-      toast.error(`Something went wrong! \n ${error.message}`);
+      toast.error(`Something went wrong! \n ${error.message}!`);
     }
   };
 
@@ -90,6 +94,7 @@ export default function SignUpForm({
           handleChange={handleChange}
         />
       )}
+      {isLoading && <LoadingModal isOpen={isLoading} />}
     </>
   );
 }

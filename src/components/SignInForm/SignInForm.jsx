@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { logIn } from '../../redux/auth/operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { loginSchema } from '../../schemas/formik';
 import { Button } from '../StyledComponents/Components.styled';
@@ -18,8 +18,12 @@ import {
   IconsWrapper,
 } from '../SignUpForm/FormUserData/FormUserData.styled';
 import sprite from 'assets/sprite.svg';
+import { selectAuthInfo } from '../../redux/auth/selectors';
+import LoadingModal from '../Loader/LoadingModal';
 
 export default function SignInForm() {
+  const { isLoading } = useSelector(selectAuthInfo);
+
   const [isHovered, setIsHovered] = useState(false);
 
   const initialValues = {
@@ -113,6 +117,7 @@ export default function SignInForm() {
           </SignInFormikForm>
         )}
       </Formik>
+      {isLoading && <LoadingModal isOpen={isLoading} />}
     </>
   );
 }
