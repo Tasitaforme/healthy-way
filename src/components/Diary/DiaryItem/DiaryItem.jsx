@@ -79,15 +79,15 @@ export default function DiaryItem({ data, meals }) {
           <ItemWrapInfo>
             <BodyTextWrap>
               <BodyTextFirst>Carbonohidrates:</BodyTextFirst>
-              <BodyTextSecond>{data.carbohydrate}</BodyTextSecond>
+              <BodyTextSecond>{Math.round(data.carbohydrate)}</BodyTextSecond>
             </BodyTextWrap>
             <BodyTextWrap>
               <BodyTextFirst>Protein:</BodyTextFirst>
-              <BodyTextSecond>{data.protein}</BodyTextSecond>
+              <BodyTextSecond>{Math.round(data.protein)}</BodyTextSecond>
             </BodyTextWrap>
             <BodyTextWrap>
               <BodyTextFirst>Fat:</BodyTextFirst>
-              <BodyTextSecond>{data.fat}</BodyTextSecond>
+              <BodyTextSecond>{Math.round(data.fat)}</BodyTextSecond>
             </BodyTextWrap>
             <ButtonIcon
               type="button"

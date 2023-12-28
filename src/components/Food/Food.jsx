@@ -31,7 +31,10 @@ export default function Food() {
         <Loader />
       ) : (
         <WrapMain>
-          <BigDoughnutChart calories={calories} baseCalories={baseCalories} />
+          <BigDoughnutChart
+            calories={Math.round(calories)}
+            baseCalories={baseCalories}
+          />
 
           <NutrientsList>
             <DoughnutNutrients
