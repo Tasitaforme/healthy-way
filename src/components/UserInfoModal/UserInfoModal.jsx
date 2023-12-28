@@ -33,7 +33,7 @@ export default function UserInfoModal({ onCloseModal }) {
           </LinkIcon>
           Setting
         </LinkModal>
-        <LogOutButton />
+        <LogOutButton onCloseUserInfoModal={onCloseModal} />
       </Modal>
     </ModalWrapper>
   );
