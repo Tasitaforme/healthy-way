@@ -12,7 +12,8 @@ const DoughnutCalories = ({ calories, baseCalories }) => {
     [calories, baseCalories]
   );
 
-  const arcColor = calories >= baseCalories ? 'red' : 'rgba(69, 255, 188, 1)';
+  const arcColor =
+    calories >= baseCalories ? '#e74a3b' : 'rgba(69, 255, 188, 1)';
   const borderRad = calories >= baseCalories ? [0] : [50];
 
   const data = {
@@ -69,8 +70,8 @@ const DoughnutCalories = ({ calories, baseCalories }) => {
     <div
       className="doughnut"
       style={{
-        height: 168,
-        width: 168,
+        height: '168px',
+        width: '168px',
       }}
     >
       <Doughnut plugins={[textCenterPlugin, backgroundCircle]} data={data} />

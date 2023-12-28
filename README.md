@@ -32,8 +32,8 @@ Axios, Chart.js, Formik/Yup, Styled-components, Figma, Git/GitHub, Vite, Postman
 **Basic functionality:**
 
 - Designed according to the mobile-first approach.
-- Implemented layout with three fractures
-- (for mobile devices, tablets, and desktop).
+- Implemented layout with three fractures (for mobile devices, tablets, and
+  desktop).
 - The layout is valid.
 - Compliance with semantics in accordance with HTML5 standards.
 - Connecting fonts using font-face.
@@ -72,10 +72,11 @@ Axios, Chart.js, Formik/Yup, Styled-components, Figma, Git/GitHub, Vite, Postman
 Axios, Chart.js, Formik/Yup, Styled-components, Figma, Git/GitHub, Vite, Postman
 , Teamwork.
 
-**Базовий функціонал:**  
+**Базовий функціонал:**
+
 • Розроблено по макету відповідно до підходу mobile-first.  
-• Реалізована верстка з трьома переломами  
-• (для мобільних девайсів, планшетів та десктопу).  
+• Реалізована верстка з трьома переломами (для мобільних девайсів, планшетів та
+десктопу).  
 • Верстка валідна.  
 • Дотримання семантики відповідно до стандартів HTML5.  
 • Підключення шрифтів за допомогою font-face.  
