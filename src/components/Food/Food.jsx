@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
 import { HeadlineSecond } from '../StyledComponents/Components.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectDiaryInfo } from '../../redux/diary/selectors';
 import { getTotalNutrients } from '../../helpers';
 import { selectUserInfo } from '../../redux/auth/selectors';
@@ -10,8 +9,6 @@ import DoughnutNutrients from './Doughnuts/DoughnutNutrients';
 import Loader from '../Loader/Loader';
 
 export default function Food() {
-  const dispatch = useDispatch();
-
   const {
     fat: baseFat,
     protein: baseProtein,
@@ -31,7 +28,10 @@ export default function Food() {
         <Loader />
       ) : (
         <WrapMain>
-          <BigDoughnutChart calories={calories} baseCalories={baseCalories} />
+          <BigDoughnutChart
+            calories={Math.round(calories)}
+            baseCalories={baseCalories}
+          />
 
           <NutrientsList>
             <DoughnutNutrients
