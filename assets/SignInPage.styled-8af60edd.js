@@ -1,8 +1,8 @@
-import{s as i,L as n}from"./index-e68b9b4e.js";import{a as o,d as t}from"./Components.styled-98f450c5.js";const e=i(o)`
+import{s as i,a as n,w as t,L as a}from"./index-eeab6bbc.js";const e=i(n)`
   color: var(--grey-light);
   margin-top: 16px;
   margin-bottom: 24px;
-`,s=i(t)`
+`,r=i(t)`
   color: var(--grey-light);
   margin-bottom: 16px;
 
@@ -15,7 +15,7 @@ import{s as i,L as n}from"./index-e68b9b4e.js";import{a as o,d as t}from"./Compo
   @media screen and (min-width: 1440px) {
     text-align: left;
   }
-`,d=i(n)`
+`,s=i(a)`
   color: var(--white);
   font-size: 14px;
   font-weight: 500;
@@ -29,4 +29,4 @@ import{s as i,L as n}from"./index-e68b9b4e.js";import{a as o,d as t}from"./Compo
   @media screen and (min-width: 834px) {
     display: inline-block;
   }
-`;export{e as H,s as S,d as a};
+`;export{e as H,r as S,s as a};

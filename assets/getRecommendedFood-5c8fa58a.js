@@ -1,10 +1,10 @@
-import{s as o,K as n}from"./index-e68b9b4e.js";import{a as t}from"./Components.styled-98f450c5.js";const s=(e,a)=>{if(e)return e.slice().sort(()=>.5-Math.random()).slice(0,a)},c=o.li`
+import{s as o,a as n,a0 as t}from"./index-eeab6bbc.js";const r=(e,a)=>{if(e)return e.slice().sort(()=>.5-Math.random()).slice(0,a)},s=o.li`
   width: 100%;
 
   @media screen and (min-width: 1440px) {
     width: 676px;
   }
-`,p=o.ul`
+`,c=o.ul`
   display: flex;
   flex-direction: column;
   row-gap: 10px;
@@ -16,7 +16,7 @@ import{s as o,K as n}from"./index-e68b9b4e.js";import{a as t}from"./Components.s
     flex-wrap: wrap;
     column-gap: 20px;
   }
-`,m=o.li`
+`,p=o.li`
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -32,13 +32,13 @@ import{s as o,K as n}from"./index-e68b9b4e.js";import{a as t}from"./Components.s
 `;o.img`
   width: 46px;
   height: 46px;
-`;const l=o(t)`
+`;const l=o(n)`
   font-weight: 400;
-`,x=o.div`
+`,m=o.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   column-gap: 6px;
   align-items: center;
   margin-top: 2px;
-`,f=async()=>{try{const{data:e}=await n.get("/api/user/recommended-food");return e}catch(e){return e}};export{p as F,c as R,f as a,m as b,l as c,x as d,s as g};
+`,x=async()=>{try{const{data:e}=await t.get("/api/user/recommended-food");return e}catch(e){return e}};export{c as F,s as R,x as a,p as b,l as c,m as d,r as g};
