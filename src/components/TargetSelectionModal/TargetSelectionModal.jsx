@@ -86,21 +86,35 @@ export default function TargetSelectionModal({
 
           <form>
             <ul>
-              <TargetWrapper tabIndex={0} onClick={handleLoseWeight}>
+              <TargetWrapper
+                tabIndex={0}
+                onClick={handleLoseWeight}
+                className={userInfo.goal === 'Lose fat' ? 'current-goal' : ' '}
+              >
                 <ImgBorder>
                   <TargetImg src={loseFatImg} alt="Lose fat" />
                 </ImgBorder>
                 <TargetText>Lose fat</TargetText>
               </TargetWrapper>
 
-              <TargetWrapper tabIndex={0} onClick={handMaintain}>
+              <TargetWrapper
+                tabIndex={0}
+                onClick={handMaintain}
+                className={userInfo.goal === 'Maintain' ? 'current-goal' : ' '}
+              >
                 <ImgBorder>
                   <TargetImg src={maintainImg} alt="Maintain" />
                 </ImgBorder>
                 <TargetText>Maintain</TargetText>
               </TargetWrapper>
 
-              <TargetWrapper tabIndex={0} onClick={handleGainMuscle}>
+              <TargetWrapper
+                tabIndex={0}
+                onClick={handleGainMuscle}
+                className={
+                  userInfo.goal === 'Gain muscle' ? 'current-goal' : ' '
+                }
+              >
                 <ImgBorder>
                   <TargetImg src={muscleImg} alt="Gain muscle" />
                 </ImgBorder>

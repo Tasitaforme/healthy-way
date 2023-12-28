@@ -1,5 +1,9 @@
-// import React from 'react';
+import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 import { Formik } from 'formik';
+import { updateWeight, currentUser } from '../../redux/auth/operations';
 import sprite from 'assets/sprite.svg';
 import { weightSchema } from '../../schemas/formikWeight';
 import {
@@ -18,10 +22,6 @@ import {
   ErrorMessage,
   ModalBackdrop,
 } from './CurrentWeightModal.styled';
-import { useDispatch } from 'react-redux';
-import { updateWeight } from '../../redux/auth/operations';
-import toast from 'react-hot-toast';
-import { useEffect } from 'react';
 
 export default function CurrentWeightModal({
   onCloseModal,
@@ -47,8 +47,8 @@ export default function CurrentWeightModal({
     try {
       await dispatch(updateWeight(values.weight));
       toast.success('Your weight has been successfully updated!');
-
       setShowModalWeight(false);
+      dispatch(currentUser);
     } catch (error) {
       toast.error(`Something went wrong! ${error.message}`);
     }

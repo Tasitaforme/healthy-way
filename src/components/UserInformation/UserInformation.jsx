@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { Formik } from 'formik';
 import { profileSettingSchema } from '../../schemas/profileSettings';
 import { selectUserInfo } from '../../redux/auth/selectors';
-import { updateUser, updateAvatar } from '../../redux/auth/operations.js';
+import {
+  updateUser,
+  updateAvatar,
+  currentUser,
+} from '../../redux/auth/operations.js';
 import sprite from 'assets/sprite.svg';
 import {
   UserInformationField,

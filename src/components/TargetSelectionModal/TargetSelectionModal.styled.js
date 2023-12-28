@@ -101,8 +101,14 @@ export const TargetWrapper = styled.li`
 
   &:hover > div,
   &:focus > div,
-  &: hover > p,
+  &:hover > p,
   &:focus > p {
+    color: #b6c3ff;
+    border-color: #b6c3ff;
+  }
+
+  &.current-goal > div,
+  &.current-goal > p {
     color: #b6c3ff;
     border-color: #b6c3ff;
   }
