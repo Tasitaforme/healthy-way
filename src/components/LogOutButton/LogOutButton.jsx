@@ -37,7 +37,7 @@ const customStyles = {
     zIndex: 1000,
   },
 };
-export default function LogOutButton() {
+export default function LogOutButton({ onCloseUserInfoModal }) {
   const [showLogoutModal, setShowLogoutModal] = useState();
 
   const dispatch = useDispatch();
@@ -56,6 +56,7 @@ export default function LogOutButton() {
       localStorage.clear();
       toast.success('You have successfully logged out!');
       closeLogoutModal();
+      onCloseUserInfoModal();
       redirect('/');
     } catch (error) {
       toast.error(`Something went wrong! \n ${error}`);
